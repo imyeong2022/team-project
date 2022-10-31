@@ -1,11 +1,11 @@
 @font-face {
-	font-family: 'Pretendard-Regular';
-	src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-	font-weight: 400;
-	font-style: normal;
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
 }
 
-html {
+html{
 	font-family: 'Pretendard-Regular';
 }
 
@@ -153,7 +153,7 @@ footer {
 
 
 .public-list {
-	width: 100%;
+	width:100%;
 	height: 20px;
 }
 
@@ -165,20 +165,20 @@ footer {
 	float: left
 }
 
-.public-title {
+.public-title{
 	margin-top: 50px;
 	text-align: center;
 	font-size: 45px;
 	font-weight: bold;
 }
 
-.public-title-sub {
+.public-title-sub{
 	padding-top: 25px;
 	text-align: center;
 
 }
 
-.main-gird-ul {
+.main-gird-ul{
 	list-style: none;
 	margin-top: 0px;
 	margin-bottom: 0px;
@@ -189,7 +189,7 @@ footer {
 	width: auto;
 }
 
-.main-gird-li {
+.main-gird-li{
 
 	margin-top: 1%;
 	margin-bottom: 1%;
@@ -198,21 +198,21 @@ footer {
 	padding-top: 3%;
 	padding-left: 1.5%;
 	padding-right: 1.5%;
-	float: left;
+	float:left;
 	background: #796565;
 	width: 27%;
 	height: 180px;
-
+	
 }
 
-.grid-sub-blue {
+.grid-sub-blue{
 	padding-left: 10px;
 	padding-right: 10px;
 	color: rgb(29, 146, 255);
 	font-size: 20px;
 }
 
-.grid-title {
+.grid-title{
 	padding-left: 10px;
 	padding-right: 10px;
 	margin: 0px;
@@ -220,16 +220,18 @@ footer {
 	font-size: 35px;
 }
 
-.grid-sub-text {
+.grid-sub-text{
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 25px;
 	font-size: 16px;
 }
 
-.main-grid-a {}
+.main-grid-a{
 
-.public-hr {
+}
+
+.public-hr{
 	margin-left: 7.5%;
 	margin-right: 7.5%;
 	border: 0px;
@@ -237,16 +239,18 @@ footer {
 	background: black;
 }
 
-.login-form-div {
+.login-form-div{
 	margin-left: 7.5%;
 	margin-right: 7.5%;
 	padding-top: 80px;
 	padding-bottom: 100px;
 }
 
-.login-form {}
+.login-form{
 
-.login-input {
+}
+
+.login-input{
 	width: 34%;
 	height: 60px;
 	margin-left: 32.5%;
@@ -255,8 +259,7 @@ footer {
 	margin-bottom: 15px;
 	font-size: 16px;
 }
-
-.login-submit {
+.login-submit{
 	margin-left: 32.5%;
 	margin-right: 32.5%;
 	width: 35.6%;
@@ -267,58 +270,9 @@ footer {
 	outline: none;
 	border: none;
 	font-size: 16px;
+
 }
 
 input::placeholder {
 	font-weight: bold;
-}
-
-/* join */
-
-.join-div{
-	float: left;
-	margin-left: 32.5%;
-	margin-right: 32.5%;
-	margin-bottom: 15px;
-	width: 27%;
-}
-
-.join-input {
-	width: 100%;
-	height: 40px;
-	padding-left: 1%;
-	font-size: 16px;
-}
-
-.join-submit {
-	margin-left: 32.5%;
-	margin-right: 32.5%;
-	width: 35.6%;
-	height: 60px;
-	font-weight: bold;
-	color: white;
-	background: #759ef7;
-	outline: none;
-	border: none;
-	font-size: 16px;
-}
-
-
-
-/* company */
-.title-area-company {
-	margin-left: 7.5%;
-	margin-right: 7.5%;
-	padding-top: 140px;
-	padding-bottom: 80px;
-	height: 300px;
-	width: 85%;
-	background-color: white;
-}
-
-.company-logo {
-	height: 250px;
-	width: 250px;
-	padding: 25px;
-	margin-right: 60px;
-}
+  }

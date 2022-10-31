@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>main.html</title> <!--성공하면 오는 곳-->
+</head>
+<body>
+{% if session.get('logFlag') %}
+userId : {{ session.get('userId') }} <br>
+userEmail : {{ session.get('userEmail') }} <br>
+<a href = "/logout">[Log-Out]</a>
+{% else %} <!-- 세션이 끊겼을때 -->
+<!-- <a href = "/login_form">[Log-In]</a> -->
+<script>
+  alert('잘못된 접근입니다. 정상적인 방법으로 들어와주세요.');
+  location.href='/';
+</script>
+{% endif %}
+</body>
+</html>

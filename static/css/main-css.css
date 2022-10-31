@@ -1,0 +1,278 @@
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
+html{
+	font-family: 'Pretendard-Regular';
+}
+
+body {
+	margin: 0px;
+	height: 3000px;
+}
+
+header {
+	position: fixed;
+	height: 120px;
+	width: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	overflow: hidden;
+	background: #f4f4f4;
+	z-index: 2;
+
+}
+
+.header-div {
+	background: #796565;
+	margin-left: 5%;
+	margin-right: 5%;
+	height: 100%;
+	width: 90%;
+	z-index: 2;
+}
+
+.header-div-left {
+	background: #d3a44d;
+	float: left;
+	height: 120px;
+	width: 20%;
+	z-index: 3;
+}
+
+.header-logo {
+	height: auto;
+	width: auto;
+	font-size: 3rem;
+	font-weight: bold;
+	text-align: center;
+	color: black;
+}
+
+.header-logo-a {
+	color: black;
+	text-decoration: none;
+}
+
+.header-div-right {
+	background: #318592;
+	float: right;
+	height: 120px;
+	width: 77%;
+	z-index: 3;
+	padding-right: 3%;
+}
+
+.header-div-top {
+	background: #32a145;
+	float: right;
+	height: 55px;
+	width: 100%;
+	z-index: 4;
+}
+
+.header-div-lower {
+	background: #8b8883;
+	float: right;
+	height: 65px;
+	width: 100%;
+	z-index: 4;
+}
+
+footer {
+	height: 260px;
+	width: 100%;
+}
+
+.main-section {
+	height: auto;
+	width: 100%;
+}
+
+.header-a-tag-none {
+	float: right;
+	padding-top: 2%;
+	padding-left: 0.725%;
+	padding-right: 0.725%;
+	text-decoration: none;
+	color: black;
+}
+
+.header-a-tag-none-lower {
+	float: left;
+	font-size: 1.5rem;
+	font-weight: bold;
+	text-decoration: none;
+	color: black;
+	padding-top: 2%;
+	padding-left: 3%;
+	padding-right: 3%;
+}
+
+.header-a-tag-none-logo {
+	font-size: 1.5rem;
+	font-weight: bold;
+	text-decoration: none;
+	color: black;
+	padding-top: 2%;
+	padding-left: 3%;
+	padding-right: 3%;
+}
+
+.main-section-slider-div {}
+
+.search-bar-div {
+	background: #a96ae4;
+	height: 120px;
+	width: 100%;
+}
+
+.recommend-div {
+	background: #edd9ff;
+	height: 750px;
+	width: 100%;
+}
+
+
+/* page */
+.title-area {
+	margin-left: 7.5%;
+	margin-right: 7.5%;
+	padding-top: 140px;
+	padding-bottom: 80px;
+	height: 200px;
+	width: 85%;
+	background-color: white;
+}
+
+.inner {}
+
+
+.public-list {
+	width:100%;
+	height: 20px;
+}
+
+.public-ol {
+	list-style: none;
+}
+
+.public-li {
+	float: left
+}
+
+.public-title{
+	margin-top: 50px;
+	text-align: center;
+	font-size: 45px;
+	font-weight: bold;
+}
+
+.public-title-sub{
+	padding-top: 25px;
+	text-align: center;
+
+}
+
+.main-gird-ul{
+	list-style: none;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 3%;
+	margin-right: 3%;
+	padding-top: 7.5%;
+	height: 87%;
+	width: auto;
+}
+
+.main-gird-li{
+
+	margin-top: 1%;
+	margin-bottom: 1%;
+	margin-left: 1.3%;
+	margin-right: 1.3%;
+	padding-top: 3%;
+	padding-left: 1.5%;
+	padding-right: 1.5%;
+	float:left;
+	background: #796565;
+	width: 27%;
+	height: 180px;
+	
+}
+
+.grid-sub-blue{
+	padding-left: 10px;
+	padding-right: 10px;
+	color: rgb(29, 146, 255);
+	font-size: 20px;
+}
+
+.grid-title{
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 0px;
+	padding-top: 7px;
+	font-size: 35px;
+}
+
+.grid-sub-text{
+	padding-left: 10px;
+	padding-right: 10px;
+	padding-top: 25px;
+	font-size: 16px;
+}
+
+.main-grid-a{
+
+}
+
+.public-hr{
+	margin-left: 7.5%;
+	margin-right: 7.5%;
+	border: 0px;
+	height: 2px;
+	background: black;
+}
+
+.login-form-div{
+	margin-left: 7.5%;
+	margin-right: 7.5%;
+	padding-top: 80px;
+	padding-bottom: 100px;
+}
+
+.login-form{
+
+}
+
+.login-input{
+	width: 34%;
+	height: 60px;
+	margin-left: 32.5%;
+	margin-right: 32.5%;
+	padding-left: 1%;
+	margin-bottom: 15px;
+	font-size: 16px;
+}
+.login-submit{
+	margin-left: 32.5%;
+	margin-right: 32.5%;
+	width: 35.6%;
+	height: 60px;
+	font-weight: bold;
+	color: white;
+	background: #759ef7;
+	outline: none;
+	border: none;
+	font-size: 16px;
+
+}
+
+input::placeholder {
+	font-weight: bold;
+  }

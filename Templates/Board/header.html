@@ -11,7 +11,7 @@
     <script src="{{ url_for('static', filename='js/swiper.min.js') }}"></script>
 </head>
 
-<body>
+
     <header>
         <div class="header-div">
             <div class="header-div-left">
@@ -21,13 +21,25 @@
             </div>
             <div class="header-div-right">
                 <div class="header-div-top">
+                    
+                    { % if session.get('logFlag') %}
+                    <div><a class="header-a-tag-none">test</a>
+                        <a class="header-a-tag-none">test</a>
+                        <a class="header-a-tag-none">test</a>
+                        <a class="header-a-tag-none">로그아웃</a>
+                        <a class="header-a-tag-none" >마이페이지</a>
+                        <a class="header-a-tag-none">{{session['ID']}}님 환영합니다.</a>
+                    </div>
+                     { % else %}
                     <div><a class="header-a-tag-none">test</a>
                         <a class="header-a-tag-none">test</a>
                         <a class="header-a-tag-none">test</a>
                         <a class="header-a-tag-none">test</a>
-                        <a class="header-a-tag-none">test</a>
+                        <a class="header-a-tag-none" href="/join_form_get">회원가입</a>
                         <a class="header-a-tag-none" href="/login_form_get">로그인</a>
                     </div>
+                    { %endif% }
+                    
                 </div>
                 <div class="header-div-lower">
                     <a class="header-a-tag-none-lower" href="/condition">조건으로 찾기</a>
@@ -40,6 +52,6 @@
             </div>
         </div>
     </header>
-</body>
+
 
 </html>

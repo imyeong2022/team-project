@@ -275,4 +275,116 @@ footer {
 
 input::placeholder {
 	font-weight: bold;
-  }
+}
+
+/* join */
+
+.join-div {
+	float: left;
+	margin-left: 32.5%;
+	margin-right: 32.5%;
+	margin-bottom: 15px;
+	width: 27%;
+}
+
+.join-input {
+	width: 100%;
+	height: 40px;
+	padding-left: 1%;
+	font-size: 16px;
+}
+
+.join-submit {
+	margin-left: 32.5%;
+	margin-right: 32.5%;
+	width: 35.6%;
+	height: 60px;
+	font-weight: bold;
+	color: white;
+	background: #759ef7;
+	outline: none;
+	border: none;
+	font-size: 16px;
+}
+
+
+/* company */
+
+.title-area-company-bgimg {
+	position:relative;
+	padding-left: 7.5%;
+	padding-right: 7.5%;
+	padding-top: 180px;
+	padding-bottom: 40px;
+	float: left;
+	height: 300px;
+	width: 85%;
+	background-color: rgb(97, 97, 97);
+	z-index: 0;
+
+}
+
+.title-area-company {
+	position: absolute;
+	margin-left: 7.5%;
+	margin-right: 7.5%;
+	padding-top: 180px;
+	padding-bottom: 40px;
+	float: left;
+	height: 300px;
+	width: 85%;
+	z-index: 1;
+}
+
+.company-logo {
+	float: left;
+	height: 250px;
+	width: 250px;
+	padding: 25px;
+	margin-right: 60px;
+	background: white;
+	line-height: 250px;
+	/* vertical-align이랑 같이 세로중앙정렬 */
+}
+
+.company-logo-img {
+	height: auto;
+	width: 100%;
+	vertical-align: middle;
+	/* line-height이랑 같이 세로중앙정렬 */
+}
+
+.company-info {
+	float: left;
+	width: 73%;
+	height: 300px;
+}
+
+.company-sub {
+	color: aliceblue;
+	margin-top: 35px;
+	margin-bottom: 5px;
+}
+
+.company-title {
+	margin-top: 20px;
+	margin-bottom: 0px; /* 만약 즐겨찾기 or 사이트 주소 불러오기 실패시 제외 */
+	font-size: 62px;
+	color: aliceblue;
+}
+
+
+.company-sub-title-Y {
+	padding-right: 20px;
+	float: left;
+	font-weight: none;
+	color: yellow;
+
+}
+
+.company-sub-title-W {
+	padding-right: 20px;
+	float: left;
+	font-weight: none;
+	color: aliceblue;
+}

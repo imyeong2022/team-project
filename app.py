@@ -38,6 +38,26 @@ def home():
 def login_form_get():
     return render_template('Board/login.html')
 
+@app.route('/recent_inquiry_company')
+def recent_inquiry_company():
+    return render_template('Borad/r-i-c.html')
+    
+@app.route('/condition')
+def condition():
+    return render_template('Board/Condition.html')
+
+@app.route('/faq')
+def faq():
+    return render_template('Board/faq.html')
+
+@app.route('/company')
+def company():
+    return render_template('Board/company.html')
+
+@app.route('/join')
+def join():
+    return render_template('Borad/join.html')
+
 @app.route('/login_proc', methods=['POST'])
 def login_proc():
 

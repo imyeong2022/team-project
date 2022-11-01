@@ -28,6 +28,14 @@ def faq():
 def company():
     return render_template('Board/company.html')
 
+@app.route('/chart')
+def chart():
+    return render_template('Board/chart.html')
+   
+@app.route('/bar')
+def bar():
+    return render_template('Board/bar.html')
+    
 @app.route('/join')
 def join():
     return render_template('login/join.html')

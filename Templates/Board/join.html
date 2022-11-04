@@ -4,6 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>login_form.html</title>
+    <script>
+        function selectAll(selectAll) {
+            const checkboxes = document.getElementsByName('terms');
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = selectAll.checked;
+            })
+        }
+    </script>
 </head>
 
 <body>
@@ -31,32 +39,59 @@
             <div class="login-form-div">
 
                 <form class="login-form" action="" method="post">
-                    <div class="join-div">
-                        <span>아이디</span>
-                        <input class="join-input" type="text" name="user_id" placeholder="ID">
+                    <input class="join-input" type="text" name="user_id" placeholder="ID">
+                    <input class="join-input" type="text" name="user_pw" placeholder="PassWord">
+                    <input class="join-input" type="text" name="user_pw_check" placeholder="Re PassWord">
+                    <input class="join-input" type="text" name="user_name" placeholder="Name">
+                    <input class="join-input" type="text" name="user_phone" placeholder="Phone Number">
+                    <input class="join-input" type="text" name="user_birth" placeholder="Birth">
+                    <hr />
+                    <div class="join-check-all">
+                        <input type="checkbox" name="terms" value="selectAll" onclick="selectAll(this)" /><b>모두 확인하였으며
+                            동의합니다.</b>
+                        <p>전체 동의에는 필수 및 선택 정보에 대한 동의가 포함되어 있으며, 개별적으로 동의를 선택 하실 수 있습니다. 선택 항목에 대한 동의를 거부하시는 경우에도 서비스
+                            이용이
+                            가능합니다.</p>
                     </div>
-                    <div class="join-div">
-                        <span>비밀번호</span>
-                        <input class="join-input" type="text" name="user_pw" placeholder="PassWord">
-                    </div>
-                    <div class="join-div">
-                        <span>비밀번호 재확인</span>
-                        <input class="join-input" type="text" name="user_pw_check" placeholder="Re PassWord">
-                    </div>
-                    <div class="join-div">
-                        <span>이름</span>
-                        <input class="join-input" type="text" name="user_name" placeholder="Name">
-                    </div>
-                    <div class="join-div">
-                        <span>전화번호</span>
-                        <input class="join-input" type="text" name="user_phone" placeholder="Phone Number">
-                    </div>
-                    <div class="join-div">
-                        <span>생년월일</span>
-                        <input class="join-input" type="text" name="user_birth" placeholder="Birth">
+                    <div class="join-check-area">
+                        <div class="join-check-list">
+                            <input type="checkbox" name="terms" value="select-essential-1" /><b>[필수] 만 14세
+                                이상입니다.</b><br />
+                        </div>
+                        <div class="join-check-list">
+                            <input class="join-check-list" type="checkbox" name="terms"
+                                value="select-essential-2" /><b>[필수]
+                                잡아라 이용약관 동의.</b><br />
+                        </div>
+                        <div class="join-check-list">
+                            <input class="join-check-list" type="checkbox" name="terms"
+                                value="select-essential-3" /><b>[필수]
+                                개인정보 수집 및 이용 동의.</b><br /></div>
+                        <div class="join-check-list">
+                            <input type="checkbox" name="terms" value="select-essential-4" /><b>[필수] 개인정보 제3자 제공
+                                동의.</b><br /></div>
+                        <div class="join-check-list">
+                            <input type="checkbox" name="terms" value="select-necessary-1" /><b>[선택] 마케팅 목적의 개인정보 수집 및
+                                이용
+                                동의.</b><br /></div>
+                        <div class="join-check-list">
+                            <input type="checkbox" name="terms" value="select-necessary-2" /><b>[선택] 광고성 정보 수신
+                                동의.</b><br />
+                        </div>
+                        <div class="join-check-list sub">
+                            <input type="checkbox" name="terms" value="select-necessary-3" /><b>[선택] 이메일 수신
+                                동의.</b><br />
+                        </div>
+                        <div class="join-check-list sub">
+                            <input type="checkbox" name="terms" value="select-necessary-4" /><b>[선택] SMS, SNS 수신
+                                동의.</b><br />
+                        </div>
+                        <div class="join-check-list sub">
+                            <input type="checkbox" name="terms" value="select-necessary-5" /><b>[선택] 앱 푸시 수신
+                                동의.</b><br />
+                        </div>
                     </div>
                     <input class="join-submit" type="submit" value="가입하기">
-
                 </form>
             </div>
             <div></div>

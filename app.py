@@ -68,6 +68,16 @@ def login_proc():
 
 app.secret_key = 'test_secret_key'
 
+@app.route('/logout_proc')
+def logout_proc():
+    if session['logFlag'] == True:
+        session['logFlag'] = False
+    return render_template('Board/header.html') 
+#    return render_template('Board/index.html') 으로 할시 data_list undefined 나와서, 임시로 header로 연결했습니다.
+
+        
+
+
 ##################### 로그인관련 ###############
 
 

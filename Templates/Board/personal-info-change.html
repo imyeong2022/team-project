@@ -10,6 +10,7 @@
 
 <body>
     {% include 'Board/header.html' %}
+    {% if session.get('logFlag') %}
     <div class="main-div">
         <section class="main-section">
             <div class="title-area">
@@ -35,19 +36,15 @@
                 <form class="login-form" action="" method="post">
                     <div class="join-div">
                         <span>아이디</span>
-                        <input class="join-input" type="text" name="user_id" placeholder="ID">
+                        <input class="join-input" type="text" name="user_id" placeholder="{{session['ID']}}" readonly>
                     </div>
                     <div class="join-div">
                         <span>비밀번호</span>
-                        <input class="join-input" type="text" name="user_pw" placeholder="PassWord">
+                        <input class="join-input" type="text" name="user_pw" placeholder="PW">
                     </div>
                     <div class="join-div">
-                        <span>비밀번호 재확인</span>
-                        <input class="join-input" type="text" name="user_pw_check" placeholder="Re PassWord">
-                    </div>
-                    <div class="join-div">
-                        <span>이름</span>
-                        <input class="join-input" type="text" name="user_name" placeholder="Name">
+                        <span>이름</span>   
+                        <input class="join-input" type="text" name="user_name" placeholder="{{session['NAME']}}" readonly>
                     </div>
                     <div class="join-div">
                         <span>전화번호</span>
@@ -55,15 +52,18 @@
                     </div>
                     <div class="join-div">
                         <span>생년월일</span>
-                        <input class="join-input" type="text" name="user_birth" placeholder="Birth">
+                        <input class="join-input" type="text" name="user_birth" placeholder="Birth" readonly>
                     </div>
-                    <input class="join-submit" type="submit" value="가입하기">
+                    <input class="join-submit" type="submit" value="수정 완료">
 
                 </form>
             </div>
             <div></div>
         </section>
     </div>
+    {% else %}
+    {% include 'Board/error.html' %}
+    {% endif %}
 </body>
 
 </html>

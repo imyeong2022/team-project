@@ -128,25 +128,33 @@ def my_page_proc():
             
             return render_template('Board/login.html')
 
+@app.route('/recent_inquiry_company') #활동내역 (열람기업)
+def recent_inquiry_company():
+    return render_template('Board/r-i-c.html')
+
+@app.route('/personal-info-change') #회원정보수정
+def persnal_info_change():
+    return render_template('Board/personal-info-change.html')
+
 #################### END 마이페이지 ###################
 
 @app.route('/condition') #상세검색기능
 def condition():
     return render_template('Board/Condition.html')
     
-@app.route('/faq') #상세검색기능
+@app.route('/faq') # 질문과 답변
 def faq():
     return render_template('Board/faq.html')
 
-@app.route('/recent_inquiry_company') #상세검색기능
-def recent_inquiry_company():
-    return render_template('Board/r-i-c.html')
+@app.route('/test') # 질문과 답변
+def company():
+    return render_template('Board/company.html')
 
 
 
-@app.route('/personal-info-change')
-def persnal_info_change():
-    return render_template('Board/personal-info-change.html')
+
+
+
 
 if __name__ == '__main__':
     #app.run('127.0.0.1', 5000, debug=True)

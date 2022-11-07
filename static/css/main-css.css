@@ -1,11 +1,11 @@
 @font-face {
-    font-family: 'Pretendard-Regular';
-    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-    font-weight: 400;
-    font-style: normal;
+	font-family: 'Pretendard-Regular';
+	src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+	font-weight: 400;
+	font-style: normal;
 }
 
-html{
+html {
 	font-family: 'Pretendard-Regular';
 }
 
@@ -22,13 +22,13 @@ header {
 	left: 0;
 	right: 0;
 	overflow: hidden;
-	background: #f4f4f4;
+	background: white;
 	z-index: 2;
 
 }
 
 .header-div {
-	background: #796565;
+	background: white;
 	margin-left: 5%;
 	margin-right: 5%;
 	height: 100%;
@@ -37,7 +37,7 @@ header {
 }
 
 .header-div-left {
-	background: #d3a44d;
+	background: white;
 	float: left;
 	height: 120px;
 	width: 20%;
@@ -59,7 +59,7 @@ header {
 }
 
 .header-div-right {
-	background: #318592;
+	background: white;
 	float: right;
 	height: 120px;
 	width: 77%;
@@ -68,7 +68,7 @@ header {
 }
 
 .header-div-top {
-	background: #32a145;
+	background: white;
 	float: right;
 	height: 55px;
 	width: 100%;
@@ -76,7 +76,7 @@ header {
 }
 
 .header-div-lower {
-	background: #8b8883;
+	background: white;
 	float: right;
 	height: 65px;
 	width: 100%;
@@ -149,11 +149,16 @@ footer {
 	background-color: white;
 }
 
+.content-area {
+	margin-left: 7.5%;
+	margin-right: 7.5%;
+}
+
 .inner {}
 
 
 .public-list {
-	width:100%;
+	width: 100%;
 	height: 20px;
 }
 
@@ -165,20 +170,20 @@ footer {
 	float: left
 }
 
-.public-title{
+.public-title {
 	margin-top: 50px;
 	text-align: center;
 	font-size: 45px;
 	font-weight: bold;
 }
 
-.public-title-sub{
+.public-title-sub {
 	padding-top: 25px;
 	text-align: center;
 
 }
 
-.main-gird-ul{
+.main-gird-ul {
 	list-style: none;
 	margin-top: 0px;
 	margin-bottom: 0px;
@@ -189,7 +194,7 @@ footer {
 	width: auto;
 }
 
-.main-gird-li{
+.main-gird-li {
 
 	margin-top: 1%;
 	margin-bottom: 1%;
@@ -198,21 +203,21 @@ footer {
 	padding-top: 3%;
 	padding-left: 1.5%;
 	padding-right: 1.5%;
-	float:left;
+	float: left;
 	background: #796565;
 	width: 27%;
 	height: 180px;
-	
+
 }
 
-.grid-sub-blue{
+.grid-sub-blue {
 	padding-left: 10px;
 	padding-right: 10px;
 	color: rgb(29, 146, 255);
 	font-size: 20px;
 }
 
-.grid-title{
+.grid-title {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin: 0px;
@@ -220,18 +225,16 @@ footer {
 	font-size: 35px;
 }
 
-.grid-sub-text{
+.grid-sub-text {
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 25px;
 	font-size: 16px;
 }
 
-.main-grid-a{
+.main-grid-a {}
 
-}
-
-.public-hr{
+.public-hr {
 	margin-left: 7.5%;
 	margin-right: 7.5%;
 	border: 0px;
@@ -239,18 +242,16 @@ footer {
 	background: black;
 }
 
-.login-form-div{
+.login-form-div {
 	margin-left: 7.5%;
 	margin-right: 7.5%;
 	padding-top: 80px;
 	padding-bottom: 100px;
 }
 
-.login-form{
+.login-form {}
 
-}
-
-.login-input{
+.login-input {
 	width: 34%;
 	height: 60px;
 	margin-left: 32.5%;
@@ -258,10 +259,15 @@ footer {
 	padding-left: 1%;
 	margin-bottom: 15px;
 	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
 }
-.login-submit{
+
+.login-submit {
 	margin-left: 32.5%;
 	margin-right: 32.5%;
+	margin-bottom: 10px;
 	width: 35.6%;
 	height: 60px;
 	font-weight: bold;
@@ -270,7 +276,36 @@ footer {
 	outline: none;
 	border: none;
 	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
 
+.login-join {
+	margin-left: 32.5%;
+	margin-right: 32.5%;
+	margin-bottom: 15px;
+	width: 35.3%;
+	height: 60px;
+	background: white;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
+.login-join>a {
+	height: 100%;
+	width: 100%;
+	color: #759ef7;
+	outline: none;
+	border: none;
+	font-weight: bold;
+	font-size: 16px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	text-decoration: none;
 }
 
 input::placeholder {
@@ -284,14 +319,20 @@ input::placeholder {
 	margin-left: 32.5%;
 	margin-right: 32.5%;
 	margin-bottom: 15px;
-	width: 27%;
+	width: 34%;
 }
 
 .join-input {
-	width: 100%;
-	height: 40px;
+	width: 34%;
+	height: 60px;
+	margin-left: 32.5%;
+	margin-right: 32.5%;
 	padding-left: 1%;
+	margin-bottom: 15px;
 	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
 }
 
 .join-submit {
@@ -307,11 +348,65 @@ input::placeholder {
 	font-size: 16px;
 }
 
+.login-form > hr {
+	margin-left: 32.5%;
+	margin-right: 32.5%;
+	margin-bottom: 15px;
+	width: 35.6%;
+}
+
+.join-check-all{
+	width: 34%;
+	height: auto;
+	margin-left: 32.5%;
+	margin-right: 32.5%;
+	padding-left: 1%;
+	margin-bottom: 15px;
+	font-size: 16px;
+}
+
+.join-check-all > b{
+	padding-left: 10px;
+	font-size: 20px;
+}
+
+.join-check-all > p{
+	margin-top: 5px;
+	padding-left: 30px;
+}
+
+.join-check-area{
+	margin-left: 32.5%;
+	margin-right: 32.5%;
+	margin-bottom: 15px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	width: 35.3%;
+	height: auto;
+	background: white;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
+.join-check-list{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+}
+
+.join-check-list b{
+	padding-left: 10px;
+}
+
+.join-check-list.sub{
+	padding-left: 40px;
+}
 
 /* company */
 
 .title-area-company-bgimg {
-	position:relative;
+	position: relative;
 	padding-left: 7.5%;
 	padding-right: 7.5%;
 	padding-top: 180px;
@@ -368,7 +463,8 @@ input::placeholder {
 
 .company-title {
 	margin-top: 20px;
-	margin-bottom: 0px; /* 만약 즐겨찾기 or 사이트 주소 불러오기 실패시 제외 */
+	margin-bottom: 0px;
+	/* 만약 즐겨찾기 or 사이트 주소 불러오기 실패시 제외 */
 	font-size: 62px;
 	color: aliceblue;
 }
@@ -387,4 +483,46 @@ input::placeholder {
 	float: left;
 	font-weight: none;
 	color: aliceblue;
+}
+
+
+/* FAQ */
+
+.faq-search-bar {
+	padding-top: 40px;
+	padding-bottom: 40px;
+	height: 60px;
+	width: 100%;
+}
+
+.bg-gray {
+	background: rgb(222, 222, 222);
+}
+
+.faq-search-bar .faq-search-wrap {
+	margin: auto;
+	width: 670px;
+	height: 60px;
+}
+
+.grid-area {
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+.colum {
+	padding-left: 5px;
+	padding-right: 5px;
+	float: left;
+}
+
+.col25 {
+	width: 25%;
+	height: 100%;
+}
+
+.col70 {
+	width: 70%;
+	height: 100%;
 }

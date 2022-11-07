@@ -125,11 +125,26 @@ footer {
 
 .main-section-slider-div {}
 
+.search-area {}
+
 .search-bar-div {
-	background: #a96ae4;
-	height: 120px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	background: #759ef7;
+	height: 60px;
 	width: 100%;
+
 }
+
+.search-frame {
+	margin-left: 50px;
+	margin-right: 50px;
+	height: 100%;
+	width: auto;
+	background: aliceblue;
+}
+
+
 
 .recommend-div {
 	background: #edd9ff;
@@ -156,6 +171,94 @@ footer {
 
 .inner {}
 
+.input-text {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 2%;
+	padding-right: 2%;
+	height: 40px;
+	width: 96%;
+	border-style: solid;
+	border-width: 0px;
+	border-color: #759ef7;
+}
+
+.search-filter {
+	margin-top: 6%;
+	margin-left: 8%;
+	margin-right: 8%;
+	height: 250px;
+	width: 84%;
+}
+
+.search-fileter-child {
+	margin: 0%;
+	padding: 0%;
+	border-style: solid;
+	border-color: #bdbdbd;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-right-width: 1px;
+	border-left: 0px;
+	float: left;
+	height: 100%;
+	width: 24.8%;
+}
+
+.search-fileter-child-title {
+	padding-top: 30px;
+	padding-bottom: 20px;
+	padding-left: 10%;
+	padding-right: 10%;
+	height: 20px;
+	width: 80%;
+}
+
+.search-filter>.search-fileter-child:first-child {
+	border-style: solid;
+	border-color: #bdbdbd;
+	border-left-width: 1px;
+}
+
+.search-fileter-child-title>span {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.search-fileter-child-item-list {
+	padding-bottom: 30px;
+	padding-left: 10%;
+	padding-right: 2.5%;
+	width: 87.5%;
+	height: 150px;
+}
+
+.search-fileter-checkbox {
+	overflow-y:scroll;
+	float: left;
+	height: 150px;
+	width: 95%;
+}
+
+.search-fileter-checkbox>:first-child {
+	margin: 0px;
+}
+
+.search-fileter-checkbox-item{
+	margin-top: 5px;
+}
+
+.search-fileter-checkbox-item>input {
+	margin: 0px;
+	height: 23px;
+	width: 23px;
+}
+
+.search-fileter-checkbox-item>label {
+	position: relative;
+	top: -5px;
+	margin-left: 5px;
+}
 
 .public-list {
 	width: 100%;
@@ -348,14 +451,14 @@ input::placeholder {
 	font-size: 16px;
 }
 
-.login-form > hr {
+.login-form>hr {
 	margin-left: 32.5%;
 	margin-right: 32.5%;
 	margin-bottom: 15px;
 	width: 35.6%;
 }
 
-.join-check-all{
+.join-check-all {
 	width: 34%;
 	height: auto;
 	margin-left: 32.5%;
@@ -365,17 +468,17 @@ input::placeholder {
 	font-size: 16px;
 }
 
-.join-check-all > b{
+.join-check-all>b {
 	padding-left: 10px;
 	font-size: 20px;
 }
 
-.join-check-all > p{
+.join-check-all>p {
 	margin-top: 5px;
 	padding-left: 30px;
 }
 
-.join-check-area{
+.join-check-area {
 	margin-left: 32.5%;
 	margin-right: 32.5%;
 	margin-bottom: 15px;
@@ -389,17 +492,17 @@ input::placeholder {
 	border-color: #759ef7;
 }
 
-.join-check-list{
+.join-check-list {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 10px;
 }
 
-.join-check-list b{
+.join-check-list b {
 	padding-left: 10px;
 }
 
-.join-check-list.sub{
+.join-check-list.sub {
 	padding-left: 40px;
 }
 

@@ -16,21 +16,21 @@ app = Flask(__name__)
 ##################### Index ###############
 @app.route('/')
 def home():
-    sql = "SELECT * from recruitment"
+    sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
     print(type(data_list))
-    #print(data_list)
-    print(data_list[0]["기업명칭"])
-    #print(data_list[1]["기업명칭"])
-    #print(data_list[2]["기업명칭"])
+    print(data_list)
+    # print(data_list[8]["모집직종코드명"])
+    # print(data_list[6]["사업요약내용"])
+    # print(data_list[2]["기업명칭"])
     data_list = data_list
     print(type(data_list))
 
     for i in data_list:
      #print(i)
      #print(type(i))
-     print(i["기업명칭"])
+     print(i["회사"])
     return render_template('Board/index.html', data_list=data_list)
 ##################### Index ###############
 

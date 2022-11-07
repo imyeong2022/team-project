@@ -68,6 +68,19 @@ def login_proc():
 
 app.secret_key = 'test_secret_key'
 
+<<<<<<< HEAD
+=======
+@app.route('/logout_proc')
+def logout_proc():
+    if session['logFlag'] == True:
+        session['logFlag'] = False
+    return render_template('Board/header.html') 
+#    return render_template('Board/index.html') 으로 할시 data_list undefined 나와서, 임시로 header로 연결했습니다.
+
+        
+
+
+>>>>>>> b999860b5a5febb953a8954cc64e5a8938fa2d63
 ##################### 로그인관련 ###############
 
 
@@ -101,6 +114,22 @@ def join_proc():
 def condition():
     return render_template('Board/Condition.html')
     
+@app.route('/faq') #상세검색기능
+def faq():
+    return render_template('Board/faq.html')
+
+@app.route('/recent_inquiry_company') #상세검색기능
+def recent_inquiry_company():
+    return render_template('Board/r-i-c.html')
+
+@app.route('/my_page')
+def my_page():
+    return render_template('Board/myPage.html')
+
+@app.route('/personal-info-change')
+def persnal_info_change():
+    return render_template('Board/personal-info-change.html')
+
 if __name__ == '__main__':
     #app.run('127.0.0.1', 5000, debug=True)
     app.run(debug=True)

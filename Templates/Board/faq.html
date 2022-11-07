@@ -4,6 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <title>FAQ</title>
+    <script>
+        const element = document.querySelector('#mySelect');
+        element.addEventListener('change', handleChange);
+
+        function handleChange(event) {
+            const value = element.value;
+            const log = '${value}';
+            document.querySelector('.log').innerHTML = log;
+        }
+    </script>
 </head>
 
 <body>
@@ -24,6 +34,51 @@
                     <div class="public-title-sub">
                         자주 묻는 질문과 답변 내용을 확인해보세요.
                     </div>
+                </div>
+            </div>
+            <div class="content-area">
+                <div class="faq-search-bar bg-gray">
+                    <form id="faqSearchForm" name="faqSearchForm" method="get" action="">
+                        <input type="hidden" id="ctgry" name="ctgry" value="0">
+                        <div class="faq-search-wrap">
+                            <div class="grid-area">
+                                <div class="colum col25">
+                                    <div class="select-box select-lg">
+                                        <a href="javascript:void(0);" title=" 검색" class="serect-value">
+                                            <span class="log">
+                                                <!-- 전체, 답변, 질문--></span>
+                                        </a>
+                                        <div class="select-list">
+                                            <input type="hidden" id="schFld" name="schFld" value="whle">
+                                            <ul>
+                                                <li>
+                                                    <a href="javascript:void(0);" data-id="schFld" data-val="whle"
+                                                        onclick="selected(this.getAttribute('data-id'), this.getAttribute('data-val'))">
+                                                        <span>전체</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0);" data-id="schFld" data-val="tit"
+                                                        onclick="selected(this.getAttribute('data-id'), this.getAttribute('data-val'))">
+                                                        <span>질문</span>
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="javascript:void(0);" data-id="schFld" data-val="cnts"
+                                                        onclick="selected(this.getAttribute('data-id'), this.getAttribute('data-val'))">
+                                                        <span>답변</span>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="colum col70">
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>

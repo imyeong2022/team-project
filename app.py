@@ -144,7 +144,16 @@ def condition():
     
 @app.route('/faq') # 질문과 답변
 def faq():
-    return render_template('Board/faq.html')
+    sql = "SELECT * from faq"
+    cursor.execute(sql)
+    faq_list = cursor.fetchall()
+    faq_len = len(faq_list)
+    print(faq_len)
+    #print(type(faq_list))
+    #for i in faq_list:
+    #print(i)
+
+    return render_template('Board/faq.html', faq_list = faq_list, faq_len = faq_len)
 
 @app.route('/test') # 질문과 답변
 def company():

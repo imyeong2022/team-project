@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>상세조건 검색</title>
+</head>
+
+<body>
+    {% include 'Board/header.html' %}
+    <div class="main-div">
+        <section class="main-section">
+            <div class="title-area">
+                <div class="inner">
+                    <div class="public-list">
+                        <ol class="public-ol">
+                            <li class="public-li">index ></li>
+                            <li class="public-li">> 조건으로 찾기 ></li>
+                            <li class="public-li">> 상세조건 검색</li>
+                        </ol>
+                    </div>
+                    <div class="public-title">
+                        상세조건 검색
+                    </div>
+                    <div class="public-title-sub">
+                        원하는 조건에 따라 좋은 기업을 찾아보세요.
+                    </div>
+                </div>
+            </div>
+            <form class="search-area">
+                <div class="search-bar-div">
+                    <div class="search-frame">
+                        <input type="text" id="schTxt" name="schTxt" class="input-text">
+                    </div>
+                </div>
+                <div class="search-filter">
+                    <div class="search-fileter-child">
+                        <div class="search-fileter-child-title"><span>지역</span></div>
+                        <div class="search-fileter-child-item-list">
+                            <div class="search-fileter-checkbox">
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>전체</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>서울</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>부산</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>대구</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>인천</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>광주</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>대전</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>울산</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>세종</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>경기</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>강원</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>충북</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>충남</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>전북</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>전남</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>경북</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>경남</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>제주</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-fileter-child">
+                        <div class="search-fileter-child-title"><span>업종</span></div>
+                        <div class="search-fileter-child-item-list">
+                            <div class="search-fileter-checkbox">
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>전체</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>제조업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>도매 및 소매업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>정보통신업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>전문, 과학 및 기술 서비스업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>건설업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>사업시설 관리, 사업 지원 및 임대 서비스업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>운수 및 창고업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>수도, 하수 및 폐기물 처리, 원료 재생업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>협회 및 단체, 수리 및 기타 개인 서비스업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>교육 서비스업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>숙박 및 음식점업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>예술, 스포츠 및 여가관련 서비스업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>보건업 및 사회복지 서비스업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>농업, 임업 및 어업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>금융 및 보험업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>전기, 가스, 증기 및 공기 조절 공급업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>광업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>공공행정, 국방 및 사회보장 행정</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>국제 및 외국기관</label>
+                                </div>
+
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>가구 내 고용활동 및 달리 분류되지 않은 자가소비 생산활동</label>
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-fileter-child">
+                        <div class="search-fileter-child-title"><span>규모</span></div>
+                        <div class="search-fileter-child-item-list">
+                            <div class="search-fileter-checkbox">
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>전체</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>한시성중소기업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>중기업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>소기업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>소상공인</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>스타트업</label>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="search-fileter-child">
+                        <div class="search-fileter-child-title"><span>복지</span></div>
+                        <div class="search-fileter-child-item-list">
+                            <div class="search-fileter-checkbox">
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>전체</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>공제·기타</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>연금·보험</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>교육·연수</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>생활편의·여가행사</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>보상·수당·지원</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>사내시설·장애인지원</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox">
+                                    <label>휴무·휴가·행사</label>
+                                </div>
+                        
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div>
+
+            </div>
+            <div></div>
+        </section>
+    </div>
+</body>
+
+</html>

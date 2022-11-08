@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ</title>
+</head>
+
+<body>
+    {% include 'Board/header.html' %}
+    <div class="main-div">
+        <section class="main-section">
+            <div class="title-area">
+                <div class="inner">
+                    <div class="public-list">
+                        <ol class="public-ol">
+                            <li class="public-li">index ></li>
+                            <li class="public-li">> FAQ</li>
+                        </ol>
+                    </div>
+                    <div class="public-title">
+                        FAQ
+                    </div>
+                    <div class="public-title-sub">
+                        자주 묻는 질문과 답변 내용을 확인해보세요.
+                    </div>
+                </div>
+            </div>
+            <div class="content-area">
+                <div class="faq-search-bar bg-gray">
+                    <form id="faqSearchForm" name="faqSearchForm" method="get" action="">
+                        <input type="hidden" id="ctgry" name="ctgry" value="0">
+                        <div class="faq-search-wrap">
+                            <div class="grid-area">
+                                <div class="colum col25">
+                                    <section id="faq-select">
+                                        <div class="select">
+                                            <div class="text">선택</div>
+                                            <ul class="option-list">
+                                                <li class="option">전체</li>
+                                                <li class="option">전</li>
+                                                <li class="option">체</li>
+                                            </ul>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="colum col70">
+                                    <input type="text">
+                                    <span>
+                                        <input type="button">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="faq-content">
+                    <p>총 게시물 : n개</p>
+                    <hr />
+                    <ul class="faq">
+                        <li>
+                            <input type="checkbox" id="faq-1">
+                            <label for="faq-1">
+                                <p>질문1</p>
+                            </label>
+                            <div>
+                                <p class="spacing">답변1</p>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="faq-2">
+                            <label for="faq-2">
+                                <p>질문2</p>
+                            </label>
+                            <div>
+                                <p class="spacing">답변2</p>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="faq-3">
+                            <label for="faq-3">
+                                <p>질문3</p>
+                            </label>
+                            <div>
+                                <p class="spacing">답변3</p>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="faq-4">
+                            <label for="faq-4">
+                                <p>질문4</p>
+                            </label>
+                            <div>
+                                <p class="spacing">답변4</p>
+                            </div>
+                        </li>
+                        <li>
+                            <input type="checkbox" id="faq-5">
+                            <label for="faq-5">
+                                <p>질문5</p>
+                            </label>
+                            <div>
+                                <p class="spacing">답변5</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        function onClickSelect(e) {
+            const isActive = e.currentTarget.className.indexOf("active") !== -1;
+            if (isActive) {
+                e.currentTarget.className = "select";
+            } else {
+                e.currentTarget.className = "select active";
+            }
+        }
+
+        document.querySelector("#faq-select .select").addEventListener("click", onClickSelect);
+
+        function onClickOption(e) {
+            const selectedValue = e.currentTarget.innerHTML;
+            document.querySelector("#faq-select .text").innerHTML = selectedValue;
+        }
+
+        var optionList = document.querySelectorAll("#faq-select .option");
+        for (var i = 0; i < optionList.length; i++) {
+            var option = optionList[i];
+            option.addEventListener("click", onClickOption);
+        }
+    </script>
+</body>
+
+</html>

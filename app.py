@@ -135,17 +135,7 @@ def join_proc():
 
 ##################### 회원가입관련 ###############  
 
-@app.route('/condition') #상세검색기능
-def condition():
-    return render_template('Board/Condition.html')
     
-@app.route('/faq') #상세검색기능
-def faq():
-    return render_template('Board/faq.html')
-
-@app.route('/recent_inquiry_company') #상세검색기능
-def recent_inquiry_company():
-    return render_template('Board/r-i-c.html')
 
 @app.route('/my_page')
 def my_page():

@@ -279,37 +279,25 @@
                     </div>
                 </div>
             </form>
-            <div>
-               
-            </div>            
+            <div></div>            
             <div>
                 <form>
-                    <div>{{ data_list[0].data_id}}
-                        <a href="/company?data_id"><input type="hidden" id="data_id" name="data_id" value="{{ data_list[0].data_id}}">
-                       
+                    <div>
+                        {% for x in range(6) %}
+                        <li class="main-gird-li" onclick="location.href='/company/{{data_list[x].data_id}}';" style="cursor:pointer">
+                            <a class="main-grid-a">
+                                <span class="grid-sub-blue">{{ data_list[x].업종}}</span>
+                                <p class="grid-title">{{ data_list[x].회사 }}</p>
+                                <p class="grid-sub-text">{{ data_list[x].기업형태 }} | {{ data_list[x].지역 }} | {{ data_list[x].대표 }}</p>
+                            </a>
+                        </li>
+                        {% endfor %}
+
+                    <!-- 이전 코드-->
+                        <!-- <a href="/company?data_id"><input type="hidden" id="data_id" name="data_id" value="{{ data_list[0].data_id}}">
                         <h4>{{ data_list[0].업종}}</h4>     
                         <h2>{{ data_list[0].회사}}</h2>
                         <p>{{ data_list[0].기업형태}}</p><p>{{ data_list[0].지역}}</p>
-                        <div>~~한</div><div>~~ㄴㄴ</div></a>
-                    </div>
-                    <div>{{ data_list[1].data_id}}
-                        <a href="/company"><input type="hidden" id="data_id" name="data_id" value="{{ data_list[1].data_id}}">
-                        <h4>{{ data_list[1].업종}}</h4>
-                        <h2>{{ data_list[1].회사}}</h2>
-                        <p>{{ data_list[1].기업형태}}</p><p>{{ data_list[1].지역}}</p>
-                        <div>~~한</div><div>~~ㄴㄴ</div>
-                    </div>
-                    <div>
-                        <h4>{{ data_list[2].업종}}</h4>
-                        <h2>{{ data_list[2].회사}}</h2>
-                        <p>{{ data_list[2].기업형태}}</p><p>{{ data_list[2].지역}}</p>
-                        <div>~~한</div><div>~~ㄴㄴ</div>
-                    </div>
-                    <div>
-                        <h4>{{ data_list[3].업종}}</h4>
-                        <h2>{{ data_list[3].회사}}</h2>
-                        <p>{{ data_list[3].기업형태}}</p><p>{{ data_list[3].지역}}</p>
-                        <div>~~한</div><div>~~ㄴㄴ</div>
                     </div>
                 </form>
             </div>

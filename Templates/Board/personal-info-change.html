@@ -26,38 +26,33 @@
                         개인정보 수정
                     </div>
                     <div class="public-title-sub">
-                        가입하신 개인정보를 변경할 수 있습니다.<br>
-                        * 항목은 변경하실 수 없습니다.
+                        가입하신 개인정보를 변경할 수 있습니다.
                     </div>
                 </div>
             </div>
             <hr class="public-hr" />
             <div class="login-form-div">
 
-                <form class="login-form" action="/my_page_proc" method="post">
+                <form class="login-form" action="" method="post">
                     <div class="join-div">
-                        <span>아이디 *</span>
-                        <input class="join-input" type="text" name="user_id" value="{{session['ID']}}" readonly>
+                        <span>아이디</span>
+                        <input class="join-input" type="text" name="user_id" placeholder="{{session['ID']}}" readonly>
                     </div>
                     <div class="join-div">
                         <span>비밀번호</span>
-                        <input class="join-input" type="text" name="user_pw" placeholder="PASSWORD">
+                        <input class="join-input" type="text" name="user_pw" placeholder="PW">
                     </div>
                     <div class="join-div">
-                        <span>비밀번호확인</span>
-                        <input class="join-input" type="text" name="user_pw" placeholder="REPASSWORD">
-                    </div>
-                    <div class="join-div">
-                        <span>이름 *</span>   
+                        <span>이름</span>   
                         <input class="join-input" type="text" name="user_name" placeholder="{{session['NAME']}}" readonly>
                     </div>
                     <div class="join-div">
                         <span>전화번호</span>
-                        <input class="join-input" type="text" name="user_phone"  value="{{session['Phone']}}">
+                        <input class="join-input" type="text" name="user_phone" placeholder="Phone Number">
                     </div>
                     <div class="join-div">
-                        <span>생년월일 *</span>
-                        <input class="join-input" type="text" name="user_birth" placeholder="{{session['BIRTH']}}" readonly>
+                        <span>생년월일</span>
+                        <input class="join-input" type="text" name="user_birth" placeholder="Birth" readonly>
                     </div>
                     <input class="join-submit" type="submit" value="수정 완료">
 

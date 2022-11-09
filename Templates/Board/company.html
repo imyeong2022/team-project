@@ -24,7 +24,49 @@
                         <!-- 즐겨찾기, 회사 바로가기 링크 크롤링 가능 여부에 따라 수정 예정-->
                     </div>
 
+                    
+
         </section>
+        <!-- 헤더 아래 내용부분 => 태수 작업 전 임시방편 코드-->
+        <article class="article frame-min">
+           <div class="article-title-area">
+                <h3 class="tit">기본정보</h3>
+                <div class="info-guide">정보제공 : 참좋은중소기업</div>
+            </div><!--// article-title-area -->
+            <div class="article-content">
+                <div class="basic-info-wrap">
+                    <div class="info-item fl">
+                        <dl>
+                            <dt>대표자</dt>
+                            <dd>{{ data_list[0].대표}}</dd>
+                        </dl>
+                        <dl>
+                            <dt>업종</dt>
+                            <dd>{{ data_list[0].업종}}</dd>
+                        </dl>
+                        <dl>
+                            <dt>주요제품명</dt>
+                            <dd>{{ data_list[0].주요제품명}}</dd>
+                        </dl>
+                    </div>
+                    <div class="info-item fr">
+                        <dl>
+                            <dt>기업형태</dt>
+                            <dd>{{ data_list[0].기업형태}}</dd>
+                        </dl>
+                        <dl>
+                            <dt>홈페이지</dt>
+                            <dd>{{ data_list[0].홈페이지}}</dd>
+                        </dl>
+                        <dl>
+                            <dt>주소</dt>
+                            <dd>{{ data_list[0].주소}}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div><!--// article-content -->
+
+        </article>
     </div>
 </body>
 </html>

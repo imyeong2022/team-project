@@ -820,3 +820,10 @@
 .faq>li{
 	
 }
+
+/* company.html 적용 -> 태수 작업 전 임시방편 by 서연 */
+.frame-min {
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto;
+}

@@ -22,9 +22,14 @@ def home():
     # print(data_list)
     # print(data_list[0]["data_id"])
     data_list = data_list
+    #print(type(data_list))
+    #print(data_list)
+    data_list = data_list
+    data_list_len = len(data_list)
+    print("인덱스길이",data_list_len)
+    #print(type(data_list))
 
-    for i in data_list:
-        i["회사"]
+    #for i in data_list:
      #print(i)
      #print(type(i))
     return render_template('Board/index.html', data_list=data_list)
@@ -52,6 +57,9 @@ def chart():
 @app.route('/bar')
 def bar():
     return render_template('Board/bar.html')
+     #print(i["회사"])
+    return render_template('Board/index.html', data_list=data_list, data_list_len = data_list_len)
+##################### Index ###############
 
 ##################### 로그인관련 ###############
 @app.route('/login_form_get')
@@ -62,6 +70,49 @@ def login_form_get():
 def recent_inquiry_company():
     return render_template('Borad/r-i-c.html')
 
+    
+@app.route('/condition')
+def condition():
+    sql = "SELECT * from company_info"
+    cursor.execute(sql)
+    data_list = cursor.fetchall()
+    data_list = data_list
+
+    for i in data_list:
+        i["회사"]
+    return render_template('Board/Condition.html', data_list=data_list)
+    
+
+@app.route('/company/<int:data_id>')
+def company(data_id):
+
+    sql = "SELECT * from company_info where data_id = %s"
+    cursor.execute(sql,(data_id,))
+    data_list = cursor.fetchall()
+    data_list = data_list
+    print(data_list)
+    print(data_id)
+    # data_len = len(data_list)
+    # data_id = (data_list[0]["data_id"])
+    # for i in data_list:
+    #     data_list = i.append["data_id"].text
+    # print(i["data_id"])
+    # print(data_list)
+    # # for i in range(data_len):
+    # #     data_id_list.append(data_list[i]["data_id"])
+    #for i in data_list:
+    #    i["data_id"]
+    return render_template('Board/company.html', data_list=data_list)
+
+
+@app.route('/chart')
+def chart():
+    return render_template('Board/chart.html')
+   
+@app.route('/bar')
+def bar():
+    return render_template('Board/bar.html')
+    
 @app.route('/join')
 def join():
     return render_template('Borad/join.html')
@@ -96,6 +147,7 @@ def login_proc():
     return render_template('Board/index.html')
 
 app.secret_key = 'test_secret_key'
+
 
 @app.route('/logout_proc') #로그아웃
 def logout_proc():
@@ -135,6 +187,25 @@ def join_proc():
 @app.route('/my_page') #마이페이지
 def my_page():
     return render_template('Board/myPage.html')
+
+# @app.route('/condition') #상세검색기능
+# def condition():
+#     return render_template('Board/Condition.html')
+    
+# @app.route('/faq') #상세검색기능
+# def faq():
+#     return render_template('Board/faq.html')
+
+@app.route('/recent_inquiry_company') #상세검색기능
+def recent_inquiry_company():
+    return render_template('Board/r-i-c.html')
+
+@app.route('/personal-info-change') #회원정보수정
+def persnal_info_change():
+    return render_template('Board/personal-info-change.html')
+
+#################### END 마이페이지 ###################
+
     
 @app.route('/faq') # 질문과 답변
 def faq():
@@ -154,6 +225,7 @@ def persnal_info_change():
     return render_template('Board/personal-info-change.html')
 
 #################### END 마이페이지 ###################
+
 
 SECRET_KEY = "dev"
 

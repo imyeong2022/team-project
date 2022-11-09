@@ -11,7 +11,6 @@ con = pymysql.connect(host='localhost',
                              cursorclass=pymysql.cursors.DictCursor)
 cursor = con.cursor() 
 ###########데이터베이스 접속 전역변수 선언############
-
 app = Flask(__name__)
 ##################### Index ###############
 @app.route('/')
@@ -19,6 +18,10 @@ def home():
     sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
+    # print(type(data_list))
+    # print(data_list)
+    # print(data_list[0]["data_id"])
+    data_list = data_list
     #print(type(data_list))
     #print(data_list)
     data_list = data_list
@@ -29,49 +32,30 @@ def home():
     #for i in data_list:
      #print(i)
      #print(type(i))
-     #print(i["회사"])
-    return render_template('Board/index.html', data_list=data_list, data_list_len = data_list_len)
+    return render_template('Board/index.html', data_list=data_list)
+#--------------------------메뉴-----------------------------------
+@app.route('/condition') #조건으로 찾기 - 기업정보
+def condition():
+    sql = "SELECT * from company_info"
+    cursor.execute(sql)
+    data_list = cursor.fetchall()
+    data_list = data_list
+    return render_template('Board/Condition.html',data_list=data_list)
+
+@app.route('/company/<int:data_id>') # 기업상세페이지
+def company(data_id):
+    sql = "SELECT * from company_info where data_id = %s"
+    cursor.execute(sql,(data_id, ))
+    data_list = cursor.fetchall()
+    data_list = data_list
+    return render_template('Board/company.html',data_list=data_list)
+
 ##################### Index ###############
 
 ##################### 로그인관련 ###############
 @app.route('/login_form_get')
 def login_form_get():
     return render_template('Board/login.html')
-
-    
-@app.route('/condition')
-def condition():
-    sql = "SELECT * from company_info"
-    cursor.execute(sql)
-    data_list = cursor.fetchall()
-    data_list = data_list
-
-    for i in data_list:
-        i["회사"]
-    return render_template('Board/Condition.html', data_list=data_list)
-    
-
-@app.route('/company/<int:data_id>')
-def company(data_id):
-
-    sql = "SELECT * from company_info where data_id = %s"
-    cursor.execute(sql,(data_id,))
-    data_list = cursor.fetchall()
-    data_list = data_list
-    print(data_list)
-    print(data_id)
-    # data_len = len(data_list)
-    # data_id = (data_list[0]["data_id"])
-    # for i in data_list:
-    #     data_list = i.append["data_id"].text
-    # print(i["data_id"])
-    # print(data_list)
-    # # for i in range(data_len):
-    # #     data_id_list.append(data_list[i]["data_id"])
-    #for i in data_list:
-    #    i["data_id"]
-    return render_template('Board/company.html', data_list=data_list)
-
 
 @app.route('/chart')
 def chart():
@@ -121,7 +105,6 @@ app.secret_key = 'test_secret_key'
 def logout_proc():
     session.clear() #세션날림
     return redirect('/')
-
 ##################### END 로그인관련 ###############
 
 
@@ -157,14 +140,6 @@ def join_proc():
 def my_page():
     return render_template('Board/myPage.html')
 
-# @app.route('/condition') #상세검색기능
-# def condition():
-#     return render_template('Board/Condition.html')
-    
-# @app.route('/faq') #상세검색기능
-# def faq():
-#     return render_template('Board/faq.html')
-
 @app.route('/recent_inquiry_company') #상세검색기능
 def recent_inquiry_company():
     return render_template('Board/r-i-c.html')
@@ -189,6 +164,7 @@ def faq():
 
     return render_template('Board/faq.html', faq_list = faq_list, faq_len = faq_len)
 
+#################### END 마이페이지 ###################
 
 
 SECRET_KEY = "dev"

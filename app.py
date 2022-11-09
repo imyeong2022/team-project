@@ -9,7 +9,7 @@ con = pymysql.connect(host='localhost',
                              db='final_test',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
-cursor = con.cursor() 
+cursor = con.cursor()
 ###########데이터베이스 접속 전역변수 선언############
 
 app = Flask(__name__)
@@ -176,7 +176,7 @@ def persnal_info_change():
 #################### END 마이페이지 ###################
 
     
-@app.route('/faq') # 질문과 답변
+@app.route('/faq') # 자주묻는 질문과 답변
 def faq():
     sql = "SELECT * from faq"
     cursor.execute(sql)
@@ -189,7 +189,42 @@ def faq():
 
     return render_template('Board/faq.html', faq_list = faq_list, faq_len = faq_len)
 
+@app.route('/qna') # 질문게시판
+def qna():
+    sql = "SELECT * from qna"
+    cursor.execute(sql)
+    qna_list = cursor.fetchall()
+    qna_len = len(qna_list)
+    print(qna_len)
+    
 
+
+    return render_template('Board/qna.html', qna_list = qna_list, qna_len = qna_len)
+
+@app.route('/question') # 질문으로 넘기기
+def qnastion():
+    if session['logFlag'] == True:
+        print("세션확인",session['logFlag'])
+        return render_template('Board/question.html')
+    else:
+        return redirect('/qna')
+        
+@app.route('/question_proc', methods=['POST']) # 질문페이지
+def qustion_proc():
+    if request.method == 'POST':
+        print(session['ID'])
+        ID = request.form['ID']
+        subject = request.form['subject']
+        content = request.form['content']
+    sql = "insert into qna(ID,subject,content) values(%s,%s,%s)"
+    cursor.execute(sql, (ID,subject,content,))
+    con.commit()
+    qna_list = cursor.fetchall()
+    qna_len = len(qna_list)
+    print(qna_len)
+
+
+    return redirect('/qna')
 
 SECRET_KEY = "dev"
 

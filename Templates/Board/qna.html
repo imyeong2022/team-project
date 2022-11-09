@@ -22,7 +22,7 @@
                         QnA
                     </div>
                     <div class="public-title-sub">
-                        자주 묻는 질문과 답변 내용을 확인해보세요.
+                        FAQ 외의 내용을 물어볼 수 있습니다.
                     </div>
                 </div>
             </div>
@@ -54,38 +54,26 @@
                     </form>
                 </div>
                 <div class="faq-content">
-                    <p>전체 : n건 | 완료된 질문 n건/ n건 | 현재 페이지 n/n</p>
+                    <p>전체 : {{qna_len}}건 | 완료된 질문 {{qna_len}}건/ {{qna_len}}건 | 현재 페이지 n/n</p>
                     <hr />
                     <ul class="faq">
+                        {% for x in range(qna_len) %}
                         <li>
+                
                             <input type="checkbox" id="faq-1">
                             <label for="faq-1">
-                                <p>질문1</p>
+                                <p>{{qna_list[x].subject}}</p>
                             </label>
                             <div class="qna">
                                 <label class="q-check" for="faq-2">
                                 </label>
-                                <p>내용.</p>
+                                <p>{{qna_list[x].content}}</p>
                                 <label class="a-check" for="faq-2">
                                 </label>
                                 <p>답변이 작성되지 않았습니다.</p>
                             </div>
                         </li>
-                        <li>
-                            <input type="checkbox" id="faq-2">
-                            <label for="faq-2">
-                                <p>제목</p>
-                            </label>
-                            <div class="qna">
-                                <label class="q-check" for="faq-2">
-                                </label>
-                                <p>내용.</p>
-                                <label class="a-checked" for="faq-2">
-                                </label>
-                                <p>답변 작성 완료.</p>
-                            </div>
-
-                        </li>
+                        {% endfor %}
                     </ul>
                     <hr />
                     <button type="button" onclick="location.href='/question'">작성하기</button>

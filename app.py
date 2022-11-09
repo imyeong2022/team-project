@@ -38,9 +38,6 @@ def home():
 def login_form_get():
     return render_template('Board/login.html')
 
-@app.route('/recent_inquiry_company')
-def recent_inquiry_company():
-    return render_template('Borad/r-i-c.html')
     
 @app.route('/condition')
 def condition():
@@ -53,17 +50,16 @@ def condition():
         i["회사"]
     return render_template('Board/Condition.html', data_list=data_list)
     
-@app.route('/faq')
-def faq():
-    return render_template('Board/faq.html')
 
-@app.route('/company')
-def company():
-    sql = "SELECT * from company_info where data_id"
-    cursor.execute(sql)
+@app.route('/company/<int:data_id>')
+def company(data_id):
+
+    sql = "SELECT * from company_info where data_id = %s"
+    cursor.execute(sql,(data_id,))
     data_list = cursor.fetchall()
     data_list = data_list
     print(data_list)
+    print(data_id)
     # data_len = len(data_list)
     # data_id = (data_list[0]["data_id"])
     # for i in data_list:
@@ -72,8 +68,8 @@ def company():
     # print(data_list)
     # # for i in range(data_len):
     # #     data_id_list.append(data_list[i]["data_id"])
-    for i in data_list:
-        i["data_id"]
+    #for i in data_list:
+    #    i["data_id"]
     return render_template('Board/company.html', data_list=data_list)
 
 
@@ -119,13 +115,6 @@ def login_proc():
     return render_template('Board/index.html')
 
 app.secret_key = 'test_secret_key'
-
-@app.route('/logout_proc')
-def logout_proc():
-    if session['logFlag'] == True:
-        session['logFlag'] = False
-    return render_template('Board/header.html') 
-#    return render_template('Board/index.html') 으로 할시 data_list undefined 나와서, 임시로 header로 연결했습니다.
 
 
 @app.route('/logout_proc') #로그아웃
@@ -186,9 +175,6 @@ def persnal_info_change():
 
 #################### END 마이페이지 ###################
 
-@app.route('/condition') #상세검색기능
-def condition():
-    return render_template('Board/Condition.html')
     
 @app.route('/faq') # 질문과 답변
 def faq():
@@ -203,9 +189,6 @@ def faq():
 
     return render_template('Board/faq.html', faq_list = faq_list, faq_len = faq_len)
 
-@app.route('/company/<int:data_id>') # 질문과 답변
-def company(data_id):
-    return render_template('Board/company.html')
 
 
 SECRET_KEY = "dev"

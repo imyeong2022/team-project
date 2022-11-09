@@ -111,9 +111,26 @@
 	padding-top: 2%;
 	padding-left: 3%;
 	padding-right: 3%;
+<<<<<<< HEAD
+}
+
+.header-a-tag-none-lower:nth-child(-n+4) {
+	float: left;
+	font-size: 1.5rem;
+	font-weight: bold;
+	text-decoration: none;
+	color: #759ef7;
+	padding-top: 2%;
+	padding-left: 3%;
+	padding-right: 3%;
+}
+
+.header-a-tag-none-logo {
+=======
  }
  
  .header-a-tag-none-logo {
+>>>>>>> 10e5b4c4f49e81974331d2307f885de262dd7298
 	font-size: 1.5rem;
 	font-weight: bold;
 	text-decoration: none;
@@ -600,7 +617,7 @@
  
  .faq-search-bar .faq-search-wrap {
 	margin: auto;
-	width: 80%;
+	width: 670px;
 	height: 60px;
  }
  
@@ -734,6 +751,19 @@
 	border: 2px solid gray;
 }
 
+.faq-content>button{
+	float: right;
+	margin-top: 20px;
+	width: 7%;
+	height: 45px;
+	font-weight: bold;
+	color: white;
+	background: #759ef7;
+	outline: none;
+	border: none;
+	font-size: 16px;
+}
+
 .faq {
 	list-style: none;
 	margin: 0;
@@ -764,15 +794,13 @@
 }
 
 /* 질문영역 check 이전 */
-.faq label::after {
+.faq>li>label::after {
 	content: "▽";
 	color: #759ef7;
 	display: block;
 	position: sticky;
 	margin-left: auto;
 	line-height: 50px;
-
-	
 }
 
 .faq label::before {
@@ -817,6 +845,81 @@
 	text-indent: 1.2em;
 }
 
-.faq>li{
-	
+
+/* qna */
+
+.faq>li>label {
+	display: -webkit-box;
+	color: #000;
+	font-size: 15px;
+	height: 50px;
+	margin: 0px 10px 10px 10px;
+	cursor: pointer;
+}
+
+.qna>.q-check::before {
+	content: url("../source/Q-none.png");
+}
+
+.qna>.q-checked::before {
+	content: url("../source/Q.png");
+}
+
+.qna>.a-check::before {
+	content: url("../source/A-none.png");
+}
+
+.qna>.a-checked::before {
+	content: url("../source/A.png");
+}
+
+.faq>li>div>label{
+	float: left;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 43px;
+	width: 43px;
+	margin-top: 10px;
+}
+
+.faq>li>div>label:first-child{
+	margin-left: 50px;
+}
+
+.faq>li>div>p{
+	display: flex;
+	color: #000;
+	margin-top: 5px;
+	margin-bottom: 0px;
+	font-size: 15px;
+	height: 50px;
+	cursor: pointer;
+	text-indent: 1.2em;
+	flex-direction: column;
+	justify-content: center;
+}
+
+/* question */
+.question-content>hr{
+	margin-top: 0px;
+	border: 2px solid gray;
+}
+
+.question-content>input{
+	height: 300px;
+	width: 300px;
+}
+
+.question-content>button{
+	float: right;
+	margin-top: 20px;
+	width: 7%;
+	height: 45px;
+	font-weight: bold;
+	color: white;
+	background: #759ef7;
+	outline: none;
+	border: none;
+	font-size: 16px;
 }

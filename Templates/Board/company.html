@@ -17,8 +17,8 @@
                         <img class="company-logo-img" src="{{ url_for('static', filename='source/jsolution.png') }}" alt="">
                     </div>
                     <div class="company-info">
-                        <h2 class="company-sub">제조업</h2>
-                        <h1 class="company-title">제이솔루션</h1>
+                        <h2 class="company-sub">{{ data_list[0].업종}}</h2>
+                        <h1 class="company-title">{{ data_list[0].회사 }}</h1>
                         <h3 class="company-sub-title-Y"># 내실이 탄탄하고 성과보상이 확실한</h3>
                         <h3 class="company-sub-title-W"># 복지 우수기업</h3>
                         <!-- 즐겨찾기, 회사 바로가기 링크 크롤링 가능 여부에 따라 수정 예정-->

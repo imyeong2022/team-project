@@ -21,19 +21,42 @@ def home():
     sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
-    print(type(data_list))
-    print(data_list)
-    # print(data_list[8]["모집직종코드명"])
-    # print(data_list[6]["사업요약내용"])
-    # print(data_list[2]["기업명칭"])
+    # print(type(data_list))
+    # print(data_list)
+    # print(data_list[0]["data_id"])
     data_list = data_list
-    print(type(data_list))
+    # print(type(data_list))
+    # print(data_list)
+    data_list = data_list
+    data_list_len = len(data_list)
+    print("인덱스길이", data_list_len)
+    # print(type(data_list))
 
     for i in data_list:
         # print(i)
         # print(type(i))
         print(i["회사"])
     return render_template('Board/index.html', data_list=data_list)
+# --------------------------메뉴-----------------------------------
+
+
+@app.route('/condition')  # 조건으로 찾기 - 기업정보
+def condition():
+    sql = "SELECT * from company_info"
+    cursor.execute(sql)
+    data_list = cursor.fetchall()
+    data_list = data_list
+    return render_template('Board/Condition.html', data_list=data_list)
+
+
+@app.route('/company/<int:data_id>')  # 기업상세페이지
+def company(data_id):
+    sql = "SELECT * from company_info where data_id = %s"
+    cursor.execute(sql, (data_id, ))
+    data_list = cursor.fetchall()
+    data_list = data_list
+    return render_template('Board/company.html', data_list=data_list)
+
 ##################### Index ###############
 
 ##################### 로그인관련 ###############
@@ -42,6 +65,21 @@ def home():
 @app.route('/login_form_get')
 def login_form_get():
     return render_template('Board/login.html')
+
+
+@app.route('/chart')
+def chart():
+    return render_template('Board/chart.html')
+
+
+@app.route('/bar')
+def bar():
+    return render_template('Board/bar.html')
+
+
+@app.route('/join')
+def join():
+    return render_template('Borad/join.html')
 
 
 @app.route('/login_proc', methods=['POST'])
@@ -71,6 +109,7 @@ def login_proc():
                     return ('password is def')
             else:
                 return ('id not found')
+    cursor.close()
     return render_template('Board/index.html')
 
 
@@ -81,7 +120,6 @@ app.secret_key = 'test_secret_key'
 def logout_proc():
     session.clear()  # 세션날림
     return redirect('/')
-
 ##################### END 로그인관련 ###############
 
 
@@ -111,6 +149,7 @@ def join_proc():
             con.commit()
             session.clear()
             return render_template('Board/login.html')
+            curo
 
 ##################### END 회원가입관련 ###############
 
@@ -178,9 +217,21 @@ def faq():
     return render_template('Board/faq.html', faq_list=faq_list, faq_len=faq_len)
 
 
+@app.route('/qna')  # 질문과 답변
+def qna():
+    return render_template('Board/qna.html')
+
+
+@app.route('/question')  # 질문하기
+def question():
+    return render_template('Board/question.html')
+
+
 @app.route('/test')  # 질문과 답변
 def company():
     return render_template('Board/company.html')
+
+# return render_template('Board/faq.html', faq_list=faq_list, faq_len=faq_len)
 
 
 SECRET_KEY = "dev"

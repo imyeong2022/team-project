@@ -11,7 +11,7 @@
     <script src="{{ url_for('static', filename='js/swiper.min.js') }}"></script>
 </head>
 
-<body>
+   
     <header>
         <div class="header-div">
             <div class="header-div-left">
@@ -31,29 +31,27 @@
                         <a class="header-a-tag-none">{{ session['ID']}}님 환영합니다.</a>
                     </div>
                     {% else %}
-                    <div><a class="header-a-tag-none">질문과답변</a>
+                    <div><a class="header-a-tag-none" href="/faq">질문과답변</a>
                         <a class="header-a-tag-none">test</a>
                         <a class="header-a-tag-none">test</a>
-
                         <a class="header-a-tag-none">test</a>
-                        <!-- 회원가입은 로그인 페이지 안으로 이동 -->
-                        <a class="header-a-tag-none" href="/faq">FAQ</a>
-                        <a class="header-a-tag-none" href="/recent_inquiry_company">나의 활동 내역</a>
+                        <a class="header-a-tag-none" href="/join_form_get">회원가입</a>
                         <a class="header-a-tag-none" href="/login_form_get">로그인</a>
                     </div>
                     {% endif %} 
                      </div>
                 <div class="header-div-lower">
-                    <a class="header-a-tag-none-lower">회사소개</a>
-                    <a class="header-a-tag-none-lower" href="/condition">기업정보</a>
-                    <a class="header-a-tag-none-lower">채용정보</a>
-                    <a class="header-a-tag-none-lower">구직 트렌드</a>
-                    <a class="header-a-tag-none-lower">이벤트</a>
-                    <a class="header-a-tag-none-lower">공지사항</a>
+                    <a class="header-a-tag-none-lower" href="/condition">조건으로 찾기</a>
+                    <a class="header-a-tag-none-lower">메뉴 A</a>
+                    <a class="header-a-tag-none-lower">메뉴 B</a>
+                    <a class="header-a-tag-none-lower">메뉴 C</a>
+                    <a class="header-a-tag-none-lower">메뉴 D</a>
+                    <a class="header-a-tag-none-lower">메뉴 E</a>
                 </div>
+                   
             </div>
         </div>
     </header>
-</body>
+
 
 </html>

@@ -164,7 +164,6 @@ def faq():
     return render_template('Board/faq.html', faq_list = faq_list, faq_len = faq_len)
 
 #################### END 마이페이지 ###################
-
 @app.route('/qna') # 질문과 답변
 def qna():
     return render_template('Board/qna.html')
@@ -172,7 +171,6 @@ def qna():
 @app.route('/question') # 질문하기
 def question():
     return render_template('Board/question.html')
-
 
 SECRET_KEY = "dev"
 

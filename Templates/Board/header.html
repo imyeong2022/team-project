@@ -11,9 +11,8 @@
     <script src="{{ url_for('static', filename='js/swiper.min.js') }}"></script>
 </head>
 
-   
+<body>
     <header>
-<<<<<<< HEAD
         <nav class="header-div">
             <div class="header-div-left">
                 <a class="header-a-tag-none-logo" href="/">
@@ -21,35 +20,7 @@
                         <img src="{{ url_for('static', filename='source/logo.png') }}">
                     </div>
                 </a>
-=======
-        <div class="header-div-right">
-            <div class="header-div-top">
-              
-                <div><a class="header-a-tag-none">test</a>
-                    <a class="header-a-tag-none">test</a>
-                    <a class="header-a-tag-none">test</a>
-                    <a class="header-a-tag-none">로그아웃</a>
-                    <a class="header-a-tag-none" >마이페이지</a>
-                    <a class="header-a-tag-none">{{session['ID']}}님 환영합니다.</a>
-                </div>
-               
-                <div><a class="header-a-tag-none">test</a>
-                    <a class="header-a-tag-none">test</a>
-                    <a class="header-a-tag-none">test</a>
-                    <a class="header-a-tag-none">test</a>
-                    <a class="header-a-tag-none" href="/join_form_get">회원가입</a>
-                    <a class="header-a-tag-none" href="/login_form_get">로그인</a>
-                </div>
-              
->>>>>>> 10e5b4c4f49e81974331d2307f885de262dd7298
             </div>
-            <div class="header-div-lower">
-                <a class="header-a-tag-none-lower" href="/condition">조건으로 찾기</a>
-                <a class="header-a-tag-none-lower" href="/chart">메뉴 A</a>
-                <a class="header-a-tag-none-lower" href="/bar">메뉴 B</a>
-                <a class="header-a-tag-none-lower">메뉴 C</a>
-                <a class="header-a-tag-none-lower">메뉴 D</a>
-                <a class="header-a-tag-none-lower">메뉴 E</a>
             <div class="header-div-right">
                 <div class="header-div-top">
                     {% if session.get('logFlag')%}
@@ -62,34 +33,30 @@
                         <a class="header-a-tag-none">{{ session['ID']}}님 환영합니다.</a>
                     </div>
                     {% else %}
-                    <div><a class="header-a-tag-none" href="/faq">질문과답변</a>
+                    <div><a class="header-a-tag-none">질문과답변</a>
                         <a class="header-a-tag-none">test</a>
                         <a class="header-a-tag-none">test</a>
+
                         <a class="header-a-tag-none">test</a>
-<<<<<<< HEAD
                         <!-- 회원가입은 로그인 페이지 안으로 이동 -->
                         <a class="header-a-tag-none" href="/faq">자주묻는 질문</a>
                         <a class="header-a-tag-none" href="/qna">문의하기</a>
                         <a class="header-a-tag-none" href="/recent_inquiry_company">나의 활동 내역</a>
-=======
-                        <a class="header-a-tag-none" href="/join_form_get">회원가입</a>
->>>>>>> 10e5b4c4f49e81974331d2307f885de262dd7298
                         <a class="header-a-tag-none" href="/login_form_get">로그인</a>
                     </div>
                     {% endif %} 
                      </div>
                 <div class="header-div-lower">
-                    <a class="header-a-tag-none-lower" href="/condition">조건으로 찾기</a>
-                    <a class="header-a-tag-none-lower">메뉴 A</a>
-                    <a class="header-a-tag-none-lower">메뉴 B</a>
-                    <a class="header-a-tag-none-lower">메뉴 C</a>
-                    <a class="header-a-tag-none-lower">메뉴 D</a>
-                    <a class="header-a-tag-none-lower">메뉴 E</a>
+                    <a class="header-a-tag-none-lower">회사소개</a>
+                    <a class="header-a-tag-none-lower" href="/condition">기업정보</a>
+                    <a class="header-a-tag-none-lower">채용정보</a>
+                    <a class="header-a-tag-none-lower">구직 트렌드</a>
+                    <a class="header-a-tag-none-lower">이벤트</a>
+                    <a class="header-a-tag-none-lower">공지사항</a>
                 </div>
-                   
             </div>
         </nav>
     </header>
-
+</body>
 
 </html>

@@ -29,7 +29,7 @@
             </div>
                 <article class="question-content">
                     <hr/>
-                    <form action="/">
+                    <form action="/question_proc" method="post">
                         <section id="faq-select">
                             <div class="select">
                                 <div class="text">선택</div>
@@ -39,8 +39,9 @@
                                 </ul>
                             </div>
                         </section>
-                        <input type="text" placeholder="제목">
-                        <input type="text" placeholder="내용">
+                        <input type="hidden" id="ctgry" name="ID" value="{{session['ID']}}">
+                        <input type="text" name="subject" value="제목">
+                        <input type="text" name="content" value="내용">
                         <button type="submit">작성완료</button>
                     </form>
                 </article>

@@ -138,8 +138,17 @@ def condition():
     
 @app.route('/faq') # 질문과 답변
 def faq():
-    return render_template('Board/faq.html')
+    sql = "SELECT * from faq"
+    cursor.execute(sql)
+    faq_list = cursor.fetchall()
+    faq_len = len(faq_list)
+    print(faq_len)
+    #print(type(faq_list))
+    #for i in faq_list:
+    #print(i)
+    return render_template('Board/faq.html', faq_list = faq_list, faq_len = faq_len)
 
+#################### END 마이페이지 ###################
 @app.route('/qna') # 질문과 답변
 def qna():
     return render_template('Board/qna.html')
@@ -151,6 +160,10 @@ def question():
 @app.route('/test') # 질문과 답변
 def company():
     return render_template('Board/company.html')
+
+
+
+SECRET_KEY = "dev"
 
 if __name__ == '__main__':
     #app.run('127.0.0.1', 5000, debug=True)

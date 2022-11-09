@@ -19,18 +19,19 @@ def home():
     sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
-    print(type(data_list))
-    print(data_list)
+    # print(type(data_list))
+    # print(data_list)
+    # print(data_list[0]["data_id"])
     # print(data_list[8]["모집직종코드명"])
     # print(data_list[6]["사업요약내용"])
     # print(data_list[2]["기업명칭"])
     data_list = data_list
-    print(type(data_list))
+    # print(type(data_list))
 
     for i in data_list:
+        i["회사"]
      #print(i)
      #print(type(i))
-     print(i["회사"])
     return render_template('Board/index.html', data_list=data_list)
 ##################### Index ###############
 
@@ -45,7 +46,14 @@ def recent_inquiry_company():
     
 @app.route('/condition')
 def condition():
-    return render_template('Board/Condition.html')
+    sql = "SELECT * from company_info"
+    cursor.execute(sql)
+    data_list = cursor.fetchall()
+    data_list = data_list
+
+    for i in data_list:
+        i["회사"]
+    return render_template('Board/Condition.html', data_list=data_list)
 
 @app.route('/faq')
 def faq():
@@ -53,7 +61,23 @@ def faq():
 
 @app.route('/company')
 def company():
-    return render_template('Board/company.html')
+    sql = "SELECT * from company_info where data_id"
+    cursor.execute(sql)
+    data_list = cursor.fetchall()
+    data_list = data_list
+    print(data_list)
+    # data_len = len(data_list)
+    # data_id = (data_list[0]["data_id"])
+    # for i in data_list:
+    #     data_list = i.append["data_id"].text
+    # print(i["data_id"])
+    # print(data_list)
+    # # for i in range(data_len):
+    # #     data_id_list.append(data_list[i]["data_id"])
+    for i in data_list:
+        i["data_id"]
+    return render_template('Board/company.html', data_list=data_list)
+
 
 @app.route('/chart')
 def chart():

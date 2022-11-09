@@ -50,60 +50,12 @@ def company(data_id):
     data_list = data_list
     return render_template('Board/company.html',data_list=data_list)
 
-@app.route('/chart')
-def chart():
-    return render_template('Board/chart.html')
-   
-@app.route('/bar')
-def bar():
-    return render_template('Board/bar.html')
-     #print(i["회사"])
-    return render_template('Board/index.html', data_list=data_list, data_list_len = data_list_len)
 ##################### Index ###############
 
 ##################### 로그인관련 ###############
 @app.route('/login_form_get')
 def login_form_get():
     return render_template('Board/login.html')
-
-@app.route('/recent_inquiry_company')
-def recent_inquiry_company():
-    return render_template('Borad/r-i-c.html')
-
-    
-@app.route('/condition')
-def condition():
-    sql = "SELECT * from company_info"
-    cursor.execute(sql)
-    data_list = cursor.fetchall()
-    data_list = data_list
-
-    for i in data_list:
-        i["회사"]
-    return render_template('Board/Condition.html', data_list=data_list)
-    
-
-@app.route('/company/<int:data_id>')
-def company(data_id):
-
-    sql = "SELECT * from company_info where data_id = %s"
-    cursor.execute(sql,(data_id,))
-    data_list = cursor.fetchall()
-    data_list = data_list
-    print(data_list)
-    print(data_id)
-    # data_len = len(data_list)
-    # data_id = (data_list[0]["data_id"])
-    # for i in data_list:
-    #     data_list = i.append["data_id"].text
-    # print(i["data_id"])
-    # print(data_list)
-    # # for i in range(data_len):
-    # #     data_id_list.append(data_list[i]["data_id"])
-    #for i in data_list:
-    #    i["data_id"]
-    return render_template('Board/company.html', data_list=data_list)
-
 
 @app.route('/chart')
 def chart():
@@ -188,14 +140,6 @@ def join_proc():
 def my_page():
     return render_template('Board/myPage.html')
 
-# @app.route('/condition') #상세검색기능
-# def condition():
-#     return render_template('Board/Condition.html')
-    
-# @app.route('/faq') #상세검색기능
-# def faq():
-#     return render_template('Board/faq.html')
-
 @app.route('/recent_inquiry_company') #상세검색기능
 def recent_inquiry_company():
     return render_template('Board/r-i-c.html')
@@ -219,10 +163,6 @@ def faq():
     #print(i)
 
     return render_template('Board/faq.html', faq_list = faq_list, faq_len = faq_len)
-
-@app.route('/personal-info-change') #회원정보수정
-def persnal_info_change():
-    return render_template('Board/personal-info-change.html')
 
 #################### END 마이페이지 ###################
 

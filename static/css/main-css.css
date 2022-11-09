@@ -113,6 +113,17 @@ footer {
 	padding-right: 3%;
 }
 
+.header-a-tag-none-lower:nth-child(-n+4) {
+	float: left;
+	font-size: 1.5rem;
+	font-weight: bold;
+	text-decoration: none;
+	color: #759ef7;
+	padding-top: 2%;
+	padding-left: 3%;
+	padding-right: 3%;
+}
+
 .header-a-tag-none-logo {
 	font-size: 1.5rem;
 	font-weight: bold;

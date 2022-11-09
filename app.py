@@ -140,6 +140,10 @@ def condition():
 def faq():
     return render_template('Board/faq.html')
 
+@app.route('/qna') # 질문과 답변
+def qna():
+    return render_template('Board/qna.html')
+
 @app.route('/test') # 질문과 답변
 def company():
     return render_template('Board/company.html')

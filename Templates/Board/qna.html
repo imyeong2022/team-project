@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>FAQ</title>
+    <title>QnA</title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
                         QnA
                     </div>
                     <div class="public-title-sub">
-                       사이트 이용 도중, 궁금하신 사항에 대해 문의해보세요.
+                        자주 묻는 질문과 답변 내용을 확인해보세요.
                     </div>
                 </div>
             </div>
@@ -38,8 +38,7 @@
                                             <div class="text">선택</div>
                                             <ul class="option-list">
                                                 <li class="option">전체</li>
-                                                <li class="option">전</li>
-                                                <li class="option">체</li>
+                                                <li class="option">답변 완료된 게시물 보기</li>
                                             </ul>
                                         </div>
                                     </section>
@@ -49,17 +48,13 @@
                                     <span>
                                         <input type="button">
                                     </span>
-
-
-
-                                    
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="faq-content">
-                    <p>총 게시물 : n개</p>
+                    <p>전체 : n건 | 완료된 질문 n건/ n건 | 현재 페이지 n/n</p>
                     <hr />
                     <ul class="faq">
                         <li>
@@ -67,47 +62,33 @@
                             <label for="faq-1">
                                 <p>질문1</p>
                             </label>
-                            <div>
-                                <p class="spacing">답변1</p>
+                            <div class="qna">
+                                <label class="q-check" for="faq-2">
+                                </label>
+                                <p>내용.</p>
+                                <label class="a-check" for="faq-2">
+                                </label>
+                                <p>답변이 작성되지 않았습니다.</p>
                             </div>
                         </li>
                         <li>
                             <input type="checkbox" id="faq-2">
                             <label for="faq-2">
-                                <p>질문2</p>
+                                <p>제목</p>
                             </label>
-                            <div>
-                                <p class="spacing">답변2</p>
+                            <div class="qna">
+                                <label class="q-check" for="faq-2">
+                                </label>
+                                <p>내용.</p>
+                                <label class="a-checked" for="faq-2">
+                                </label>
+                                <p>답변 작성 완료.</p>
                             </div>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="faq-3">
-                            <label for="faq-3">
-                                <p>질문3</p>
-                            </label>
-                            <div>
-                                <p class="spacing">답변3</p>
-                            </div>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="faq-4">
-                            <label for="faq-4">
-                                <p>질문4</p>
-                            </label>
-                            <div>
-                                <p class="spacing">답변4</p>
-                            </div>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="faq-5">
-                            <label for="faq-5">
-                                <p>질문5</p>
-                            </label>
-                            <div>
-                                <p class="spacing">답변5</p>
-                            </div>
+
                         </li>
                     </ul>
+                    <hr />
+                    <button type="button" onclick="location.href='/question'">작성하기</button>
                 </div>
             </div>
         </section>

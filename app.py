@@ -144,6 +144,10 @@ def faq():
 def qna():
     return render_template('Board/qna.html')
 
+@app.route('/question') # 질문하기
+def question():
+    return render_template('Board/question.html')
+
 @app.route('/test') # 질문과 답변
 def company():
     return render_template('Board/company.html')

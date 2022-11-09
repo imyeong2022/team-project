@@ -55,6 +55,7 @@
                     </form>
                 </div>
                 <div class="faq-content">
+<!-- <<<<<<< HEAD
                     <p>총 게시물 : n개</p>
                     <hr />
                     <ul class="faq">
@@ -103,6 +104,21 @@
                                 <p class="spacing">답변5</p>
                             </div>
                         </li>
+======= -->
+                    <p>총 게시물 : {{faq_len}}개</p>
+                    <hr />
+                    <ul class="faq">
+                        {% for x in range(faq_len) %}
+                        <li>
+                            <input type="checkbox" id={{x}}>
+                            <label for={{x}}>
+                                <p>{{faq_list[x].content}}</p>
+                            </label>
+                            <div>
+                                <p class="spacing">{{faq_list[x].reply}}</p>
+                            </div>
+                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

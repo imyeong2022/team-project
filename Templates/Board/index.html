@@ -43,10 +43,9 @@
 			<div class="main-section-slider-div">
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
-						<div class="swiper-slide">Slide 1</div>
-						<div class="swiper-slide">Slide 2</div>
-						<div class="swiper-slide">Slide 3</div>
-						<div class="swiper-slide">Slide 4</div>
+						{% for i in range(4) %}
+						<div class="swiper-slide">Slide {{i}}</div>
+						{% endfor %}
 					</div>
 					<!-- Add Pagination -->
 					<div class="swiper-pagination"></div>
@@ -56,48 +55,15 @@
 			<div class="search-bar-div"></div>
 			<div class="recommend-div">
 				<ul class="main-gird-ul">
-					<li class="main-gird-li">
+					{% for x in range(6) %}
+					<li class="main-gird-li" onclick="location.href='/company/{{data_list[x].data_id}}';" style="cursor:pointer">
 						<a class="main-grid-a">
-							<span class="grid-sub-blue">{{ data_list[0].업종}}</span>
-							<p class="grid-title">{{ data_list[0].회사 }}</p>
-							<p class="grid-sub-text">{{ data_list[0].주요제품명 }}</p>
+							<span class="grid-sub-blue">{{ data_list[x].업종}}</span>
+							<p class="grid-title">{{ data_list[x].회사 }}</p>
+							<p class="grid-sub-text">{{ data_list[x].주요제품명 }}</p>
 						</a>
 					</li>
-					<li class="main-gird-li">
-						<a class="main-grid-a">
-							<span class="grid-sub-blue">{{ data_list[1].업종 }}</span>
-							<p class="grid-title">{{ data_list[1].회사 }}</p>
-							<p class="grid-sub-text">{{ data_list[1].주요제품명 }}</p>
-						</a>
-					</li>
-					<li class="main-gird-li">
-						<a class="main-grid-a">
-							<span class="grid-sub-blue">{{ data_list[2].업종 }}</span>
-							<p class="grid-title">{{ data_list[2].회사 }}</p>
-							<p class="grid-sub-text">{{ data_list[2].주요제품명 }}</p>
-						</a>
-					</li>
-					<li class="main-gird-li">
-						<a class="main-grid-a">
-							<span class="grid-sub-blue">{{ data_list[3].업종 }}</span>
-							<p class="grid-title">{{ data_list[3].회사 }}</p>
-							<p class="grid-sub-text">{{ data_list[3].주요제품명 }}</p>
-						</a>
-					</li>
-					<li class="main-gird-li">
-						<a class="main-grid-a">
-							<span class="grid-sub-blue">{{ data_list[4].업종 }}</span>
-							<p class="grid-title">{{ data_list[4].회사 }}</p>
-							<p class="grid-sub-text">{{ data_list[4].주요제품명 }}</p>
-						</a>
-					</li>
-					<li class="main-gird-li">
-						<a class="main-grid-a">
-							<span class="grid-sub-blue">{{ data_list[5].업종 }}</span>
-							<p class="grid-title">{{ data_list[5].회사 }}</p>
-							<p class="grid-sub-text">{{ data_list[5].주요제품명 }}</p>
-						</a>
-					</li>
+					{% endfor %}
 				</ul>
 			</div>
 			<div></div>

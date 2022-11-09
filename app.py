@@ -103,29 +103,46 @@ def join_proc():
             con.commit()
             cursor.close()
             return render_template('Board/login.html')
-            curo         
 
-##################### 회원가입관련 ###############  
+##################### END 회원가입관련 ###############  
+
+
+##################### 마이페이지 관련 ###############
+@app.route('/my_page') #마이페이지
+def my_page():
+    return render_template('Board/myPage.html')
+
+@app.route('/my_page_proc', methods=['GET','POST'])
+def my_page_proc():
+
+    if request.method == 'POST': #request객체 안에 method 기능있음(자바도 마찬가지).
+        user_id = request.form['user_id'] #키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
+        user_pw = request.form['user_pw']
+        user_name = request.form['user_name'] #키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
+        user_phone = request.form['user_phone']
+        user_birth = request.form['user_birth']
+        if len(user_pw) == 0:
+            return '에러! 입력되지 않은 값이 있습니다!'
+        else:
+            sql =  'UPDATE MEMBER SET PW=%s, Phone=%s WHERE ID=%s'
+            cursor.execute(sql, (user_pw,user_phone,user_id, ))
+            con.commit()
+            
+            return render_template('Board/login.html')
+
+#################### END 마이페이지 ###################
 
 @app.route('/condition') #상세검색기능
 def condition():
     return render_template('Board/Condition.html')
     
-@app.route('/faq') #상세검색기능
+@app.route('/faq') # 질문과 답변
 def faq():
     return render_template('Board/faq.html')
 
-@app.route('/recent_inquiry_company') #상세검색기능
-def recent_inquiry_company():
-    return render_template('Board/r-i-c.html')
-
-@app.route('/my_page')
-def my_page():
-    return render_template('Board/myPage.html')
-
-@app.route('/personal-info-change')
-def persnal_info_change():
-    return render_template('Board/personal-info-change.html')
+@app.route('/test') # 질문과 답변
+def company():
+    return render_template('Board/company.html')
 
 if __name__ == '__main__':
     #app.run('127.0.0.1', 5000, debug=True)

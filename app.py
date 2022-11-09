@@ -19,19 +19,18 @@ def home():
     sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
-    print(type(data_list))
-    print(data_list)
-    # print(data_list[8]["모집직종코드명"])
-    # print(data_list[6]["사업요약내용"])
-    # print(data_list[2]["기업명칭"])
+    #print(type(data_list))
+    #print(data_list)
     data_list = data_list
-    print(type(data_list))
+    data_list_len = len(data_list)
+    print("인덱스길이",data_list_len)
+    #print(type(data_list))
 
-    for i in data_list:
+    #for i in data_list:
      #print(i)
      #print(type(i))
-     print(i["회사"])
-    return render_template('Board/index.html', data_list=data_list)
+     #print(i["회사"])
+    return render_template('Board/index.html', data_list=data_list, data_list_len = data_list_len)
 ##################### Index ###############
 
 ##################### 로그인관련 ###############
@@ -155,13 +154,9 @@ def faq():
 
     return render_template('Board/faq.html', faq_list = faq_list, faq_len = faq_len)
 
-@app.route('/test') # 질문과 답변
-def company():
+@app.route('/company/<int:data_id>') # 질문과 답변
+def company(data_id):
     return render_template('Board/company.html')
-
-
-
-
 
 
 SECRET_KEY = "dev"

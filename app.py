@@ -161,8 +161,10 @@ def faq():
     #print(type(faq_list))
     #for i in faq_list:
     #print(i)
+    return render_template('Board/faq.html', faq_list = faq_list, faq_len = faq_len)
 
-<<<<<<< HEAD
+#################### END 마이페이지 ###################
+
 @app.route('/qna') # 질문과 답변
 def qna():
     return render_template('Board/qna.html')
@@ -171,17 +173,8 @@ def qna():
 def question():
     return render_template('Board/question.html')
 
-@app.route('/test') # 질문과 답변
-def company():
-    return render_template('Board/company.html')
-=======
-    return render_template('Board/faq.html', faq_list = faq_list, faq_len = faq_len)
-
-#################### END 마이페이지 ###################
-
 
 SECRET_KEY = "dev"
->>>>>>> 10e5b4c4f49e81974331d2307f885de262dd7298
 
 if __name__ == '__main__':
     #app.run('127.0.0.1', 5000, debug=True)

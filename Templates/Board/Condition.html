@@ -284,6 +284,14 @@
                     <li>
                         <div>
                             <div>
+                                <a>
+                                    {# if문으로 관심기업아니면 ☆ 관심기업이면 ★ #}
+                                    <div>☆ 관심기업 등록하기</div>
+                                    {# <div>★ 관심기업 해제하기</div> #}
+                                </a>
+                                <a>
+                                    <div>일자리 지도 보기</div>
+                                </a>
                                 <span class="grid-sub-blue">{{ data_list[x].업종}}</span>
                                 <a onclick="location.href='/company/{{data_list[x].data_id}}';" style="cursor:pointer">
                                     <p class="grid-title">{{ data_list[x].회사 }}</p>
@@ -291,14 +299,6 @@
                                 <p class="condition-sub-text">{{ data_list[x].기업형태 }} | {{ data_list[x].지역 }} |
                                     {{ data_list[x].대표 }}</p>
                             </div>
-                            <a>
-                                {# if문으로 관심기업아니면 ☆ 관심기업이면 ★ #}
-                                <div>☆ 관심기업 등록하기</div>
-                                {# <div>★ 관심기업 해제하기</div> #}
-                            </a>
-                            <a>
-                                <div>일자리 지도 보기</div>
-                            </a>
                         </div>
                         <div>
                             <ol class="">

@@ -103,7 +103,7 @@ footer {
 
 .header-a-tag-none-lower {
 	float: left;
-	font-size: 4vmin;
+	font-size: 3vmin;
 	font-weight: bold;
 	text-decoration: none;
 	color: black;
@@ -115,7 +115,7 @@ footer {
 
 .header-a-tag-none-lower:nth-child(-n+4) {
 	float: left;
-	font-size: 4vmin;
+	font-size: 3vmin;
 	font-weight: bold;
 	text-decoration: none;
 	color: #759ef7;
@@ -337,7 +337,8 @@ footer {
 	padding-left: 10px;
 	padding-right: 10px;
 	color: rgb(29, 146, 255);
-	font-size: 1.2em;
+	font-size: 2.4vmin;
+	font-weight: bold;
 }
 
 .grid-title {	
@@ -345,14 +346,15 @@ footer {
 	padding-right: 10px;
 	margin: 0px;
 	padding-top: 7px;
-	font-size: 2.6em;
+	font-size: 4.5vmin;
+	font-weight: bold;
 }
 
 .grid-sub-text {
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 25px;
-	font-size: 1em;
+	font-size: 2vmin;
 }
 
 .main-grid-a {}
@@ -535,7 +537,7 @@ input::placeholder {
 	padding-top: 180px;
 	padding-bottom: 40px;
 	float: left;
-	height: 300px;
+	height: 40.3vmin;
 	width: 85%;
 	background-color: rgb(97, 97, 97);
 	z-index: 0;
@@ -549,15 +551,15 @@ input::placeholder {
 	padding-top: 180px;
 	padding-bottom: 40px;
 	float: left;
-	height: 300px;
+	height: 40.3vmin;
 	width: 85%;
 	z-index: 1;
 }
 
 .company-logo {
 	float: left;
-	height: 250px;
-	width: 250px;
+	height: 27vmin;
+	width: 27vmin;
 	padding: 25px;
 	margin-right: 60px;
 	background: white;
@@ -574,7 +576,7 @@ input::placeholder {
 
 .company-info {
 	float: left;
-	width: 73%;
+	width: auto;
 	height: 300px;
 }
 
@@ -1016,30 +1018,34 @@ input::placeholder {
 }
 
 
-.condition>ul>li>div>a {
+.condition>ul>li>div>div>a:nth-child(-n+2) {
 	float: right;
 
 }
 
 .condition>ul>li>div>div {
-	width: 50%;
+	width: auto;
 }
 
-.condition>ul>li>div>a:nth-child(n+2)>div {
-	padding: 15px 20px 15px 20px;
+.condition>ul>li>div>div>a:nth-child(-n+2)>div {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 0 20px 0 20px;
 	margin-left: 10px;
-	height: 13px;
-	width: 135px;
+	height: 6vmin;
+	width: 17vmin;
 	background: #759ef7;
 	border: 1px solid coral;
 	border-radius: 30px;
-	text-align: center;
+	font-size: 2vmin;
 }
 
 .condition-sub-text {
 	padding-left: 10px;
 	padding-right: 10px;
 	font-size: 16px;
+	color: gray;
 }
 
 .condition>ul>li>div>ol {

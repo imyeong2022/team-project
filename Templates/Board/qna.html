@@ -58,39 +58,24 @@
                     <hr />
                     <div class="qna-section">
                         <ul class="qna">
+                            {% for x in range(qna_len) %}
                             <li>
                                 <input type="checkbox" id="qna-1">
                                 <label for="qna-1">
-                                    <div class="qna-div-1">16</div>
-                                    <div class="qna-div-2">의약품 매핑에 관한 문제</div>
-                                    <div class="qna-div-3">이름</div>
-                                    <div class="qna-div-4">2022/11/10</div>
+                                    <div class="qna-div-1">{{qna_list[x].idx}}</div>
+                                    <div class="qna-div-2">{{qna_list[x].subject}}</div>
+                                    <div class="qna-div-3">{{qna_list[x].ID}}</div>
+                                    <div class="qna-div-4">{{qna_list[x].create_date}}</div>
                                 </label>
                                 <div>
-                                    <p class="spacing">의약품 매핑에 관한 문제</p>
+                                    <p class="spacing" >{{qna_list[x].answer}}</p>
                                 </div>
                             </li>
-
-                            <li>
-                                <input type="checkbox" id="qna-2">
-                                <label for="qna-2">
-                                    <div class="qna-div-1">16</div>
-                                    <div class="qna-div-2">의약품 매핑에 관한 문제</div>
-                                    <div class="qna-div-3">이름</div>
-                                    <div class="qna-div-4">2022/11/10</div>
-                                </label>
-                                <div>
-                                    <p class="spacing">의약품 매핑에 관한 문제</p>
-                                </div>
-                            </li>
+                            {% endfor %}
                         </ul>
                     </div>
                     <hr />
-                    <div>
-                        <ul id="pagingul">
-                        </ul>
                         <button type="button" onclick="location.href='/question'">작성하기</button>
-                    </div>
                 </div>
             </div>
         </section>
@@ -117,7 +102,6 @@
             var option = optionList[i];
             option.addEventListener("click", onClickOption);
         }
-        
     </script>
 </body>
 

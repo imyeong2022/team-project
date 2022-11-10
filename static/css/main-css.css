@@ -3,18 +3,18 @@
 	src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
 	font-weight: 400;
 	font-style: normal;
- }
- 
- html {
+}
+
+html {
 	font-family: 'Pretendard-Regular';
- }
- 
- body {
+}
+
+body {
 	margin: 0px;
 	height: 3000px;
- }
- 
- header {
+}
+
+header {
 	position: fixed;
 	height: 120px;
 	width: 100%;
@@ -24,85 +24,85 @@
 	overflow: hidden;
 	background: white;
 	z-index: 2;
- 
- }
- 
- .header-div {
+
+}
+
+.header-div {
 	background: white;
 	margin-left: 5%;
 	margin-right: 5%;
 	height: 100%;
 	width: 90%;
 	z-index: 2;
- }
- 
- .header-div-left {
+}
+
+.header-div-left {
 	background: white;
 	float: left;
 	height: 120px;
 	width: 20%;
 	z-index: 3;
- }
- 
- .header-logo {
+}
+
+.header-logo {
 	height: auto;
 	width: auto;
 	font-size: 3rem;
 	font-weight: bold;
 	text-align: center;
 	color: black;
- }
- 
- .header-logo-a {
+}
+
+.header-logo-a {
 	color: black;
 	text-decoration: none;
- }
- 
- .header-div-right {
+}
+
+.header-div-right {
 	background: white;
 	float: right;
 	height: 120px;
 	width: 77%;
 	z-index: 3;
 	padding-right: 3%;
- }
- 
- .header-div-top {
+}
+
+.header-div-top {
 	background: white;
 	float: right;
 	height: 55px;
 	width: 100%;
 	z-index: 4;
- }
- 
- .header-div-lower {
+}
+
+.header-div-lower {
 	background: white;
 	float: right;
 	height: 65px;
 	width: 100%;
 	z-index: 4;
- }
- 
- footer {
+}
+
+footer {
 	height: 260px;
 	width: 100%;
- }
- 
- .main-section {
+}
+
+.main-section {
 	height: auto;
 	width: 100%;
- }
- 
- .header-a-tag-none {
+}
+
+.header-a-tag-none {
 	float: right;
 	padding-top: 2%;
 	padding-left: 0.725%;
 	padding-right: 0.725%;
 	text-decoration: none;
 	color: black;
- }
- 
- .header-a-tag-none-lower {
+}
+
+.header-a-tag-none-lower {
 	float: left;
 	font-size: 1.5rem;
 	font-weight: bold;
@@ -136,21 +136,36 @@
 
 .main-section-slider-div {}
 
+.search-area {}
+
 .search-bar-div {
-	background: #a96ae4;
-	height: 120px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	background: #759ef7;
+	height: 60px;
 	width: 100%;
+
 }
+
+.search-frame {
+	margin-left: 50px;
+	margin-right: 50px;
+	height: 100%;
+	width: auto;
+	background: aliceblue;
+}
+
+
 
 .recommend-div {
 	background: #edd9ff;
 	height: 750px;
 	width: 100%;
- }
- 
- 
- /* page */
- .title-area {
+}
+
+
+/* page */
+.title-area {
 	margin-left: 7.5%;
 	margin-right: 7.5%;
 	padding-top: 140px;
@@ -158,9 +173,9 @@
 	height: 200px;
 	width: 85%;
 	background-color: white;
- }
- 
- .content-area {
+}
+
+.content-area {
 	margin-left: 7.5%;
 	margin-right: 7.5%;
 }
@@ -229,8 +244,22 @@
 	height: 150px;
 }
 
+.search-fileter-child-item-list ::-webkit-scrollbar {
+	width: 8px;
+}
+
+.search-fileter-child-item-list ::-webkit-scrollbar-thumb {
+	height: 30%;
+	background: #759ef7;
+	border-radius: 10px;
+}
+
+.search-fileter-child-item-list ::-webkit-scrollbar {
+	background: aliceblue;
+}
+
 .search-fileter-checkbox {
-	overflow-y:scroll;
+	overflow-y: scroll;
 	float: left;
 	height: 150px;
 	width: 95%;
@@ -240,7 +269,7 @@
 	margin: 0px;
 }
 
-.search-fileter-checkbox-item{
+.search-fileter-checkbox-item {
 	margin-top: 5px;
 }
 
@@ -259,30 +288,30 @@
 .public-list {
 	width: 100%;
 	height: 20px;
- }
- 
- .public-ol {
+}
+
+.public-ol {
 	list-style: none;
- }
- 
- .public-li {
+}
+
+.public-li {
 	float: left
- }
- 
- .public-title {
+}
+
+.public-title {
 	margin-top: 50px;
 	text-align: center;
 	font-size: 45px;
 	font-weight: bold;
- }
- 
- .public-title-sub {
+}
+
+.public-title-sub {
 	padding-top: 25px;
 	text-align: center;
- 
- }
- 
- .main-gird-ul {
+
+}
+
+.main-gird-ul {
 	list-style: none;
 	margin-top: 0px;
 	margin-bottom: 0px;
@@ -291,10 +320,10 @@
 	padding-top: 7.5%;
 	height: 87%;
 	width: auto;
- }
- 
- .main-gird-li {
- 
+}
+
+.main-gird-li {
+
 	margin-top: 1%;
 	margin-bottom: 1%;
 	margin-left: 1.3%;
@@ -306,51 +335,51 @@
 	background: #796565;
 	width: 27%;
 	height: 180px;
- 
- }
- 
- .grid-sub-blue {
+
+}
+
+.grid-sub-blue {
 	padding-left: 10px;
 	padding-right: 10px;
 	color: rgb(29, 146, 255);
 	font-size: 20px;
- }
- 
- .grid-title {
+}
+
+.grid-title {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin: 0px;
 	padding-top: 7px;
 	font-size: 35px;
- }
- 
- .grid-sub-text {
+}
+
+.grid-sub-text {
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 25px;
 	font-size: 16px;
- }
- 
- .main-grid-a {}
- 
- .public-hr {
+}
+
+.main-grid-a {}
+
+.public-hr {
 	margin-left: 7.5%;
 	margin-right: 7.5%;
 	border: 0px;
 	height: 2px;
 	background: black;
- }
- 
- .login-form-div {
+}
+
+.login-form-div {
 	margin-left: 7.5%;
 	margin-right: 7.5%;
 	padding-top: 80px;
 	padding-bottom: 100px;
- }
- 
- .login-form {}
- 
- .login-input {
+}
+
+.login-form {}
+
+.login-input {
 	width: 34%;
 	height: 60px;
 	margin-left: 32.5%;
@@ -361,9 +390,9 @@
 	border-style: solid;
 	border-width: 2px;
 	border-color: #759ef7;
- }
- 
- .login-submit {
+}
+
+.login-submit {
 	margin-left: 32.5%;
 	margin-right: 32.5%;
 	margin-bottom: 10px;
@@ -378,9 +407,9 @@
 	border-style: solid;
 	border-width: 2px;
 	border-color: #759ef7;
- }
- 
- .login-join {
+}
+
+.login-join {
 	margin-left: 32.5%;
 	margin-right: 32.5%;
 	margin-bottom: 15px;
@@ -390,9 +419,9 @@
 	border-style: solid;
 	border-width: 2px;
 	border-color: #759ef7;
- }
- 
- .login-join>a {
+}
+
+.login-join>a {
 	height: 100%;
 	width: 100%;
 	color: #759ef7;
@@ -405,23 +434,23 @@
 	align-items: center;
 	text-align: center;
 	text-decoration: none;
- }
- 
- input::placeholder {
+}
+
+input::placeholder {
 	font-weight: bold;
- }
- 
- /* join */
- 
- .join-div {
+}
+
+/* join */
+
+.join-div {
 	float: left;
 	margin-left: 32.5%;
 	margin-right: 32.5%;
 	margin-bottom: 15px;
 	width: 34%;
- }
- 
- .join-input {
+}
+
+.join-input {
 	width: 34%;
 	height: 60px;
 	margin-left: 32.5%;
@@ -432,20 +461,9 @@
 	border-style: solid;
 	border-width: 2px;
 	border-color: #759ef7;
- }
- 
- .join-input ::placeholder{
-	font-weight: normal;
-	font-size: 20px;
- }
- 
- .join-input{
-	color: gray;
-	font-weight: bold;
-	font-size: 20px;
- }
- 
- .join-submit {
+}
+
+.join-submit {
 	margin-left: 32.5%;
 	margin-right: 32.5%;
 	width: 35.6%;
@@ -458,14 +476,14 @@
 	font-size: 16px;
 }
 
-.login-form > hr {
+.login-form>hr {
 	margin-left: 32.5%;
 	margin-right: 32.5%;
 	margin-bottom: 15px;
 	width: 35.6%;
 }
 
-.join-check-all{
+.join-check-all {
 	width: 34%;
 	height: auto;
 	margin-left: 32.5%;
@@ -475,17 +493,17 @@
 	font-size: 16px;
 }
 
-.join-check-all > b{
+.join-check-all>b {
 	padding-left: 10px;
 	font-size: 20px;
 }
 
-.join-check-all > p{
+.join-check-all>p {
 	margin-top: 5px;
 	padding-left: 30px;
 }
 
-.join-check-area{
+.join-check-area {
 	margin-left: 32.5%;
 	margin-right: 32.5%;
 	margin-bottom: 15px;
@@ -499,23 +517,23 @@
 	border-color: #759ef7;
 }
 
-.join-check-list{
+.join-check-list {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 10px;
 }
 
-.join-check-list b{
+.join-check-list b {
 	padding-left: 10px;
 }
 
-.join-check-list.sub{
+.join-check-list.sub {
 	padding-left: 40px;
- }
- 
- /* company */
- 
- .title-area-company-bgimg {
+}
+
+/* company */
+
+.title-area-company-bgimg {
 	position: relative;
 	padding-left: 7.5%;
 	padding-right: 7.5%;
@@ -526,10 +544,10 @@
 	width: 85%;
 	background-color: rgb(97, 97, 97);
 	z-index: 0;
- 
- }
- 
- .title-area-company {
+
+}
+
+.title-area-company {
 	position: absolute;
 	margin-left: 7.5%;
 	margin-right: 7.5%;
@@ -539,9 +557,9 @@
 	height: 300px;
 	width: 85%;
 	z-index: 1;
- }
- 
- .company-logo {
+}
+
+.company-logo {
 	float: left;
 	height: 250px;
 	width: 250px;
@@ -550,78 +568,78 @@
 	background: white;
 	line-height: 250px;
 	/* vertical-align이랑 같이 세로중앙정렬 */
- }
- 
- .company-logo-img {
+}
+
+.company-logo-img {
 	height: auto;
 	width: 100%;
 	vertical-align: middle;
 	/* line-height이랑 같이 세로중앙정렬 */
- }
- 
- .company-info {
+}
+
+.company-info {
 	float: left;
 	width: 73%;
 	height: 300px;
- }
- 
- .company-sub {
+}
+
+.company-sub {
 	color: aliceblue;
 	margin-top: 35px;
 	margin-bottom: 5px;
- }
- 
- .company-title {
+}
+
+.company-title {
 	margin-top: 20px;
 	margin-bottom: 0px;
 	/* 만약 즐겨찾기 or 사이트 주소 불러오기 실패시 제외 */
 	font-size: 62px;
 	color: aliceblue;
- }
- 
- 
- .company-sub-title-Y {
+}
+
+
+.company-sub-title-Y {
 	padding-right: 20px;
 	float: left;
 	font-weight: none;
 	color: yellow;
- 
- }
- 
- .company-sub-title-W {
+
+}
+
+.company-sub-title-W {
 	padding-right: 20px;
 	float: left;
 	font-weight: none;
 	color: aliceblue;
- }
- 
- 
- /* FAQ */
- 
- .faq-search-bar {
+}
+
+
+/* FAQ */
+
+.faq-search-bar {
 	padding-top: 40px;
 	padding-bottom: 40px;
 	height: 60px;
 	width: 100%;
- }
- 
- .bg-gray {
+}
+
+.bg-gray {
 	background: rgb(222, 222, 222);
- }
- 
- .faq-search-bar .faq-search-wrap {
+}
+
+.faq-search-bar .faq-search-wrap {
 	margin: auto;
 	width: 670px;
 	height: 60px;
- }
- 
- .grid-area {
+}
+
+.grid-area {
 	position: relative;
 	height: 100%;
 	width: 100%;
- }
- 
- .colum {
+}
+
+.colum {
 	padding-left: 5px;
 	padding-right: 5px;
 	float: left;
@@ -841,6 +859,14 @@
 	text-indent: 1.2em;
 }
 
+.spacing:nth-child(2){
+	margin: 30px 0px 0px 0px;
+	padding: 0px 0px 15px 0px;
+}
+
+.spacing:nth-child(2)::before{
+	content: "ㄴ  ";
+}
 
 /* qna */
 

@@ -19,7 +19,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    sql = "SELECT * from company_info"
+    sql = "SELECT * from recruitment"
     cursor.execute(sql)
     data_list = cursor.fetchall()
     data_list = data_list
@@ -117,7 +117,7 @@ def login_proc():
         if len(user_id) == 0 or len(user_pw) == 0:
             return 'Error!! UserId or UserPw not found(null)'
         else:
-            sql = 'SELECT * from member where ID =  %s '
+            sql = 'SELECT ID, PW, NAME from member where ID =  %s '
             cursor.execute(sql, (user_id, ))
             row = cursor.fetchone()
             print(row)  # row키확인해보자 딕셔너리로 넣어주기로한걸 볼 수 있다.
@@ -148,6 +148,10 @@ def logout_proc():
 ##################### END 로그인관련 ###############
 
 
+
+##################### 로그인관련 ###############
+
+
 ##################### 회원가입관련 ###############
 
 
@@ -174,7 +178,7 @@ def join_proc():
             cursor.execute(sql, (user_id, user_pw, user_name,
                            user_phone, user_birth, ))
             con.commit()
-            session.clear()
+            cursor.close()
             return render_template('Board/login.html')
             curo
 

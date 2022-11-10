@@ -58,6 +58,7 @@
                     <hr />
                     <div class="qna-section">
                         <ul class="qna">
+                            {% for x in range(qna_len) %}
                             <li>
                                 <input type="checkbox" id="qna-{{x}}">
                                 <label for="qna-{{x}}">
@@ -73,6 +74,7 @@
                                     {% endif %}
                                 </div>
                             </li>
+                            {% endfor %}
                         </ul>
                     </div>
                     <hr />

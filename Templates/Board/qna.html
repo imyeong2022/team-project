@@ -56,25 +56,25 @@
                 <div class="faq-content">
                     <p>전체 : {{qna_len}}건 | 완료된 질문 {{qna_len}}건/ {{qna_len}}건 | 현재 페이지 n/n</p>
                     <hr />
-                    <ul class="faq">
-                        {% for x in range(qna_len) %}
-                        <li>
-                
-                            <input type="checkbox" id="faq-1">
-                            <label for="faq-1">
-                                <p>{{qna_list[x].subject}}</p>
-                            </label>
-                            <div class="qna">
-                                <label class="q-check" for="faq-2">
+                    <div class="qna-section">
+                        <ul class="qna">
+                            <li>
+                                <input type="checkbox" id="qna-{{x}}">
+                                <label for="qna-{{x}}">
+                                    <div class="qna-div-1">{{qna_list[x].idx}}</div>
+                                    <div class="qna-div-2">{{qna_list[x].subject}}</div>
+                                    <div class="qna-div-3">{{qna_list[x].ID}}</div>
+                                    <div class="qna-div-4">{{qna_list[x].create_date}}</div>
                                 </label>
-                                <p>{{qna_list[x].content}}</p>
-                                <label class="a-check" for="faq-2">
-                                </label>
-                                <p>답변이 작성되지 않았습니다.</p>
-                            </div>
-                        </li>
-                        {% endfor %}
-                    </ul>
+                                <div>
+                                    <p class="spacing">{{qna_list[x].content}}</p>
+                                    {% if qna_list[x].answer %}
+                                    <p class="spacing">{{qna_list[x].answer}}</p>
+                                    {% endif %}
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                     <hr />
                     <button type="button" onclick="location.href='/question'">작성하기</button>
                 </div>

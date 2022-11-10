@@ -117,7 +117,7 @@ def login_proc():
         if len(user_id) == 0 or len(user_pw) == 0:
             return 'Error!! UserId or UserPw not found(null)'
         else:
-            sql = 'SELECT ID, PW, NAME from member where ID =  %s '
+            sql = 'SELECT * from member where ID =  %s '
             cursor.execute(sql, (user_id, ))
             row = cursor.fetchone()
             print(row)  # row키확인해보자 딕셔너리로 넣어주기로한걸 볼 수 있다.

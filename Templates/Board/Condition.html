@@ -277,23 +277,39 @@
                         </div>
                     </div>
                 </div>
-            </form>    
-            <div>
-                {% for x in range(6) %}
-                <li class="main-gird-li" onclick="location.href='/company/{{data_list[x].data_id}}';" style="cursor:pointer">
-                    <a class="main-grid-a">
-                        <span class="grid-sub-blue">{{ data_list[x].업종}}</span>
-                        <p class="grid-title">{{ data_list[x].회사 }}</p>
-                        <p class="grid-sub-text">{{ data_list[x].기업형태 }} | {{ data_list[x].지역 }} | {{ data_list[x].대표 }}</p>
-                    </a>
-                </li>
-                {% endfor %}
-            </div>            
-            <div>
-                <form>
-                    <div>
-                    </div>
-                </form>
+            </form>
+            <div class="condition">
+                <ul>
+                    {% for x in range(10) %}
+                    <li>
+                        <div>
+                            <div>
+                                <span class="grid-sub-blue">{{ data_list[x].업종}}</span>
+                                <a onclick="location.href='/company/{{data_list[x].data_id}}';" style="cursor:pointer">
+                                    <p class="grid-title">{{ data_list[x].회사 }}</p>
+                                </a>
+                                <p class="condition-sub-text">{{ data_list[x].기업형태 }} | {{ data_list[x].지역 }} |
+                                    {{ data_list[x].대표 }}</p>
+                            </div>
+                            <a>
+                                {# if문으로 관심기업아니면 ☆ 관심기업이면 ★ #}
+                                <div>☆ 관심기업 등록하기</div>
+                                {# <div>★ 관심기업 해제하기</div> #}
+                            </a>
+                            <a>
+                                <div>일자리 지도 보기</div>
+                            </a>
+                        </div>
+                        <div>
+                            <ol class="">
+                                <li>#이 기업 경기가 대단하다</li>
+                                <li>#복지 최고</li>
+                                <li>#취업시켜줘</li>
+                            </ol>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
             </div>
         </section>
     </div>

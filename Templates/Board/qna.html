@@ -56,27 +56,41 @@
                 <div class="faq-content">
                     <p>전체 : {{qna_len}}건 | 완료된 질문 {{qna_len}}건/ {{qna_len}}건 | 현재 페이지 n/n</p>
                     <hr />
-                    <ul class="faq">
-                        {% for x in range(qna_len) %}
-                        <li>
-                
-                            <input type="checkbox" id="faq-1">
-                            <label for="faq-1">
-                                <p>{{qna_list[x].subject}}</p>
-                            </label>
-                            <div class="qna">
-                                <label class="q-check" for="faq-2">
+                    <div class="qna-section">
+                        <ul class="qna">
+                            <li>
+                                <input type="checkbox" id="qna-1">
+                                <label for="qna-1">
+                                    <div class="qna-div-1">16</div>
+                                    <div class="qna-div-2">의약품 매핑에 관한 문제</div>
+                                    <div class="qna-div-3">이름</div>
+                                    <div class="qna-div-4">2022/11/10</div>
                                 </label>
-                                <p>{{qna_list[x].content}}</p>
-                                <label class="a-check" for="faq-2">
+                                <div>
+                                    <p class="spacing">의약품 매핑에 관한 문제</p>
+                                </div>
+                            </li>
+
+                            <li>
+                                <input type="checkbox" id="qna-2">
+                                <label for="qna-2">
+                                    <div class="qna-div-1">16</div>
+                                    <div class="qna-div-2">의약품 매핑에 관한 문제</div>
+                                    <div class="qna-div-3">이름</div>
+                                    <div class="qna-div-4">2022/11/10</div>
                                 </label>
-                                <p>답변이 작성되지 않았습니다.</p>
-                            </div>
-                        </li>
-                        {% endfor %}
-                    </ul>
+                                <div>
+                                    <p class="spacing">의약품 매핑에 관한 문제</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                     <hr />
-                    <button type="button" onclick="location.href='/question'">작성하기</button>
+                    <div>
+                        <ul id="pagingul">
+                        </ul>
+                        <button type="button" onclick="location.href='/question'">작성하기</button>
+                    </div>
                 </div>
             </div>
         </section>
@@ -91,18 +105,19 @@
             }
         }
 
-        document.querySelector("#faq-select .select").addEventListener("click", onClickSelect);
+        document.querySelector("#qna-select .select").addEventListener("click", onClickSelect);
 
         function onClickOption(e) {
             const selectedValue = e.currentTarget.innerHTML;
-            document.querySelector("#faq-select .text").innerHTML = selectedValue;
+            document.querySelector("#qna-select .text").innerHTML = selectedValue;
         }
 
-        var optionList = document.querySelectorAll("#faq-select .option");
+        var optionList = document.querySelectorAll("#qna-select .option");
         for (var i = 0; i < optionList.length; i++) {
             var option = optionList[i];
             option.addEventListener("click", onClickOption);
         }
+        
     </script>
 </body>
 

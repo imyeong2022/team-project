@@ -668,11 +668,12 @@
 	outline: none;
 }
 
-.col70>span{
+.col70>span {
 	height: 100%;
 	width: 10%;
 }
-.col70>span>input{
+
+.col70>span>input {
 	height: 100%;
 	width: 100%;
 	background: url("../source/search.png");
@@ -737,15 +738,16 @@
 	background-color: #f2f2f2;
 }
 
-.faq-content{
+.faq-content {
 	margin-top: 40px;
 }
-.faq-content>hr{
+
+.faq-content>hr {
 	margin-top: 0px;
 	border: 2px solid gray;
 }
 
-.faq-content>button{
+.faq-content>button {
 	float: right;
 	margin-top: 20px;
 	width: 7%;
@@ -816,7 +818,7 @@
 	color: #759ef7;
 }
 
-.faq > li>label>p {
+.faq>li>label>p {
 	margin-left: 1%;
 }
 
@@ -842,70 +844,75 @@
 
 /* qna */
 
-.faq>li>label {
-	display: -webkit-box;
-	color: #000;
-	font-size: 15px;
-	height: 50px;
-	margin: 0px 10px 10px 10px;
+#qna-select {
+	height: 100%;
+	width: 100%;
+}
+
+#qna-select>.select {
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+	border-radius: 5px;
+	background: white;
+	padding-left: 10%;
 	cursor: pointer;
-}
-
-.qna>.q-check::before {
-	content: url("../source/Q-none.png");
-}
-
-.qna>.q-checked::before {
-	content: url("../source/Q.png");
-}
-
-.qna>.a-check::before {
-	content: url("../source/A-none.png");
-}
-
-.qna>.a-checked::before {
-	content: url("../source/A.png");
-}
-
-.faq>li>div>label{
-	float: left;
+	height: 100%;
+	width: 90%;
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	height: 43px;
-	width: 43px;
-	margin-top: 10px;
+	align-items: center;
 }
 
-.faq>li>div>label:first-child{
-	margin-left: 50px;
+#qna-select>.select:hover {
+	color: #333;
+	transition: all .3s;
 }
 
-.faq>li>div>p{
-	display: flex;
+#qna-select>.select .option-list {
+	list-style: none;
+	padding: 0;
+	border-radius: 5px;
+	background: white;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+#qna-select>.select .option-list .option {
+	padding: 10px 15px;
+}
+
+#qna-select>.select .option-list .option:hover {
+	background-color: #f2f2f2;
+}
+
+.qna>li {
+	padding: 8px;
+	box-sizing: border-box;
+}
+
+.qna>li>div {
+	display: none;
 	color: #000;
-	margin-top: 5px;
-	margin-bottom: 0px;
-	font-size: 15px;
-	height: 50px;
-	cursor: pointer;
-	text-indent: 1.2em;
-	flex-direction: column;
-	justify-content: center;
+	background-color: rgb(241, 243, 246);
+	font-size: 13px;
+	overflow: hidden;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.qna input:checked+label+div {
+	display: block;
 }
 
 /* question */
-.question-content>hr{
+.question-content>hr {
 	margin-top: 0px;
 	border: 2px solid gray;
 }
 
-.question-content>input{
+.question-content>input {
 	height: 300px;
 	width: 300px;
 }
 
-.question-content>button{
+.question-content>button {
 	float: right;
 	margin-top: 20px;
 	width: 7%;
@@ -916,4 +923,50 @@
 	outline: none;
 	border: none;
 	font-size: 16px;
+}
+
+.qna-section {
+	height: auto;
+	width: 100%;
+	margin: 0px 0px 30px 0px;
+}
+
+.qna {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: auto;
+	width: 100%;
+}
+
+.qna>li:nth-child(n+2) {
+	margin-top: 25px;
+}
+
+.qna>li>label>div{
+	float: left;
+}
+
+.qna input {
+	display: none;
+}
+
+.qna-div-1 {
+	width: 7%;
+}
+
+.qna-div-2 {
+	width: 68%;
+}
+
+.qna-div-3 {
+	width: 10%;
+}
+
+.qna-div-4 {
+	width: 15%;
+}
+
+.qna>li>div{
+	margin: 40px 0px 0px 5%;
 }

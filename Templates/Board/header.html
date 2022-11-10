@@ -11,7 +11,7 @@
     <script src="{{ url_for('static', filename='js/swiper.min.js') }}"></script>
 </head>
 
-   
+<body>
     <header>
         <div class="header-div-right">
             <div class="header-div-top">
@@ -33,13 +33,6 @@
                 </div>
               
             </div>
-            <div class="header-div-lower">
-                <a class="header-a-tag-none-lower" href="/condition">조건으로 찾기</a>
-                <a class="header-a-tag-none-lower" href="/chart">메뉴 A</a>
-                <a class="header-a-tag-none-lower" href="/bar">메뉴 B</a>
-                <a class="header-a-tag-none-lower">메뉴 C</a>
-                <a class="header-a-tag-none-lower">메뉴 D</a>
-                <a class="header-a-tag-none-lower">메뉴 E</a>
             <div class="header-div-right">
                 <div class="header-div-top">
                     {% if session.get('logFlag') %}
@@ -61,8 +54,8 @@
                         <a class="header-a-tag-none" href="/recent_inquiry_company">나의 활동 내역</a>
                         <a class="header-a-tag-none" href="/login_form_get">로그인</a>
                     </div>
-                    {% endif %} 
-                     </div>
+                    {% endif %}
+                </div>
                 <div class="header-div-lower">
                     <a class="header-a-tag-none-lower">회사소개</a>
                     <a class="header-a-tag-none-lower" href="/condition">기업정보</a>
@@ -72,8 +65,8 @@
                     <a class="header-a-tag-none-lower">공지사항</a>
                 </div>
             </div>
-        </nav>
+        </div>
     </header>
-
+</body>
 
 </html>

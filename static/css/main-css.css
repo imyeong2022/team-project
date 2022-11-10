@@ -1015,6 +1015,7 @@ input::placeholder {
 	width: auto;
 	list-style: none;
 	background: aliceblue;
+	border: 0.1vmin solid rgb(214, 214, 214);
 }
 
 

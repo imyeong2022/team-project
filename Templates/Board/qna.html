@@ -60,22 +60,25 @@
                         <ul class="qna">
                             {% for x in range(qna_len) %}
                             <li>
-                                <input type="checkbox" id="qna-1">
-                                <label for="qna-1">
+                                <input type="checkbox" id="qna-{{x}}">
+                                <label for="qna-{{x}}">
                                     <div class="qna-div-1">{{qna_list[x].idx}}</div>
                                     <div class="qna-div-2">{{qna_list[x].subject}}</div>
                                     <div class="qna-div-3">{{qna_list[x].ID}}</div>
                                     <div class="qna-div-4">{{qna_list[x].create_date}}</div>
                                 </label>
                                 <div>
-                                    <p class="spacing" >{{qna_list[x].answer}}</p>
+                                    <p class="spacing">{{qna_list[x].content}}</p>
+                                    {% if qna_list[x].answer %}
+                                    <p class="spacing">{{qna_list[x].answer}}</p>
+                                    {% endif %}
                                 </div>
                             </li>
                             {% endfor %}
                         </ul>
                     </div>
                     <hr />
-                        <button type="button" onclick="location.href='/question'">작성하기</button>
+                    <button type="button" onclick="location.href='/question'">작성하기</button>
                 </div>
             </div>
         </section>

@@ -284,13 +284,20 @@
             </form>    
             <div>
                 {% for x in range(6) %}
-                <li class="main-gird-li" onclick="location.href='/company/{{data_list[x].data_id}}';" style="cursor:pointer">
-                    <a class="main-grid-a">
+                <li class="main-gird-li"  style="cursor:pointer">
+                    <a class="main-grid-a" onclick="location.href='/company/{{data_list[x].data_id}}';">
                         <span class="grid-sub-blue">{{ data_list[x].업종}}</span>
                         <p class="grid-title">{{ data_list[x].회사 }}</p>
                         <p class="grid-sub-text">{{ data_list[x].기업형태 }} | {{ data_list[x].지역 }} | {{ data_list[x].대표 }}</p>
                     </a>
+                    
+                    <!--관심기업 등록하기-->
+                    <div class="custom-checkbox">
+                            <input type="checkbox" id="interestCheck-{{ data_list[x].data_id}}" class="checkbox-star" onclick="intrstYnSave(this);" name="interestCheck-{{ data_list[x].data_id}}" checked="checked">
+                            <label for="interestCheck-{{ data_list[x].data_id}}">관심기업 등록하기</label>
+                    </div>
                 </li>
+                
                 {% endfor %}
             </div>            
             <div>

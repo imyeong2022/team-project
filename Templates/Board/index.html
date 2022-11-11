@@ -51,11 +51,11 @@
 				</div>
 			</div>
 			<tbody>
-                <div class="search-bar-div">
-                    <div class="search-frame">
-                        <input type="text" id="schTxt" name="schTxt" class="input-text">
-                    </div>
-                </div>
+				<div class="search-bar-div">
+					<div class="search-frame">
+						<input type="text" id="schTxt" name="schTxt" class="input-text">
+					</div>
+				</div>
 				<article class="recommend-div">
 					<div>
 						<h1>실시간 인기 중소기업</h1>
@@ -65,16 +65,14 @@
 					</div>
 					<ul class="main-gird-ul">
 						{% for x in range(6) %}
-						<li class="main-gird-li">
-							<a class="main-grid-a">
+						<a class="a-text-decoration a-color" href='/company/{{data_list[x].data_id}}'
+							style="cursor:pointer">
+							<li class="main-gird-li">
 								<span class="grid-sub-blue">{{ data_list[x].모집직종코드명 }}</span>
-
-								<a class="a-text-decoration a-color"href='/company/{{data_list[x].data_id}}' style="cursor:pointer">
-                                    <p class="grid-title">{{ data_list[x].기업명칭 }}</p>
-                                </a>
+								<p class="grid-title">{{ data_list[x].기업명칭 }}</p>
 								<p class="grid-sub-text">{{ data_list[x].급여조건 }}</p>
-							</a>
-						</li>
+							</li>
+						</a>
 						{% endfor %}
 					</ul>
 				</article>

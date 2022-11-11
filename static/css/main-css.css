@@ -10,8 +10,7 @@ html {
 }
 
 body {
-	margin: 0px;
-	height: 3000px;
+	font-size: 2vmin;
 }
 
 header {
@@ -104,18 +103,19 @@ footer {
 
 .header-a-tag-none-lower {
 	float: left;
-	font-size: 1.5rem;
+	font-size: 3vmin;
 	font-weight: bold;
 	text-decoration: none;
 	color: black;
 	padding-top: 2%;
 	padding-left: 3%;
 	padding-right: 3%;
+
 }
 
 .header-a-tag-none-lower:nth-child(-n+4) {
 	float: left;
-	font-size: 1.5rem;
+	font-size: 3vmin;
 	font-weight: bold;
 	text-decoration: none;
 	color: #759ef7;
@@ -125,7 +125,7 @@ footer {
 }
 
 .header-a-tag-none-logo {
-	font-size: 1.5rem;
+	font-size: 3vmin;
 	font-weight: bold;
 	text-decoration: none;
 	color: black;
@@ -158,9 +158,10 @@ footer {
 
 
 .recommend-div {
-	background: #edd9ff;
-	height: 750px;
-	width: 100%;
+	background: #f6f6f6;
+	padding: 10% 5% 10% 5%;
+	width: 90%;
+	display: inline-block;
 }
 
 
@@ -168,7 +169,7 @@ footer {
 .title-area {
 	margin-left: 7.5%;
 	margin-right: 7.5%;
-	padding-top: 140px;
+	padding-top: 170px;
 	padding-bottom: 80px;
 	height: 200px;
 	width: 85%;
@@ -195,9 +196,7 @@ footer {
 }
 
 .search-filter {
-	margin-top: 6%;
-	margin-left: 8%;
-	margin-right: 8%;
+	margin: 6% 8% 6% 8%;
 	height: 250px;
 	width: 84%;
 }
@@ -219,7 +218,7 @@ footer {
 .search-fileter-child-title {
 	padding-top: 30px;
 	padding-bottom: 20px;
-	padding-left: 10%;
+	padding-left: 4%;
 	padding-right: 10%;
 	height: 20px;
 	width: 80%;
@@ -238,9 +237,9 @@ footer {
 
 .search-fileter-child-item-list {
 	padding-bottom: 30px;
-	padding-left: 10%;
+	padding-left: 5%;
 	padding-right: 2.5%;
-	width: 87.5%;
+	width: 92.5%;
 	height: 150px;
 }
 
@@ -262,7 +261,7 @@ footer {
 	overflow-y: scroll;
 	float: left;
 	height: 150px;
-	width: 95%;
+	width: 99%;
 }
 
 .search-fileter-checkbox>:first-child {
@@ -283,6 +282,22 @@ footer {
 	position: relative;
 	top: -5px;
 	margin-left: 5px;
+}
+
+.ee{
+	width: 33%;
+}
+
+.ee:nth-child(2){
+	width: 66%
+}
+
+.eelis {
+}
+
+.eeli{
+	list-style: none;
+	padding: 0 0 0 0;
 }
 
 .public-list {
@@ -323,41 +338,44 @@ footer {
 }
 
 .main-gird-li {
-
-	margin-top: 1%;
-	margin-bottom: 1%;
-	margin-left: 1.3%;
-	margin-right: 1.3%;
+	margin: 1% 1.3% 1% 1.3%;
 	padding-top: 3%;
 	padding-left: 1.5%;
 	padding-right: 1.5%;
-	float: left;
-	background: #796565;
+	background: #ffffff;
 	width: 27%;
-	height: 180px;
+	display: inline-block;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer; /* 마우스 포인터를 올렸을 때 손가락으로 바뀜 */
+    transition: box-shadow 0.1s linear;
+}
 
+.main-gird-li:hover{
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 4px rgba(0, 0, 0, 0.2);
 }
 
 .grid-sub-blue {
 	padding-left: 10px;
 	padding-right: 10px;
 	color: rgb(29, 146, 255);
-	font-size: 20px;
+	font-size: 2.4vmin;
+	font-weight: bold;
 }
 
-.grid-title {
+.grid-title {	
 	padding-left: 10px;
 	padding-right: 10px;
 	margin: 0px;
 	padding-top: 7px;
-	font-size: 35px;
+	font-size: 4.5vmin;
+	font-weight: bold;
 }
 
 .grid-sub-text {
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 25px;
-	font-size: 16px;
+	font-size: 2vmin;
 }
 
 .main-grid-a {}
@@ -580,7 +598,7 @@ input::placeholder {
 	padding-top: 180px;
 	padding-bottom: 40px;
 	float: left;
-	height: 300px;
+	height: 40.3vmin;
 	width: 85%;
 	background-color: rgb(97, 97, 97);
 	z-index: 0;
@@ -591,18 +609,18 @@ input::placeholder {
 	position: absolute;
 	margin-left: 7.5%;
 	margin-right: 7.5%;
-	padding-top: 180px;
+	padding-top: 240px;
 	padding-bottom: 40px;
 	float: left;
-	height: 300px;
+	height: 40.3vmin;
 	width: 85%;
 	z-index: 1;
 }
 
 .company-logo {
 	float: left;
-	height: 250px;
-	width: 250px;
+	height: 27vmin;
+	width: 27vmin;
 	padding: 25px;
 	margin-right: 60px;
 	background: white;
@@ -619,7 +637,7 @@ input::placeholder {
 
 .company-info {
 	float: left;
-	width: 73%;
+	width: auto;
 	height: 300px;
 }
 
@@ -899,12 +917,12 @@ input::placeholder {
 	text-indent: 1.2em;
 }
 
-.spacing:nth-child(2){
+.spacing:nth-child(2) {
 	margin: 30px 0px 0px 0px;
 	padding: 0px 0px 15px 0px;
 }
 
-.spacing:nth-child(2)::before{
+.spacing:nth-child(2)::before {
 	content: "ㄴ  ";
 }
 
@@ -991,6 +1009,23 @@ input::placeholder {
 	font-size: 16px;
 }
 
+/* -----------company.html 적용 -> 태수 작업 전 임시방편 by 서연 */
+.frame-min {
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.article-title-area .tit {
+    display: inline-block;
+    font-size: 36px;
+    font-weight: 500;
+}
+.article-wrap {
+    padding: 100px 0;
+}
+/* --------------------------------------------company.html */
+
 .qna-section {
 	height: auto;
 	width: 100%;
@@ -1009,7 +1044,7 @@ input::placeholder {
 	margin-top: 25px;
 }
 
-.qna>li>label>div{
+.qna>li>label>div {
 	float: left;
 }
 
@@ -1033,6 +1068,73 @@ input::placeholder {
 	width: 15%;
 }
 
-.qna>li>div{
+.qna>li>div {
 	margin: 40px 0px 0px 5%;
+}
+
+
+/* condition */
+.condition {
+	margin: 0px 8% 0px 8%;
+	width: 84%;
+	height: auto;
+}
+
+.condition>ul {
+	padding: 0 0 0 0;
+	margin: none;
+	width: auto;
+}
+
+.condition>ul>li {
+	margin-bottom: 20px;
+	padding: 5% 5% 5% 5%;
+	height: 150px;
+	width: auto;
+	list-style: none;
+	background: aliceblue;
+	border: 0.1vmin solid rgb(214, 214, 214);
+}
+
+
+.condition>ul>li>div>div>a:nth-child(-n+2) {
+	float: right;
+
+}
+
+.condition>ul>li>div>div {
+	width: auto;
+}
+
+.condition>ul>li>div>div>a:nth-child(-n+2)>div {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 0 20px 0 20px;
+	margin-left: 10px;
+	height: 6vmin;
+	width: 17vmin;
+	background: #759ef7;
+	border: 1px solid coral;
+	border-radius: 30px;
+	font-size: 2vmin;
+}
+
+.condition-sub-text {
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 16px;
+	color: gray;
+}
+
+.condition>ul>li>div>ol {
+	list-style: none;
+	padding: 0 0 0 10px;
+}
+
+.condition>ul>li>div>ol>li {
+	float: left;
+	list-style: none;
+	width: auto;
+	margin: 0 10px 0 0;
 }

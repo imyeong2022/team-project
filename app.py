@@ -1,6 +1,8 @@
-from flask import Flask, redirect, url_for, render_template, request , flash
+from flask import Flask, redirect, url_for, render_template, request , flash , flash
 from flask import request, session
 import pymysql
+import hashlib
+import re
 import hashlib
 import re
 
@@ -117,6 +119,7 @@ def login_proc():
         user_id = request.form['user_id']
         user_pw = request.form['user_pw']
         pw_hash = hashlib.sha256(user_pw.encode('utf-8')).hexdigest()
+        pw_hash = hashlib.sha256(user_pw.encode('utf-8')).hexdigest()
         if len(user_id) == 0 or len(user_pw) == 0:
             return 'Error!! UserId or UserPw not found(null)'
         else:
@@ -161,6 +164,7 @@ def join_form_get():
 
 @app.route('/join_proc', methods=['POST'])
 def join_proc():
+    Idexp = re.compile('^[a-zA-Z0-9]{4,12}$')
     Idexp = re.compile('^[a-zA-Z0-9]{4,12}$')
 
     if request.method == 'POST':  # request객체 안에 method 기능있음(자바도 마찬가지).
@@ -247,6 +251,9 @@ def chart():
 def bar():
     return render_template('Board/bar.html')
 
+@app.route('/excellence_employment')
+def excellence_employment():
+    return render_template('Board/excellence_employment.html')
 #####################################
 
 

@@ -1,6 +1,8 @@
-from flask import Flask, redirect, url_for, render_template, request
+from flask import Flask, redirect, url_for, render_template, request , flash
 from flask import request, session
 import pymysql
+import hashlib
+import re
 
 ###########데이터베이스 접속 전역변수 선언############
 con = pymysql.connect(host='localhost',
@@ -45,6 +47,7 @@ def login_proc():
     if request.method == 'POST': #request객체 안에 method 기능있음(자바도 마찬가지).
         user_id = request.form['user_id'] #키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
         user_pw = request.form['user_pw']
+        pw_hash = hashlib.sha256(user_pw.encode('utf-8')).hexdigest()
         if len(user_id) == 0 or len(user_pw) == 0:
             return 'Error!! UserId or UserPw not found(null)'
         else:
@@ -53,12 +56,14 @@ def login_proc():
             row = cursor.fetchone()
             print(row) # row키확인해보자 딕셔너리로 넣어주기로한걸 볼 수 있다.
             if row:
-                if user_pw == row['PW']:
-                 session['logFlag'] = True
-                 session['ID'] = user_id
-                 session['NAME'] = row['NAME']
-                 #return redirect(url_for('main'))
-                 return redirect('/')
+                if pw_hash == row['PW']:
+                    session['logFlag'] = True
+                    session['ID'] = user_id
+                    session['NAME'] = row['NAME']
+                    session['Phone'] = row['Phone']
+                    session['BIRTH'] = row['BIRTH']
+                    # return redirect(url_for('main'))
+                    return redirect('/')
                 else:
                  return ('password is def')
             else:
@@ -70,15 +75,10 @@ app.secret_key = 'test_secret_key'
 
 @app.route('/logout_proc')
 def logout_proc():
-    if session['logFlag'] == True:
-        session['logFlag'] = False
-    return render_template('Board/header.html') 
-#    return render_template('Board/index.html') 으로 할시 data_list undefined 나와서, 임시로 header로 연결했습니다.
-
-        
-
-
-##################### 로그인관련 ###############
+    session.clear()  # 세션날림
+    return redirect('/')
+    
+##################### END 로그인관련 ###############
 
 
 ##################### 회원가입관련 ###############
@@ -88,23 +88,37 @@ def join_form_get():
 
 @app.route('/join_proc', methods=['POST'])
 def join_proc():
+    Idexp = re.compile('^[a-zA-Z0-9]{4,12}$')
 
     if request.method == 'POST': #request객체 안에 method 기능있음(자바도 마찬가지).
         user_id = request.form['user_id'] #키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
         user_pw = request.form['user_pw']
-        user_name = request.form['user_name'] #키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
+        user_name = request.form['user_name']
         user_phone = request.form['user_phone']
-        user_birth = request.form['user_birth']
-        if len(user_id) == 0 or len(user_pw) == 0:
-            return '에러! 입력되지 않은 값이 있습니다!'
-        else:
-            sql = 'INSERT INTO member(ID, PW, NAME, Phone, BIRTH) VALUES(%s,%s,%s,%s,%s)'
-            cursor.execute(sql, (user_id,user_pw, user_name, user_phone, user_birth, ))
-            con.commit()
-            cursor.close()
-            return render_template('Board/login.html')
+        user_birth = request.form['user_birth-1'] + request.form['user_birth-2'] + request.form['user_birth-3']
+        print(user_birth)
+        pw_hash = hashlib.sha256(user_pw.encode('utf-8')).hexdigest()
 
-##################### END 회원가입관련 ###############  
+        ## 유효성 검사 ##
+        REGEX_PASSWORD = '^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*()])[\w\d!@#$%^&*()]{8,}$'
+
+        """ if (user_id == ""):
+            flash("ID를 입력해주세요.")
+            return render_template('Board/join.html')
+        if not re.fullmatch(REGEX_PASSWORD, user_pw):
+            flash("비밀번호를 확인하세요." '\n' " 최소 1개 이상의 소문자, 대문자, 숫자, 특수문자로 구성되어야 하며 길이는 8자리 이상이어야 합니다.")
+            return render_template('Board/join.html')
+        if((user_id == True) & (Idexp.match(user_id) == True)): """
+            
+
+        ## 유효성 검사 종료##
+        sql = 'INSERT INTO member(ID, PW, NAME, Phone, BIRTH) VALUES(%s,%s,%s,%s,%s)'
+        cursor.execute(sql, (user_id, pw_hash, user_name, user_phone, user_birth, ))
+        con.commit()
+        return render_template('Board/login.html')
+
+
+##################### END 회원가입관련 ###############
 
 
 ##################### 마이페이지 관련 ###############

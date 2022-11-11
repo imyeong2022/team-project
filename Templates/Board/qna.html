@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>QnA</title>
+</head>
+
+<body>
+    {% include 'Board/header.html' %}
+    <div class="main-div">
+        <section class="main-section">
+            <div class="title-area">
+                <div class="inner">
+                    <div class="public-list">
+                        <ol class="public-ol">
+                            <li class="public-li">index ></li>
+                            <li class="public-li">> QnA</li>
+                        </ol>
+                    </div>
+                    <div class="public-title">
+                        QnA
+                    </div>
+                    <div class="public-title-sub">
+                        FAQ 외의 내용을 물어볼 수 있습니다.
+                    </div>
+                </div>
+            </div>
+            <div class="content-area">
+                <div class="faq-search-bar bg-gray">
+                    <form id="faqSearchForm" name="faqSearchForm" method="get" action="">
+                        <input type="hidden" id="ctgry" name="ctgry" value="0">
+                        <div class="faq-search-wrap">
+                            <div class="grid-area">
+                                <div class="colum col25">
+                                    <section id="faq-select">
+                                        <div class="select">
+                                            <div class="text">선택</div>
+                                            <ul class="option-list">
+                                                <li class="option">전체</li>
+                                                <li class="option">답변 완료된 게시물 보기</li>
+                                            </ul>
+                                        </div>
+                                    </section>
+                                </div>
+                                <div class="colum col70">
+                                    <input type="text">
+                                    <span>
+                                        <input type="button">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="faq-content">
+                    <p>전체 : {{qna_len}}건 | 완료된 질문 {{qna_len}}건/ {{qna_len}}건 | 현재 페이지 n/n</p>
+                    <hr />
+                    <div class="qna-section">
+                        <ul class="qna">
+                            {% for x in range(qna_len) %}
+                            <li>
+                                <input type="checkbox" id="qna-{{x}}">
+                                <label for="qna-{{x}}">
+                                    <div class="qna-div-1">{{qna_list[x].idx}}</div>
+                                    <div class="qna-div-2"  style="cursor:pointer">{{qna_list[x].subject}}</div>
+                                    <div class="qna-div-3">{{qna_list[x].ID}}</div>
+                                    <div class="qna-div-4">{{qna_list[x].create_date}}</div>
+                                </label>
+                                <div>
+                                    {% if session['ID'] == qna_list[x].ID %}
+                                    <p class="spacing">{{qna_list[x].content}}</p>
+                                    {% else %}
+                                    <p class="spacing">관리자 또는 작성자가 아니면 볼 수 없습니다.</p>
+                                    {% endif %}
+
+                                    {% if qna_list[x].answer %}
+                                    <p class="spacing">{{qna_list[x].answer}}</p>
+                                    {% endif %}
+                                </div>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <hr />
+                    <button type="button" onclick="location.href='/question'">작성하기</button>
+                </div>
+            </div>
+        </section>
+    </div>
+    <script>
+        function onClickSelect(e) {
+            const isActive = e.currentTarget.className.indexOf("active") !== -1;
+            if (isActive) {
+                e.currentTarget.className = "select";
+            } else {
+                e.currentTarget.className = "select active";
+            }
+        }
+
+        document.querySelector("#faq-select .select").addEventListener("click", onClickSelect);
+
+        function onClickOption(e) {
+            const selectedValue = e.currentTarget.innerHTML;
+            document.querySelector("#faq-select .text").innerHTML = selectedValue;
+        }
+
+        var optionList = document.querySelectorAll("#faq-select .option");
+        for (var i = 0; i < optionList.length; i++) {
+            var option = optionList[i];
+            option.addEventListener("click", onClickOption);
+        }
+    </script>
+</body>
+
+</html>

@@ -463,6 +463,46 @@ input::placeholder {
 	border-color: #759ef7;
 }
 
+.join-input-birth-first {
+	width: 9.5%;
+	height: 60px;
+	margin-left: 32.5%;
+	margin-right: 0.4%;
+	padding-left: 1%;
+	margin-bottom: 15px;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
+.join-input-birth {
+	width: 9.5%;
+	height: 60px;
+	margin-left: 0.3%;
+	margin-right: 0.5%;
+	padding-left: 0.5%;
+	padding-left: 1%;
+	margin-bottom: 15px;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
+.join-input-birth-end {
+	width: 9.5%;
+	height: 60px;
+	margin-left: 0.15%;
+	margin-right: 29%;
+	padding-left: 1%;
+	margin-bottom: 15px;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
 .join-submit {
 	margin-left: 32.5%;
 	margin-right: 32.5%;

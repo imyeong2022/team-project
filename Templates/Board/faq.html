@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>FAQ</title>
+    <title>faq-1</title>
 </head>
 
 <body>
@@ -49,60 +49,31 @@
                                     <span>
                                         <input type="button">
                                     </span>
+
+
+
+                                    
                                 </div>
                             </div>
                         </div>
                     </form>
                 </div>
                 <div class="faq-content">
-                    <p>총 게시물 : n개</p>
+
+                    <p>총 게시물 : {{faq_len}}개</p>
                     <hr />
                     <ul class="faq">
+                        {% for x in range(faq_len) %}
                         <li>
-                            <input type="checkbox" id="faq-1">
-                            <label for="faq-1">
-                                <p>질문1</p>
+                            <input type="checkbox" id={{x}}>
+                            <label for={{x}}>
+                                <p>{{faq_list[x].content}}</p>
                             </label>
                             <div>
-                                <p class="spacing">답변1</p>
+                                <p class="spacing">{{faq_list[x].reply}}</p>
                             </div>
                         </li>
-                        <li>
-                            <input type="checkbox" id="faq-2">
-                            <label for="faq-2">
-                                <p>질문2</p>
-                            </label>
-                            <div>
-                                <p class="spacing">답변2</p>
-                            </div>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="faq-3">
-                            <label for="faq-3">
-                                <p>질문3</p>
-                            </label>
-                            <div>
-                                <p class="spacing">답변3</p>
-                            </div>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="faq-4">
-                            <label for="faq-4">
-                                <p>질문4</p>
-                            </label>
-                            <div>
-                                <p class="spacing">답변4</p>
-                            </div>
-                        </li>
-                        <li>
-                            <input type="checkbox" id="faq-5">
-                            <label for="faq-5">
-                                <p>질문5</p>
-                            </label>
-                            <div>
-                                <p class="spacing">답변5</p>
-                            </div>
-                        </li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>

@@ -13,10 +13,12 @@
 
 <body>
     <header>
-        <div class="header-div">
+        <nav class="header-div">
             <div class="header-div-left">
                 <a class="header-a-tag-none-logo" href="/">
-                    <div class="header-logo">Logo</div>
+                    <div class="header-logo">
+                        <img src="{{ url_for('static', filename='source/logo.png') }}">
+                    </div>
                 </a>
             </div>
             <div class="header-div-right">
@@ -24,9 +26,9 @@
                     {% if session.get('logFlag')%}
                     
                     <div><a class="header-a-tag-none" href="/logout_proc">로그아웃</a>
-                        <a class="header-a-tag-none" href="/faq">질문과답변</a>
-                        <a class="header-a-tag-none">test</a>
-                        <a class="header-a-tag-none">test</a>
+                        <a class="header-a-tag-none" href="/faq">자주묻는 질문</a>
+                        <a class="header-a-tag-none" href="/qna">문의하기</a>
+                        <a class="header-a-tag-none" href="/location">test location</a>
                         <a class="header-a-tag-none" href="/my_page">마이페이지</a>
                         <a class="header-a-tag-none">{{ session['ID']}}님 환영합니다.</a>
                     </div>
@@ -37,7 +39,8 @@
 
                         <a class="header-a-tag-none">test</a>
                         <!-- 회원가입은 로그인 페이지 안으로 이동 -->
-                        <a class="header-a-tag-none" href="/faq">FAQ</a>
+                        <a class="header-a-tag-none" href="/faq">자주묻는 질문</a>
+                        <a class="header-a-tag-none" href="/qna">문의하기</a>
                         <a class="header-a-tag-none" href="/recent_inquiry_company">나의 활동 내역</a>
                         <a class="header-a-tag-none" href="/login_form_get">로그인</a>
                     </div>
@@ -46,13 +49,13 @@
                 <div class="header-div-lower">
                     <a class="header-a-tag-none-lower">회사소개</a>
                     <a class="header-a-tag-none-lower" href="/condition">기업정보</a>
-                    <a class="header-a-tag-none-lower">채용정보</a>
+                    <a class="header-a-tag-none-lower"href="/excellence_employment">채용정보</a>
                     <a class="header-a-tag-none-lower">구직 트렌드</a>
                     <a class="header-a-tag-none-lower">이벤트</a>
                     <a class="header-a-tag-none-lower">공지사항</a>
                 </div>
             </div>
-        </div>
+        </nav>
     </header>
 </body>
 

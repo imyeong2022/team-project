@@ -15,7 +15,7 @@ body {
 
 header {
 	position: fixed;
-	height: 120px;
+	height: 180px;
 	width: 100%;
 	top: 0;
 	left: 0;
@@ -23,10 +23,9 @@ header {
 	overflow: hidden;
 	background: white;
 	z-index: 2;
-
 }
 
-.header-div {
+.header-nav {
 	background: white;
 	margin-left: 5%;
 	margin-right: 5%;
@@ -76,10 +75,10 @@ header {
 
 .header-div-lower {
 	background: white;
-	float: right;
 	height: 65px;
 	width: 100%;
 	z-index: 4;
+	text-align: center;
 }
 
 footer {
@@ -102,26 +101,25 @@ footer {
 }
 
 .header-a-tag-none-lower {
-	float: left;
 	font-size: 3vmin;
 	font-weight: bold;
 	text-decoration: none;
 	color: black;
-	padding-top: 2%;
-	padding-left: 3%;
-	padding-right: 3%;
-
+	padding-top: 3vmin;
+	padding-left: 4.5vmin;
+	padding-right: 4.5vmin;
+	display: inline-block;
 }
 
 .header-a-tag-none-lower:nth-child(-n+4) {
-	float: left;
 	font-size: 3vmin;
 	font-weight: bold;
 	text-decoration: none;
 	color: #759ef7;
-	padding-top: 2%;
-	padding-left: 3%;
-	padding-right: 3%;
+	padding-top: 3vmin;
+	padding-left: 4.5vmin;
+	padding-right: 4.5vmin;
+	display: inline-block;
 }
 
 .header-a-tag-none-logo {
@@ -158,9 +156,10 @@ footer {
 
 
 .recommend-div {
-	background: #edd9ff;
-	height: 750px;
-	width: 100%;
+	background: #eaeaea;
+	padding: 10% 5% 10% 5%;
+	width: 90%;
+	display: inline-block;
 }
 
 
@@ -178,6 +177,14 @@ footer {
 .content-area {
 	margin-left: 7.5%;
 	margin-right: 7.5%;
+}
+
+.a-text-decoration {
+	text-decoration: none;
+}
+
+.a-color {
+	color: black;
 }
 
 .inner {}
@@ -309,27 +316,49 @@ footer {
 
 }
 
+.recommend-div>div {
+	display: inline-block;
+}
+
+.recommend-div>div>h1 {
+	margin: 0 0 2% 11.6%;
+	width: 48vmin;
+	font-size: 5vmin;
+}
+
+.recommend-div>div>a {
+	font-size: 2.3vmin;
+	color: #474747;
+	vertical-align: middle;
+	text-align: center;
+	font-weight: bold;
+}
+
+.recommend-div>div>a::after {
+	content: " >";
+}
+
 .main-gird-ul {
 	list-style: none;
 	margin-top: 0px;
 	margin-bottom: 0px;
-	margin-left: 3%;
-	margin-right: 3%;
-	padding-top: 7.5%;
-	height: 87%;
+	height: auto;
 	width: auto;
+	display: inline-block;
+	padding: 0 0 0 0;
+	text-align: center;
 }
 
 .main-gird-li {
 
 	margin: 1% 1.3% 1% 1.3%;
+	padding: 3% 1.5% 3% 1.5%;
 	padding-top: 3%;
 	padding-left: 1.5%;
 	padding-right: 1.5%;
-	float: left;
 	background: #796565;
 	width: 27%;
-	height: 23vmin;
+	display: inline-block;
 
 }
 
@@ -337,24 +366,22 @@ footer {
 	padding-left: 10px;
 	padding-right: 10px;
 	color: rgb(29, 146, 255);
-	font-size: 2.4vmin;
+	font-size: 1.7vmin;
 	font-weight: bold;
 }
 
-.grid-title {	
+.grid-title {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin: 0px;
 	padding-top: 7px;
-	font-size: 4.5vmin;
+	font-size: 3.5vmin;
 	font-weight: bold;
 }
 
 .grid-sub-text {
-	padding-left: 10px;
-	padding-right: 10px;
-	padding-top: 25px;
-	font-size: 2vmin;
+	padding: 0 1vmin 1vmin 1vmin;
+	font-size: 1.7vmin;
 }
 
 .main-grid-a {}
@@ -1014,7 +1041,8 @@ input::placeholder {
 	height: 150px;
 	width: auto;
 	list-style: none;
-	background: aliceblue;
+	background: white;
+	border: 0.1vmin solid rgb(214, 214, 214);
 }
 
 
@@ -1035,10 +1063,10 @@ input::placeholder {
 	margin-left: 10px;
 	height: 6vmin;
 	width: 17vmin;
-	background: #759ef7;
-	border: 1px solid coral;
+	background: white;
 	border-radius: 30px;
-	font-size: 2vmin;
+	font-size: 1.9vmin;
+	border: 0.1vmin solid gray;
 }
 
 .condition-sub-text {

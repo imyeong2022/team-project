@@ -178,9 +178,7 @@ def join_proc():
             cursor.execute(sql, (user_id, user_pw, user_name,
                            user_phone, user_birth, ))
             con.commit()
-            cursor.close()
             return render_template('Board/login.html')
-            curo
 
 ##################### END 회원가입관련 ###############
 

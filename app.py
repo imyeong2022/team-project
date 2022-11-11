@@ -235,6 +235,9 @@ def chart():
 def bar():
     return render_template('Board/bar.html')
 
+@app.route('/excellence_employment')
+def excellence_employment():
+    return render_template('Board/excellence_employment.html')
 #####################################
 
 

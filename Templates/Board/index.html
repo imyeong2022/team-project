@@ -53,55 +53,31 @@
 				</div>
 			</div>
 			<tbody>
-			<div class="search-bar-div"></div>
-			<div class="recommend-div">
-				<ul class="main-gird-ul">
-					<li class="main-gird-li">
-						<a class="main-grid-a">
-							<span class="grid-sub-blue">{{ data_list[0].모집직종코드명 }}</span>
-							<p class="grid-title">{{ data_list[0].기업명칭 }}</p>
-							<p class="grid-sub-text">{{ data_list[0].급여조건 }}</p>
+				<div class="search-bar-div">
+					<div class="search-frame">
+						<input type="text" id="schTxt" name="schTxt" class="input-text">
+					</div>
+				</div>
+				<article class="recommend-div">
+					<div>
+						<h1>실시간 인기 중소기업</h1>
+					</div>
+					<div>
+						<a class="a-text-decoration" href="/condition">전체보기</a>
+					</div>
+					<ul class="main-gird-ul">
+						{% for x in range(6) %}
+						<a class="a-text-decoration a-color" href='/company/{{data_list[x].data_id}}'
+							style="cursor:pointer">
+							<li class="main-gird-li">
+								<span class="grid-sub-blue">{{ data_list[x].모집직종코드명 }}</span>
+								<p class="grid-title">{{ data_list[x].기업명칭 }}</p>
+								<p class="grid-sub-text">{{ data_list[x].급여조건 }}</p>
+							</li>
 						</a>
-					</li>
-					<li class="main-gird-li">
-						<a class="main-grid-a">
-							<span class="grid-sub-blue">{{ data_list[1].모집직종코드명 }}</span>
-							<p class="grid-title">{{ data_list[1].기업명칭 }}</p>
-							<p class="grid-sub-text">{{ data_list[1].급여조건 }}</p>
-						</a>
-					</li>
-					<li class="main-gird-li">
-						<a class="main-grid-a">
-							<span class="grid-sub-blue">{{ data_list[2].모집직종코드명 }}</span>
-							<p class="grid-title">{{ data_list[2].기업명칭 }}</p>
-							<p class="grid-sub-text">{{ data_list[2].급여조건 }}</p>
-						</a>
-					</li>
-					<li class="main-gird-li">
-						<a class="main-grid-a">
-							<span class="grid-sub-blue">{{ data_list[3].모집직종코드명 }}</span>
-							<p class="grid-title">{{ data_list[3].기업명칭 }}</p>
-							<p class="grid-sub-text">{{ data_list[3].급여조건 }}</p>
-						</a>
-					</li>
-					<li class="main-gird-li">
-						<a class="main-grid-a">
-							<span class="grid-sub-blue">{{ data_list[4].모집직종코드명 }}</span>
-							<p class="grid-title">{{ data_list[4].기업명칭 }}</p>
-							<p class="grid-sub-text">{{ data_list[4].급여조건 }}</p>
-						</a>
-					</li>
-					<li class="main-gird-li">
-						<a class="main-grid-a">
-							<span class="grid-sub-blue">{{ data_list[5].모집직종코드명 }}</span>
-							<p class="grid-title">{{ data_list[5].기업명칭 }}</p>
-							<p class="grid-sub-text">{{ data_list[5].급여조건 }}</p>
-						</a>
-					</li>
-				</ul>
-			</div>
-			<div></div>
-			<div></div>
+						{% endfor %}
+					</ul>
+				</article>
 		</section>
 	</div>
 

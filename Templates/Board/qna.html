@@ -60,12 +60,17 @@
                                 <input type="checkbox" id="qna-{{x}}">
                                 <label for="qna-{{x}}">
                                     <div class="qna-div-1">{{qna_list[x].idx}}</div>
-                                    <div class="qna-div-2">{{qna_list[x].subject}}</div>
+                                    <div class="qna-div-2"  style="cursor:pointer">{{qna_list[x].subject}}</div>
                                     <div class="qna-div-3">{{qna_list[x].ID}}</div>
                                     <div class="qna-div-4">{{qna_list[x].create_date}}</div>
                                 </label>
                                 <div>
+                                    {% if session['ID'] == qna_list[x].ID %}
                                     <p class="spacing">{{qna_list[x].content}}</p>
+                                    {% else %}
+                                    <p class="spacing">관리자 또는 작성자가 아니면 볼 수 없습니다.</p>
+                                    {% endif %}
+
                                     {% if qna_list[x].answer %}
                                     <p class="spacing">{{qna_list[x].answer}}</p>
                                     {% endif %}

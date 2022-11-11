@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>잡아라</title>
+    <title>잡아라 - 기업정보 상세페이지</title>
 </head>
 
 <body>
@@ -21,67 +21,64 @@
                         <h1 class="company-title">{{ data_list[0].회사}}</h1>
                         <h3 class="company-sub-title-Y"># 내실이 탄탄하고 성과보상이 확실한</h3>
                         <h3 class="company-sub-title-W"># 복지 우수기업</h3>
-                        <!-- 즐겨찾기, 회사 바로가기 링크 크롤링 가능 여부에 따라 수정 예정-->
+                        <p></p>
                         <div class="button-box">
-                            
-                               <a href = "{{ data_list[0].주소}}"></i><span class="blind">{{ data_list[0].주소}}홈페이지 바로가기</span>
+                            <!-- 홈페이지 주소가 있을 때에만 링크 띄워주기 -->
+                            {% if data_list[0].홈페이지 != '-' %}                 
+                            <a href ='//{{data_list[0].홈페이지}}'>
+                                <span class="blind">홈페이지 바로가기</span>
                             </a>
-                            
-                        <div class="custom-checkbox">
-                                <input type="checkbox" id="interestCheck-1" class="checkbox-like type2" onclick="intrstYnSave(this);" name="interestCheck"><label for="interestCheck-1">27</label>
-                            </div></div>
+                            {% endif %}
+                            <!-- 관심기업 등록하기 -->
+                            <div class="custom-checkbox">
+                                <p><input type="checkbox" id="interestCheck-1" class="checkbox-like type2" onclick="intrstYnSave(this);" name="interestCheck">
+                                <label for="interestCheck-1">관심기업 등록하기</label></p>
+                            </div>
+                        </div>
                     </div>
-
-                    
-
         </section>
         <!-- 헤더 아래 내용부분 => 태수 작업 전 임시방편 코드-->
-        <article class="article frame-min">
-           <div class="article-title-area">
-                <h3 class="tit">기본정보</h3>
-                <div class="info-guide">정보제공 : 참좋은중소기업</div>
-            </div><!--// article-title-area -->
-            <div class="article-content">
-                <div class="basic-info-wrap">
-                    <div class="info-item fl">
-                        <dl>
-                            <dt>대표자</dt>
-                            <dd>{{ data_list[0].대표}}</dd>
-                        </dl>
-                        <dl>
-                            <dt>업종</dt>
-                            <dd>{{ data_list[0].업종}}</dd>
-                        </dl>
-                        <dl>
-                            <dt>주요제품명</dt>
-                            <dd>{{ data_list[0].주요제품명}}</dd>
-                        </dl>
-                    </div>
-                    <div class="info-item fr">
-                        <dl>
-                            <dt>기업형태</dt>
-                            <dd>{{ data_list[0].기업형태}}</dd>
-                        </dl>
-                        <dl>
-                            <dt>홈페이지</dt>
-                            <dd>{{ data_list[0].홈페이지}}</dd>
-                        </dl>
-                        <dl>
-                            <dt>주소</dt>
-                            <dd>{{ data_list[0].회사주소}}</dd>
-                        </dl>
-                    </div>
-                </div>
-            </div><!--// article-content -->
-            <div class="article-title-area mt60">
-                <h3 class="tit">인증현황</h3>
-                <div class="info-guide"><a href="#crtfnBizViewLayer" class="text-link d-layeropen">세부현황 확인</a></div>
-            </div>
-        </article>
-
-        <!-- 복지 정보 -->
-        <div class="article-wrap">
+            <article class="article frame-min">
+                <div class="article-title-area">
+                    <h3 class="tit">기본정보</h3>
+                    <div class="info-guide">정보제공 : 참좋은중소기업</div>
+                </div><!--// article-title-area -->
                 
+                <div class="article-content">
+                    <div class="basic-info-wrap">
+                        <div class="info-item fl">
+                            <dl>
+                                <dt>대표자</dt>
+                                <dd>{{ data_list[0].대표}}</dd>
+                            </dl>
+                            <dl>
+                                <dt>업종</dt>
+                                <dd>{{ data_list[0].업종}}</dd>
+                            </dl>
+                            <dl>
+                                <dt>주요제품명</dt>
+                                <dd>{{ data_list[0].주요제품명}}</dd>
+                            </dl>
+                        </div>
+                        <div class="info-item fr">
+                            <dl>
+                                <dt>기업형태</dt>
+                                <dd>{{ data_list[0].기업형태}}</dd>
+                            </dl>
+                            <dl>
+                                <dt>홈페이지</dt>
+                                <dd>{{ data_list[0].홈페이지}}</dd>
+                            </dl>
+                            <dl>
+                                <dt>주소</dt>
+                                <dd>{{ data_list[0].회사주소}}</dd>
+                            </dl>
+                        </div>
+                    </div>
+                </div><!--// article-content -->
+            </article>
+
+        <!-- 복지 정보 -->  
             <article class="article frame-min">
                 <div class="article-title-area" id="wlfr">
                     <h3 class="tit">복지정보</h3>
@@ -137,553 +134,53 @@
                                 <p class="tit">기타</p>
                                 <span class="txt">경영실적에 따라 하계휴가비, 명절휴가비, 연말상여금, 5월 가족의 달 상여 등 지급</span>
                                 <!-- 공제·기타 W99 -->
-                                
                             </li>
                         </ul>
                     </div>
                 </div><!--// article-content -->
             </article><!--// article :: 복지정보 -->
-        
-
         <!--// article :: 근무환경 -->
-    </div>
-       
-    <!-------------------// article :: 일터 건강도 -->
-
-        <!-- <article class="article frame-min">
-            <div class="article-title-area anchor-scroll" id="healthy">
-                <h3 class="tit">일터 건강도</h3>
-                <div class="info-guide"><a href="#selfDiagnosisDetailLayer" class="text-link d-layeropen">진단기준 상세보기</a></div>
-            </div> -->
-            <!--// article-title-area -->
-            <div class="article-content">
-                <!-- [Pub] 20200915 수정 : 일터건강도 영역 추가 -->
-                <div class="ration-wrap">
-                    <div class="grid-area">
-                        <div class="colum colum-left">
-                            <div class="chart-view">
-                                <!-- 차트-->
-                                <canvas id="chart-area" width="304" height="304" style="width: 380px; height: 380px;"></canvas>
-                                <div id="chart-legend"><ul class="radar-legend"><li><span class="color" style="background-color:rgba(228, 77, 77,1)"></span><span class="txt">괜찮은 일자리 평균</span></li><li><span class="color" style="background-color:rgba(0, 130, 255,1)"></span><span class="txt">기업 일터 건강도</span></li></ul></div>
-                                <!--// 차트-->
-                            </div>
-                        </div><!--// colum -->
-                        <div class="colum colum-right">
-                            <div class="score-detail">
-                                <div class="score-head">
-                                    <h5 class="company">{{ data_list[0].회사}}</h5>
-                                    <p class="summary"><span class="text-primary">"내실이 탄탄하고 성과보상이 확실한"</span>기업입니다.</p>
-                                </div><!--// score-head -->
-                                <div class="board-list mt20">
-                                    <table>
-                                        <caption>목록</caption>
-                                        <colgroup>
-                                            <col span="2" style="width:50%">
-                                        </colgroup>
-                                        <thead>
-                                        <tr>
-                                            <th scope="col">기업 일터 건강도</th>
-                                            <th scope="col">괜찮은 일자리 평균</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <td class="text-center"><em class="text-primary text-bold">60.3</em> 점<span class="text-grey2 font14">(1명 참여)</span></td>
-                                            <td class="text-center">63.7 점</td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div><!--// board-list -->
-                                <div class="result-text-area mt30">
-                                    <ul class="result-text-list">
-                                        <li>
-                                            <strong class="tit">기업강점</strong>
-                                            <div class="txt">성과보상, 기업건전성 부분이 강점인 기업입니다.</div>
-                                        </li>
-                                    </ul>
-                                </div><!--// result-text-box -->
-
-                                <ul class="dot-guide-list mt15">
-                                    <li>해당기업에 재직중인 경우 재직자 인증을 통해 일터 자가진단에 참여하실 수 있습니다.</li>
-                                </ul>
-
-                                <div class="text-center mt50">
-                                    <button class="btn btn-default btn-md" onclick="goSelfDiagnosis()" type="button"><span>진단하러 가기</span></button>
-                                </div>
-
-                            </div><!--// score-detail -->
-                        </div><!--// colum -->
-                    </div>
-                </div>
-                <!-- [Pub] 20200915 수정 : 일터건강도 영역 추가 -->
-                </div><!--// article-content -->
-        </article>
-
+        </div>
 
         <!--// article-content :: 위치정보 -->
-        <article class="article frame-min">
-            <div class="article-title-area anchor-scroll" id="position">
-                <h3 class="tit">위치정보</h3>
-            </div><!--// article-title-area -->
-            <div class="article-content">
-                <div class="sub-title-area">
-                    <p class="sub-info">{{ data_list[0].회사주소}}</p>
-                    <div class="right">
-                        <a href="javascript:void(0);" data-id="61510" data-xco="127.156319464526" data-yco="37.0907385798153" onclick="moveSmartMap(this);" class="btn btn-default btn-md"><span>일자리지도 바로가기</span></a>
-                    </div>
-                </div>
-                <!-- ## 카카오맵 -->
-                <div class="map_wrap mt20">
-                    <div id="map" style="width: 100%; height: 100%; position: relative; overflow: hidden; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_tile.png&quot;);"><div style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; touch-action: none; cursor: url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;) 7 5, url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;), default;"><div style="position: absolute; left: 0px; top: 0px;"><div style="position: absolute; z-index: 1; left: 0px; top: 0px;"><img src="https://map3.daumcdn.net/map_2d/2209kdm/L3/1792/951.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -47px; top: 355px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2209kdm/L3/1793/951.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -47px; top: 99px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2209kdm/L3/1794/951.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -47px; top: -157px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2209kdm/L3/1795/951.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -47px; top: -413px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2209kdm/L3/1792/952.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 209px; top: 355px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2209kdm/L3/1792/953.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 465px; top: 355px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2209kdm/L3/1792/954.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 721px; top: 355px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2209kdm/L3/1793/952.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 209px; top: 99px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2209kdm/L3/1793/953.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 465px; top: 99px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2209kdm/L3/1793/954.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 721px; top: 99px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2209kdm/L3/1794/952.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 209px; top: -157px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2209kdm/L3/1794/953.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 465px; top: -157px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2209kdm/L3/1794/954.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 721px; top: -157px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2209kdm/L3/1795/952.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 209px; top: -413px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2209kdm/L3/1795/953.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 465px; top: -413px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2209kdm/L3/1795/954.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 721px; top: -413px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2209kdm/L3/1792/955.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 977px; top: 355px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2209kdm/L3/1793/955.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 977px; top: 99px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2209kdm/L3/1794/955.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 977px; top: -157px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2209kdm/L3/1795/955.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 977px; top: -413px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"></div><div style="position: absolute; z-index: 0; left: 0px; top: 0px; display: none;"><img src="https://map0.daumcdn.net/map_2d/2209kdm/L5/494/216.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -100px; top: 457px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2209kdm/L5/494/217.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 156px; top: 457px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2209kdm/L5/494/218.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 412px; top: 457px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2209kdm/L5/494/219.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 668px; top: 457px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2209kdm/L5/494/220.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 924px; top: 457px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2209kdm/L5/495/216.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -100px; top: 201px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2209kdm/L5/495/217.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 156px; top: 201px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2209kdm/L5/495/218.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 412px; top: 201px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2209kdm/L5/495/219.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 668px; top: 201px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2209kdm/L5/495/220.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 924px; top: 201px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2209kdm/L5/496/216.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -100px; top: -55px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2209kdm/L5/496/217.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 156px; top: -55px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2209kdm/L5/496/218.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 412px; top: -55px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2209kdm/L5/496/219.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 668px; top: -55px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2209kdm/L5/496/220.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 924px; top: -55px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2209kdm/L5/497/216.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -100px; top: -311px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map1.daumcdn.net/map_2d/2209kdm/L5/497/217.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 156px; top: -311px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map2.daumcdn.net/map_2d/2209kdm/L5/497/218.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 412px; top: -311px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map3.daumcdn.net/map_2d/2209kdm/L5/497/219.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 668px; top: -311px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img src="https://map0.daumcdn.net/map_2d/2209kdm/L5/497/220.png" alt="" role="presentation" draggable="false" style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 924px; top: -311px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"></div><div style="position: absolute; z-index: 1;"></div><div style="position: absolute; z-index: 1; width: 788px; height: 538px;"></div><div style="position: absolute; z-index: 1;"><svg version="1.1" style="stroke: none; stroke-dashoffset: 0.5; stroke-linejoin: round; fill: none; transform: translateZ(0px); position: absolute; left: -1576px; top: -1076px; width: 3940px; height: 2690px;" viewBox="0 0 3940 2690"><defs></defs></svg></div><div style="position: absolute; z-index: 1; width: 100%; height: 0px; transform: translateZ(0px);"><div style="position: absolute; margin: -50px 0px 0px -10px; z-index: 0; left: 394px; top: 269px; display: block;"><img draggable="false" src="/gsmb/images/icon/ico_kakao_medium_mark.png" alt="" role="presentation" title="" style="min-width: 0px; min-height: 0px; max-width: 99999px; max-height: none; border: 0px; display: block; position: absolute; user-select: none; -webkit-user-drag: none; clip: rect(750px, 34px, 800px, 0px); top: -750px; left: 0px; width: 34px; height: 950px;"></div></div></div></div><div style="position: absolute; cursor: default; z-index: 1; margin: 0px 6px; height: 19px; line-height: 14px; left: 0px; bottom: 0px; color: rgb(0, 0, 0);"><div style="color: rgb(0, 0, 0); text-align: center; font-size: 10px; float: left;"><div style="float: left; margin: 2px 3px 0px 4px; height: 6px; transition: width 0.1s ease 0s; border-top: none rgb(0, 0, 0); border-right: 2px solid rgb(0, 0, 0); border-bottom: 2px solid rgb(0, 0, 0); border-left: 2px solid rgb(0, 0, 0); border-image: initial; width: 46px;"></div><div style="float: left; margin: 0px 4px 0px 0px; font-family: AppleSDGothicNeo-Regular, 돋움, dotum, sans-serif; font-weight: bold; color: rgb(0, 0, 0);">50m</div></div><div style="margin: 0px 4px; float: left;"><a target="_blank" href="http://map.kakao.com/" title="Kakao 지도로 보시려면 클릭하세요." style="float: left; width: 32px; height: 10px;"><img src="https://t1.daumcdn.net/mapjsapi/images/m_bi_b.png" alt="Kakao 지도로 이동" style="float: left; width: 32px; height: 10px; border: none;"></a><div style="font: 11px / 11px Arial, Tahoma, Dotum, sans-serif; float: left;"></div></div></div><div style="cursor: auto; position: absolute; z-index: 2; left: 0px; top: 0px;"></div></div>
-                    <!-- 카테고리-->
-                    <ul id="category">
-                        <li id="SW8" data-order="0" class="on">
-                            <span class="category_bg metro"></span>
-                            대중교통
-                        </li>
-                        <li id="CT1" data-order="1" class="">
-                            <span class="category_bg culture"></span>
-                            문화시설
-                        </li>
-                        <li id="PS3" data-order="2" class="">
-                            <span class="category_bg kinder"></span>
-                            유치원
-                        </li>
-                        <li id="CS2" data-order="3" class="">
-                            <span class="category_bg store"></span>
-                            편의점
-                        </li>
-                        <li id="PM9" data-order="4" class="">
-                            <span class="category_bg pharmacy"></span>
-                            약국
-                        </li>
-                        <li id="BK9" data-order="5" class="">
-                            <span class="category_bg bank"></span>
-                            은행
-                        </li>
-                    </ul>
-                    <!--// 카테고리-->
-
-                    <!-- 검색목록 표출 -->
-                    <div id="menu_wrap" class="bg_white"><div class="info"><p class="text-bold">지하철역</p><ul class="text-list mt20"><li>해당 기업 주변에 지하철역이 존재하지 않습니다. <br>다른 교통수단 이용을 추천드립니다. </li></ul></div></div>
-                    <!--// 검색목록 표출 -->
-                </div><!--// map_wrap -->
-                <!--// ## 카카오맵 -->
-            </div><!--// article-content -->
-        </article>
-
-
-        <div class="article-wrap bg-grey">
             <article class="article frame-min">
-                <div class="article-title-area anchor-scroll" id="fnnr">
-                    <h3 class="tit">재무정보</h3>
-                    <div class="info-guide">정보제공 : 한국기업데이터에서 2022.04 업데이트 되었습니다.</div>
+                <div class="article-title-area anchor-scroll" id="position">
+                    <h3 class="tit">위치정보</h3>
                 </div><!--// article-title-area -->
                 <div class="article-content">
-                    <div class="finance-wrap">
-                        <!-- 수익성 차트영역 -->
-                        <div class="finance-box">
-                            <div class="sub-title-area">
-                                <h4 class="sub-tit">수익성</h4>
-                                <p class="sub-desc">기업의 수익창출 능력을 나타내 주는 비율로서 영업성과에 미치는 종합적인 효과를 보여줍니다.</p>
-                            </div>
-                            <div class="graph-wrap mt20">
-                                <div class="chart-box fl">
-                                    <div class="title">
-                                        <span>영업이익률</span>
-                                        <button type="button" class="btn-tooltip"><i class="ico-excl"></i><span class="hide">영업이익률에 대한 설명</span></button>
-                                        <div class="tooltip-box">
-                                            <p class="tooltip-cont">매출액에 대한 영업 이익의 비율<br>[출처 : 네이버 지식백과]</p>
-                                        </div>
-                                    </div>
-                                    <div class="value-box">
-                                        <div class="value lastyear">
-                                            <p class="text-grey">2020년 기준</p>
-                                            <span class="data">8%</span>
-                                        </div>
-                                        <div class="value average">
-                                            <p class="text-grey">업종 평균대비</p>
-                                            <div class="data same">
-                                                <span>동일</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chart-cont" id="profitability01"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 470px; height: 285px;"><div aria-label="A chart." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="470" height="285" aria-label="A chart." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_0"><clipPath id="_ABSTRACT_RENDERER_ID_1"><rect x="25" y="0" width="420" height="215"></rect></clipPath></defs><rect x="0" y="0" width="470" height="285" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="198" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="102" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="174" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">업종평균</text></g><rect x="136" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#e0e0e0"></rect></g><g><rect x="264" y="254" width="70" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="302" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">당사</text></g><rect x="264" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g></g><g><rect x="25" y="0" width="420" height="215" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://www.smes.go.kr/gsmb/company/61510#_ABSTRACT_RENDERER_ID_1)"><g><rect x="51" y="55" width="40" height="159" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="190" y="55" width="41" height="159" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="330" y="72" width="40" height="142" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="100" y="179" width="40" height="35" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="239" y="179" width="41" height="35" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="379" y="72" width="40" height="142" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g><g><rect x="25" y="214" width="420" height="1" stroke="none" stroke-width="0" fill="#999999"></rect></g><g><path d="M95.33333333333333,178.83333333333334L235,178.83333333333334L374.66666666666663,71.83333333333334" stroke="#e44d4d" stroke-width="2" fill-opacity="1" fill="none"></path></g><g><rect x="71" y="40" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="210" y="40" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="350" y="57" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="120" y="164" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="259" y="164" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="399" y="57" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect></g></g><g><circle cx="95.33333333333333" cy="178.83333333333334" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="235" cy="178.83333333333334" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="374.66666666666663" cy="71.83333333333334" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle></g><g><g><text text-anchor="middle" x="95.33333333333333" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2018년</text></g><g><text text-anchor="middle" x="235" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2019년</text></g><g><text text-anchor="middle" x="374.66666666666663" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2020년</text></g></g><g><g><g><rect x="58.5" y="25.5" width="26" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="71" y="37.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">9%</text><text text-anchor="middle" x="71" y="37.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">9%</text></g><rect x="61" y="26" width="20" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="197.5" y="25.5" width="26" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="210" y="37.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">9%</text><text text-anchor="middle" x="210" y="37.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">9%</text></g><rect x="200" y="26" width="20" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="337.5" y="42.5" width="26" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="350" y="54.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">8%</text><text text-anchor="middle" x="350" y="54.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">8%</text></g><rect x="340" y="43" width="20" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="107.5" y="149.5" width="26" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="120" y="161.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">2%</text><text text-anchor="middle" x="120" y="161.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">2%</text></g><rect x="110" y="150" width="20" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="246.5" y="149.5" width="26" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="259" y="161.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">2%</text><text text-anchor="middle" x="259" y="161.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">2%</text></g><rect x="249" y="150" width="20" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="386.5" y="42.5" width="26" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="399" y="54.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">8%</text><text text-anchor="middle" x="399" y="54.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">8%</text></g><rect x="389" y="43" width="20" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g></g></g><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>year</th><th>업종평균</th><th>당사</th><th>상승곡선</th></tr></thead><tbody><tr><td>2018년</td><td>9</td><td>2</td><td>2</td></tr><tr><td>2019년</td><td>9</td><td>2</td><td>2</td></tr><tr><td>2020년</td><td>8</td><td>8</td><td>8</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 295px; left: 480px; white-space: nowrap; font-family: Arial; font-size: 16px;">당사</div><div></div></div></div>
-                                    
-                                </div>
-                                <div class="chart-box fr">
-                                    <div class="title">
-                                        <span>자기자본이익률</span>
-                                        <button type="button" class="btn-tooltip"><i class="ico-excl"></i><span class="hide">자기자본이익률에 대한 설명</span></button>
-                                        <div class="tooltip-box">
-                                            <p class="tooltip-cont">주주가 갖고 있는 지분에 대한 이익의 창출 정도<br>[출처 : 네이버 지식백과]</p>
-                                        </div>
-                                    </div>
-                                    <div class="value-box">
-                                        <div class="value lastyear">
-                                            <p class="text-grey">2020년 기준</p>
-                                            <span class="data">17%</span>
-                                        </div>
-                                        <div class="value average">
-                                            <p class="text-grey">업종 평균대비</p>
-                                            <div class="data raise">
-                                                <span>3%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chart-cont" id="profitability02"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 470px; height: 285px;"><div aria-label="A chart." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="470" height="285" aria-label="A chart." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_2"><clipPath id="_ABSTRACT_RENDERER_ID_3"><rect x="25" y="0" width="420" height="215"></rect></clipPath></defs><rect x="0" y="0" width="470" height="285" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="198" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="102" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="174" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">업종평균</text></g><rect x="136" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#e0e0e0"></rect></g><g><rect x="264" y="254" width="70" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="302" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">당사</text></g><rect x="264" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g></g><g><rect x="25" y="0" width="420" height="215" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://www.smes.go.kr/gsmb/company/61510#_ABSTRACT_RENDERER_ID_3)"><g><rect x="51" y="37" width="40" height="141" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="190" y="58" width="41" height="120" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="330" y="79" width="40" height="99" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="100" y="179" width="40" height="28" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="239" y="158" width="41" height="20" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="379" y="58" width="40" height="120" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g><g><rect x="25" y="178" width="420" height="1" stroke="none" stroke-width="0" fill="#999999"></rect></g><g><path d="M95.33333333333333,207.36666666666665L235,157.4333333333333L374.66666666666663,57.566666666666634" stroke="#e44d4d" stroke-width="2" fill-opacity="1" fill="none"></path></g><g><rect x="71" y="22" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="210" y="43" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="350" y="64" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="120" y="164" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="259" y="143" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="399" y="43" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect></g></g><g><circle cx="95.33333333333333" cy="207.36666666666665" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="235" cy="157.4333333333333" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="374.66666666666663" cy="57.566666666666634" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle></g><g><g><text text-anchor="middle" x="95.33333333333333" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2018년</text></g><g><text text-anchor="middle" x="235" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2019년</text></g><g><text text-anchor="middle" x="374.66666666666663" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2020년</text></g></g><g><g><g><rect x="54.5" y="7.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="71" y="19.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">20%</text><text text-anchor="middle" x="71" y="19.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">20%</text></g><rect x="57" y="8" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="193.5" y="28.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="210" y="40.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">17%</text><text text-anchor="middle" x="210" y="40.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">17%</text></g><rect x="196" y="29" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="333.5" y="49.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="350" y="61.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">14%</text><text text-anchor="middle" x="350" y="61.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">14%</text></g><rect x="336" y="50" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="105.5" y="149.5" width="30" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="120" y="161.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">-4%</text><text text-anchor="middle" x="120" y="161.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">-4%</text></g><rect x="107.5" y="150" width="25" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="246.5" y="128.5" width="26" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="259" y="140.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">3%</text><text text-anchor="middle" x="259" y="140.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">3%</text></g><rect x="249" y="129" width="20" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="382.5" y="28.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="399" y="40.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">17%</text><text text-anchor="middle" x="399" y="40.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">17%</text></g><rect x="385" y="29" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g></g></g><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>year</th><th>업종평균</th><th>당사</th><th>상승곡선</th></tr></thead><tbody><tr><td>2018년</td><td>20</td><td>-4</td><td>-4</td></tr><tr><td>2019년</td><td>17</td><td>3</td><td>3</td></tr><tr><td>2020년</td><td>14</td><td>17</td><td>17</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 295px; left: 480px; white-space: nowrap; font-family: Arial; font-size: 16px;">당사</div><div></div></div></div>
-                                    
-                                </div>
-                            </div>
+                    <div class="sub-title-area">
+                        <p class="sub-info">{{ data_list[0].회사주소}}</p>
+                        <div class="right">
+                            <!-- <a href="javascript:void(0);" data-id="{{ data_list[0].data_id}}" data-xco="{{ data_list[0].위도}}" data-yco="{{ data_list[0].경도}}"" onclick="moveSmartMap(this);" class="btn btn-default btn-md"><span>일자리지도 바로가기</span></a> -->
                         </div>
-                        <!-- // 수익성 차트영역 -->
-
-                        <!-- 안정성 차트영역 -->
-                        <div class="finance-box">
-                            <div class="sub-title-area">
-                                <h4 class="sub-tit">안정성</h4>
-                                <p class="sub-desc">기업의 재무유동성과 안정성을 나타내는 정태비율을 의미합니다.</p>
-                            </div>
-                            <div class="graph-wrap mt20">
-                                <div class="chart-box fl">
-                                    <div class="title">
-                                        <span>부채비율</span>
-                                        <button type="button" class="btn-tooltip"><i class="ico-excl"></i><span class="hide">부채비율에 대한 설명</span></button>
-                                        <div class="tooltip-box">
-                                            <p class="tooltip-cont">기업이 갖고 있는 자산 중 부채가 얼마 정도 차지하고 있는가를 나타내는 비율<br>[출처 : 네이버 지식백과]</p>
-                                        </div>
-                                    </div>
-                                    <div class="value-box">
-                                        <div class="value lastyear">
-                                            <p class="text-grey">2020년 기준</p>
-                                            <span class="data">122%</span>
-                                        </div>
-                                        <div class="value average">
-                                            <p class="text-grey">업종 평균대비</p>
-                                            <div class="data raise reverse">
-                                                <span>-63%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chart-cont" id="stability01"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 470px; height: 285px;"><div aria-label="A chart." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="470" height="285" aria-label="A chart." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_4"><clipPath id="_ABSTRACT_RENDERER_ID_5"><rect x="25" y="0" width="420" height="215"></rect></clipPath></defs><rect x="0" y="0" width="470" height="285" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="198" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="102" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="174" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">업종평균</text></g><rect x="136" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#e0e0e0"></rect></g><g><rect x="264" y="254" width="70" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="302" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">당사</text></g><rect x="264" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g></g><g><rect x="25" y="0" width="420" height="215" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://www.smes.go.kr/gsmb/company/61510#_ABSTRACT_RENDERER_ID_5)"><g><rect x="51" y="48" width="40" height="166" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="190" y="47" width="41" height="167" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="330" y="44" width="40" height="170" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="100" y="121" width="40" height="93" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="239" y="90" width="41" height="124" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="379" y="102" width="40" height="112" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g><g><rect x="25" y="214" width="420" height="1" stroke="none" stroke-width="0" fill="#999999"></rect></g><g><path d="M95.33333333333333,120.41379310344827L235,89.97413793103448L374.66666666666663,101.9655172413793" stroke="#e44d4d" stroke-width="2" fill-opacity="1" fill="none"></path></g><g><rect x="71" y="33" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="210" y="32" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="350" y="29" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="120" y="106" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="259" y="75" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="399" y="87" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect></g></g><g><circle cx="95.33333333333333" cy="120.41379310344827" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="235" cy="89.97413793103448" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="374.66666666666663" cy="101.9655172413793" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle></g><g><g><text text-anchor="middle" x="95.33333333333333" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2018년</text></g><g><text text-anchor="middle" x="235" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2019년</text></g><g><text text-anchor="middle" x="374.66666666666663" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2020년</text></g></g><g><g><g><rect x="50.5" y="18.5" width="42" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="71" y="30.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">181%</text><text text-anchor="middle" x="71" y="30.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">181%</text></g><rect x="53" y="19" width="36" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="189.5" y="17.5" width="42" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="210" y="29.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">182%</text><text text-anchor="middle" x="210" y="29.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">182%</text></g><rect x="192" y="18" width="36" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="329.5" y="14.5" width="42" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="350" y="26.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">185%</text><text text-anchor="middle" x="350" y="26.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">185%</text></g><rect x="332" y="15" width="36" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="99.5" y="91.5" width="42" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="120" y="103.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">102%</text><text text-anchor="middle" x="120" y="103.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">102%</text></g><rect x="102" y="92" width="36" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="238.5" y="60.5" width="42" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="259" y="72.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">135%</text><text text-anchor="middle" x="259" y="72.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">135%</text></g><rect x="241" y="61" width="36" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="378.5" y="72.5" width="42" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="399" y="84.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">122%</text><text text-anchor="middle" x="399" y="84.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">122%</text></g><rect x="381" y="73" width="36" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g></g></g><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>year</th><th>업종평균</th><th>당사</th><th>상승곡선</th></tr></thead><tbody><tr><td>2018년</td><td>181</td><td>102</td><td>102</td></tr><tr><td>2019년</td><td>182</td><td>135</td><td>135</td></tr><tr><td>2020년</td><td>185</td><td>122</td><td>122</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 295px; left: 480px; white-space: nowrap; font-family: Arial; font-size: 16px;">당사</div><div></div></div></div>
-                                    
-                                </div>
-                                <div class="chart-box fr">
-                                    <div class="title">
-                                        <span>자기자본비율</span>
-                                        <button type="button" class="btn-tooltip"><i class="ico-excl"></i><span class="hide">자기자본비율에 대한 설명</span></button>
-                                        <div class="tooltip-box">
-                                            <p class="tooltip-cont">총자산에 대비 자기자본의 비율. 기업의 자본 건전성을 판단하는 데 중요한 요건이 된다.<br>[출처 : 네이버 지식백과]</p>
-                                        </div>
-                                    </div>
-                                    <div class="value-box">
-                                        <div class="value lastyear">
-                                            <p class="text-grey">2020년 기준</p>
-                                            <span class="data">45%</span>
-                                        </div>
-                                        <div class="value average">
-                                            <p class="text-grey">업종 평균대비</p>
-                                            <div class="data raise">
-                                                <span>11%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chart-cont" id="stability02"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 470px; height: 285px;"><div aria-label="A chart." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="470" height="285" aria-label="A chart." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_6"><clipPath id="_ABSTRACT_RENDERER_ID_7"><rect x="25" y="0" width="420" height="215"></rect></clipPath></defs><rect x="0" y="0" width="470" height="285" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="198" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="102" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="174" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">업종평균</text></g><rect x="136" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#e0e0e0"></rect></g><g><rect x="264" y="254" width="70" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="302" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">당사</text></g><rect x="264" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g></g><g><rect x="25" y="0" width="420" height="215" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://www.smes.go.kr/gsmb/company/61510#_ABSTRACT_RENDERER_ID_7)"><g><rect x="51" y="100" width="40" height="114" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="190" y="100" width="41" height="114" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="330" y="100" width="40" height="114" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="100" y="45" width="40" height="169" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="239" y="72" width="41" height="142" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="379" y="62" width="40" height="152" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g><g><rect x="25" y="214" width="420" height="1" stroke="none" stroke-width="0" fill="#999999"></rect></g><g><path d="M95.33333333333333,44.65873015873015L235,71.83333333333334L374.66666666666663,61.64285714285714" stroke="#e44d4d" stroke-width="2" fill-opacity="1" fill="none"></path></g><g><rect x="71" y="85" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="210" y="85" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="350" y="85" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="120" y="30" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="259" y="57" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="399" y="47" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect></g></g><g><circle cx="95.33333333333333" cy="44.65873015873015" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="235" cy="71.83333333333334" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="374.66666666666663" cy="61.64285714285714" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle></g><g><g><text text-anchor="middle" x="95.33333333333333" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2018년</text></g><g><text text-anchor="middle" x="235" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2019년</text></g><g><text text-anchor="middle" x="374.66666666666663" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2020년</text></g></g><g><g><g><rect x="54.5" y="70.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="71" y="82.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">34%</text><text text-anchor="middle" x="71" y="82.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">34%</text></g><rect x="57" y="71" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="193.5" y="70.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="210" y="82.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">34%</text><text text-anchor="middle" x="210" y="82.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">34%</text></g><rect x="196" y="71" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="333.5" y="70.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="350" y="82.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">34%</text><text text-anchor="middle" x="350" y="82.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">34%</text></g><rect x="336" y="71" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="103.5" y="15.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="120" y="27.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">50%</text><text text-anchor="middle" x="120" y="27.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">50%</text></g><rect x="106" y="16" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="242.5" y="42.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="259" y="54.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">42%</text><text text-anchor="middle" x="259" y="54.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">42%</text></g><rect x="245" y="43" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="382.5" y="32.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="399" y="44.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">45%</text><text text-anchor="middle" x="399" y="44.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">45%</text></g><rect x="385" y="33" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g></g></g><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>year</th><th>업종평균</th><th>당사</th><th>상승곡선</th></tr></thead><tbody><tr><td>2018년</td><td>34</td><td>50</td><td>50</td></tr><tr><td>2019년</td><td>34</td><td>42</td><td>42</td></tr><tr><td>2020년</td><td>34</td><td>45</td><td>45</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 295px; left: 480px; white-space: nowrap; font-family: Arial; font-size: 16px;">당사</div><div></div></div></div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <!-- // 안정성 차트영역 -->
-
-                        <!-- 성장성 차트영역 -->
-                        <div class="finance-box">
-                            <div class="sub-title-area">
-                                <h4 class="sub-tit">성장성</h4>
-                                <p class="sub-desc">기업의 한 해 경영 규모 및 기업활동의 성과가 전년도에 비하여 얼마만큼 증가하였는가를 보여 주는 지표입니다.</p>
-                            </div>
-                            <div class="graph-wrap mt20">
-                                <div class="chart-box fl">
-                                    <div class="title">
-                                        <span>매출액증가율</span>
-                                        <button type="button" class="btn-tooltip"><i class="ico-excl"></i><span class="hide">매출액증가율에 대한 설명</span></button>
-                                        <div class="tooltip-box">
-                                            <p class="tooltip-cont">성장성의 분석에 사용되는 지표로 기준연도 매출액에 대한 비교연도 매출액의 증가율<br>[출처 : 네이버 지식백과]</p>
-                                        </div>
-                                    </div>
-                                    <div class="value-box">
-                                        <div class="value lastyear">
-                                            <p class="text-grey">2020년 기준</p>
-                                            <span class="data">52%</span>
-                                        </div>
-                                        <div class="value average">
-                                            <p class="text-grey">업종 평균대비</p>
-                                            <div class="data raise">
-                                                <span>53%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chart-cont" id="growth01"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 470px; height: 285px;"><div aria-label="A chart." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="470" height="285" aria-label="A chart." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_8"><clipPath id="_ABSTRACT_RENDERER_ID_9"><rect x="25" y="0" width="420" height="215"></rect></clipPath></defs><rect x="0" y="0" width="470" height="285" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="198" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="102" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="174" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">업종평균</text></g><rect x="136" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#e0e0e0"></rect></g><g><rect x="264" y="254" width="70" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="302" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">당사</text></g><rect x="264" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g></g><g><rect x="25" y="0" width="420" height="215" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://www.smes.go.kr/gsmb/company/61510#_ABSTRACT_RENDERER_ID_9)"><g><rect x="51" y="103.87219047619048" width="40" height="2.6087619047619057" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="190" y="105" width="41" height="1" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="330" y="106.80704761904762" width="40" height="1.3043809523809529" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="100" y="107" width="40" height="85" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="239" y="50" width="41" height="56" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="379" y="22" width="40" height="84" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g><g><rect x="25" y="106" width="420" height="1" stroke="none" stroke-width="0" fill="#999999"></rect></g><g><path d="M95.33333333333333,192.8961904761905L235,49.414285714285725L374.66666666666663,21.69619047619048" stroke="#e44d4d" stroke-width="2" fill-opacity="1" fill="none"></path></g><g><rect x="71" y="88.87219047619048" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="210" y="90" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="350" y="91.80704761904762" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="120" y="92" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="259" y="35" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="399" y="22" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect></g></g><g><circle cx="95.33333333333333" cy="192.8961904761905" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="235" cy="49.414285714285725" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="374.66666666666663" cy="21.69619047619048" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle></g><g><g><text text-anchor="middle" x="95.33333333333333" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2018년</text></g><g><text text-anchor="middle" x="235" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2019년</text></g><g><text text-anchor="middle" x="374.66666666666663" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2020년</text></g></g><g><g><g><rect x="58.5" y="73.5" width="26" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="71" y="86.77219047619049" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">2%</text><text text-anchor="middle" x="71" y="86.77219047619049" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">2%</text></g><rect x="61" y="74.87219047619048" width="20" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="197.5" y="75.5" width="26" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="210" y="87.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">1%</text><text text-anchor="middle" x="210" y="87.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">1%</text></g><rect x="200" y="76" width="20" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="335.5" y="76.5" width="30" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="350" y="89.70704761904763" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">-1%</text><text text-anchor="middle" x="350" y="89.70704761904763" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">-1%</text></g><rect x="337.5" y="77.80704761904762" width="25" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="101.5" y="77.5" width="38" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="120" y="89.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">-53%</text><text text-anchor="middle" x="120" y="89.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">-53%</text></g><rect x="103.5" y="78" width="33" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="242.5" y="20.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="259" y="32.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">35%</text><text text-anchor="middle" x="259" y="32.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">35%</text></g><rect x="245" y="21" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="382.5" y="36.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="399" y="48.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">52%</text><text text-anchor="middle" x="399" y="48.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">52%</text></g><rect x="385" y="37" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g></g></g><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>year</th><th>업종평균</th><th>당사</th><th>상승곡선</th></tr></thead><tbody><tr><td>2018년</td><td>2</td><td>-53</td><td>-53</td></tr><tr><td>2019년</td><td>1</td><td>35</td><td>35</td></tr><tr><td>2020년</td><td>-1</td><td>52</td><td>52</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 295px; left: 480px; white-space: nowrap; font-family: Arial; font-size: 16px;">당사</div><div></div></div></div>
-                                    
-                                </div>
-                                <div class="chart-box fr">
-                                    <div class="title">
-                                        <span>영업이익증가율</span>
-                                        <button type="button" class="btn-tooltip"><i class="ico-excl"></i><span class="hide">영업이익증가율에 대한 설명</span></button>
-                                        <div class="tooltip-box">
-                                            <p class="tooltip-cont">전기 대비 영업이익이 증가한 비율을 나타내는 수치<br>[출처 : 네이버 지식백과]</p>
-                                        </div>
-                                    </div>
-                                    <div class="value-box">
-                                        <div class="value lastyear">
-                                            <p class="text-grey">2020년 기준</p>
-                                            <span class="data">490%</span>
-                                        </div>
-                                        <div class="value average">
-                                            <p class="text-grey">업종 평균대비</p>
-                                            <div class="data raise">
-                                                <span>492%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chart-cont" id="growth02"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 470px; height: 285px;"><div aria-label="A chart." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="470" height="285" aria-label="A chart." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_10"><clipPath id="_ABSTRACT_RENDERER_ID_11"><rect x="25" y="0" width="420" height="215"></rect></clipPath></defs><rect x="0" y="0" width="470" height="285" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="198" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="102" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="174" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">업종평균</text></g><rect x="136" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#e0e0e0"></rect></g><g><rect x="264" y="254" width="70" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="302" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">당사</text></g><rect x="264" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g></g><g><rect x="25" y="0" width="420" height="215" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://www.smes.go.kr/gsmb/company/61510#_ABSTRACT_RENDERER_ID_11)"><g><rect x="51" y="179.30368978476258" width="40" height="0.5" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="190" y="179" width="41" height="0.5" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="330" y="179.88858899897508" width="40" height="0.5" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="100" y="180" width="40" height="27" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="239" y="167" width="41" height="12" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="379" y="37" width="40" height="142" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g><g><rect x="25" y="179" width="420" height="1" stroke="none" stroke-width="0" fill="#999999"></rect></g><g><path d="M95.33333333333333,207.55432183122653L235,166.6113768363512L374.66666666666663,36.471301674069025" stroke="#e44d4d" stroke-width="2" fill-opacity="1" fill="none"></path></g><g><rect x="71" y="164.30368978476258" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="210" y="164" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="350" y="164.88858899897508" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="120" y="165" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="259" y="152" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="399" y="22" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect></g></g><g><circle cx="95.33333333333333" cy="207.55432183122653" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="235" cy="166.6113768363512" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="374.66666666666663" cy="36.471301674069025" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle></g><g><g><text text-anchor="middle" x="95.33333333333333" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2018년</text></g><g><text text-anchor="middle" x="235" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2019년</text></g><g><text text-anchor="middle" x="374.66666666666663" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2020년</text></g></g><g><g><g><rect x="58.5" y="149.5" width="26" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="71" y="162.2036897847626" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">2%</text><text text-anchor="middle" x="71" y="162.2036897847626" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">2%</text></g><rect x="61" y="150.30368978476258" width="20" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="197.5" y="149.5" width="26" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="210" y="161.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">0%</text><text text-anchor="middle" x="210" y="161.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">0%</text></g><rect x="200" y="150" width="20" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="335.5" y="149.5" width="30" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="350" y="162.7885889989751" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">-2%</text><text text-anchor="middle" x="350" y="162.7885889989751" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">-2%</text></g><rect x="337.5" y="150.88858899897508" width="25" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="101.5" y="150.5" width="38" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="120" y="162.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">-95%</text><text text-anchor="middle" x="120" y="162.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">-95%</text></g><rect x="103.5" y="151" width="33" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="242.5" y="137.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="259" y="149.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">45%</text><text text-anchor="middle" x="259" y="149.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">45%</text></g><rect x="245" y="138" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="378.5" y="7.5" width="42" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="399" y="19.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">490%</text><text text-anchor="middle" x="399" y="19.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">490%</text></g><rect x="381" y="8" width="36" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g></g></g><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>year</th><th>업종평균</th><th>당사</th><th>상승곡선</th></tr></thead><tbody><tr><td>2018년</td><td>2</td><td>-95</td><td>-95</td></tr><tr><td>2019년</td><td>0</td><td>45</td><td>45</td></tr><tr><td>2020년</td><td>-2</td><td>490</td><td>490</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 295px; left: 480px; white-space: nowrap; font-family: Arial; font-size: 16px;">당사</div><div></div></div></div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <!-- // 성장성 차트영역 -->
-
-                        <!-- 활동성 차트영역 -->
-                        <div class="finance-box">
-                            <div class="sub-title-area">
-                                <h4 class="sub-tit">활동성</h4>
-                                <p class="sub-desc">기업이 소유하고 있는 자산들을 얼마나 효율적으로 이용하고 있는가를 측정하는 비율입니다.</p>
-                            </div>
-                            <div class="graph-wrap mt20">
-                                <div class="chart-box fl">
-                                    <div class="title">
-                                        <span>매출채권회전율</span>
-                                        <button type="button" class="btn-tooltip"><i class="ico-excl"></i><span class="hide">매출채권회전율에 대한 설명</span></button>
-                                        <div class="tooltip-box">
-                                            <p class="tooltip-cont">한 회계기간 동안 평균 매출채권 금액이 현금으로 회수되는 횟수<br>[출처 : 네이버 지식백과]</p>
-                                        </div>
-                                    </div>
-                                    <div class="value-box">
-                                        <div class="value lastyear">
-                                            <p class="text-grey">2020년 기준</p>
-                                            <span class="data">8회</span>
-                                        </div>
-                                        <div class="value average">
-                                            <p class="text-grey">업종 평균대비</p>
-                                            <div class="data raise">
-                                                <span>3회</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chart-cont" id="activity01"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 470px; height: 285px;"><div aria-label="A chart." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="470" height="285" aria-label="A chart." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_12"><clipPath id="_ABSTRACT_RENDERER_ID_13"><rect x="25" y="0" width="420" height="215"></rect></clipPath></defs><rect x="0" y="0" width="470" height="285" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="198" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="102" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="174" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">업종평균</text></g><rect x="136" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#e0e0e0"></rect></g><g><rect x="264" y="254" width="70" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="302" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">당사</text></g><rect x="264" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g></g><g><rect x="25" y="0" width="420" height="215" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://www.smes.go.kr/gsmb/company/61510#_ABSTRACT_RENDERER_ID_13)"><g><rect x="51" y="108" width="40" height="106" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="190" y="108" width="41" height="106" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="330" y="108" width="40" height="106" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="100" y="44" width="40" height="170" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="239" y="87" width="41" height="127" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="379" y="44" width="40" height="170" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g><g><rect x="25" y="214" width="420" height="1" stroke="none" stroke-width="0" fill="#999999"></rect></g><g><path d="M95.33333333333333,43.30000000000001L235,86.10000000000002L374.66666666666663,43.30000000000001" stroke="#e44d4d" stroke-width="2" fill-opacity="1" fill="none"></path></g><g><rect x="71" y="93" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="210" y="93" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="350" y="93" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="120" y="29" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="259" y="72" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="399" y="29" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect></g></g><g><circle cx="95.33333333333333" cy="43.30000000000001" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="235" cy="86.10000000000002" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="374.66666666666663" cy="43.30000000000001" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle></g><g><g><text text-anchor="middle" x="95.33333333333333" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2018년</text></g><g><text text-anchor="middle" x="235" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2019년</text></g><g><text text-anchor="middle" x="374.66666666666663" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2020년</text></g></g><g><g><g><rect x="57.5" y="78.5" width="28" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="71" y="90.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">5회</text><text text-anchor="middle" x="71" y="90.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">5회</text></g><rect x="60" y="79" width="22" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="196.5" y="78.5" width="28" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="210" y="90.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">5회</text><text text-anchor="middle" x="210" y="90.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">5회</text></g><rect x="199" y="79" width="22" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="336.5" y="78.5" width="28" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="350" y="90.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">5회</text><text text-anchor="middle" x="350" y="90.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">5회</text></g><rect x="339" y="79" width="22" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="106.5" y="14.5" width="28" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="120" y="26.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">8회</text><text text-anchor="middle" x="120" y="26.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">8회</text></g><rect x="109" y="15" width="22" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="245.5" y="57.5" width="28" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="259" y="69.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">6회</text><text text-anchor="middle" x="259" y="69.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">6회</text></g><rect x="248" y="58" width="22" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="385.5" y="14.5" width="28" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="399" y="26.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">8회</text><text text-anchor="middle" x="399" y="26.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">8회</text></g><rect x="388" y="15" width="22" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g></g></g><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>year</th><th>업종평균</th><th>당사</th><th>상승곡선</th></tr></thead><tbody><tr><td>2018년</td><td>5</td><td>8</td><td>8</td></tr><tr><td>2019년</td><td>5</td><td>6</td><td>6</td></tr><tr><td>2020년</td><td>5</td><td>8</td><td>8</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 295px; left: 480px; white-space: nowrap; font-family: Arial; font-size: 16px;">당사</div><div></div></div></div>
-                                    
-                                </div>
-                                <div class="chart-box fr">
-                                    <div class="title">
-                                        <span>재고자산회전율</span>
-                                        <button type="button" class="btn-tooltip"><i class="ico-excl"></i><span class="hide">재고자산회전율에 대한 설명</span></button>
-                                        <div class="tooltip-box">
-                                            <p class="tooltip-cont">매출액을 재고자산으로 나눈 수치로, 회전율이 높을수록 재고자산이 매출로 빠르게 이어지고 있음을 의미<br>[출처 : 네이버 지식백과]</p>
-                                        </div>
-                                    </div>
-                                    <div class="value-box">
-                                        <div class="value lastyear">
-                                            <p class="text-grey">2020년 기준</p>
-                                            <span class="data">9회</span>
-                                        </div>
-                                        <div class="value average">
-                                            <p class="text-grey">업종 평균대비</p>
-                                            <div class="data degra">
-                                                <span>-2회</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chart-cont" id="activity02"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 470px; height: 285px;"><div aria-label="A chart." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="470" height="285" aria-label="A chart." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_14"><clipPath id="_ABSTRACT_RENDERER_ID_15"><rect x="25" y="0" width="420" height="215"></rect></clipPath></defs><rect x="0" y="0" width="470" height="285" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="198" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="102" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="174" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">업종평균</text></g><rect x="136" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#e0e0e0"></rect></g><g><rect x="264" y="254" width="70" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="302" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">당사</text></g><rect x="264" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g></g><g><rect x="25" y="0" width="420" height="215" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://www.smes.go.kr/gsmb/company/61510#_ABSTRACT_RENDERER_ID_15)"><g><rect x="51" y="49" width="40" height="165" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="190" y="60" width="41" height="154" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="330" y="84" width="40" height="130" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="100" y="132" width="40" height="82" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="239" y="144" width="41" height="70" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="379" y="108" width="40" height="106" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g><g><rect x="25" y="214" width="420" height="1" stroke="none" stroke-width="0" fill="#999999"></rect></g><g><path d="M95.33333333333333,131.27777777777777L235,143.16666666666666L374.66666666666663,107.5" stroke="#e44d4d" stroke-width="2" fill-opacity="1" fill="none"></path></g><g><rect x="71" y="34" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="210" y="45" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="350" y="69" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="120" y="117" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="259" y="129" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="399" y="93" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect></g></g><g><circle cx="95.33333333333333" cy="131.27777777777777" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="235" cy="143.16666666666666" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="374.66666666666663" cy="107.5" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle></g><g><g><text text-anchor="middle" x="95.33333333333333" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2018년</text></g><g><text text-anchor="middle" x="235" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2019년</text></g><g><text text-anchor="middle" x="374.66666666666663" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2020년</text></g></g><g><g><g><rect x="53.5" y="19.5" width="36" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="71" y="31.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">14회</text><text text-anchor="middle" x="71" y="31.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">14회</text></g><rect x="56" y="20" width="30" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="192.5" y="30.5" width="36" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="210" y="42.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">13회</text><text text-anchor="middle" x="210" y="42.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">13회</text></g><rect x="195" y="31" width="30" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="333.5" y="54.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="350" y="66.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">11회</text><text text-anchor="middle" x="350" y="66.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">11회</text></g><rect x="335.5" y="55" width="29" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="106.5" y="102.5" width="28" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="120" y="114.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">7회</text><text text-anchor="middle" x="120" y="114.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">7회</text></g><rect x="109" y="103" width="22" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="245.5" y="114.5" width="28" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="259" y="126.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">6회</text><text text-anchor="middle" x="259" y="126.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">6회</text></g><rect x="248" y="115" width="22" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="385.5" y="78.5" width="28" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="399" y="90.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">9회</text><text text-anchor="middle" x="399" y="90.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">9회</text></g><rect x="388" y="79" width="22" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g></g></g><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>year</th><th>업종평균</th><th>당사</th><th>상승곡선</th></tr></thead><tbody><tr><td>2018년</td><td>14</td><td>7</td><td>7</td></tr><tr><td>2019년</td><td>13</td><td>6</td><td>6</td></tr><tr><td>2020년</td><td>11</td><td>9</td><td>9</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 295px; left: 480px; white-space: nowrap; font-family: Arial; font-size: 16px;">당사</div><div></div></div></div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <!-- // 활동성 차트영역 -->
-
-                        <!-- 현금흐름 차트영역 -->
-                        <div class="finance-box">
-                            <div class="sub-title-area">
-                                <h4 class="sub-tit">현금흐름</h4>
-                                <p class="sub-desc">현금흐름이란 투자로부터 발생하는 모든 현금의 움직임을 말합니다.</p>
-                            </div>
-                            <div class="graph-wrap mt20">
-                                <div class="chart-box fl">
-                                    <div class="title">
-                                        <span>부채상환계수</span>
-                                        <button type="button" class="btn-tooltip"><i class="ico-excl"></i><span class="hide">부채상환계수에 대한 설명</span></button>
-                                        <div class="tooltip-box">
-                                            <p class="tooltip-cont">벌어들인 현금을 가지고 단기부채를 어느 정도 상환할 수 있는지의 능력<br>[출처 : 네이버 지식백과]</p>
-                                        </div>
-                                    </div>
-                                    <div class="value-box">
-                                        <div class="value lastyear">
-                                            <p class="text-grey">2020년 기준</p>
-                                            <span class="data">54%</span>
-                                        </div>
-                                        <div class="value average">
-                                            <p class="text-grey">업종 평균대비</p>
-                                            <div class="data degra">
-                                                <span>-9%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chart-cont" id="cashflow01"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 470px; height: 285px;"><div aria-label="A chart." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="470" height="285" aria-label="A chart." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_16"><clipPath id="_ABSTRACT_RENDERER_ID_17"><rect x="25" y="0" width="420" height="215"></rect></clipPath></defs><rect x="0" y="0" width="470" height="285" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="198" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="102" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="174" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">업종평균</text></g><rect x="136" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#e0e0e0"></rect></g><g><rect x="264" y="254" width="70" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="302" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">당사</text></g><rect x="264" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g></g><g><rect x="25" y="0" width="420" height="215" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://www.smes.go.kr/gsmb/company/61510#_ABSTRACT_RENDERER_ID_17)"><g><rect x="51" y="7" width="40" height="21" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="190" y="9" width="41" height="19" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="330" y="12" width="40" height="16" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="100" y="29" width="40" height="148" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="239" y="29" width="41" height="3" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="379" y="14" width="40" height="14" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g><g><rect x="25" y="28" width="420" height="1" stroke="none" stroke-width="0" fill="#999999"></rect></g><g><path d="M95.33333333333333,177.3060453400504L235,32.842569269521405L374.66666666666663,13.976070528967252" stroke="#e44d4d" stroke-width="2" fill-opacity="1" fill="none"></path></g><g><rect x="71" y="7" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="210" y="9" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="350" y="12" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="120" y="14" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="259" y="14" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="399" y="14" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect></g></g><g><circle cx="95.33333333333333" cy="177.3060453400504" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="235" cy="32.842569269521405" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="374.66666666666663" cy="13.976070528967252" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle></g><g><g><text text-anchor="middle" x="95.33333333333333" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2018년</text></g><g><text text-anchor="middle" x="235" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2019년</text></g><g><text text-anchor="middle" x="374.66666666666663" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2020년</text></g></g><g><g><g><rect x="54.5" y="21.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="71" y="33.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">83%</text><text text-anchor="middle" x="71" y="33.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">83%</text></g><rect x="57" y="22" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="193.5" y="23.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="210" y="35.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">75%</text><text text-anchor="middle" x="210" y="35.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">75%</text></g><rect x="196" y="24" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="333.5" y="26.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="350" y="38.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">63%</text><text text-anchor="middle" x="350" y="38.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">63%</text></g><rect x="336" y="27" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="97.5" y="-0.5" width="46" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="120" y="11.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">-552%</text><text text-anchor="middle" x="120" y="11.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">-552%</text></g><rect x="100" y="0" width="40" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="240.5" y="-0.5" width="38" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="259" y="11.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">-16%</text><text text-anchor="middle" x="259" y="11.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">-16%</text></g><rect x="242.5" y="0" width="33" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="382.5" y="28.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="399" y="40.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">54%</text><text text-anchor="middle" x="399" y="40.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">54%</text></g><rect x="385" y="29" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g></g></g><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>year</th><th>업종평균</th><th>당사</th><th>상승곡선</th></tr></thead><tbody><tr><td>2018년</td><td>83</td><td>-552</td><td>-552</td></tr><tr><td>2019년</td><td>75</td><td>-16</td><td>-16</td></tr><tr><td>2020년</td><td>63</td><td>54</td><td>54</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 295px; left: 480px; white-space: nowrap; font-family: Arial; font-size: 16px;">당사</div><div></div></div></div>
-                                    
-                                </div>
-                                <div class="chart-box fr">
-                                    <div class="title">
-                                        <span>현금흐름/차입금</span>
-                                        <button type="button" class="btn-tooltip"><i class="ico-excl"></i><span class="hide">현금흐름/차입금에 대한 설명</span></button>
-                                        <div class="tooltip-box">
-                                            <p class="tooltip-cont">차입금이란 기업을 운영하는 과정에서 운영자금 및 투자를 위해 조달된 자금을 말한다.<br>[출처 : 네이버 지식백과]</p>
-                                        </div>
-                                    </div>
-                                    <div class="value-box">
-                                        <div class="value lastyear">
-                                            <p class="text-grey">2020년 기준</p>
-                                            <span class="data">43%</span>
-                                        </div>
-                                        <div class="value average">
-                                            <p class="text-grey">업종 평균대비</p>
-                                            <div class="data raise">
-                                                <span>33%</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="chart-cont" id="cashflow02"><div style="position: relative;"><div dir="ltr" style="position: relative; width: 470px; height: 285px;"><div aria-label="A chart." style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%;"><svg width="470" height="285" aria-label="A chart." style="overflow: hidden;"><defs id="_ABSTRACT_RENDERER_ID_18"><clipPath id="_ABSTRACT_RENDERER_ID_19"><rect x="25" y="0" width="420" height="215"></rect></clipPath></defs><rect x="0" y="0" width="470" height="285" stroke="none" stroke-width="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="198" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><rect x="136" y="254" width="102" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="174" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">업종평균</text></g><rect x="136" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#e0e0e0"></rect></g><g><rect x="264" y="254" width="70" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="start" x="302" y="267.6" font-family="Arial" font-size="16" stroke="none" stroke-width="0" fill="#555555">당사</text></g><rect x="264" y="254" width="32" height="16" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g></g><g><rect x="25" y="0" width="420" height="215" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g clip-path="url(https://www.smes.go.kr/gsmb/company/61510#_ABSTRACT_RENDERER_ID_19)"><g><rect x="51" y="128" width="40" height="39" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="190" y="131" width="41" height="36" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="330" y="137" width="40" height="30" stroke="none" stroke-width="0" fill="#e0e0e0"></rect><rect x="100" y="168" width="40" height="27" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="239" y="168" width="41" height="37" stroke="none" stroke-width="0" fill="#6c96ff"></rect><rect x="379" y="35" width="40" height="132" stroke="none" stroke-width="0" fill="#6c96ff"></rect></g><g><rect x="25" y="167" width="420" height="1" stroke="none" stroke-width="0" fill="#999999"></rect></g><g><path d="M95.33333333333333,195.8913043478261L235,205.19565217391306L374.66666666666663,34.6159420289855" stroke="#e44d4d" stroke-width="2" fill-opacity="1" fill="none"></path></g><g><rect x="71" y="113" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="210" y="116" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="350" y="122" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="120" y="153" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="259" y="153" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect><rect x="399" y="20" width="1" height="15" stroke="none" stroke-width="0" fill-opacity="1" fill="none"></rect></g></g><g><circle cx="95.33333333333333" cy="195.8913043478261" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="235" cy="205.19565217391306" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle><circle cx="374.66666666666663" cy="34.6159420289855" r="6" stroke="none" stroke-width="0" fill="#e44d4d"></circle></g><g><g><text text-anchor="middle" x="95.33333333333333" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2018년</text></g><g><text text-anchor="middle" x="235" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2019년</text></g><g><text text-anchor="middle" x="374.66666666666663" y="235.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#222222">2020년</text></g></g><g><g><g><rect x="54.5" y="98.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="71" y="110.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">13%</text><text text-anchor="middle" x="71" y="110.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">13%</text></g><rect x="57" y="99" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="193.5" y="101.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="210" y="113.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">12%</text><text text-anchor="middle" x="210" y="113.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">12%</text></g><rect x="196" y="102" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="333.5" y="107.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="350" y="119.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#999999" aria-hidden="true">10%</text><text text-anchor="middle" x="350" y="119.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#999999">10%</text></g><rect x="336" y="108" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="105.5" y="138.5" width="30" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="120" y="150.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">-9%</text><text text-anchor="middle" x="120" y="150.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">-9%</text></g><rect x="107.5" y="139" width="25" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="240.5" y="138.5" width="38" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="259" y="150.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">-12%</text><text text-anchor="middle" x="259" y="150.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">-12%</text></g><rect x="242.5" y="139" width="33" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g><g><g><rect x="382.5" y="5.5" width="34" height="16" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g><text text-anchor="middle" x="399" y="17.9" font-family="Arial" font-size="14" stroke="#ffffff" stroke-width="3" fill="#6c96ff" aria-hidden="true">43%</text><text text-anchor="middle" x="399" y="17.9" font-family="Arial" font-size="14" stroke="none" stroke-width="0" fill="#6c96ff">43%</text></g><rect x="385" y="6" width="28" height="14" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect></g></g></g></g><g></g></svg><div aria-label="A tabular representation of the data in the chart." style="position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden;"><table><thead><tr><th>year</th><th>업종평균</th><th>당사</th><th>상승곡선</th></tr></thead><tbody><tr><td>2018년</td><td>13</td><td>-9</td><td>-9</td></tr><tr><td>2019년</td><td>12</td><td>-12</td><td>-12</td></tr><tr><td>2020년</td><td>10</td><td>43</td><td>43</td></tr></tbody></table></div></div></div><div aria-hidden="true" style="display: none; position: absolute; top: 295px; left: 480px; white-space: nowrap; font-family: Arial; font-size: 16px;">당사</div><div></div></div></div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                        <!-- //현금흐름 차트영역 -->
                     </div>
+                        <!-- ## 카카오맵 -->
+                        <div id="map" style="width:100%;height:350px;"></div>
+
+                        <!-- 검색목록 표출 -->
+                        <div id="menu_wrap" class="bg_white">
+                            <div class="info"><p class="text-bold">지하철역</p>
+                                <ul class="text-list mt20">
+                                    <li>해당 기업 주변에 지하철역이 존재하지 않습니다. <br>다른 교통수단 이용을 추천드립니다. </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!--// 검색목록 표출 -->
+                    </div><!--// map_wrap -->
+                    <!--// ## 카카오맵 -->
                 </div><!--// article-content -->
-            </article><!--// article :: 재무정보 -->
+            </article>
 
-
-
-        <div class="article-wrap detail-talk-wrap">
-            <article class="article frame-min">
-                <div class="article-title-area anchor-scroll" id="talktalk">
-                    <h3 class="tit">기업톡톡</h3>
-                    <div class="info-guide">
-                        <button type="button" class="btn btn-default btn-md" onclick="talktalkWrite();"><span>글쓰기</span></button>
-                    </div>
-                </div><!--// article-title-area -->
-                <div class="article-content">
-                    <!-- ## Masonry Grid Layout -->
-                    <div class="grid" id="talktalkArea" data-masonry="{ &quot;columnWidth&quot;: 380, &quot;itemSelector&quot;: &quot;.grid-item&quot;, &quot;gutter&quot;: 20 }" style="position: relative; height: 461.543px;">
-                        <div class="grid-item talk-box" style="position: absolute; left: 0px; top: 0px;">
-                            <!--// inner -->
-                            <div class="inner">
-                                <i class="ico-quotes"></i>
-                                <strong class="tit-talk">성과보상이 강점인 기업</strong>
-                                <p class="talk-view">2009년부터 꾸준한 기술 개발과 특허등록으로 글로벌 반도체 기업인 삼성전자, sk하이닉스에 반도체 부대설비를 납품하며 본사의 VISION &amp;quot;혁신적인 기술과 전문적인 서비스를 바탕으로 경쟁력 있는 부대설비…</p>
-                                <div class="txt-tags">#성과 #보상 #성장 </div>
-                                <div class="talk-post-info">
-                                    <p class="reply">답변 0</p>
-                                    <ul class="sep-list type2">
-                                        <li><span class="desc">글쓴이(홍*동)</span></li>
-                                        <li><span class="desc">작성일자</span></li>
-                                    </ul>
-                                </div>
-                                <a href="#talktalkViewLayer" class="btn-blank d-layeropen" onclick="talktalkView(246)"><span class="blind">자세히보기</span></a>
-                            </div><!--// inner -->
-                        </div><!--// grid-item -->
-                    </div><!--// grid -->
-                    <!--// ## Masonry Grid Layout -->
-
-                    
-                </div><!--// article-content -->
-
-                <!--// article-content -->
-            </article><!--// article :: 기업톡톡 -->
-
-
+        <!--// article-content :: 채용정보 -->
             <article class="article frame-min">
                 <div class="article-title-area anchor-scroll" id="pblancs">
                     <h3 class="tit">채용정보</h3>
                 </div><!--// article-title-area -->
                 <div class="article-content">
                     <div class="incruit-wrap">
-
-                        
                             <div class="sub-title-area mt60">
                                 <h4 class="sub-tit">잡코리아 채용공고</h4>
                             </div>
-                            
-                                <div class="box-white mt20">
-                                    <div class="list-width type-incruit">
-                                        <div class="box-text">
-                                            <input type="hidden" name="pblancSorcCd" value="J">
-                                            <input type="hidden" name="pblancNo" value="43013119">
-                                            <input type="hidden" name="pblancNm" value="환경안전관리자 채용(환경안전팀)">
-                                            <input type="hidden" name="workArea" value="경기도 용인시 처인구">
-                                            <input type="hidden" name="career" value="신입">
-                                            <input type="hidden" name="lvedu" value="고등학교 졸업">
-                                            <input type="hidden" name="enggStleNm" value="정규직">
-                                            <input type="hidden" name="slry" value="회사 내규에 따름">
-                                            <input type="hidden" name="emptBgnde" value="20221108">
-                                            <input type="hidden" name="emptEndde" value="20221114">
-                                            <input type="hidden" name="pcDtlUrl" value="http://www.jobkorea.co.kr/Recruit/GI_Read/40214295?Oem_Code=C900&amp;api=534">
-
-                                            <em class="badge-point">채용</em>
-                                            <p class="title mt10">환경안전관리자 채용(환경안전팀)</p>
-                                            <ul class="text text-grey mt10">
-                                                <li>경기도 용인시 처인구</li>
-                                                <li>신입</li>
-                                                <li>고등학교 졸업</li>
-                                                <li>정규직</li>
-                                                <li>회사 내규에 따름</li>
-                                                <li name="jEmptEndde" data-value="20221114">D-5</li>
-                                            </ul>
-                                            <div class="box-btn-area">
-                                                <button type="button" class="btn btn-primary btn-lg" onclick="goDetailInfo(this);"><span>지원하러 가기</span></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            
-                                <div class="box-white mt20">
-                                    <div class="list-width type-incruit">
-                                        <div class="box-text">
-                                            <input type="hidden" name="pblancSorcCd" value="J">
-                                            <input type="hidden" name="pblancNo" value="43012986">
-                                            <input type="hidden" name="pblancNm" value="삼성반도체 대응 고객지원팀 채용(정규직/신입가능/평택,화성,기흥)">
-                                            <input type="hidden" name="workArea" value="경기도 용인시 처인구 외">
-                                            <input type="hidden" name="career" value="신입/경력">
-                                            <input type="hidden" name="lvedu" value="고등학교 졸업">
-                                            <input type="hidden" name="enggStleNm" value="정규직">
-                                            <input type="hidden" name="slry" value="회사 내규에 따름">
-                                            <input type="hidden" name="emptBgnde" value="20221108">
-                                            <input type="hidden" name="emptEndde" value="20221114">
-                                            <input type="hidden" name="pcDtlUrl" value="http://www.jobkorea.co.kr/Recruit/GI_Read/40214157?Oem_Code=C900&amp;api=534">
-
-                                            <em class="badge-point">채용</em>
-                                            <p class="title mt10">삼성반도체 대응 고객지원팀 채용(정규직/신입가능/평택,화성,기흥)</p>
-                                            <ul class="text text-grey mt10">
-                                                <li>경기도 용인시 처인구 외</li>
-                                                <li>신입/경력</li>
-                                                <li>고등학교 졸업</li>
-                                                <li>정규직</li>
-                                                <li>회사 내규에 따름</li>
-                                                <li name="jEmptEndde" data-value="20221114">D-5</li>
-                                            </ul>
-                                            <div class="box-btn-area">
-                                                <button type="button" class="btn btn-primary btn-lg" onclick="goDetailInfo(this);"><span>지원하러 가기</span></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             
                             <div class="incruit-logo-area">
                                 <span class="text-grey">Powered by</span>
@@ -695,37 +192,6 @@
                             <div class="sub-title-area mt60">
                                 <h4 class="sub-tit">워크넷 채용공고</h4>
                             </div>
-                                <div class="box-white mt20">
-                                    <div class="list-width type-incruit">
-                                        <div class="box-text">
-                                            <input type="hidden" name="pblancSorcCd" value="W">
-                                            <input type="hidden" name="pblancNm" value="제조관련 단순종사원 (전장조립)모집의 건/오산,평...">
-                                            <input type="hidden" name="pblancNo" value="KF10212210040004">
-                                            <input type="hidden" name="workArea" value="경기 용인시 처인구">
-                                            <input type="hidden" name="career" value="신입">
-                                            <input type="hidden" name="lvedu" value="학력무관">
-                                            <input type="hidden" name="enggStleNm" value="기간의 정함이 없는 근로계약">
-                                            <input type="hidden" name="slry" value="시급 10000원">
-                                            <input type="hidden" name="emptBgnde" value="22-10-04">
-                                            <input type="hidden" name="emptEndde" value="22-11-14">
-                                            <input type="hidden" name="pcDtlUrl" value="http://www.work.go.kr/empDetailRedirect.do?wantedAuthNo=KF10212210040004">
-
-                                            <em class="badge-point">채용</em>
-                                            <p class="title mt10">제조관련 단순종사원 (전장조립)모집의 건/오산,평...</p>
-                                            <ul class="text text-grey mt10">
-                                                <li>경기 용인시 처인구</li>
-                                                <li>신입</li>
-                                                <li>학력무관</li>
-                                                <li>기간의 정함이 없는 근로계약</li>
-                                                <li>시급 10000원</li>
-                                                <li name="wEmptEndde" data-value="22-11-14">D-5</li>
-                                            </ul>
-                                            <div class="box-btn-area">
-                                                <button type="button" class="btn btn-primary btn-lg" onclick="goDetailInfo(this);"><span>지원하러 가기</span></button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             
                             <div class="incruit-logo-area">
                                 <span>정보제공</span>
@@ -752,42 +218,61 @@
                             <input type="hidden" name="emptBgnde">
                             <input type="hidden" name="emptEndde">
                         </form>
-
                     </div>
                 </div><!--// article-content -->
             </article><!--// article :: 채용정보 -->
-        </div>
-    </div>
-
-    <div class="article-wrap bg-grey" style="">
-        <article class="article">
-            <div class="article-title-area frame-min" id="sameIndustry">
-                <h3 class="tit">동종업계 추천기업</h3>
-            </div><!--// article-title-area -->
-            <div class="article-content frame-min" id="sameIndustryArea">
-
-        <div class="slide-wrap recom-box" data-slide="normal" data-slide-num="4">
-        <div class="slide-content slick-initialized slick-slider slick-dotted">
-        <div class="slick-list draggable"><div class="slick-track" style="opacity: 1; width: 6312px; transform: translate3d(-1052px, 0px, 0px);"><div class="recom-item slick-slide slick-cloned" data-slick-index="-4" id="" aria-hidden="true" style="width: 243px;" tabindex="-1">
-            <a href="/gsmb/company/11914" tabindex="-1">
-                <span class="sort">소기업</span>
-                <p class="name text-elps2">가배온</p>
-                <div class="area">
-                    <span>경기 화성시</span>
-                    <em class="badge-point fr">채용중</em>
+    
+        <!-- article :: 동종업계 추천기업 -->
+            <article class="article">
+                <div class="article-title-area frame-min" id="sameIndustry">
+                    <h3 class="tit">동종업계 추천기업</h3>
+                </div><!--// article-title-area -->
+                    <div class="article-content frame-min" id="sameIndustryArea">
+                        <!-- {% if data_list[0].홈페이지 != '-' %}                 
+                        {% endif %} -->
+                        {{data_list[0].기업형태}}
+                        <div class="recom-item slick-slide slick-cloned" data-slick-index="-4" id="" aria-hidden="true" style="width: 243px;" tabindex="-1">
+                            <a href="/company/{{data_list[0].data_id}}" tabindex="-1">
+                                <span class="sort">{{data_list[0].기업형태}}</span>
+                                <p class="name text-elps2">가배온</p>
+                                <div class="area">
+                                    <span>경기 화성시</span>
+                                    <em class="badge-point fr">채용중</em>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
-            </a>
-        </div>
-        <div class="recom-item slick-slide slick-cloned" data-slick-index="18" id="" aria-hidden="true" style="width: 243px;" tabindex="-1">
-            <a href="/gsmb/company/17116" tabindex="-1">
-                <span class="sort">중기업</span>
-                <p class="name text-elps2">금강</p>
-                <div class="area">
-                    <span>부산 사하구</span>
-                    
-                </div>
-            </a>
-        </div>
+            </article><!-- article :: 동종업계 추천기업 -->
 
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07f9f113d21624a68eea32dc98b55f"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07f9f113d21624a68eea32dc98b55f&libraries=LIBRARY"></script>
+    <script>
+        y = '{{data_list[0].위도}}';
+        x = '{{data_list[0].경도}}';
+        loc = '{{data_list[0].회사주소}}';
+        // alert(x + ' : ' + y);
+            var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+                mapOption = { 
+                    center: new kakao.maps.LatLng(x, y), // 지도의 중심좌표
+                    level: 3 // 지도의 확대 레벨
+                };
+            
+            var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+            
+            // 마커가 표시될 위치입니다 
+            var markerPosition  = new kakao.maps.LatLng(x, y); 
+            
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+                position: markerPosition
+            });
+            
+            // 마커가 지도 위에 표시되도록 설정합니다
+            marker.setMap(map);
+            
+            // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+            // marker.setMap(null);    
+    </script>
 </body>
 </html>

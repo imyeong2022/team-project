@@ -387,7 +387,7 @@ footer {
 	padding-left: 10px;
 	padding-right: 10px;
 	color: rgb(29, 146, 255);
-	font-size: 1.7vmin;
+	font-size: 2vmin;
 	font-weight: bold;
 }
 
@@ -398,6 +398,7 @@ footer {
 	padding-top: 7px;
 	font-size: 3.5vmin;
 	font-weight: bold;
+	color: black;
 }
 
 .grid-sub-text {
@@ -500,6 +501,46 @@ input::placeholder {
 	height: 60px;
 	margin-left: 32.5%;
 	margin-right: 32.5%;
+	padding-left: 1%;
+	margin-bottom: 15px;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
+.join-input-birth-first {
+	width: 9.5%;
+	height: 60px;
+	margin-left: 32.5%;
+	margin-right: 0.4%;
+	padding-left: 1%;
+	margin-bottom: 15px;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
+.join-input-birth {
+	width: 9.5%;
+	height: 60px;
+	margin-left: 0.3%;
+	margin-right: 0.5%;
+	padding-left: 0.5%;
+	padding-left: 1%;
+	margin-bottom: 15px;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
+.join-input-birth-end {
+	width: 9.5%;
+	height: 60px;
+	margin-left: 0.15%;
+	margin-right: 29%;
 	padding-left: 1%;
 	margin-bottom: 15px;
 	font-size: 16px;
@@ -995,6 +1036,23 @@ input::placeholder {
 	border: none;
 	font-size: 16px;
 }
+
+/* -----------company.html 적용 -> 태수 작업 전 임시방편 by 서연 */
+.frame-min {
+    position: relative;
+    max-width: 1180px;
+    margin: 0 auto;
+}
+
+.article-title-area .tit {
+    display: inline-block;
+    font-size: 36px;
+    font-weight: 500;
+}
+.article-wrap {
+    padding: 100px 0;
+}
+/* --------------------------------------------company.html */
 
 .qna-section {
 	height: auto;

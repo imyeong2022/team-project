@@ -1,6 +1,8 @@
-from flask import Flask, redirect, url_for, render_template, request
+from flask import Flask, redirect, url_for, render_template, request , flash
 from flask import request, session
 import pymysql
+import hashlib
+import re
 
 ## 2022 11 10 병합작업 1차버전입니다.
 ########### 데이터베이스 접속 전역변수 선언############
@@ -114,6 +116,7 @@ def login_proc():
         # 키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
         user_id = request.form['user_id']
         user_pw = request.form['user_pw']
+        pw_hash = hashlib.sha256(user_pw.encode('utf-8')).hexdigest()
         if len(user_id) == 0 or len(user_pw) == 0:
             return 'Error!! UserId or UserPw not found(null)'
         else:
@@ -148,10 +151,6 @@ def logout_proc():
 ##################### END 로그인관련 ###############
 
 
-
-##################### 로그인관련 ###############
-
-
 ##################### 회원가입관련 ###############
 
 
@@ -162,6 +161,7 @@ def join_form_get():
 
 @app.route('/join_proc', methods=['POST'])
 def join_proc():
+    Idexp = re.compile('^[a-zA-Z0-9]{4,12}$')
 
     if request.method == 'POST':  # request객체 안에 method 기능있음(자바도 마찬가지).
         # 키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
@@ -170,15 +170,27 @@ def join_proc():
         # 키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
         user_name = request.form['user_name']
         user_phone = request.form['user_phone']
-        user_birth = request.form['user_birth']
-        if len(user_id) == 0 or len(user_pw) == 0:
-            return '에러! 입력되지 않은 값이 있습니다!'
-        else:
-            sql = 'INSERT INTO member(ID, PW, NAME, Phone, BIRTH) VALUES(%s,%s,%s,%s,%s)'
-            cursor.execute(sql, (user_id, user_pw, user_name,
-                           user_phone, user_birth, ))
-            con.commit()
-            return render_template('Board/login.html')
+        user_birth = request.form['user_birth-1'] + request.form['user_birth-2'] + request.form['user_birth-3']
+        print(user_birth)
+        pw_hash = hashlib.sha256(user_pw.encode('utf-8')).hexdigest()
+
+        ## 유효성 검사 ##
+        REGEX_PASSWORD = '^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*()])[\w\d!@#$%^&*()]{8,}$'
+
+        """ if (user_id == ""):
+            flash("ID를 입력해주세요.")
+            return render_template('Board/join.html')
+        if not re.fullmatch(REGEX_PASSWORD, user_pw):
+            flash("비밀번호를 확인하세요." '\n' " 최소 1개 이상의 소문자, 대문자, 숫자, 특수문자로 구성되어야 하며 길이는 8자리 이상이어야 합니다.")
+            return render_template('Board/join.html')
+        if((user_id == True) & (Idexp.match(user_id) == True)): """
+            
+
+        ## 유효성 검사 종료##
+        sql = 'INSERT INTO member(ID, PW, NAME, Phone, BIRTH) VALUES(%s,%s,%s,%s,%s)'
+        cursor.execute(sql, (user_id, pw_hash, user_name, user_phone, user_birth, ))
+        con.commit()
+        return render_template('Board/login.html')
 
 ##################### END 회원가입관련 ###############
 

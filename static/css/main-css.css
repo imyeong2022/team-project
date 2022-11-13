@@ -358,7 +358,7 @@ footer {
 	padding-left: 10px;
 	padding-right: 10px;
 	color: rgb(29, 146, 255);
-	font-size: 2.4vmin;
+	font-size: 2vmin;
 	font-weight: bold;
 }
 
@@ -369,6 +369,7 @@ footer {
 	padding-top: 7px;
 	font-size: 4.5vmin;
 	font-weight: bold;
+	color: black;
 }
 
 .grid-sub-text {

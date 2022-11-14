@@ -90,6 +90,19 @@ footer {
 .main-section {
 	height: auto;
 	width: 100%;
+	overflow: hidden
+}
+
+.bg-f6 {
+	background: #f6f6f6;
+	padding: 2vmin;
+	overflow: hidden;
+}
+
+.bg-ff {
+	background: #ffffff;
+	padding: 2vmin;
+	overflow: hidden;
 }
 
 .header-a-tag-none {
@@ -132,6 +145,18 @@ footer {
 	padding-top: 2%;
 	padding-left: 3%;
 	padding-right: 3%;
+}
+
+.home-img {
+	margin-top: 16px;
+	margin-right: 10px;
+	display: inline-block;
+	width: 48px;
+	height: 48px;
+	border: 1px solid #fff;
+	border-radius: 100%;
+	background: url(../source/index.png) no-repeat;
+	background-position: 50% 50%;
 }
 
 .main-section-slider-div {}
@@ -284,18 +309,17 @@ footer {
 	margin-left: 5px;
 }
 
-.ee{
+.ee {
 	width: 33%;
 }
 
-.ee:nth-child(2){
+.ee:nth-child(2) {
 	width: 66%
 }
 
-.eelis {
-}
+.eelis {}
 
-.eeli{
+.eeli {
 	list-style: none;
 	padding: 0 0 0 0;
 }
@@ -345,12 +369,13 @@ footer {
 	background: #ffffff;
 	width: 27%;
 	display: inline-block;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1);
-    cursor: pointer; /* 마우스 포인터를 올렸을 때 손가락으로 바뀜 */
-    transition: box-shadow 0.1s linear;
+	box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	/* 마우스 포인터를 올렸을 때 손가락으로 바뀜 */
+	transition: box-shadow 0.1s linear;
 }
 
-.main-gird-li:hover{
+.main-gird-li:hover {
 	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 4px rgba(0, 0, 0, 0.2);
 }
 
@@ -362,12 +387,55 @@ footer {
 	font-weight: bold;
 }
 
-.grid-title {	
+.grid-red {
+	margin-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #ffffff;
+	background: rgb(255, 86, 86);
+	font-size: 2vmin;
+	font-weight: bold;
+	border-radius: 30px;
+	border: 0.2vmin solid rgb(255, 86, 86);
+}
+
+.grid-sub-red {
+	margin-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: rgb(255, 86, 86);
+	font-size: 2vmin;
+	font-weight: bold;
+	border-radius: 30px;
+	border: 0.2vmin solid rgb(255, 86, 86);
+}
+
+.grid-title {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin: 0px;
 	padding-top: 7px;
-	font-size: 4.5vmin;
+	font-size: 3.5vmin;
+	font-weight: bold;
+	color: black;
+}
+
+.grid-title-side {
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 10px 0 0 0;
+	padding-top: 7px;
+	font-size: 3.5vmin;
+	font-weight: bold;
+	color: black;
+}
+
+.grid-title-side {
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 10px 0 0 0;
+	padding-top: 7px;
+	font-size: 3.5vmin;
 	font-weight: bold;
 	color: black;
 }
@@ -601,9 +669,9 @@ input::placeholder {
 	float: left;
 	height: 40.3vmin;
 	width: 85%;
-	background-color: rgb(97, 97, 97);
+	background: url(../source/company/company-main-1.png)no-repeat;
+	background-size: cover;
 	z-index: 0;
-
 }
 
 .title-area-company {
@@ -613,7 +681,7 @@ input::placeholder {
 	padding-top: 240px;
 	padding-bottom: 40px;
 	float: left;
-	height: 40.3vmin;
+	height: 34vmin;
 	width: 85%;
 	z-index: 1;
 }
@@ -646,6 +714,8 @@ input::placeholder {
 	color: aliceblue;
 	margin-top: 35px;
 	margin-bottom: 5px;
+	font-size: 2.3vmin;
+	font-weight: bold;
 }
 
 .company-title {
@@ -671,6 +741,60 @@ input::placeholder {
 	font-weight: none;
 	color: aliceblue;
 }
+
+.custom-checkbox {
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.custom-checkbox .checkbox-like+label {
+	display: inline-block;
+	padding: 0 20px 0 45px;
+	color: #555;
+	font-size: 16px;
+	line-height: 46px;
+	background: #fff;
+	border: 1px solid #999;
+	border-radius: 24px;
+	vertical-align: middle;
+}
+
+.custom-checkbox input[type="checkbox"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+	vertical-align: top;
+}
+
+.custom-checkbox .checkbox-like.type2+label {
+	color: #fff;
+	background: transparent;
+	border: 1px solid #fff;
+}
+
+.custom-checkbox .checkbox-like+label:before {
+	display: block;
+	content: '';
+	position: absolute;
+	left: 20px;
+	top: 50%;
+	margin-top: -7px;
+	width: 15px;
+	height: 15px;
+	text-align: center;
+	background: url(../images/icon/ico_check_like.png) no-repeat;
+}
+
+.custom-checkbox .checkbox-like.type2+label:before {
+	background: url(../source/like.png) -61px -29px no-repeat;
+}
+
 
 
 /* FAQ */
@@ -1011,20 +1135,177 @@ input::placeholder {
 }
 
 /* -----------company.html 적용 -> 태수 작업 전 임시방편 by 서연 */
-.frame-min {
-    position: relative;
-    max-width: 1180px;
-    margin: 0 auto;
+.compony-frame {
+	position: relative;
+	max-width: 1380px;
+	margin: 5vmin auto;
 }
 
-.article-title-area .tit {
-    display: inline-block;
-    font-size: 36px;
-    font-weight: 500;
+.article-title-area {
+	position: relative;
+	margin: 3vmin 0;
 }
+
+.article-title-area>.title {
+	display: inline-block;
+	font-size: 4.5vmin;
+	font-weight: 500;
+	font-weight: bold;
+	margin: 0 0;
+}
+
 .article-wrap {
-    padding: 100px 0;
+	padding: 100px 0;
 }
+
+.info-guide {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	color: gray;
+}
+
+.info-guide a {
+	color: gray;
+}
+
+.article-content {
+	background: #ffffff;
+	overflow: hidden;
+}
+
+.info-item {
+	width: 50%;
+	padding: 4.5vmin;
+	box-sizing: border-box;
+	float: left;
+	display: table;
+}
+
+.basic-info-wrap {
+	overflow: hidden;
+}
+
+.basic-info-wrap .info-item dl dt {
+	display: table-cell;
+	width: 9vmin;
+	padding-top: 20px;
+	padding-right: 30px;
+	font-weight: 700;
+}
+
+.basic-info-wrap .info-item dl:first-child dt {
+	padding-top: 0px;
+}
+
+.basic-info-wrap .info-item dl dd {
+	display: table-cell;
+	color: #555;
+}
+
+#wlfr {
+	background: #ffffff;
+}
+
+.welfare-box {
+	list-style: none;
+	overflow: hidden;
+	padding: 0 0;
+	margin: 0 0;
+}
+
+.welfare-wrap .welfare-box li {
+	list-style: none;
+	float: left;
+	box-sizing: border-box;
+	width: 49%;
+	height: 30vmin;
+	padding: 60px;
+	margin-bottom: 3vmin;
+	border: 1px solid #d6d6d6;
+}
+
+.welfare-wrap .welfare-box li:nth-child(2n+1) {
+	margin-right: 2%;
+}
+
+li>.title {
+	font-weight: bold;
+	font-size: 3vmin;
+}
+
+.sub-title {
+	display: inline-block;
+	font-size: 4.5vmin;
+	font-weight: bold;
+	margin: 0 0;
+}
+
+.box-white>.icon {
+	display: inline-block;
+	width: 54px;
+	height: 54px;
+}
+
+.i1 {
+	background: url(../source/company/dontong.png);
+}
+
+.i2 {
+	background: url(../source/company/hyumu.png);
+}
+
+.i3 {
+	background: url(../source/company/bosang.png);
+}
+
+.i4 {
+	background: url(../source/company/pyony.png);
+}
+
+.i5 {
+	background: url(../source/company/siser.png);
+}
+
+.i6 {
+	background: url(../source/company/gyo6.png);
+}
+
+.i7 {
+	background: url(../source/company/etc.png);
+}
+
+.i8 {
+	background: url(../source/company/present.png);
+}
+
+.company-hl {
+	display: flex;
+	background-color: #759ef7;
+	color: #ffffff;
+	align-items: center;
+	justify-content: space-around;
+	padding: 0 20px 0 20px;
+	margin-left: 10px;
+	height: 6vmin;
+	width: 13vmin;
+	border-radius: 30px;
+	font-size: 1.9vmin;
+}
+
+.incruit-logo-area {
+	text-align: center;
+}
+
+.text-grey {
+	color: gray;
+	margin-right: 10px;
+}
+
+.company-swiper-div-margin{
+	margin-top: 5vmin;
+}
+
 /* --------------------------------------------company.html */
 
 .qna-section {
@@ -1090,13 +1371,17 @@ input::placeholder {
 .condition>ul>li {
 	margin-bottom: 20px;
 	padding: 5% 5% 5% 5%;
-	height: 150px;
+	height: auto;
 	width: auto;
 	list-style: none;
 	background: aliceblue;
 	border: 0.1vmin solid rgb(214, 214, 214);
 }
 
+
+.incruit-wrap>.condition>ul>li {
+	padding: 2% 5% 2% 5%;
+}
 
 .condition>ul>li>div>div>a:nth-child(-n+2) {
 	float: right;

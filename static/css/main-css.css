@@ -459,6 +459,26 @@ footer {
 	color: black;
 }
 
+.grid-title-side {
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 10px 0 0 0;
+	padding-top: 7px;
+	font-size: 3.5vmin;
+	font-weight: bold;
+	color: black;
+}
+
+.grid-sub-text {
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 10px 0 0 0;
+	padding-top: 7px;
+	font-size: 3.5vmin;
+	font-weight: bold;
+	color: black;
+}
+
 .grid-sub-text {
 	padding: 0 1vmin 1vmin 1vmin;
 	font-size: 1.7vmin;

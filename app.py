@@ -5,8 +5,8 @@ import pymysql
 ###########데이터베이스 접속 전역변수 선언############
 con = pymysql.connect(host='localhost',
                              user='root',
-                             password='java',
-                             db='final_test',
+                             password='qr395026',
+                             db='JOBARA',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
 cursor = con.cursor() 

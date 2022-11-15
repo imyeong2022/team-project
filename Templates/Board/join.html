@@ -37,6 +37,27 @@
             </div>
             <hr class="public-hr" />
             <div class="login-form-div">
+<<<<<<< HEAD
+=======
+                <form class="login-form" action="/join_proc" method="post" onsubmit="return Validation();">
+                    <tr><input class="join-input" type="text" name="user_id" id="user_id" placeholder="ID"
+                            maxlength="12">
+                        <input type="button" value="중복 확인" id="btmCheck" onclick="idchk()" />
+                    </tr>
+                    <input class="join-input" type="password" name="user_pw" id="user_pw" placeholder="PassWord">
+                    <input class="join-input" type="password" name="user_pw_check" id="user_pw_check"
+                        placeholder="Password_check">
+                    <input class="join-input" type="text" name="user_name" id="user_name" placeholder="Name">
+                    <input class="join-input" type="text" name="user_email" id="user_email" placeholder="email">
+                    <input class="join-input" type="text" name="user_phone" id="user_phone" placeholder="Phone Number"
+                        maxlength="11">
+                    <input class="join-input-birth-first" type="text" name="user_birth-1" id="user_birth-1"
+                        placeholder="YYYY" maxlength="4">-
+                    <input class="join-input-birth" type="text" name="user_birth-2" id="user_birth-2" placeholder="MM"
+                        maxlength="2">-
+                    <input class="join-input-birth-end" type="text" name="user_birth-3" id="user_birth-3"
+                        placeholder="DD" maxlength="2">
+>>>>>>> 52683a8 (에러수정(조인))
 
                 <form class="login-form" action="/join_proc" method="post">
                     <input class="join-input" type="text" name="user_id" placeholder="ID">

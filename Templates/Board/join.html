@@ -153,7 +153,6 @@
             <div class="login-form-div">
 
                 <form class="login-form" action="/join_proc" method="post" onsubmit="return Validation();">
-                    {% include "Board/form_join_errors.html" %}
                     <tr><input class="join-input" type="text" name="user_id" id="user_id" placeholder="ID"
                             maxlength="12">
                         <input type="button" value="중복 확인" id="btmCheck" onclick="idchk()" />

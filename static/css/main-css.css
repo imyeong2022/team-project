@@ -3,6 +3,7 @@
 	src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
 	font-weight: 400;
 	font-style: normal;
+<<<<<<< HEAD
  }
  
  html {
@@ -15,6 +16,21 @@
  }
  
  header {
+=======
+}
+
+html {
+	font-family: Helvetica,Tahoma;
+}
+
+body {
+	font-size: 2vmin;
+	margin: 0;
+	padding: 0;
+}
+
+header {
+>>>>>>> f24a2dd (11/14, 17:56 // 추가본)
 	position: fixed;
 	height: 120px;
 	width: 100%;
@@ -729,6 +745,390 @@
 	text-indent: 1.2em;
 }
 
+<<<<<<< HEAD
 .faq>li{
 	
+=======
+.spacing:nth-child(2) {
+	margin: 30px 0px 0px 0px;
+	padding: 0px 0px 15px 0px;
+}
+
+.spacing:nth-child(2)::before {
+	content: "ㄴ  ";
+}
+
+/* qna */
+
+#qna-select {
+	height: 100%;
+	width: 100%;
+}
+
+#qna-select>.select {
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+	border-radius: 5px;
+	background: white;
+	padding-left: 10%;
+	cursor: pointer;
+	height: 100%;
+	width: 90%;
+	display: flex;
+	align-items: center;
+}
+
+#qna-select>.select:hover {
+	color: #333;
+	transition: all .3s;
+}
+
+#qna-select>.select .option-list {
+	list-style: none;
+	padding: 0;
+	border-radius: 5px;
+	background: white;
+	box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+}
+
+#qna-select>.select .option-list .option {
+	padding: 10px 15px;
+}
+
+#qna-select>.select .option-list .option:hover {
+	background-color: #f2f2f2;
+}
+
+.qna>li {
+	padding: 8px;
+	box-sizing: border-box;
+}
+
+.qna>li>div {
+	display: none;
+	color: #000;
+	background-color: rgb(241, 243, 246);
+	font-size: 13px;
+	overflow: hidden;
+	padding: 10px;
+	box-sizing: border-box;
+}
+
+.qna input:checked+label+div {
+	display: block;
+}
+
+/* question */
+.question-content>hr {
+	margin-top: 0px;
+	border: 2px solid gray;
+}
+
+.question-content>input {
+	height: 300px;
+	width: 300px;
+}
+
+.question-content>button {
+	float: right;
+	margin-top: 20px;
+	width: 7%;
+	height: 45px;
+	font-weight: bold;
+	color: white;
+	background: #759ef7;
+	outline: none;
+	border: none;
+	font-size: 16px;
+}
+
+/* -----------company.html 적용 -> 태수 작업 전 임시방편 by 서연 */
+.compony-frame {
+	position: relative;
+	max-width: 1380px;
+	margin: 5vmin auto;
+}
+
+.article-title-area {
+	position: relative;
+	margin: 3vmin 0;
+}
+
+.article-title-area>.title {
+	display: inline-block;
+	font-size: 4.5vmin;
+	font-weight: 500;
+	font-weight: bold;
+	margin: 0 0;
+}
+
+.article-wrap {
+	padding: 100px 0;
+}
+
+.info-guide {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	color: gray;
+}
+
+.info-guide a {
+	color: gray;
+}
+
+.article-content {
+	background: #ffffff;
+	overflow: hidden;
+}
+
+.info-item {
+	width: 50%;
+	padding: 4.5vmin;
+	box-sizing: border-box;
+	float: left;
+	display: table;
+}
+
+.basic-info-wrap {
+	overflow: hidden;
+}
+
+.basic-info-wrap .info-item dl dt {
+	display: table-cell;
+	width: 9vmin;
+	padding-top: 20px;
+	padding-right: 30px;
+	font-weight: 700;
+}
+
+.basic-info-wrap .info-item dl:first-child dt {
+	padding-top: 0px;
+}
+
+.basic-info-wrap .info-item dl dd {
+	display: table-cell;
+	color: #555;
+}
+
+#wlfr {
+	background: #ffffff;
+}
+
+.welfare-box {
+	list-style: none;
+	overflow: hidden;
+	padding: 0 0;
+	margin: 0 0;
+}
+
+.welfare-wrap .welfare-box li {
+	list-style: none;
+	float: left;
+	box-sizing: border-box;
+	width: 49%;
+	height: 30vmin;
+	padding: 60px;
+	margin-bottom: 3vmin;
+	border: 1px solid #d6d6d6;
+}
+
+.welfare-wrap .welfare-box li:nth-child(2n+1) {
+	margin-right: 2%;
+}
+
+li>.title {
+	font-weight: bold;
+	font-size: 3vmin;
+}
+
+.sub-title {
+	display: inline-block;
+	font-size: 4.5vmin;
+	font-weight: bold;
+	margin: 0 0;
+}
+
+.box-white>.icon {
+	display: inline-block;
+	width: 54px;
+	height: 54px;
+}
+
+.i1 {
+	background: url(../source/company/dontong.png);
+}
+
+.i2 {
+	background: url(../source/company/hyumu.png);
+}
+
+.i3 {
+	background: url(../source/company/bosang.png);
+}
+
+.i4 {
+	background: url(../source/company/pyony.png);
+}
+
+.i5 {
+	background: url(../source/company/siser.png);
+}
+
+.i6 {
+	background: url(../source/company/gyo6.png);
+}
+
+.i7 {
+	background: url(../source/company/etc.png);
+}
+
+.i8 {
+	background: url(../source/company/present.png);
+}
+
+.company-hl {
+	display: flex;
+	background-color: #759ef7;
+	color: #ffffff;
+	align-items: center;
+	justify-content: space-around;
+	padding: 0 20px 0 20px;
+	margin-left: 10px;
+	height: 6vmin;
+	width: 13vmin;
+	border-radius: 30px;
+	font-size: 1.9vmin;
+}
+
+.incruit-logo-area {
+	text-align: center;
+}
+
+.text-grey {
+	color: gray;
+	margin-right: 10px;
+}
+
+.company-swiper-div-margin{
+	margin-top: 5vmin;
+}
+
+/* --------------------------------------------company.html */
+
+.qna-section {
+	height: auto;
+	width: 100%;
+	margin: 0px 0px 30px 0px;
+}
+
+.qna {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	height: auto;
+	width: 100%;
+}
+
+.qna>li:nth-child(n+2) {
+	margin-top: 25px;
+}
+
+.qna>li>label>div {
+	float: left;
+}
+
+.qna input {
+	display: none;
+}
+
+.qna-div-1 {
+	width: 7%;
+}
+
+.qna-div-2 {
+	width: 68%;
+}
+
+.qna-div-3 {
+	width: 10%;
+}
+
+.qna-div-4 {
+	width: 15%;
+}
+
+.qna>li>div {
+	margin: 40px 0px 0px 5%;
+}
+
+
+/* condition */
+.condition {
+	margin: 0px 8% 0px 8%;
+	width: 84%;
+	height: auto;
+}
+
+.condition>ul {
+	padding: 0 0 0 0;
+	margin: none;
+	width: auto;
+}
+
+.condition>ul>li {
+	margin-bottom: 20px;
+	padding: 5% 5% 5% 5%;
+	height: auto;
+	width: auto;
+	list-style: none;
+	background: white;
+	border: 0.1vmin solid rgb(214, 214, 214);
+}
+
+
+.incruit-wrap>.condition>ul>li {
+	padding: 2% 5% 2% 5%;
+}
+
+.condition>ul>li>div>div>a:nth-child(-n+2) {
+	float: right;
+
+}
+
+.condition>ul>li>div>div {
+	width: auto;
+}
+
+.condition>ul>li>div>div>a:nth-child(-n+2)>div {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 0 20px 0 20px;
+	margin-left: 10px;
+	height: 6vmin;
+	width: 18vmin;
+	background: white;
+	border-radius: 30px;
+	font-size: 1.9vmin;
+	border: 0.1vmin solid gray;
+}
+
+.condition-sub-text {
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 16px;
+	color: gray;
+}
+
+.condition>ul>li>div>ol {
+	list-style: none;
+	padding: 0 0 0 10px;
+}
+
+.condition>ul>li>div>ol>li {
+	float: left;
+	list-style: none;
+	width: auto;
+	margin: 0 10px 0 0;
+>>>>>>> f24a2dd (11/14, 17:56 // 추가본)
 }

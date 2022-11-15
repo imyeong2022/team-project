@@ -21,11 +21,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    sql = "SELECT * from recruitment"
+    sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
-    data_list = data_list
-    data_list = data_list
     data_list_len = len(data_list)
     print("인덱스길이", data_list_len)
 
@@ -39,7 +37,6 @@ def condition():
     sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
-    data_list = data_list
     return render_template('Board/Condition.html', data_list=data_list)
 
 

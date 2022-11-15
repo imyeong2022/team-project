@@ -11,6 +11,8 @@ html {
 
 body {
 	font-size: 2vmin;
+	margin: 0;
+	padding: 0;
 }
 
 header {
@@ -1436,7 +1438,7 @@ li>.title {
 	padding: 0 20px 0 20px;
 	margin-left: 10px;
 	height: 6vmin;
-	width: 17vmin;
+	width: 18vmin;
 	background: white;
 	border-radius: 30px;
 	font-size: 1.9vmin;

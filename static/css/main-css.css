@@ -11,6 +11,8 @@ html {
 
 body {
 	font-size: 2vmin;
+	margin: 0;
+	padding: 0;
 }
 
 header {
@@ -1113,9 +1115,8 @@ input::placeholder {
 	padding: 0 20px 0 20px;
 	margin-left: 10px;
 	height: 6vmin;
-	width: 17vmin;
-	background: #759ef7;
-	border: 1px solid coral;
+	width: 18vmin;
+	background: white;
 	border-radius: 30px;
 	font-size: 2vmin;
 }

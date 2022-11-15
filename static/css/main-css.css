@@ -12,6 +12,9 @@ html {
 body {
 	margin: 0px;
 	height: 3000px;
+	font-size: 2vmin;
+	margin: 0;
+	padding: 0;
 }
 
 header {
@@ -995,4 +998,75 @@ input::placeholder {
 
 .qna>li>div{
 	margin: 40px 0px 0px 5%;
+}
+
+
+/* condition */
+.condition {
+	margin: 0px 8% 0px 8%;
+	width: 84%;
+	height: auto;
+}
+
+.condition>ul {
+	padding: 0 0 0 0;
+	margin: none;
+	width: auto;
+}
+
+.condition>ul>li {
+	margin-bottom: 20px;
+	padding: 5% 5% 5% 5%;
+	height: auto;
+	width: auto;
+	list-style: none;
+	background: white;
+	border: 0.1vmin solid rgb(214, 214, 214);
+}
+
+
+.incruit-wrap>.condition>ul>li {
+	padding: 2% 5% 2% 5%;
+}
+
+.condition>ul>li>div>div>a:nth-child(-n+2) {
+	float: right;
+
+}
+
+.condition>ul>li>div>div {
+	width: auto;
+}
+
+.condition>ul>li>div>div>a:nth-child(-n+2)>div {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	padding: 0 20px 0 20px;
+	margin-left: 10px;
+	height: 6vmin;
+	width: 18vmin;
+	background: white;
+	border-radius: 30px;
+	font-size: 1.9vmin;
+	border: 0.1vmin solid gray;
+}
+
+.condition-sub-text {
+	padding-left: 10px;
+	padding-right: 10px;
+	font-size: 16px;
+	color: gray;
+}
+
+.condition>ul>li>div>ol {
+	list-style: none;
+	padding: 0 0 0 10px;
+}
+
+.condition>ul>li>div>ol>li {
+	float: left;
+	list-style: none;
+	width: auto;
+	margin: 0 10px 0 0;
 }

@@ -6,8 +6,8 @@ import pymysql
 ########### 데이터베이스 접속 전역변수 선언############
 con = pymysql.connect(host='localhost',
                              user='root',
-                             password='java',
-                             db='final_test',
+                             password='qr395026',
+                             db='JOBARA',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
 cursor = con.cursor()
@@ -53,6 +53,19 @@ def company(data_id):
 @app.route('/jobs')  ################# 채용정보페이지
 def jobs():
     return render_template('Board/jobs.html')
+
+
+@app.route('/data')
+def data():
+    sql ='select All_Recruit,All_Employ from job_scale_total'
+    cursor.execute(sql)
+    data_list1 = cursor.fetchall()
+    data_list1 = data_list1
+    data_list1 = data_list1
+    data_list_len = len(data_list1)
+    print("인덱스길이data", data_list_len)
+   
+    return render_template('Board/data.html', data_list=data_list1)
 
 
 @app.route('/faq')  ############## 질문과 답변

@@ -5,6 +5,12 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>index</title>
+	<link rel="stylesheet" href="../../static/css/styles.css" />
+	<link rel="stylesheet" href="../../static/css/aos.css" />
+	<!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
 	<!-- slider styles -->
 	<style>
 
@@ -67,8 +73,8 @@
 					</div>
 					<ul class="main-gird-ul">
 						{% for x in range(6) %}
-						<a class="a-text-decoration a-color" href='/company/{{data_list[x].data_id}}'
-							style="cursor:pointer">
+						<a class="a-text-decoration a-color aos-item" href='/company/{{data_list[x].data_id}}'
+							style="cursor:pointer" data-aos="fade-right">
 							<li class="main-gird-li">
 								<span class="grid-sub-blue">{{ data_list[x].모집직종코드명 }}</span>
 								<p class="grid-title">{{ data_list[x].기업명칭 }}</p>
@@ -82,6 +88,12 @@
 	</div>
 
 	<footer></footer>
+	<script src="../../static/js/aos.js"></script>
+	<script>
+		AOS.init({
+			easing: 'ease-in-out-sine'
+		});
+	</script>
 	<!-- Swiper JS -->
 	<script src="./js/swiper.min.js"></script>
 	<script>

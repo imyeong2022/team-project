@@ -125,10 +125,10 @@
             }
         }
 
-        $(document).on("click", ".mail_check_button", function (code) { // 쿼리로 작성연습 해보기
-            var email = $(".join-mail_input").val(); // 입력한 이메일
-            var cehckBox = $(".mail_check_input"); // 인증번호 입력하는곳
-            var boxWrap = $(".mail_check_input_box"); // 인증번호 입력하는곳의 박스
+        $(document).on("click", ".mail_check_button", function (code) {// 쿼리로 작성연습 해보기
+            var email = $(".join-mail_input").val();            // 입력한 이메일
+            var cehckBox = $(".mail_check_input");        // 인증번호 입력하는곳
+            var boxWrap = $(".mail_check_input_box");    // 인증번호 입력하는곳의 박스
 
             code = ""; //코드값 임시저장을 위한 변수 
             console.log(email)
@@ -146,10 +146,9 @@
 
                 success: function (data) {
                     cehckBox.attr("disabled", false); // attr : 속성(attribuce)의 값을 가져오거나 추가한다.
-                    boxWrap.attr("id",
-                        "mail_check_input_box_true"
-                        ); // 이메일 인증 입력란[$(".mail_check_input_box")]의 색상이 변경
+                    boxWrap.attr("id", "mail_check_input_box_true"); // 이메일 인증 입력란[$(".mail_check_input_box")]의 색상이 변경
                     code = randomStr; // 랜덤변수 데이터로 넘어간 것 code로 저장
+                    alert(data["msg"]);
 
                     console.log("data : " + code);
                 }
@@ -158,21 +157,31 @@
 
             });
             $(document).on("blur", ".mail_check_input", function () {
-                var inputCode = $(".mail_check_input").val(); // 입력코드    
-                var checkResult = $("#mail_check_input_box_warn"); // 비교결과출력
+                var inputCode = $(".mail_check_input").val();        // 입력코드    
+                var checkResult = $("#mail_check_input_box_warn");    // 비교결과출력
                 console.log("코드data : " + code);
-                if (inputCode == code) { // 일치할 경우
-                    checkResult.html("인증완료");
-                    checkResult.attr("class", "correct");
-                } else { // 일치하지 않을 경우
-                    checkResult.html("인증번호를 다시 확인해주세요.");
-                    checkResult.attr("class", "incorrect");
-                }
+                $(document).on("click", ".mail_auth_button", function () {
+                    if (inputCode == code) {                            // 일치할 경우
+                        checkResult.html("인증완료");
+                        checkResult.attr("class", "correct");
+                    } else {                                            // 일치하지 않을 경우
+                        checkResult.html("인증번호를 다시 확인해주세요.");
+                        checkResult.attr("class", "incorrect");
+                    }
 
+                });
             });
         });
 
         /* 인증번호 비교 */
+
+
+
+
+
+
+
+
     </script>
 
 </head>
@@ -210,16 +219,22 @@
                     <input class="join-input" type="password" name="user_pw_check" id="user_pw_check"
                         placeholder="Password_check">
                     <input class="join-input" type="text" name="user_name" id="user_name" placeholder="Name">
-                    <input class="join-mail_input" type="text" name="user_email" id="user_email" placeholder="email">
-                    <!-- 인증번호 공간 -->
+
+                    <!-- 인증번호 공간 --><input class="join-mail_input" type="text" name="user_email" id="user_email"
+                        placeholder="email">
+                    <div class="mail_check_button" id="mail_check_button">
+                        <span>인증번호 전송</span>
+                    </div>
+
                     <div class="mail_check_wrap">
                         <div class="mail_check_input_box" id="mail_check_input_box_false">
                             <input class="mail_check_input" disabled="disabled">
                         </div>
-
-                        <div class="mail_check_button" id="mail_check_button">
-                            <span>인증번호 전송</span>
+                        <div class="mail_auth_button" id="mail_auth_button">
+                            <span>인증번호확인</span>
                         </div>
+
+
 
                         <div class="clearfix"></div>
                         <span id="mail_check_input_box_warn"></span> <!-- 일치여부 경고 -->

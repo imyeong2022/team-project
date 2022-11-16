@@ -20,7 +20,7 @@ app = Flask(__name__)
 ############ 구글메일(계정찾기 테스트) ################ 사이트 접근과 동시에 메일서버와 인터페이스 하면서 recipients 로 지정된 메일 주소로 이메일을 발송
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
+app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com' 
 app.config['MAIL_PASSWORD'] = 'myhinigkzocytxcd'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
@@ -45,7 +45,7 @@ def accountfind_proc():
     find_userid = cursor.fetchone()
     find_userid = find_userid['ID']
     print(find_userid)
-    msg = Message('[잡아라]' +user_name_recive+'님의 아이디를 안내드립니다.', sender='kongjh941109@gmail.com', recipients=['cjsdur@naver.com'])
+    msg = Message('[잡아라]' +user_name_recive+'님의 아이디를 안내드립니다.', sender='kongjh941109@gmail.com', recipients=[user_email_recive])
     msg.body = '회원님 안녕하세요.''회원님의 아이디는 다음과 같습니다.\n' '['+find_userid+ ']\n 앞으로도 더욱 편리한 서비스를 제공하기 위해 최선을 다하겠습니다.'
     mail.send(msg)
 
@@ -155,7 +155,7 @@ def login_form_get():
 @app.route('/login_proc', methods=['POST'])
 def login_proc():
 
-    if request.method == 'POST':  # request객체 안에 method 기능있음(자바도 마찬가지).
+    if request.method == 'POST':  # request객체 안에 method 기능있음(자바도 마찬가지)
         # 키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
         user_id = request.form['user_id']
         user_pw = request.form['user_pw']
@@ -208,12 +208,18 @@ def join_form_get():
 
 @app.route('/mailcheck', methods=['post'])    
 def mailcheck():
-    value = request.form
-    print(value)
-    print(value['email'])
-    print(value['code'])
 
-    return jsonify(result = "success")
+    #return jsonify(result = "success")
+    mail_code = request.form
+    check_mail = mail_code['email']
+    check_code = mail_code['code']
+    print("메일체크"+check_mail)
+    print("코드체크"+check_code)
+    msg = Message('[잡아라] 회원가입 이메일 인증번호.', sender='kongjh941109@gmail.com', recipients=[check_mail])
+    msg.body = ('안녕하세요! 잡아라에서 알려드립니다.\n 공공데이터포털 회원가입 이메일 인증번호를 알려드립니다.\n -인증번호 : '+check_code+'\n 앞으로도 더욱 편리한 서비스를 제공하기 위해 최선을 다하겠습니다.')
+    mail.send(msg)
+
+    return jsonify({'msg': '회원님의 이메일로 아이디를 전송했습니다.'})
 
 
 @app.route('/join_proc', methods=['GET','POST'])

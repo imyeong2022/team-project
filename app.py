@@ -3,7 +3,6 @@ import re
 import pymysql
 from flask import (Flask, flash, redirect, render_template, request, session,
                    url_for)
-
 ## 2022 11 10 병합작업 1차버전입니다.
 ########### 데이터베이스 접속 전역변수 선언############
 con = pymysql.connect(host='localhost',
@@ -62,9 +61,14 @@ def company(data_id):
 #     print(data_list)
 #     return render_template('Board/company.html', data_list=data_list )
 
-@app.route('/test_script')  ################# 자바스크립트 필터 연습 페이지
-def test_script():
-    return render_template('Board/test_script.html')
+# @app.route('/test_script')  ################# 자바스크립트 필터 연습 페이지1
+# def test_script():
+#     return render_template('Board/test_script.html')
+
+@app.route('/products')  ################# 자바스크립트 필터 연습 페이지2 - 유튜브강의 
+def products():
+    return render_template('Board/products.html')
+
 
 @app.route('/jobs')  ################# 채용정보페이지
 def jobs():
@@ -170,8 +174,12 @@ def logout_proc():
 
 @app.route('/join_form_get')
 def join_form_get():
-    return render_template('Board/join.html')
-
+        idcheck = 'select ID from member'
+        cursor.execute(idcheck)
+        id_list = cursor.fetchall()
+        print("id_list값",id_list)
+        print("id_list의타입",type(id_list))
+        return render_template('Board/join.html' , data=json.dumps(id_list, ensure_ascii=False))
 
 @app.route('/join_proc', methods=['POST'])
 def join_proc():
@@ -197,14 +205,13 @@ def join_proc():
             flash("비밀번호를 확인하세요." '\n' " 최소 1개 이상의 소문자, 대문자, 숫자, 특수문자로 구성되어야 하며 길이는 8자리 이상이어야 합니다.")
             return render_template('Board/join.html')
         if((user_id == True) & (Idexp.match(user_id) == True)): """
-            
+
 
         ## 유효성 검사 종료##
         sql = 'INSERT INTO member(ID, PW, NAME, Phone, BIRTH) VALUES(%s,%s,%s,%s,%s)'
         cursor.execute(sql, (user_id, pw_hash, user_name, user_phone, user_birth, ))
         con.commit()
         return render_template('Board/login.html')
-
 
 ##################### END 회원가입관련 ###############
 
@@ -222,7 +229,6 @@ def my_page_proc():
         # 키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
         user_id = request.form['user_id']
         user_pw = request.form['user_pw']
-        # 키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
         user_name = request.form['user_name']
         user_phone = request.form['user_phone']
         user_birth = request.form['user_birth']

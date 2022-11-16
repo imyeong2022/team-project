@@ -60,6 +60,7 @@ def excellence_employment():
 @app.route('/trend')  ################# 구직트렌드페이지 
 def trends():
     return render_template('Board/trend.html')
+<<<<<<< HEAD
 
 
 @app.route('/data')
@@ -73,6 +74,8 @@ def data():
     print("인덱스길이data", data_list_len)
    
     return render_template('Board/data.html', data_list=data_list1)
+=======
+>>>>>>> 35f2924 (trend에 정적데이터 추가)
 
 
 @app.route('/faq')  ############## 질문과 답변

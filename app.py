@@ -24,7 +24,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    sql = "SELECT * from recruitment"
+    sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
     data_list = data_list

@@ -14,8 +14,8 @@
                 <div class="inner">
                     <div class="public-list">
                         <ol class="public-ol">
-                            <li class="public-li">index ></li>
-                            <li class="public-li">> QnA</li>
+                            <li class="public-li">index</li>
+                            <li class="public-li">QnA</li>
                         </ol>
                     </div>
                     <div class="public-title">
@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="content-area">
-                <div class="faq-search-bar bg-gray">
+                <div class="faq-search-bar bg-75">
                     <form id="faqSearchForm" name="faqSearchForm" method="get" action="">
                         <input type="hidden" id="ctgry" name="ctgry" value="0">
                         <div class="faq-search-wrap">
@@ -38,6 +38,9 @@
                                             <div class="text">선택</div>
                                             <ul class="option-list">
                                                 <li class="option">전체</li>
+                                                <li class="option">사이트문의</li>
+                                                <li class="option">불만접수</li>
+                                                <li class="option">기타</li>
                                                 <li class="option">답변 완료된 게시물 보기</li>
                                             </ul>
                                         </div>
@@ -88,6 +91,8 @@
             </div>
         </section>
     </div>
+    {% include '/Board/footer.html' %}
+
     <script>
         function onClickSelect(e) {
             const isActive = e.currentTarget.className.indexOf("active") !== -1;

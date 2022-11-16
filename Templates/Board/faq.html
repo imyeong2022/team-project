@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class="content-area">
-                <div class="faq-search-bar bg-gray">
+                <div class="faq-search-bar bg-75">
                     <form id="faqSearchForm" name="faqSearchForm" method="get" action="">
                         <input type="hidden" id="ctgry" name="ctgry" value="0">
                         <div class="faq-search-wrap">
@@ -79,6 +79,8 @@
             </div>
         </section>
     </div>
+    {% include '/Board/footer.html' %}
+
     <script>
         function onClickSelect(e) {
             const isActive = e.currentTarget.className.indexOf("active") !== -1;

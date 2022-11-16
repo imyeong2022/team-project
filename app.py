@@ -57,9 +57,9 @@ def company(data_id):
 def excellence_employment():
     return render_template('Board/excellence_employment.html')
 
-@app.route('/trends')  ################# 구직트렌드페이지 
+@app.route('/trend')  ################# 구직트렌드페이지 
 def trends():
-    return render_template('Board/work_trends.html')
+    return render_template('Board/trend.html')
 
 
 @app.route('/faq')  ############## 질문과 답변
@@ -257,6 +257,10 @@ def persnal_info_change():
 
 
 ############ 미완성 및 미적용 루트 ########
+
+@app.route('/trend')
+def trend():
+    return render_template('Board/trend.html')
 
 @app.route('/chart')
 def chart():

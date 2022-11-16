@@ -206,7 +206,7 @@
                         </div>
                     </div>
                     <div class="search-fileter-child">
-                        <div class="search-fileter-child-title"><span>규모</span></div>
+                        <div class="search-fileter-child-title"><span>고용형태</span></div>
                         <div class="search-fileter-child-item-list">
                             <div class="search-fileter-checkbox">
                                 <div class="search-fileter-checkbox-item">
@@ -237,7 +237,7 @@
                         </div>
                     </div>
                     <div class="search-fileter-child">
-                        <div class="search-fileter-child-title"><span>복지</span></div>
+                        <div class="search-fileter-child-title"><span>경력</span></div>
                         <div class="search-fileter-child-item-list">
                             <div class="search-fileter-checkbox">
                                 <div class="search-fileter-checkbox-item">
@@ -278,39 +278,7 @@
                     </div>
                 </div>
             </form>
-            <div class="condition">
-                <ul>
-                    {% for x in range(10) %}
-                    <li>
-                        <div>
-                            <div>
-                                <a>
-                                    {# if문으로 관심기업아니면 ☆ 관심기업이면 ★ #}
-                                    <div>☆ 관심기업 등록하기</div>
-                                    {# <div>★ 관심기업 해제하기</div> #}
-                                </a>
-                                <a>
-                                    <div>일자리 지도 보기</div>
-                                </a>
-                                <span class="grid-sub-blue">{{ data_list[x].업종}}</span>
-                                <a onclick="location.href='/company/{{data_list[x].data_id}}';" style="cursor:pointer">
-                                    <p class="grid-title">{{ data_list[x].회사 }}</p>
-                                </a>
-                                <p class="condition-sub-text">{{ data_list[x].기업형태 }} | {{ data_list[x].지역 }} |
-                                    {{ data_list[x].대표 }}</p>
-                            </div>
-                        </div>
-                        <div>
-                            <ol class="">
-                                <li>#이 기업 경기가 대단하다</li>
-                                <li>#복지 최고</li>
-                                <li>#취업시켜줘</li>
-                            </ol>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-            </div>
+            
         </section>
     </div>
 </body>

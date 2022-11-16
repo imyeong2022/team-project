@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FAQ</title>
+</head>
+
+<body>
+    {% include 'Board/header.html' %}
+    <div class="main-div">
+        <section class="main-section">
+            <div class="title-area">
+                <div class="inner">
+                    <div class="public-list">
+                        <ol class="public-ol">
+                            <li class="public-li">index ></li>
+                            <li class="public-li">> QnA</li>
+                            <li class="public-li">> Question</li>
+                        </ol>
+                    </div>
+                    <div class="public-title">
+                        Question
+                    </div>
+                    <div class="public-title-sub">
+                        사이트 이용 도중, 궁금하신 사항에 대해 문의작성해주세요.
+                    </div>
+                </div>
+            </div>
+                <article class="question-content">
+                    <hr/>
+                    <form action="/question_proc" method="post">
+                        <section id="faq-select">
+                            <div class="select">
+                                <div class="text">선택</div>
+                                <ul class="option-list">
+                                    <li class="option">사이트 문제</li>
+                                    <li class="option">대충 뭔가 문의사항</li>
+                                </ul>
+                            </div>
+                        </section>
+                        <input type="hidden" id="ctgry" name="ID" value="{{session['ID']}}">
+                        <input type="text" name="subject" value="제목">
+                        <input type="text" name="content" value="내용">
+                        <button type="submit">작성완료</button>
+                    </form>
+                </article>
+            </div>
+        </section>
+    </div>
+    <script>
+        function onClickSelect(e) {
+            const isActive = e.currentTarget.className.indexOf("active") !== -1;
+            if (isActive) {
+                e.currentTarget.className = "select";
+            } else {
+                e.currentTarget.className = "select active";
+            }
+        }
+
+        document.querySelector("#faq-select .select").addEventListener("click", onClickSelect);
+
+        function onClickOption(e) {
+            const selectedValue = e.currentTarget.innerHTML;
+            document.querySelector("#faq-select .text").innerHTML = selectedValue;
+        }
+
+        var optionList = document.querySelectorAll("#faq-select .option");
+        for (var i = 0; i < optionList.length; i++) {
+            var option = optionList[i];
+            option.addEventListener("click", onClickOption);
+        }
+    </script>
+</body>
+
+</html>

@@ -4,6 +4,7 @@
 	font-weight: 400;
 	font-style: normal;
 <<<<<<< HEAD
+<<<<<<< HEAD
  }
  
  html {
@@ -17,6 +18,8 @@
  
  header {
 =======
+=======
+>>>>>>> 52683a87e8991c17034ced4f0f90ec502c4777ad
 }
 
 html {
@@ -30,7 +33,10 @@ body {
 }
 
 header {
+<<<<<<< HEAD
 >>>>>>> f24a2dd (11/14, 17:56 // 추가본)
+=======
+>>>>>>> 52683a87e8991c17034ced4f0f90ec502c4777ad
 	position: fixed;
 	height: 120px;
 	width: 100%;
@@ -40,166 +46,357 @@ header {
 	overflow: hidden;
 	background: white;
 	z-index: 2;
- 
- }
- 
- .header-div {
+
+}
+
+.header-div {
 	background: white;
 	margin-left: 5%;
 	margin-right: 5%;
 	height: 100%;
 	width: 90%;
 	z-index: 2;
- }
- 
- .header-div-left {
+}
+
+.header-div-left {
 	background: white;
 	float: left;
 	height: 120px;
 	width: 20%;
 	z-index: 3;
- }
- 
- .header-logo {
+}
+
+.header-logo {
 	height: auto;
 	width: auto;
 	font-size: 3rem;
 	font-weight: bold;
 	text-align: center;
 	color: black;
- }
- 
- .header-logo-a {
+}
+
+.header-logo-a {
 	color: black;
 	text-decoration: none;
- }
- 
- .header-div-right {
+}
+
+.header-div-right {
 	background: white;
 	float: right;
 	height: 120px;
 	width: 77%;
 	z-index: 3;
 	padding-right: 3%;
- }
- 
- .header-div-top {
+}
+
+.header-div-top {
 	background: white;
 	float: right;
 	height: 55px;
 	width: 100%;
 	z-index: 4;
- }
- 
- .header-div-lower {
+}
+
+.header-div-lower {
 	background: white;
 	float: right;
 	height: 65px;
 	width: 100%;
 	z-index: 4;
- }
- 
- footer {
+}
+
+footer {
 	height: 260px;
 	width: 100%;
- }
- 
- .main-section {
+}
+
+.main-section {
 	height: auto;
 	width: 100%;
- }
- 
- .header-a-tag-none {
+	overflow: hidden
+}
+
+.bg-f6 {
+	background: #f6f6f6;
+	padding: 2vmin;
+	overflow: hidden;
+}
+
+.bg-ff {
+	background: #ffffff;
+	padding: 2vmin;
+	overflow: hidden;
+}
+
+.header-a-tag-none {
 	float: right;
 	padding-top: 2%;
 	padding-left: 0.725%;
 	padding-right: 0.725%;
 	text-decoration: none;
 	color: black;
- }
- 
- .header-a-tag-none-lower {
+}
+
+.header-a-tag-none-lower {
 	float: left;
-	font-size: 1.5rem;
+	font-size: 3vmin;
 	font-weight: bold;
 	text-decoration: none;
 	color: black;
 	padding-top: 2%;
 	padding-left: 3%;
 	padding-right: 3%;
- }
- 
- .header-a-tag-none-logo {
-	font-size: 1.5rem;
+
+}
+
+.header-a-tag-none-lower:nth-child(-n+4) {
+	float: left;
+	font-size: 3vmin;
+	font-weight: bold;
+	text-decoration: none;
+	color: #759ef7;
+	padding-top: 2%;
+	padding-left: 3%;
+	padding-right: 3%;
+}
+
+.header-a-tag-none-logo {
+	font-size: 3vmin;
 	font-weight: bold;
 	text-decoration: none;
 	color: black;
 	padding-top: 2%;
 	padding-left: 3%;
 	padding-right: 3%;
+}
+
+.home-img {
+	margin-top: 16px;
+	margin-right: 10px;
+	display: inline-block;
+	width: 48px;
+	height: 48px;
+	border: 1px solid #fff;
+	border-radius: 100%;
+	background: url(../source/index.png) no-repeat;
+	background-position: 50% 50%;
 }
 
 .main-section-slider-div {}
 
+.search-area {}
+
 .search-bar-div {
-	background: #a96ae4;
-	height: 120px;
+	padding-top: 30px;
+	padding-bottom: 30px;
+	background: #759ef7;
+	height: 60px;
 	width: 100%;
+
 }
 
+.search-frame {
+	margin-left: 50px;
+	margin-right: 50px;
+	height: 100%;
+	width: auto;
+	background: aliceblue;
+}
+
+
+
 .recommend-div {
-	background: #edd9ff;
-	height: 750px;
-	width: 100%;
- }
- 
- 
- /* page */
- .title-area {
+	background: #f6f6f6;
+	padding: 10% 5% 10% 5%;
+	width: 90%;
+	display: inline-block;
+}
+
+
+/* page */
+.title-area {
 	margin-left: 7.5%;
 	margin-right: 7.5%;
-	padding-top: 140px;
+	padding-top: 170px;
 	padding-bottom: 80px;
 	height: 200px;
 	width: 85%;
 	background-color: white;
- }
- 
- .content-area {
+}
+
+.content-area {
 	margin-left: 7.5%;
 	margin-right: 7.5%;
 }
 
 .inner {}
 
+.input-text {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 2%;
+	padding-right: 2%;
+	height: 40px;
+	width: 96%;
+	border-style: solid;
+	border-width: 0px;
+	border-color: #759ef7;
+}
+
+.search-filter {
+	margin: 6% 8% 6% 8%;
+	height: 250px;
+	width: 84%;
+}
+
+.search-fileter-child {
+	margin: 0%;
+	padding: 0%;
+	border-style: solid;
+	border-color: #bdbdbd;
+	border-top-width: 1px;
+	border-bottom-width: 1px;
+	border-right-width: 1px;
+	border-left: 0px;
+	float: left;
+	height: 100%;
+	width: 24.8%;
+}
+
+.search-fileter-child-title {
+	padding-top: 30px;
+	padding-bottom: 20px;
+	padding-left: 4%;
+	padding-right: 10%;
+	height: 20px;
+	width: 80%;
+}
+
+.search-filter>.search-fileter-child:first-child {
+	border-style: solid;
+	border-color: #bdbdbd;
+	border-left-width: 1px;
+}
+
+.search-fileter-child-title>span {
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.search-fileter-child-item-list {
+	padding-bottom: 30px;
+	padding-left: 5%;
+	padding-right: 2.5%;
+	width: 92.5%;
+	height: 150px;
+}
+
+.search-fileter-child-item-list ::-webkit-scrollbar {
+	width: 8px;
+}
+
+.search-fileter-child-item-list ::-webkit-scrollbar-thumb {
+	height: 30%;
+	background: #759ef7;
+	border-radius: 10px;
+}
+
+.search-fileter-child-item-list ::-webkit-scrollbar {
+	background: aliceblue;
+}
+
+.search-fileter-checkbox {
+	overflow-y: scroll;
+	float: left;
+	height: 150px;
+	width: 99%;
+}
+
+.search-fileter-checkbox>:first-child {
+	margin: 0px;
+}
+
+.search-fileter-checkbox-item {
+	margin-top: 5px;
+}
+
+.search-fileter-checkbox-item>input {
+	margin: 0px;
+	height: 23px;
+	width: 23px;
+}
+
+.search-fileter-checkbox-item>label {
+	position: relative;
+	top: -5px;
+	margin-left: 5px;
+}
+
+.ee {
+	width: 33%;
+}
+
+.ee:nth-child(2) {
+	width: 66%
+}
+
+.eelis {}
+
+.eeli {
+	list-style: none;
+	padding: 0 0 0 0;
+}
 
 .public-list {
 	width: 100%;
 	height: 20px;
- }
- 
- .public-ol {
+}
+
+.public-ol {
 	list-style: none;
- }
- 
- .public-li {
+}
+
+.public-li {
 	float: left
- }
- 
- .public-title {
+}
+
+.public-title {
 	margin-top: 50px;
 	text-align: center;
 	font-size: 45px;
 	font-weight: bold;
- }
- 
- .public-title-sub {
+}
+
+.public-title-sub {
 	padding-top: 25px;
 	text-align: center;
- 
- }
- 
- .main-gird-ul {
+
+}
+
+.recommend-div>div {
+	display: inline-block;
+}
+
+.recommend-div>div>h1 {
+	margin: 0 0 2% 11.6%;
+	width: 48vmin;
+	font-size: 5vmin;
+}
+
+.recommend-div>div>a {
+	padding-left: 3vmin;
+	font-size: 2.3vmin;
+	color: #474747;
+	vertical-align: middle;
+	text-align: center;
+	font-weight: bold;
+}
+
+.recommend-div>div>a::after {
+	content: " >";
+}
+
+.main-gird-ul {
 	list-style: none;
 	margin-top: 0px;
 	margin-bottom: 0px;
@@ -208,66 +405,114 @@ header {
 	padding-top: 7.5%;
 	height: 87%;
 	width: auto;
- }
- 
- .main-gird-li {
- 
-	margin-top: 1%;
-	margin-bottom: 1%;
-	margin-left: 1.3%;
-	margin-right: 1.3%;
-	padding-top: 3%;
-	padding-left: 1.5%;
-	padding-right: 1.5%;
-	float: left;
-	background: #796565;
-	width: 27%;
-	height: 180px;
- 
- }
- 
- .grid-sub-blue {
+}
+
+.main-gird-li {
+	box-sizing: border-box;
+	margin: 1% 1.3% 1% 1.3%;
+	padding: 10% 1.5% 10% 1.5%;
+	background: #ffffff;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	/* 마우스 포인터를 올렸을 때 손가락으로 바뀜 */
+	transition: box-shadow 0.1s linear;
+}
+
+.main-gird-li:hover {
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 4px rgba(0, 0, 0, 0.2);
+}
+
+.grid-sub-blue {
 	padding-left: 10px;
 	padding-right: 10px;
 	color: rgb(29, 146, 255);
-	font-size: 20px;
- }
- 
- .grid-title {
+	font-size: 2vmin;
+	font-weight: bold;
+}
+
+.grid-red {
+	margin-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #ffffff;
+	background: rgb(255, 86, 86);
+	font-size: 2vmin;
+	font-weight: bold;
+	border-radius: 30px;
+	border: 0.2vmin solid rgb(255, 86, 86);
+}
+
+.grid-sub-red {
+	margin-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: rgb(255, 86, 86);
+	font-size: 2vmin;
+	font-weight: bold;
+	border-radius: 30px;
+	border: 0.2vmin solid rgb(255, 86, 86);
+}
+
+.grid-title {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin: 0px;
 	padding-top: 7px;
-	font-size: 35px;
- }
- 
- .grid-sub-text {
+	font-size: 3.5vmin;
+	font-weight: bold;
+	color: black;
+}
+
+.grid-title-side {
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 10px 0 0 0;
+	padding-top: 7px;
+	font-size: 3.5vmin;
+	font-weight: bold;
+	color: black;
+}
+
+.grid-title-side {
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 10px 0 0 0;
+	padding-top: 7px;
+	font-size: 3.5vmin;
+	font-weight: bold;
+	color: black;
+}
+
+.grid-sub-text {
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 25px;
-	font-size: 16px;
- }
- 
- .main-grid-a {}
- 
- .public-hr {
+	font-size: 2vmin;
+}
+
+.main-grid-a {}
+
+.public-hr {
 	margin-left: 7.5%;
 	margin-right: 7.5%;
 	border: 0px;
 	height: 2px;
 	background: black;
- }
- 
- .login-form-div {
+}
+
+.login-form-div {
 	margin-left: 7.5%;
 	margin-right: 7.5%;
 	padding-top: 80px;
 	padding-bottom: 100px;
- }
- 
- .login-form {}
- 
- .login-input {
+}
+
+.login-form {}
+
+.login-input {
 	width: 34%;
 	height: 60px;
 	margin-left: 32.5%;
@@ -278,9 +523,9 @@ header {
 	border-style: solid;
 	border-width: 2px;
 	border-color: #759ef7;
- }
- 
- .login-submit {
+}
+
+.login-submit {
 	margin-left: 32.5%;
 	margin-right: 32.5%;
 	margin-bottom: 10px;
@@ -295,9 +540,9 @@ header {
 	border-style: solid;
 	border-width: 2px;
 	border-color: #759ef7;
- }
- 
- .login-join {
+}
+
+.login-join {
 	margin-left: 32.5%;
 	margin-right: 32.5%;
 	margin-bottom: 15px;
@@ -307,9 +552,9 @@ header {
 	border-style: solid;
 	border-width: 2px;
 	border-color: #759ef7;
- }
- 
- .login-join>a {
+}
+
+.login-join>a {
 	height: 100%;
 	width: 100%;
 	color: #759ef7;
@@ -322,23 +567,23 @@ header {
 	align-items: center;
 	text-align: center;
 	text-decoration: none;
- }
- 
- input::placeholder {
+}
+
+input::placeholder {
 	font-weight: bold;
- }
- 
- /* join */
- 
- .join-div {
+}
+
+/* join */
+
+.join-div {
 	float: left;
 	margin-left: 32.5%;
 	margin-right: 32.5%;
 	margin-bottom: 15px;
 	width: 34%;
- }
- 
- .join-input {
+}
+
+.join-input {
 	width: 34%;
 	height: 60px;
 	margin-left: 32.5%;
@@ -349,20 +594,49 @@ header {
 	border-style: solid;
 	border-width: 2px;
 	border-color: #759ef7;
- }
- 
- .join-input ::placeholder{
-	font-weight: normal;
-	font-size: 20px;
- }
- 
- .join-input{
-	color: gray;
-	font-weight: bold;
-	font-size: 20px;
- }
- 
- .join-submit {
+}
+
+.join-input-birth-first {
+	width: 9.5%;
+	height: 60px;
+	margin-left: 32.5%;
+	margin-right: 0.4%;
+	padding-left: 1%;
+	margin-bottom: 15px;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
+.join-input-birth {
+	width: 9.5%;
+	height: 60px;
+	margin-left: 0.3%;
+	margin-right: 0.5%;
+	padding-left: 0.5%;
+	padding-left: 1%;
+	margin-bottom: 15px;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
+.join-input-birth-end {
+	width: 9.5%;
+	height: 60px;
+	margin-left: 0.15%;
+	margin-right: 29%;
+	padding-left: 1%;
+	margin-bottom: 15px;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
+.join-submit {
 	margin-left: 32.5%;
 	margin-right: 32.5%;
 	width: 35.6%;
@@ -375,14 +649,14 @@ header {
 	font-size: 16px;
 }
 
-.login-form > hr {
+.login-form>hr {
 	margin-left: 32.5%;
 	margin-right: 32.5%;
 	margin-bottom: 15px;
 	width: 35.6%;
 }
 
-.join-check-all{
+.join-check-all {
 	width: 34%;
 	height: auto;
 	margin-left: 32.5%;
@@ -392,17 +666,17 @@ header {
 	font-size: 16px;
 }
 
-.join-check-all > b{
+.join-check-all>b {
 	padding-left: 10px;
 	font-size: 20px;
 }
 
-.join-check-all > p{
+.join-check-all>p {
 	margin-top: 5px;
 	padding-left: 30px;
 }
 
-.join-check-area{
+.join-check-area {
 	margin-left: 32.5%;
 	margin-right: 32.5%;
 	margin-bottom: 15px;
@@ -416,129 +690,185 @@ header {
 	border-color: #759ef7;
 }
 
-.join-check-list{
+.join-check-list {
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 10px;
 }
 
-.join-check-list b{
+.join-check-list b {
 	padding-left: 10px;
 }
 
-.join-check-list.sub{
+.join-check-list.sub {
 	padding-left: 40px;
- }
- 
- /* company */
- 
- .title-area-company-bgimg {
+}
+
+/* company */
+
+.title-area-company-bgimg {
 	position: relative;
 	padding-left: 7.5%;
 	padding-right: 7.5%;
 	padding-top: 180px;
 	padding-bottom: 40px;
 	float: left;
-	height: 300px;
+	height: 40.3vmin;
 	width: 85%;
-	background-color: rgb(97, 97, 97);
+	background: url(../source/company/company-main-1.png)no-repeat;
+	background-size: cover;
 	z-index: 0;
- 
- }
- 
- .title-area-company {
+}
+
+.title-area-company {
 	position: absolute;
 	margin-left: 7.5%;
 	margin-right: 7.5%;
-	padding-top: 180px;
+	padding-top: 240px;
 	padding-bottom: 40px;
 	float: left;
-	height: 300px;
+	height: 34vmin;
 	width: 85%;
 	z-index: 1;
- }
- 
- .company-logo {
+}
+
+.company-logo {
 	float: left;
-	height: 250px;
-	width: 250px;
+	height: 27vmin;
+	width: 27vmin;
 	padding: 25px;
 	margin-right: 60px;
 	background: white;
 	line-height: 250px;
 	/* vertical-align이랑 같이 세로중앙정렬 */
- }
- 
- .company-logo-img {
+}
+
+.company-logo-img {
 	height: auto;
 	width: 100%;
 	vertical-align: middle;
 	/* line-height이랑 같이 세로중앙정렬 */
- }
- 
- .company-info {
+}
+
+.company-info {
 	float: left;
-	width: 73%;
+	width: auto;
 	height: 300px;
- }
- 
- .company-sub {
+}
+
+.company-sub {
 	color: aliceblue;
 	margin-top: 35px;
 	margin-bottom: 5px;
- }
- 
- .company-title {
+	font-size: 2.3vmin;
+	font-weight: bold;
+}
+
+.company-title {
 	margin-top: 20px;
 	margin-bottom: 0px;
 	/* 만약 즐겨찾기 or 사이트 주소 불러오기 실패시 제외 */
 	font-size: 62px;
 	color: aliceblue;
- }
- 
- 
- .company-sub-title-Y {
+}
+
+
+.company-sub-title-Y {
 	padding-right: 20px;
 	float: left;
 	font-weight: none;
 	color: yellow;
- 
- }
- 
- .company-sub-title-W {
+
+}
+
+.company-sub-title-W {
 	padding-right: 20px;
 	float: left;
 	font-weight: none;
 	color: aliceblue;
- }
- 
- 
- /* FAQ */
- 
- .faq-search-bar {
+}
+
+.custom-checkbox {
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.custom-checkbox .checkbox-like+label {
+	display: inline-block;
+	padding: 0 20px 0 45px;
+	color: #555;
+	font-size: 16px;
+	line-height: 46px;
+	background: #fff;
+	border: 1px solid #999;
+	border-radius: 24px;
+	vertical-align: middle;
+}
+
+.custom-checkbox input[type="checkbox"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+	vertical-align: top;
+}
+
+.custom-checkbox .checkbox-like.type2+label {
+	color: #fff;
+	background: transparent;
+	border: 1px solid #fff;
+}
+
+.custom-checkbox .checkbox-like+label:before {
+	display: block;
+	content: '';
+	position: absolute;
+	left: 20px;
+	top: 50%;
+	margin-top: -7px;
+	width: 15px;
+	height: 15px;
+	text-align: center;
+	background: url(../images/icon/ico_check_like.png) no-repeat;
+}
+
+.custom-checkbox .checkbox-like.type2+label:before {
+	background: url(../source/like.png) -61px -29px no-repeat;
+}
+
+
+
+/* FAQ */
+
+.faq-search-bar {
 	padding-top: 40px;
 	padding-bottom: 40px;
 	height: 60px;
 	width: 100%;
- }
- 
- .bg-gray {
+}
+
+.bg-gray {
 	background: rgb(222, 222, 222);
- }
- 
- .faq-search-bar .faq-search-wrap {
+}
+
+.faq-search-bar .faq-search-wrap {
 	margin: auto;
 	width: 670px;
 	height: 60px;
- }
- 
- .grid-area {
+}
+
+.grid-area {
 	position: relative;
 	height: 100%;
 	width: 100%;
- }
- 
- .colum {
+}
+
+.colum {
 	padding-left: 5px;
 	padding-right: 5px;
 	float: left;
@@ -585,11 +915,12 @@ header {
 	outline: none;
 }
 
-.col70>span{
+.col70>span {
 	height: 100%;
 	width: 10%;
 }
-.col70>span>input{
+
+.col70>span>input {
 	height: 100%;
 	width: 100%;
 	background: url("../source/search.png");
@@ -654,12 +985,26 @@ header {
 	background-color: #f2f2f2;
 }
 
-.faq-content{
+.faq-content {
 	margin-top: 40px;
 }
-.faq-content>hr{
+
+.faq-content>hr {
 	margin-top: 0px;
 	border: 2px solid gray;
+}
+
+.faq-content>button {
+	float: right;
+	margin-top: 20px;
+	width: 7%;
+	height: 45px;
+	font-weight: bold;
+	color: white;
+	background: #759ef7;
+	outline: none;
+	border: none;
+	font-size: 16px;
 }
 
 .faq {
@@ -692,15 +1037,13 @@ header {
 }
 
 /* 질문영역 check 이전 */
-.faq label::after {
+.faq>li>label::after {
 	content: "▽";
 	color: #759ef7;
 	display: block;
 	position: sticky;
 	margin-left: auto;
 	line-height: 50px;
-
-	
 }
 
 .faq label::before {
@@ -722,7 +1065,7 @@ header {
 	color: #759ef7;
 }
 
-.faq > li>label>p {
+.faq>li>label>p {
 	margin-left: 1%;
 }
 
@@ -746,9 +1089,12 @@ header {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .faq>li{
 	
 =======
+=======
+>>>>>>> 52683a87e8991c17034ced4f0f90ec502c4777ad
 .spacing:nth-child(2) {
 	margin: 30px 0px 0px 0px;
 	padding: 0px 0px 15px 0px;
@@ -1081,7 +1427,11 @@ li>.title {
 	height: auto;
 	width: auto;
 	list-style: none;
+<<<<<<< HEAD
 	background: white;
+=======
+	background: aliceblue;
+>>>>>>> 52683a87e8991c17034ced4f0f90ec502c4777ad
 	border: 0.1vmin solid rgb(214, 214, 214);
 }
 
@@ -1109,8 +1459,12 @@ li>.title {
 	width: 18vmin;
 	background: white;
 	border-radius: 30px;
+<<<<<<< HEAD
 	font-size: 1.9vmin;
 	border: 0.1vmin solid gray;
+=======
+	font-size: 2vmin;
+>>>>>>> 52683a87e8991c17034ced4f0f90ec502c4777ad
 }
 
 .condition-sub-text {
@@ -1130,5 +1484,8 @@ li>.title {
 	list-style: none;
 	width: auto;
 	margin: 0 10px 0 0;
+<<<<<<< HEAD
 >>>>>>> f24a2dd (11/14, 17:56 // 추가본)
+=======
+>>>>>>> 52683a87e8991c17034ced4f0f90ec502c4777ad
 }

@@ -737,6 +737,19 @@ input::placeholder {
 	border-color: #759ef7;
 }
 
+.join-mail_input{
+	width: 34%;
+	height: 60px;
+	margin-left: 32.5%;
+	margin-right: 32.5%;
+	padding-left: 1%;
+	margin-bottom: 15px;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
 .join-input-birth-first {
 	width: 9.5%;
 	height: 60px;
@@ -843,6 +856,22 @@ input::placeholder {
 
 .join-check-list.sub {
 	padding-left: 40px;
+}
+
+/* 이메일 코드인증 */
+.correct{
+    color : green; 
+}
+.incorrect{
+    color : red;
+}
+ 
+#mail_check_input_box_false{
+    background-color:#ebebe4;
+}
+ 
+#mail_check_input_box_true{
+    background-color:white;
 }
 
 /* company */

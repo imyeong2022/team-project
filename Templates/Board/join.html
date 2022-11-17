@@ -107,16 +107,22 @@
         function idchk() {
             let data = JSON.parse('{{ data | safe }}');
             var userId = document.getElementById("user_id");
+            var RegExp = /^[a-zA-Z0-9]{4,12}$/; // 아이디 유효성 검사
             console.log(data) // 0~4까지 아이디 각자 뜨는거 확인완료
             console.log(typeof (data))
             console.log(userId.value)
             lastid = data.some(v => v.ID === userId.value); // some으로 배열에 있는 값과 변수를 정확히비교(===)
             console.log(lastid)
+
             if (lastid == true) {
                 alert("이미 사용중인 아이디입니다.")
                 return false
             }
-            else {
+            else if (RegExp.test(userId.value) == false) {
+                alert("아이디를 확인해주세요.")
+                return false
+            }
+            else{
                 alert("사용가능한 아이디입니다.")
                 return false
             }

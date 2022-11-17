@@ -17,7 +17,7 @@ con = pymysql.connect(host='localhost',
 cursor = con.cursor()
 ###########데이터베이스 접속 전역변수 선언############
 app = Flask(__name__)
-############ 구글메일(계정찾기 테스트) ################ 사이트 접근과 동시에 메일서버와 인터페이스 하면서 recipients 로 지정된 메일 주소로 이메일을 발송하고 "Sent" 라는 문자열을 return 한다.
+############ 구글메일(계정찾기 테스트) ################ 사이트 접근과 동시에 메일서버와 인터페이스 하면서 recipients 로 지정된 메일 주소로 이메일을 발송
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 465
 app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
@@ -26,15 +26,13 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
-@app.route('/mailtest')
-def index() :
-    msg = Message('Hello', sender='kongjh941109@gmail.com', recipients=['cjsdur@naver.com'])
-    msg.body = 'Hello Flask message sent fro Flask-Mail'
-    mail.send(msg)
-    return 'Sent'
-
 @app.route('/accountfind')
 def accountfind():
+    sql = "SELECT ID,email from member"
+    cursor.execute(sql)
+    userlist2 = cursor.fetchall()
+    print(type(userlist2))
+    print(userlist2)
 
     return render_template('Board/account.html')
 
@@ -51,7 +49,7 @@ def accountfind_proc():
     msg.body = '회원님 안녕하세요.''회원님의 아이디는 다음과 같습니다.\n' '['+find_userid+ ']\n 앞으로도 더욱 편리한 서비스를 제공하기 위해 최선을 다하겠습니다.'
     mail.send(msg)
 
-    return jsonify({'a': '회원님의 이메일로 아이디를 전송했습니다.'})
+    return jsonify({'msg': '회원님의 이메일로 아이디를 전송했습니다.'})
 
 
 @app.route('/passfind')
@@ -208,7 +206,17 @@ def join_form_get():
         print("id_list의타입",type(id_list))
         return render_template('Board/join.html' , data=json.dumps(id_list, ensure_ascii=False))
 
-@app.route('/join_proc', methods=['POST'])
+@app.route('/mailcheck', methods=['post'])    
+def mailcheck():
+    value = request.form
+    print(value)
+    print(value['email'])
+    print(value['code'])
+
+    return jsonify(result = "success")
+
+
+@app.route('/join_proc', methods=['GET','POST'])
 def join_proc():
     Idexp = re.compile('^[a-zA-Z0-9]{4,12}$')
 

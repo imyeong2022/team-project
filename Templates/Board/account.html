@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Insert title here</title>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script type="text/javascript" >
+    <script type="text/javascript">
         function idsearch() {
 
             var nameExp = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/; // 이름 유효성 검사
@@ -37,8 +37,11 @@
                 success: function (response) { // 성공했을때 메세지띄울거임 response는 내장객체가아니라 그냥 내가 보기 편하게 선언하는 이름임. msg도 마찬가지.
                     alert(response["msg"]);
                     window.close();
+                },
+                error: function (error) {
+                    alert("일치하는 회원정보가 없습니다.");
                 }
-                
+
             })
 
         }

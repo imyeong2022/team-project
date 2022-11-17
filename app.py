@@ -3,8 +3,6 @@ from flask import request, session
 import pymysql
 import hashlib
 import re
-import hashlib
-import re
 import json
 
 ## 2022 11 10 병합작업 1차버전입니다.

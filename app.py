@@ -1,8 +1,9 @@
+from flask import Flask, redirect, url_for, render_template, request , flash
+from flask import request, session
+import pymysql
 import hashlib
 import re
-import pymysql
-from flask import (Flask, flash, redirect, render_template, request, session,
-                   url_for)
+
 ## 2022 11 10 병합작업 1차버전입니다.
 ########### 데이터베이스 접속 전역변수 선언############
 con = pymysql.connect(host='localhost',
@@ -23,6 +24,8 @@ def home():
     sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
+    data_list = data_list
+    print("인덱스타입",type(data_list))
     data_list_len = len(data_list)
     print("인덱스길이", data_list_len)
 
@@ -207,11 +210,23 @@ def join_proc():
         if((user_id == True) & (Idexp.match(user_id) == True)): """
 
 
-        ## 유효성 검사 종료##
-        sql = 'INSERT INTO member(ID, PW, NAME, Phone, BIRTH) VALUES(%s,%s,%s,%s,%s)'
-        cursor.execute(sql, (user_id, pw_hash, user_name, user_phone, user_birth, ))
-        con.commit()
-        return render_template('Board/login.html')
+        idcheck = 'select count(*) from member where ID = %s'
+        cursor.execute(idcheck, user_id)
+        id_list = idcheck
+        id_cnt = cursor.fetchall()
+        a = (list(m['count(*)'] for m in id_cnt))
+        print(a)
+        print(type(a))
+        if (a == [1]):
+            flash("이미 존재하는 아이디입니다.")
+            return render_template('Board/join.html')
+        elif (a == [0]):
+            sql = 'INSERT INTO member(ID, PW, NAME, Phone, BIRTH) VALUES(%s,%s,%s,%s,%s)'
+            cursor.execute(sql, (user_id, pw_hash, user_name, user_phone, user_birth, ))
+            con.commit()
+            return render_template('Board/login.html', id_list=id_list, id_cnt=id_cnt)
+    
+
 
 ##################### END 회원가입관련 ###############
 
@@ -256,6 +271,10 @@ def persnal_info_change():
 
 
 ############ 미완성 및 미적용 루트 ########
+
+@app.route('/trend')
+def trend():
+    return render_template('Board/trend.html')
 
 @app.route('/chart')
 def chart():

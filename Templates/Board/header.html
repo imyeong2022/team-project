@@ -32,6 +32,7 @@
                     
                     <div><a class="header-a-tag-none" href="/logout_proc">로그아웃</a>
                         <a class="header-a-tag-none" href="/faq">자주묻는 질문</a>
+<<<<<<< HEAD
                         <a class="header-a-tag-none" href="/qna">문의하기</a>
                         <a class="header-a-tag-none" href="/location">test location</a>
                         <a class="header-a-tag-none" href="/my_page">마이페이지</a>
@@ -43,6 +44,15 @@
                         <a class="header-a-tag-none">test</a>
 
                         <a class="header-a-tag-none">test</a>
+=======
+                        <a class="header-a-tag-none" href="/qna">문의하기</a>                        <a class="header-a-tag-none" href="/my_page">마이페이지</a>
+                        <a class="header-a-tag-none" href="/recent_inquiry_company">나의 활동 내역</a>
+
+                        <a class="header-a-tag-none">{{ session['ID']}}님 환영합니다.</a>
+                    </div>
+                    {% else %}
+                    <div>
+>>>>>>> 9fef993 (11/17, 11:56 // index height값 조절, ric 틀 작업)
                         <!-- 회원가입은 로그인 페이지 안으로 이동 -->
                         <a class="header-a-tag-none" href="/faq">자주묻는 질문</a>
                         <a class="header-a-tag-none" href="/qna">문의하기</a>

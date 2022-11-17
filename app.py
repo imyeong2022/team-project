@@ -168,7 +168,7 @@ def login_proc():
             row = cursor.fetchone()
             print(row)  # row키확인해보자 딕셔너리로 넣어주기로한걸 볼 수 있다.
             if row:
-                if user_pw == row['PW']:
+                if pw_hash == row['PW']:
                     session['logFlag'] = True
                     session['ID'] = user_id
                     session['NAME'] = row['NAME']

@@ -1,23 +1,27 @@
 @font-face {
-	font-family: 'Pretendard-Regular';
-	src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-	font-weight: 400;
+	font-family: 'GmarketSansMedium';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	font-weight: normal;
 	font-style: normal;
 }
 
 html {
-	font-family: Helvetica,Tahoma;
+	font-family: Helvetica, Tahoma;
 }
 
 body {
 	font-size: 2vmin;
 	margin: 0;
 	padding: 0;
+	font-family: 'GmarketSansMedium';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 header {
 	position: fixed;
-	height: 120px;
+	height: 16vmin;
 	width: 100%;
 	top: 0;
 	left: 0;
@@ -38,10 +42,12 @@ header {
 }
 
 .header-div-left {
+	box-sizing: border-box;
 	background: white;
 	float: left;
-	height: 120px;
+	height: 100%;
 	width: 20%;
+	margin-top: 2%;
 	z-index: 3;
 }
 
@@ -54,6 +60,23 @@ header {
 	color: black;
 }
 
+.logo-image {
+	width: auto;
+	height: 100%;
+	object-fit: cover;
+}
+
+.job {
+	font-size: 8vmin;
+	font-weight: bold;
+	color: #759ef7;
+}
+
+.ara {
+	font-size: 3.5vmin;
+	color: black;
+}
+
 .header-logo-a {
 	color: black;
 	text-decoration: none;
@@ -62,7 +85,7 @@ header {
 .header-div-right {
 	background: white;
 	float: right;
-	height: 120px;
+	height: 12vmin;
 	width: 77%;
 	z-index: 3;
 	padding-right: 3%;
@@ -71,7 +94,7 @@ header {
 .header-div-top {
 	background: white;
 	float: right;
-	height: 55px;
+	height: 5.5vmin;
 	width: 100%;
 	z-index: 4;
 }
@@ -79,7 +102,7 @@ header {
 .header-div-lower {
 	background: white;
 	float: right;
-	height: 65px;
+	height: 6.5vmin;
 	width: 100%;
 	z-index: 4;
 }
@@ -130,7 +153,6 @@ footer {
 
 .header-a-tag-none-lower:nth-child(-n+4) {
 	float: left;
-	font-size: 3vmin;
 	font-weight: bold;
 	text-decoration: none;
 	color: #759ef7;
@@ -144,9 +166,8 @@ footer {
 	font-weight: bold;
 	text-decoration: none;
 	color: black;
-	padding-top: 2%;
-	padding-left: 3%;
-	padding-right: 3%;
+	padding: 70vmin 0 0 20vmin;
+
 }
 
 .home-img {
@@ -196,17 +217,26 @@ footer {
 .title-area {
 	margin-left: 7.5%;
 	margin-right: 7.5%;
-	padding-top: 170px;
-	padding-bottom: 80px;
-	height: 200px;
+	padding-top: 17vmin;
+	padding-bottom: 8vmin;
+	height: 20vmin;
 	width: 85%;
 	background-color: white;
 }
 
 .content-area {
-	margin-left: 7.5%;
-	margin-right: 7.5%;
+	position: relative;
+	max-width: 1380px;
+	margin: 5vmin auto;
 }
+
+.content-p-area {
+	height: auto;
+	display: flex;
+	position: relative;
+	padding: 2%;
+}
+
 
 .inner {}
 
@@ -307,8 +337,13 @@ footer {
 
 .search-fileter-checkbox-item>label {
 	position: relative;
-	top: -5px;
-	margin-left: 5px;
+	top: -3.1vmin;
+	left: 1.8vmin;
+	display: block;
+	padding-left: 1.5em;
+	text-indent: 0.3.5em;
+	width: 86%;
+
 }
 
 .ee {
@@ -339,6 +374,14 @@ footer {
 	float: left
 }
 
+.public-li::before {
+	content: ">>";
+}
+
+.public-li:first-child::before {
+	content: none;
+}
+
 .public-title {
 	margin-top: 50px;
 	text-align: center;
@@ -354,6 +397,7 @@ footer {
 
 .recommend-div>div {
 	display: inline-block;
+	margin-left: 8vmin;
 }
 
 .recommend-div>div>h1 {
@@ -363,12 +407,12 @@ footer {
 }
 
 .recommend-div>div>a {
-	padding-left: 3vmin;
 	font-size: 2.3vmin;
 	color: #474747;
 	vertical-align: middle;
 	text-align: center;
 	font-weight: bold;
+	text-decoration: none;
 }
 
 .recommend-div>div>a::after {
@@ -381,7 +425,6 @@ footer {
 	margin-bottom: 0px;
 	margin-left: 3%;
 	margin-right: 3%;
-	padding-top: 7.5%;
 	height: 87%;
 	width: auto;
 }
@@ -425,11 +468,10 @@ footer {
 }
 
 .grid-sub-red {
-	margin-bottom: 10px;
-	padding-left: 10px;
-	padding-right: 10px;
+	margin-bottom: 1vmin;
+	padding: 0.2vmin 1vmin 0.2vmin 1vmin;
 	color: rgb(255, 86, 86);
-	font-size: 2vmin;
+	font-size: 1.4vmin;
 	font-weight: bold;
 	border-radius: 30px;
 	border: 0.2vmin solid rgb(255, 86, 86);
@@ -448,7 +490,7 @@ footer {
 .grid-title-side {
 	padding-left: 10px;
 	padding-right: 10px;
-	margin: 10px 0 0 0;
+	margin: 1vmin 0 0 0;
 	padding-top: 7px;
 	font-size: 3.5vmin;
 	font-weight: bold;
@@ -470,6 +512,8 @@ footer {
 	padding-right: 10px;
 	padding-top: 25px;
 	font-size: 2vmin;
+	color: #999;
+	text-decoration: none;
 }
 
 .main-grid-a {}
@@ -703,8 +747,8 @@ input::placeholder {
 	position: absolute;
 	margin-left: 7.5%;
 	margin-right: 7.5%;
-	padding-top: 240px;
-	padding-bottom: 40px;
+	padding-top: 24vmin;
+	padding-bottom: 4vmin;
 	float: left;
 	height: 34vmin;
 	width: 85%;
@@ -1244,8 +1288,8 @@ input::placeholder {
 	float: left;
 	box-sizing: border-box;
 	width: 49%;
-	height: 30vmin;
-	padding: 60px;
+	height: 33vmin;
+	padding: 4vmin;
 	margin-bottom: 3vmin;
 	border: 1px solid #d6d6d6;
 }
@@ -1268,40 +1312,40 @@ li>.title {
 
 .box-white>.icon {
 	display: inline-block;
-	width: 54px;
-	height: 54px;
+	width: 5.4vmin;
+	height: 5.4vmin;
 }
 
 .i1 {
-	background: url(../source/company/dontong.png);
+	background: url(../source/company/dontong.png) no-repeat center / cover;
 }
 
 .i2 {
-	background: url(../source/company/hyumu.png);
+	background: url(../source/company/hyumu.png) no-repeat center / cover;
 }
 
 .i3 {
-	background: url(../source/company/bosang.png);
+	background: url(../source/company/bosang.png) no-repeat center / cover;
 }
 
 .i4 {
-	background: url(../source/company/pyony.png);
+	background: url(../source/company/pyony.png) no-repeat center / cover;
 }
 
 .i5 {
-	background: url(../source/company/siser.png);
+	background: url(../source/company/siser.png) no-repeat center / cover;
 }
 
 .i6 {
-	background: url(../source/company/gyo6.png);
+	background: url(../source/company/gyo6.png) no-repeat center / cover;
 }
 
 .i7 {
-	background: url(../source/company/etc.png);
+	background: url(../source/company/etc.png) no-repeat center / cover;
 }
 
 .i8 {
-	background: url(../source/company/present.png);
+	background: url(../source/company/present.png) no-repeat center / cover;
 }
 
 .company-hl {
@@ -1310,10 +1354,10 @@ li>.title {
 	color: #ffffff;
 	align-items: center;
 	justify-content: space-around;
-	padding: 0 20px 0 20px;
+	padding: 0 2vmin 0 2vmin;
 	margin-left: 10px;
 	height: 6vmin;
-	width: 13vmin;
+	width: 14vmin;
 	border-radius: 30px;
 	font-size: 1.9vmin;
 }
@@ -1327,7 +1371,7 @@ li>.title {
 	margin-right: 10px;
 }
 
-.company-swiper-div-margin{
+.company-swiper-div-margin {
 	margin-top: 5vmin;
 }
 
@@ -1424,16 +1468,16 @@ li>.title {
 	padding: 0 20px 0 20px;
 	margin-left: 10px;
 	height: 6vmin;
-	width: 18vmin;
+	width: 19vmin;
 	background: white;
 	border-radius: 30px;
 	font-size: 2vmin;
 }
 
 .condition-sub-text {
-	padding-left: 10px;
-	padding-right: 10px;
-	font-size: 16px;
+	padding-left: 1vmin;
+	padding-right: 1vmin;
+	font-size: 1.6vmin;
 	color: gray;
 }
 
@@ -1447,4 +1491,177 @@ li>.title {
 	list-style: none;
 	width: auto;
 	margin: 0 10px 0 0;
+}
+
+/* trend */
+.bg-75 {
+	background: #759ef7;
+}
+
+.trend-wrap {
+	box-sizing: border-box;
+	width: 146vmin;
+	padding: 5vmin;
+	background: white;
+	margin: auto;
+}
+
+.trend-board-top {
+	overflow: hidden;
+}
+
+.trend-board-top>div {
+	box-sizing: border-box;
+	float: left;
+	width: 25%;
+	padding: 3vmin;
+}
+
+.trend-board-top>div>p {
+	font-size: 1.5vmin;
+}
+
+.trend-board-top>div>p,
+span,
+h3 {
+	text-align: center;
+}
+
+
+.trend-board-top>div>img {
+	display: block;
+	margin: 0px auto 1vmin auto;
+}
+
+.trend-board-bottom {
+	overflow: hidden;
+}
+
+.trend-grid>div {
+	box-sizing: border-box;
+	float: left;
+	width: 33.333%;
+	height: 16vmin;
+	border: 1px solid #333;
+	padding: 2vmin;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.up {
+	color: #e40000;
+}
+
+.up::after {
+	margin: 0 1vmin;
+	content: url("https://eis.work.go.kr/static/images/main/icon-total-arrow-up.png");
+}
+
+.down {
+	color: #0047d4;
+}
+
+.down::after {
+	margin: 0 1vmin;
+	content: url("https://eis.work.go.kr/static/images/main/icon-total-arrow-down.png");
+}
+
+.trend-div {
+	overflow: hidden;
+}
+
+.trend-divi {
+	box-sizing: border-box;
+	float: left;
+	width: 48%;
+	margin: 1%;
+}
+
+.trend-divi>h2,
+h3,
+h5 {
+	text-align: center;
+}
+
+.icon.man {
+	display: block;
+	width: 3.6vmin;
+	height: 8.2vmin;
+	margin: 1vmin auto 0px;
+	background: url(https://eis.work.go.kr/static/images/main/icon-man.png) no-repeat;
+	background-size: cover;
+}
+
+.icon.woman {
+	display: block;
+	width: 4.3vmin;
+	height: 8.2vmin;
+	margin: 1vmin auto 0px;
+	background: url(https://eis.work.go.kr/static/images/main/icon-woman.png) no-repeat;
+	background-size: cover;
+}
+
+.trend-divi.green {
+	background: rgb(247, 255, 255);
+}
+
+
+.trend-divi.pink {
+	background: rgb(255, 248, 248);
+}
+
+.trend-divi>hr {
+	color: rgb(230, 230, 230);
+}
+
+.trend46 {
+	margin: 1%;
+	float: left;
+	
+}
+
+.w40 {
+	width: 39%;
+}
+
+.w60 {
+	width: 55%;
+}
+
+.trend46.w40>h3 {
+	text-align: center;
+}
+
+.trend46.w40>h3,p {
+	font-size: 1.5vmin;
+}
+
+.trend46.w40{
+	box-sizing: border-box;
+	padding: 2%;
+}
+
+.trend-button-box{
+	margin-top: 10vmin;
+	text-align: center;
+}
+
+.trend-button {
+	display: inline-block;
+    background-color: #759ef7;
+    color: #ffffff;
+    align-items: center;
+    padding: 0 2vmin 0 2vmin;
+    margin-left: 10px;
+    height: 6vmin;
+    width: 22vmin;
+    border-radius: 30px;
+    font-size: 1.9vmin;
+	border-color: #759ef7;
 }

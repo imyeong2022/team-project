@@ -254,6 +254,10 @@ def persnal_info_change():
 
 ############ 미완성 및 미적용 루트 ########
 
+@app.route('/trend')
+def trend():
+    return render_template('Board/trend.html')
+
 @app.route('/chart')
 def chart():
     return render_template('Board/chart.html')

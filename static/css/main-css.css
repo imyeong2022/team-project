@@ -573,7 +573,15 @@ footer {
 	font-size: 2vmin;
 	font-weight: bold;
 }
-
+/* grid-sub-blue와 동일하게 임의 지정 - 사이트와 동일한 클래스명*/
+.sort text-primary text-md {
+	padding-left: 10px;
+	padding-right: 10px;
+	color: rgb(29, 146, 255);
+	font-size: 2vmin;
+	font-weight: bold;
+}
+/* ----------------------------------------------------end */
 .grid-red {
 	margin-bottom: 10px;
 	padding-left: 10px;
@@ -597,6 +605,15 @@ footer {
 }
 
 .grid-title {
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 0px;
+	padding-top: 7px;
+	font-size: 3.5vmin;
+	font-weight: bold;
+	color: black;
+}
+.title {
 	padding-left: 10px;
 	padding-right: 10px;
 	margin: 0px;
@@ -1677,12 +1694,22 @@ li>.title {
 	color: gray;
 }
 
-.condition>ul>li>div>ol {
+/* .condition>ul>li>div>ol {
+	list-style: none;
+	padding: 0 0 0 10px;
+} */
+.condition>ul>li>div>ul {
 	list-style: none;
 	padding: 0 0 0 10px;
 }
-
+/* 
 .condition>ul>li>div>ol>li {
+	float: left;
+	list-style: none;
+	width: auto;
+	margin: 0 10px 0 0;
+} */
+.condition>ul>li>div>ul>li {
 	float: left;
 	list-style: none;
 	width: auto;

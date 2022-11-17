@@ -1,8 +1,14 @@
-from flask import Flask, redirect, url_for, render_template, request , flash
+from flask import Flask, redirect, url_for, render_template, request , flash, jsonify
 from flask import request, session
 import pymysql
 import hashlib
 import re
+
+# @app.route('/_add_numbers') #json 테스트
+# def add_numbers():
+#     a = request.args.get('a', 0, type=int)
+#     b = request.args.get('b', 0, type=int)
+#     return jsonify(result=a + b)
 
 ## 2022 11 10 병합작업 1차버전입니다.
 ########### 데이터베이스 접속 전역변수 선언############

@@ -1,25 +1,37 @@
 @font-face {
-	font-family: 'Pretendard-Regular';
-	src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
-	font-weight: 400;
+	font-family: 'GmarketSansMedium';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	font-weight: normal;
 	font-style: normal;
-}
+ }
+ 
+ html {
+	font-family: 'Pretendard-Regular';
+ }
+ 
+ body {
+	margin: 0px;
+	height: 3000px;
+ }
+ 
 
 html {
-	font-family: 'Pretendard-Regular';
+	font-family: Helvetica, Tahoma;
 }
 
 body {
-	margin: 0px;
-	height: 3000px;
 	font-size: 2vmin;
 	margin: 0;
 	padding: 0;
+	font-family: 'GmarketSansMedium';
+	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
 }
 
 header {
 	position: fixed;
-	height: 120px;
+	height: 16vmin;
 	width: 100%;
 	top: 0;
 	left: 0;
@@ -40,10 +52,12 @@ header {
 }
 
 .header-div-left {
+	box-sizing: border-box;
 	background: white;
 	float: left;
-	height: 120px;
+	height: 100%;
 	width: 20%;
+	margin-top: 2%;
 	z-index: 3;
 }
 
@@ -56,6 +70,23 @@ header {
 	color: black;
 }
 
+.logo-image {
+	width: auto;
+	height: 100%;
+	object-fit: cover;
+}
+
+.job {
+	font-size: 8vmin;
+	font-weight: bold;
+	color: #759ef7;
+}
+
+.ara {
+	font-size: 3.5vmin;
+	color: black;
+}
+
 .header-logo-a {
 	color: black;
 	text-decoration: none;
@@ -64,7 +95,7 @@ header {
 .header-div-right {
 	background: white;
 	float: right;
-	height: 120px;
+	height: 12vmin;
 	width: 77%;
 	z-index: 3;
 	padding-right: 3%;
@@ -73,7 +104,7 @@ header {
 .header-div-top {
 	background: white;
 	float: right;
-	height: 55px;
+	height: 5.5vmin;
 	width: 100%;
 	z-index: 4;
 }
@@ -81,7 +112,7 @@ header {
 .header-div-lower {
 	background: white;
 	float: right;
-	height: 65px;
+	height: 6.5vmin;
 	width: 100%;
 	z-index: 4;
 }
@@ -94,6 +125,19 @@ footer {
 .main-section {
 	height: auto;
 	width: 100%;
+	overflow: hidden
+}
+
+.bg-f6 {
+	background: #f6f6f6;
+	padding: 2vmin;
+	overflow: hidden;
+}
+
+.bg-ff {
+	background: #ffffff;
+	padding: 2vmin;
+	overflow: hidden;
 }
 
 .header-a-tag-none {
@@ -107,18 +151,18 @@ footer {
 
 .header-a-tag-none-lower {
 	float: left;
-	font-size: 1.5rem;
+	font-size: 3vmin;
 	font-weight: bold;
 	text-decoration: none;
 	color: black;
 	padding-top: 2%;
 	padding-left: 3%;
 	padding-right: 3%;
+
 }
 
 .header-a-tag-none-lower:nth-child(-n+4) {
 	float: left;
-	font-size: 1.5rem;
 	font-weight: bold;
 	text-decoration: none;
 	color: #759ef7;
@@ -128,13 +172,24 @@ footer {
 }
 
 .header-a-tag-none-logo {
-	font-size: 1.5rem;
+	font-size: 3vmin;
 	font-weight: bold;
 	text-decoration: none;
 	color: black;
-	padding-top: 2%;
-	padding-left: 3%;
-	padding-right: 3%;
+	padding: 70vmin 0 0 20vmin;
+
+}
+
+.home-img {
+	margin-top: 16px;
+	margin-right: 10px;
+	display: inline-block;
+	width: 48px;
+	height: 48px;
+	border: 1px solid #fff;
+	border-radius: 100%;
+	background: url(../source/index.png) no-repeat;
+	background-position: 50% 50%;
 }
 
 .main-section-slider-div {}
@@ -161,9 +216,10 @@ footer {
 
 
 .recommend-div {
-	background: #edd9ff;
-	height: 750px;
-	width: 100%;
+	background: #f6f6f6;
+	padding: 10% 5% 10% 5%;
+	width: 90%;
+	display: inline-block;
 }
 
 
@@ -171,17 +227,26 @@ footer {
 .title-area {
 	margin-left: 7.5%;
 	margin-right: 7.5%;
-	padding-top: 140px;
-	padding-bottom: 80px;
-	height: 200px;
+	padding-top: 17vmin;
+	padding-bottom: 8vmin;
+	height: 20vmin;
 	width: 85%;
 	background-color: white;
 }
 
 .content-area {
-	margin-left: 7.5%;
-	margin-right: 7.5%;
+	position: relative;
+	max-width: 1380px;
+	margin: 5vmin auto;
 }
+
+.content-p-area {
+	height: auto;
+	display: flex;
+	position: relative;
+	padding: 2%;
+}
+
 
 .inner {}
 
@@ -198,9 +263,7 @@ footer {
 }
 
 .search-filter {
-	margin-top: 6%;
-	margin-left: 8%;
-	margin-right: 8%;
+	margin: 6% 8% 6% 8%;
 	height: 250px;
 	width: 84%;
 }
@@ -222,7 +285,7 @@ footer {
 .search-fileter-child-title {
 	padding-top: 30px;
 	padding-bottom: 20px;
-	padding-left: 10%;
+	padding-left: 4%;
 	padding-right: 10%;
 	height: 20px;
 	width: 80%;
@@ -241,9 +304,9 @@ footer {
 
 .search-fileter-child-item-list {
 	padding-bottom: 30px;
-	padding-left: 10%;
+	padding-left: 5%;
 	padding-right: 2.5%;
-	width: 87.5%;
+	width: 92.5%;
 	height: 150px;
 }
 
@@ -265,7 +328,7 @@ footer {
 	overflow-y: scroll;
 	float: left;
 	height: 150px;
-	width: 95%;
+	width: 99%;
 }
 
 .search-fileter-checkbox>:first-child {
@@ -284,8 +347,28 @@ footer {
 
 .search-fileter-checkbox-item>label {
 	position: relative;
-	top: -5px;
-	margin-left: 5px;
+	top: -3.1vmin;
+	left: 1.8vmin;
+	display: block;
+	padding-left: 1.5em;
+	text-indent: 0.3.5em;
+	width: 86%;
+
+}
+
+.ee {
+	width: 33%;
+}
+
+.ee:nth-child(2) {
+	width: 66%
+}
+
+.eelis {}
+
+.eeli {
+	list-style: none;
+	padding: 0 0 0 0;
 }
 
 .public-list {
@@ -301,6 +384,14 @@ footer {
 	float: left
 }
 
+.public-li::before {
+	content: ">>";
+}
+
+.public-li:first-child::before {
+	content: none;
+}
+
 .public-title {
 	margin-top: 50px;
 	text-align: center;
@@ -314,38 +405,86 @@ footer {
 
 }
 
+.recommend-div>div {
+	display: inline-block;
+	margin-left: 8vmin;
+}
+
+.recommend-div>div>h1 {
+	margin: 0 0 2% 11.6%;
+	width: 48vmin;
+	font-size: 5vmin;
+}
+
+.recommend-div>div>a {
+	font-size: 2.3vmin;
+	color: #474747;
+	vertical-align: middle;
+	text-align: center;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.recommend-div>div>a::after {
+	content: " >";
+}
+
 .main-gird-ul {
 	list-style: none;
 	margin-top: 0px;
 	margin-bottom: 0px;
 	margin-left: 3%;
 	margin-right: 3%;
-	padding-top: 7.5%;
 	height: 87%;
 	width: auto;
 }
 
 .main-gird-li {
+	box-sizing: border-box;
+	margin: 1% 1.3% 1% 1.3%;
+	padding: 10% 1.5% 10% 1.5%;
+	background: #ffffff;
+	width: 100%;
+	height: 100%;
+	display: inline-block;
+	box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	/* 마우스 포인터를 올렸을 때 손가락으로 바뀜 */
+	transition: box-shadow 0.1s linear;
+}
 
-	margin-top: 1%;
-	margin-bottom: 1%;
-	margin-left: 1.3%;
-	margin-right: 1.3%;
-	padding-top: 3%;
-	padding-left: 1.5%;
-	padding-right: 1.5%;
-	float: left;
-	background: #796565;
-	width: 27%;
-	height: 180px;
-
+.main-gird-li:hover {
+	box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2), 0 6px 4px rgba(0, 0, 0, 0.2);
 }
 
 .grid-sub-blue {
 	padding-left: 10px;
 	padding-right: 10px;
 	color: rgb(29, 146, 255);
-	font-size: 20px;
+	font-size: 2vmin;
+	font-weight: bold;
+}
+
+.grid-red {
+	margin-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	color: #ffffff;
+	background: rgb(255, 86, 86);
+	font-size: 2vmin;
+	font-weight: bold;
+	border-radius: 30px;
+	border: 0.2vmin solid rgb(255, 86, 86);
+}
+
+.grid-sub-red {
+	margin-bottom: 1vmin;
+	padding: 0.2vmin 1vmin 0.2vmin 1vmin;
+	color: rgb(255, 86, 86);
+	font-size: 1.4vmin;
+	font-weight: bold;
+	border-radius: 30px;
+	border: 0.2vmin solid rgb(255, 86, 86);
 }
 
 .grid-title {
@@ -353,14 +492,38 @@ footer {
 	padding-right: 10px;
 	margin: 0px;
 	padding-top: 7px;
-	font-size: 35px;
+	font-size: 3.5vmin;
+	font-weight: bold;
+	color: black;
+}
+
+.grid-title-side {
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 1vmin 0 0 0;
+	padding-top: 7px;
+	font-size: 3.5vmin;
+	font-weight: bold;
+	color: black;
+}
+
+.grid-title-side {
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 10px 0 0 0;
+	padding-top: 7px;
+	font-size: 3.5vmin;
+	font-weight: bold;
+	color: black;
 }
 
 .grid-sub-text {
 	padding-left: 10px;
 	padding-right: 10px;
 	padding-top: 25px;
-	font-size: 16px;
+	font-size: 2vmin;
+	color: #999;
+	text-decoration: none;
 }
 
 .main-grid-a {}
@@ -466,6 +629,46 @@ input::placeholder {
 	border-color: #759ef7;
 }
 
+.join-input-birth-first {
+	width: 9.5%;
+	height: 60px;
+	margin-left: 32.5%;
+	margin-right: 0.4%;
+	padding-left: 1%;
+	margin-bottom: 15px;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
+.join-input-birth {
+	width: 9.5%;
+	height: 60px;
+	margin-left: 0.3%;
+	margin-right: 0.5%;
+	padding-left: 0.5%;
+	padding-left: 1%;
+	margin-bottom: 15px;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
+.join-input-birth-end {
+	width: 9.5%;
+	height: 60px;
+	margin-left: 0.15%;
+	margin-right: 29%;
+	padding-left: 1%;
+	margin-bottom: 15px;
+	font-size: 16px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
 .join-submit {
 	margin-left: 32.5%;
 	margin-right: 32.5%;
@@ -543,29 +746,29 @@ input::placeholder {
 	padding-top: 180px;
 	padding-bottom: 40px;
 	float: left;
-	height: 300px;
+	height: 40.3vmin;
 	width: 85%;
-	background-color: rgb(97, 97, 97);
+	background: url(../source/company/company-main-1.png)no-repeat;
+	background-size: cover;
 	z-index: 0;
-
 }
 
 .title-area-company {
 	position: absolute;
 	margin-left: 7.5%;
 	margin-right: 7.5%;
-	padding-top: 180px;
-	padding-bottom: 40px;
+	padding-top: 24vmin;
+	padding-bottom: 4vmin;
 	float: left;
-	height: 300px;
+	height: 34vmin;
 	width: 85%;
 	z-index: 1;
 }
 
 .company-logo {
 	float: left;
-	height: 250px;
-	width: 250px;
+	height: 27vmin;
+	width: 27vmin;
 	padding: 25px;
 	margin-right: 60px;
 	background: white;
@@ -582,7 +785,7 @@ input::placeholder {
 
 .company-info {
 	float: left;
-	width: 73%;
+	width: auto;
 	height: 300px;
 }
 
@@ -590,6 +793,8 @@ input::placeholder {
 	color: aliceblue;
 	margin-top: 35px;
 	margin-bottom: 5px;
+	font-size: 2.3vmin;
+	font-weight: bold;
 }
 
 .company-title {
@@ -615,6 +820,60 @@ input::placeholder {
 	font-weight: none;
 	color: aliceblue;
 }
+
+.custom-checkbox {
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.custom-checkbox .checkbox-like+label {
+	display: inline-block;
+	padding: 0 20px 0 45px;
+	color: #555;
+	font-size: 16px;
+	line-height: 46px;
+	background: #fff;
+	border: 1px solid #999;
+	border-radius: 24px;
+	vertical-align: middle;
+}
+
+.custom-checkbox input[type="checkbox"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+	vertical-align: top;
+}
+
+.custom-checkbox .checkbox-like.type2+label {
+	color: #fff;
+	background: transparent;
+	border: 1px solid #fff;
+}
+
+.custom-checkbox .checkbox-like+label:before {
+	display: block;
+	content: '';
+	position: absolute;
+	left: 20px;
+	top: 50%;
+	margin-top: -7px;
+	width: 15px;
+	height: 15px;
+	text-align: center;
+	background: url(../images/icon/ico_check_like.png) no-repeat;
+}
+
+.custom-checkbox .checkbox-like.type2+label:before {
+	background: url(../source/like.png) -61px -29px no-repeat;
+}
+
 
 
 /* FAQ */
@@ -862,12 +1121,13 @@ input::placeholder {
 	text-indent: 1.2em;
 }
 
-.spacing:nth-child(2){
+
+.spacing:nth-child(2) {
 	margin: 30px 0px 0px 0px;
 	padding: 0px 0px 15px 0px;
 }
 
-.spacing:nth-child(2)::before{
+.spacing:nth-child(2)::before {
 	content: "ㄴ  ";
 }
 
@@ -954,6 +1214,180 @@ input::placeholder {
 	font-size: 16px;
 }
 
+/* -----------company.html 적용 -> 태수 작업 전 임시방편 by 서연 */
+.compony-frame {
+	position: relative;
+	max-width: 1380px;
+	margin: 5vmin auto;
+}
+
+.article-title-area {
+	position: relative;
+	margin: 3vmin 0;
+}
+
+.article-title-area>.title {
+	display: inline-block;
+	font-size: 4.5vmin;
+	font-weight: 500;
+	font-weight: bold;
+	margin: 0 0;
+}
+
+.article-wrap {
+	padding: 100px 0;
+}
+
+.info-guide {
+	position: absolute;
+	bottom: 0px;
+	right: 0px;
+	color: gray;
+}
+
+.info-guide a {
+	color: gray;
+}
+
+.article-content {
+	background: #ffffff;
+	overflow: hidden;
+}
+
+.info-item {
+	width: 50%;
+	padding: 4.5vmin;
+	box-sizing: border-box;
+	float: left;
+	display: table;
+}
+
+.basic-info-wrap {
+	overflow: hidden;
+}
+
+.basic-info-wrap .info-item dl dt {
+	display: table-cell;
+	width: 9vmin;
+	padding-top: 20px;
+	padding-right: 30px;
+	font-weight: 700;
+}
+
+.basic-info-wrap .info-item dl:first-child dt {
+	padding-top: 0px;
+}
+
+.basic-info-wrap .info-item dl dd {
+	display: table-cell;
+	color: #555;
+}
+
+#wlfr {
+	background: #ffffff;
+}
+
+.welfare-box {
+	list-style: none;
+	overflow: hidden;
+	padding: 0 0;
+	margin: 0 0;
+}
+
+.welfare-wrap .welfare-box li {
+	list-style: none;
+	float: left;
+	box-sizing: border-box;
+	width: 49%;
+	height: 33vmin;
+	padding: 4vmin;
+	margin-bottom: 3vmin;
+	border: 1px solid #d6d6d6;
+}
+
+.welfare-wrap .welfare-box li:nth-child(2n+1) {
+	margin-right: 2%;
+}
+
+li>.title {
+	font-weight: bold;
+	font-size: 3vmin;
+}
+
+.sub-title {
+	display: inline-block;
+	font-size: 4.5vmin;
+	font-weight: bold;
+	margin: 0 0;
+}
+
+.box-white>.icon {
+	display: inline-block;
+	width: 5.4vmin;
+	height: 5.4vmin;
+}
+
+.i1 {
+	background: url(../source/company/dontong.png) no-repeat center / cover;
+}
+
+.i2 {
+	background: url(../source/company/hyumu.png) no-repeat center / cover;
+}
+
+.i3 {
+	background: url(../source/company/bosang.png) no-repeat center / cover;
+}
+
+.i4 {
+	background: url(../source/company/pyony.png) no-repeat center / cover;
+}
+
+.i5 {
+	background: url(../source/company/siser.png) no-repeat center / cover;
+}
+
+.i6 {
+	background: url(../source/company/gyo6.png) no-repeat center / cover;
+}
+
+.i7 {
+	background: url(../source/company/etc.png) no-repeat center / cover;
+}
+
+.i8 {
+	background: url(../source/company/present.png) no-repeat center / cover;
+}
+
+.company-hl {
+	display: flex;
+	background-color: #759ef7;
+	color: #ffffff;
+	align-items: center;
+	justify-content: space-around;
+	padding: 0 2vmin 0 2vmin;
+	margin-left: 10px;
+	height: 6vmin;
+	width: 14vmin;
+	border-radius: 30px;
+	font-size: 1.9vmin;
+}
+
+.incruit-logo-area {
+	text-align: center;
+}
+
+.text-grey {
+	color: gray;
+	margin-right: 10px;
+}
+
+.company-swiper-div-margin {
+	margin-top: 5vmin;
+}
+
+/* --------------------------------------------company.html */
+
 .qna-section {
 	height: auto;
 	width: 100%;
@@ -972,7 +1406,7 @@ input::placeholder {
 	margin-top: 25px;
 }
 
-.qna>li>label>div{
+.qna>li>label>div {
 	float: left;
 }
 
@@ -996,7 +1430,7 @@ input::placeholder {
 	width: 15%;
 }
 
-.qna>li>div{
+.qna>li>div {
 	margin: 40px 0px 0px 5%;
 }
 
@@ -1020,7 +1454,7 @@ input::placeholder {
 	height: auto;
 	width: auto;
 	list-style: none;
-	background: white;
+	background: aliceblue;
 	border: 0.1vmin solid rgb(214, 214, 214);
 }
 
@@ -1045,17 +1479,16 @@ input::placeholder {
 	padding: 0 20px 0 20px;
 	margin-left: 10px;
 	height: 6vmin;
-	width: 18vmin;
+	width: 19vmin;
 	background: white;
 	border-radius: 30px;
-	font-size: 1.9vmin;
-	border: 0.1vmin solid gray;
+	font-size: 2vmin;
 }
 
 .condition-sub-text {
-	padding-left: 10px;
-	padding-right: 10px;
-	font-size: 16px;
+	padding-left: 1vmin;
+	padding-right: 1vmin;
+	font-size: 1.6vmin;
 	color: gray;
 }
 
@@ -1069,4 +1502,177 @@ input::placeholder {
 	list-style: none;
 	width: auto;
 	margin: 0 10px 0 0;
+}
+
+/* trend */
+.bg-75 {
+	background: #759ef7;
+}
+
+.trend-wrap {
+	box-sizing: border-box;
+	width: 146vmin;
+	padding: 5vmin;
+	background: white;
+	margin: auto;
+}
+
+.trend-board-top {
+	overflow: hidden;
+}
+
+.trend-board-top>div {
+	box-sizing: border-box;
+	float: left;
+	width: 25%;
+	padding: 3vmin;
+}
+
+.trend-board-top>div>p {
+	font-size: 1.5vmin;
+}
+
+.trend-board-top>div>p,
+span,
+h3 {
+	text-align: center;
+}
+
+
+.trend-board-top>div>img {
+	display: block;
+	margin: 0px auto 1vmin auto;
+}
+
+.trend-board-bottom {
+	overflow: hidden;
+}
+
+.trend-grid>div {
+	box-sizing: border-box;
+	float: left;
+	width: 33.333%;
+	height: 16vmin;
+	border: 1px solid #333;
+	padding: 2vmin;
+}
+
+.left {
+	float: left;
+}
+
+.right {
+	float: right;
+}
+
+.up {
+	color: #e40000;
+}
+
+.up::after {
+	margin: 0 1vmin;
+	content: url("https://eis.work.go.kr/static/images/main/icon-total-arrow-up.png");
+}
+
+.down {
+	color: #0047d4;
+}
+
+.down::after {
+	margin: 0 1vmin;
+	content: url("https://eis.work.go.kr/static/images/main/icon-total-arrow-down.png");
+}
+
+.trend-div {
+	overflow: hidden;
+}
+
+.trend-divi {
+	box-sizing: border-box;
+	float: left;
+	width: 48%;
+	margin: 1%;
+}
+
+.trend-divi>h2,
+h3,
+h5 {
+	text-align: center;
+}
+
+.icon.man {
+	display: block;
+	width: 3.6vmin;
+	height: 8.2vmin;
+	margin: 1vmin auto 0px;
+	background: url(https://eis.work.go.kr/static/images/main/icon-man.png) no-repeat;
+	background-size: cover;
+}
+
+.icon.woman {
+	display: block;
+	width: 4.3vmin;
+	height: 8.2vmin;
+	margin: 1vmin auto 0px;
+	background: url(https://eis.work.go.kr/static/images/main/icon-woman.png) no-repeat;
+	background-size: cover;
+}
+
+.trend-divi.green {
+	background: rgb(247, 255, 255);
+}
+
+
+.trend-divi.pink {
+	background: rgb(255, 248, 248);
+}
+
+.trend-divi>hr {
+	color: rgb(230, 230, 230);
+}
+
+.trend46 {
+	margin: 1%;
+	float: left;
+	
+}
+
+.w40 {
+	width: 39%;
+}
+
+.w60 {
+	width: 55%;
+}
+
+.trend46.w40>h3 {
+	text-align: center;
+}
+
+.trend46.w40>h3,p {
+	font-size: 1.5vmin;
+}
+
+.trend46.w40{
+	box-sizing: border-box;
+	padding: 2%;
+}
+
+.trend-button-box{
+	margin-top: 10vmin;
+	text-align: center;
+}
+
+.trend-button {
+	display: inline-block;
+    background-color: #759ef7;
+    color: #ffffff;
+    align-items: center;
+    padding: 0 2vmin 0 2vmin;
+    margin-left: 10px;
+    height: 6vmin;
+    width: 22vmin;
+    border-radius: 30px;
+    font-size: 1.9vmin;
+	border-color: #759ef7;
 }

@@ -1,17 +1,131 @@
 <!DOCTYPE html>
 <html lang="ko">
 
+
+
+
 <head>
     <meta charset="UTF-8">
     <title>login_form.html</title>
-    <script>
+
+    <script type="text/javascript">
         function selectAll(selectAll) {
             const checkboxes = document.getElementsByName('terms');
             checkboxes.forEach((checkbox) => {
                 checkbox.checked = selectAll.checked;
             })
         }
+
+        function Validation() {
+            var RegExp = /^[a-zA-Z0-9]{4,12}$/; // 아이디 유효성 검사
+            // var pwExp = /[`~!@#$%^&*(),<.>/?]+[a-zA-Z0-9]{4,12}$/; // 비밀번호 유효성검사
+            var pwExp = /^(?=.*[\d])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*()])[\w\d!@#$%^&*()]{8,20}$/;
+            var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/; // 이메일 유효성 검사
+            var nameExp = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/; // 이름 유효성 검사
+            var phoneExp = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/; // 휴대폰번호 유효성 검사
+            //(01로 시작하고 (0,1,6,7,8,9 중 하나의 문자) -은 있을수도 없을수도 (숫자만 들어가면서 3~4 길이의 문자) - 은 있을수도 없을수도 (숫자만 들어가면서 4 길이의 문자) 
+            var birthExp = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/; // 생년월일 유효성 검사, 19xx년도부터 가능
+
+
+            var userId = document.getElementById("user_id");
+            var userPw = document.getElementById("user_pw");
+            var userPc = document.getElementById("user_pw_check");
+            var username = document.getElementById("user_name");
+            var useremail = document.getElementById("user_email");
+            var userphone = document.getElementById("user_phone");
+            var userbirth = document.getElementById("user_birth-1").value + document.getElementById("user_birth-2").value + document.getElementById("user_birth-3").value;
+            console.log(userbirth)
+
+
+
+
+
+
+            // 아이디 값이 없을 경우
+            if (userId.value == "") {
+                alert("ID를 입력해주세요.");
+                return false;
+            }
+
+            // 아이디가 4~12자리 영문대소문자와 숫자조합으로만 입력되게
+            if (!RegExp.test(userId.value)) {
+                alert("아이디를 4~12자리 영문대소문자와 숫자로만 입력해주세요");
+                console.log("아 좀 떠라");
+                return false;
+            }
+            if (userId.value == "") {
+                alert("ID를 입력해주세요.");
+                return false;
+            }
+
+            // 비밀번호가 8자 이상으로 특수문자 입력 << 왜 여기로만 넘어가고 만족해도 안넘어가지?
+
+            if (!pwExp.test(userPw.value)) {
+                alert("비밀번호를 확인해주세요. \n최소 1개 이상의 소문자, 대문자, 숫자, 특수문자로 구성되어야 하며 길이는 8자리 이상 20자리 이하여야 합니다.");
+                return false;
+            }
+
+            //password_check가 입력되지 않을 경우
+
+            if (userPc.value == "") {
+                alert("password_Check가 입력되지 않았습니다.");
+                return false;
+            }
+
+            //password_check와 password가 일치하지 않을 경우
+
+            if (userPc.value != userPw.value) {
+                alert("password와 passwordCheck값이 다릅니다.");
+                return false;
+            }
+
+            // 이름이 한글(2글자 이하)이거나, 영어 2~10글자 + 2~10글자가 아닌 경우 (예시 sam smith)
+            if (!nameExp.test(username.value)) {
+                alert("이름을 확인해주세요.");
+                return false;
+            }
+
+            if (emailExp.test(useremail.value) == false) {
+                alert("이메일 형식이 올바르지 않습니다.")
+                return false;
+            }
+
+            if (!phoneExp.test(userphone.value)) {
+                alert("휴대폰번호 형식(11자리)이 올바르지 않습니다.")
+                return false;
+            }
+
+            if (!birthExp.test(userbirth)) {
+                alert("생년월일이 올바르지 않습니다.")
+                return false;
+            }
+
+
+
+        }
+
+        function idchk() {
+            let data = JSON.parse('{{ data | safe }}');
+            var userId = document.getElementById("user_id");
+            console.log(data) // 0~4까지 아이디 각자 뜨는거 확인완료
+            console.log(typeof (data))
+            console.log(userId.value)
+            lastid = data.some(v => v.ID === userId.value); // some으로 배열에 있는 값과 변수를 정확히비교(===)
+            console.log(lastid)
+            if (lastid == true) {
+                alert("이미 사용중인 아이디입니다.")
+                return false
+            }
+            else {
+                alert("사용가능한 아이디입니다.")
+                return false
+            }
+        }
+        
+
+
     </script>
+
 </head>
 
 <body>
@@ -37,14 +151,34 @@
             </div>
             <hr class="public-hr" />
             <div class="login-form-div">
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 52683a87e8991c17034ced4f0f90ec502c4777ad
+                <form class="login-form" action="/join_proc" method="post" onsubmit="return Validation();">
+                    <tr><input class="join-input" type="text" name="user_id" id="user_id" placeholder="ID"
+                            maxlength="12">
+                        <input type="button" value="중복 확인" id="btmCheck" onclick="idchk()" />
+                    </tr>
+                    <input class="join-input" type="password" name="user_pw" id="user_pw" placeholder="PassWord">
+                    <input class="join-input" type="password" name="user_pw_check" id="user_pw_check"
+                        placeholder="Password_check">
+                    <input class="join-input" type="text" name="user_name" id="user_name" placeholder="Name">
+                    <input class="join-input" type="text" name="user_email" id="user_email" placeholder="email">
+                    <input class="join-input" type="text" name="user_phone" id="user_phone" placeholder="Phone Number"
+                        maxlength="11">
+                    <input class="join-input-birth-first" type="text" name="user_birth-1" id="user_birth-1"
+                        placeholder="YYYY" maxlength="4">-
+                    <input class="join-input-birth" type="text" name="user_birth-2" id="user_birth-2" placeholder="MM"
+                        maxlength="2">-
+                    <input class="join-input-birth-end" type="text" name="user_birth-3" id="user_birth-3"
+                        placeholder="DD" maxlength="2">
+<<<<<<< HEAD
+>>>>>>> 52683a8 (에러수정(조인))
+=======
+>>>>>>> 52683a87e8991c17034ced4f0f90ec502c4777ad
 
-                <form class="login-form" action="/join_proc" method="post">
-                    <input class="join-input" type="text" name="user_id" placeholder="ID">
-                    <input class="join-input" type="text" name="user_pw" placeholder="PassWord">
-                    <input class="join-input" type="text" name="user_pw_check" placeholder="Re PassWord">
-                    <input class="join-input" type="text" name="user_name" placeholder="Name">
-                    <input class="join-input" type="text" name="user_phone" placeholder="Phone Number">
-                    <input class="join-input" type="text" name="user_birth" placeholder="Birth">
                     <hr />
                     <div class="join-check-all">
                         <input type="checkbox" name="terms" value="selectAll" onclick="selectAll(this)" /><b>모두 확인하였으며
@@ -55,25 +189,29 @@
                     </div>
                     <div class="join-check-area">
                         <div class="join-check-list">
-                            <input type="checkbox" name="terms" value="select-essential-1" /><b>[필수] 만 14세
+                            <input type="checkbox" name="terms" value="select-essential-1" required /><b>[필수] 만 14세
                                 이상입니다.</b><br />
                         </div>
                         <div class="join-check-list">
-                            <input class="join-check-list" type="checkbox" name="terms"
-                                value="select-essential-2" /><b>[필수]
+                            <input class="join-check-list" type="checkbox" name="terms" value="select-essential-2"
+                                required /><b>[필수]
                                 잡아라 이용약관 동의.</b><br />
                         </div>
                         <div class="join-check-list">
-                            <input class="join-check-list" type="checkbox" name="terms"
-                                value="select-essential-3" /><b>[필수]
-                                개인정보 수집 및 이용 동의.</b><br /></div>
+                            <input class="join-check-list" type="checkbox" name="terms" value="select-essential-3"
+                                required /><b>[필수]
+                                개인정보 수집 및 이용 동의.</b><br />
+                        </div>
                         <div class="join-check-list">
-                            <input type="checkbox" name="terms" value="select-essential-4" /><b>[필수] 개인정보 제3자 제공
-                                동의.</b><br /></div>
+                            <input type="checkbox" name="terms" value="select-essential-4" required /><b>[필수] 개인정보 제3자
+                                제공
+                                동의.</b><br />
+                        </div>
                         <div class="join-check-list">
                             <input type="checkbox" name="terms" value="select-necessary-1" /><b>[선택] 마케팅 목적의 개인정보 수집 및
                                 이용
-                                동의.</b><br /></div>
+                                동의.</b><br />
+                        </div>
                         <div class="join-check-list">
                             <input type="checkbox" name="terms" value="select-necessary-2" /><b>[선택] 광고성 정보 수신
                                 동의.</b><br />
@@ -97,6 +235,7 @@
             <div></div>
         </section>
     </div>
+
 </body>
 
 </html>

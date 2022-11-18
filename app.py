@@ -11,8 +11,8 @@ import json
 ########### 데이터베이스 접속 전역변수 선언############
 con = pymysql.connect(host='localhost',
                              user='root',
-                             password='java',
-                             db='final_test',
+                             password='qr395026',
+                             db='JOBARA',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
 cursor = con.cursor()
@@ -21,10 +21,9 @@ cursor = con.cursor()
 app = Flask(__name__)
 ##################### Index ###############
 
-
 @app.route('/')
 def home():
-    sql = "SELECT * from recruitment"
+    sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
     data_list = data_list
@@ -54,10 +53,13 @@ def company(data_id):
     data_list = data_list
     return render_template('Board/company.html', data_list=data_list)
 
+@app.route('/excellence_employment') ###############채용정보페이지
+def excellence_employment():
+    return render_template('Board/excellence_employment.html')
 
-@app.route('/jobs')  ################# 채용정보페이지
-def jobs():
-    return render_template('Board/jobs.html')
+@app.route('/trend')  ################# 구직트렌드페이지 
+def trends():
+    return render_template('Board/trend.html')
 
 
 @app.route('/faq')  ############## 질문과 답변
@@ -269,9 +271,7 @@ def chart():
 def bar():
     return render_template('Board/bar.html')
 
-@app.route('/excellence_employment')
-def excellence_employment():
-    return render_template('Board/excellence_employment.html')
+
 #####################################
 
 

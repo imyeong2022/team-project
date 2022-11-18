@@ -33,6 +33,7 @@ def home():
 
     return render_template('Board/index.html', data_list=data_list)
 
+
 # --------------------------메뉴-----------------------------------
 
 
@@ -43,6 +44,33 @@ def condition():
     data_list = cursor.fetchall()
     data_list = data_list
     return render_template('Board/Condition.html', data_list=data_list)
+
+####################################################
+@app.route('/employtest') # 체크박스 test
+def employtest():
+    content=request.args.get('area') 
+    content = content.split(',')
+    content = tuple(content) #tuple로 변환햇는데 sql %s에는 한개만 들어감
+    print(content)
+    sql='SELECT * from company_info where 지역 in (%s)'
+    cursor.execute(sql, (content,))
+    rows=cursor.fetchall()
+    print('............',rows)
+    return rows
+
+
+@app.route('/interest') ###############찜리스트 select
+def interest():
+    user_id=session['ID']
+    sql = "SELECT * from like_company_view where m_id=%s"
+    cursor.execute(sql,(user_id,))
+    interest_com = cursor.fetchall()
+    interest_len = len(interest_com)
+    return render_template('Board/interest_company.html', interest_com=interest_com,interest_len=interest_len)
+
+
+
+########################################################
 
 
 @app.route('/company/<int:data_id>')  ############ 기업상세페이지

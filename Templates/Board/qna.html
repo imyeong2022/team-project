@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <title>QnA</title>
 </head>
+
 <body>
     {% include 'Board/header.html' %}
     <div class="main-div">
@@ -56,6 +58,7 @@
                     <hr />
                     <div class="qna-section">
                         <ul class="qna">
+                            {% for x in range(qna_len) %}
                             <li>
                                 <input type="checkbox" id="qna-{{x}}">
                                 <label for="qna-{{x}}">
@@ -76,6 +79,7 @@
                                     {% endif %}
                                 </div>
                             </li>
+                            {% endfor %}
                         </ul>
                     </div>
                     <hr />
@@ -94,19 +98,18 @@
             }
         }
 
-        document.querySelector("#qna-select .select").addEventListener("click", onClickSelect);
+        document.querySelector("#faq-select .select").addEventListener("click", onClickSelect);
 
         function onClickOption(e) {
             const selectedValue = e.currentTarget.innerHTML;
-            document.querySelector("#qna-select .text").innerHTML = selectedValue;
+            document.querySelector("#faq-select .text").innerHTML = selectedValue;
         }
 
-        var optionList = document.querySelectorAll("#qna-select .option");
+        var optionList = document.querySelectorAll("#faq-select .option");
         for (var i = 0; i < optionList.length; i++) {
             var option = optionList[i];
             option.addEventListener("click", onClickOption);
         }
-        
     </script>
 </body>
 

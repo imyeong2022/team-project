@@ -1,8 +1,7 @@
-from flask import Flask, redirect, url_for, render_template, request , flash
+from flask import Flask, redirect, url_for, render_template, request , flash , flash, jsonify
 from flask import request, session
+from flask_mail import Mail, Message
 import pymysql
-import hashlib
-import re
 import hashlib
 import re
 import json
@@ -17,8 +16,49 @@ con = pymysql.connect(host='localhost',
                              cursorclass=pymysql.cursors.DictCursor)
 cursor = con.cursor()
 ###########데이터베이스 접속 전역변수 선언############
-
 app = Flask(__name__)
+############ 구글메일(계정찾기 테스트) ################ 사이트 접근과 동시에 메일서버와 인터페이스 하면서 recipients 로 지정된 메일 주소로 이메일을 발송
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
+app.config['MAIL_PASSWORD'] = 'myhinigkzocytxcd'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
+mail = Mail(app)
+
+@app.route('/accountfind')
+def accountfind():
+    sql = "SELECT ID,email from member"
+    cursor.execute(sql)
+    userlist2 = cursor.fetchall()
+    print(type(userlist2))
+    print(userlist2)
+
+    return render_template('Board/account.html')
+
+@app.route('/accountfind_proc', methods=['POST'])
+def accountfind_proc():
+    user_name_recive = request.form['user_name_give']
+    user_email_recive = request.form['user_email_give']
+    sql = "SELECT ID from member where name = %s and email = %s"
+    cursor.execute(sql, (user_name_recive,user_email_recive, ))
+    find_userid = cursor.fetchone()
+    find_userid = find_userid['ID']
+    print(find_userid)
+    msg = Message('[잡아라]' +user_name_recive+'님의 아이디를 안내드립니다.', sender='kongjh941109@gmail.com', recipients=['cjsdur@naver.com'])
+    msg.body = '회원님 안녕하세요.''회원님의 아이디는 다음과 같습니다.\n' '['+find_userid+ ']\n 앞으로도 더욱 편리한 서비스를 제공하기 위해 최선을 다하겠습니다.'
+    mail.send(msg)
+
+    return jsonify({'msg': '회원님의 이메일로 아이디를 전송했습니다.'})
+
+
+@app.route('/passfind')
+def passfind():
+    return render_template('Board/account.html')
+
+########### 구글메일 임시 종료 ##################
+
+
 ##################### Index ###############
 
 @app.route('/')
@@ -146,7 +186,7 @@ def login_proc():
             row = cursor.fetchone()
             print(row)  # row키확인해보자 딕셔너리로 넣어주기로한걸 볼 수 있다.
             if row:
-                if user_pw == row['PW']:
+                if pw_hash == row['PW']:
                     session['logFlag'] = True
                     session['ID'] = user_id
                     session['NAME'] = row['NAME']
@@ -184,7 +224,17 @@ def join_form_get():
         print("id_list의타입",type(id_list))
         return render_template('Board/join.html' , data=json.dumps(id_list, ensure_ascii=False))
 
-@app.route('/join_proc', methods=['POST'])
+@app.route('/mailcheck', methods=['post'])    
+def mailcheck():
+    value = request.form
+    print(value)
+    print(value['email'])
+    print(value['code'])
+
+    return jsonify(result = "success")
+
+
+@app.route('/join_proc', methods=['GET','POST'])
 def join_proc():
     Idexp = re.compile('^[a-zA-Z0-9]{4,12}$')
 
@@ -195,6 +245,7 @@ def join_proc():
         # 키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
         user_name = request.form['user_name']
         user_phone = request.form['user_phone']
+        user_email = request.form['user_email']
         user_birth = request.form['user_birth-1'] + request.form['user_birth-2'] + request.form['user_birth-3']
         print(user_birth)
         pw_hash = hashlib.sha256(user_pw.encode('utf-8')).hexdigest()
@@ -222,8 +273,8 @@ def join_proc():
             flash("이미 존재하는 아이디입니다.")
             return render_template('Board/join.html')
         elif (a == [0]):
-            sql = 'INSERT INTO member(ID, PW, NAME, Phone, BIRTH) VALUES(%s,%s,%s,%s,%s)'
-            cursor.execute(sql, (user_id, pw_hash, user_name, user_phone, user_birth, ))
+            sql = 'INSERT INTO member(ID, PW, email, NAME, Phone, BIRTH) VALUES(%s,%s,%s,%s,%s,%s)'
+            cursor.execute(sql, (user_id, pw_hash, user_email, user_name, user_phone, user_birth, ))
             con.commit()
             return render_template('Board/login.html', id_list=id_list, id_cnt=id_cnt)
     

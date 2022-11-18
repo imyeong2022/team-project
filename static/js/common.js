@@ -749,7 +749,6 @@ function imgResize(i, maxW, maxH) {
 }
 
 
-
 /**
  * 문자 사이의 공백을 제거한다.
  * @param str  공백제거할 문자열
@@ -904,19 +903,6 @@ function specialTextRemove(str){
 	return str;
 }
 
-
-/**
- * 현재화면 프린트 팝업
- * @param width = arguments[0]
- */
-function popupPrint(){
-	var width = 1000;
-	if( arguments[0] ) {
-		width = arguments[0];
-	}
-	var opt = "width=" + width + ", height=600, left=200, top=200, scrollbars=yes";
-	window.open('?print=true&margin=true','printPopup',opt);
-}
 
 /**
  * 검색 일자 설정

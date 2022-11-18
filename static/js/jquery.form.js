@@ -16,6 +16,9 @@
 	Do not use both ajaxSubmit and ajaxForm on the same form.  These
 	functions are intended to be exclusive.  Use ajaxSubmit if you want
 	to bind your own submit handler to the form.  For example,
+	
+	// ajaxSubmit 과 ajaxForm 을 동일한 form에서 사용하지 말아라
+	// ajaxSubmit -> 폼에서 submit handler 를 bind 하고 싶을 때 사용하라
 
 	$(document).ready(function() {
 		$('#myForm').bind('submit', function(e) {
@@ -37,6 +40,8 @@
 
 	When using ajaxForm, the ajaxSubmit function will be invoked for you
 	at the appropriate time.
+	// ajaxForm 을 사용할 때, ajaxSubmit 함수는 적절한 때에 호출이 될 것이다. 
+
 */
 
 /**

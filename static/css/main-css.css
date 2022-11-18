@@ -507,6 +507,7 @@ footer {
 }
 
 .public-li::before {
+	margin: auto 1vmin;
 	content: ">>";
 }
 
@@ -1989,4 +1990,27 @@ p {
 	border-radius: 30px;
 	font-size: 1.9vmin;
 	border-color: #759ef7;
+}
+
+/* account */
+
+.search-title{
+	margin: auto; width: 8vmin;
+}
+
+.search-title>h3{
+	text-align: center;
+}
+
+.find-username, .find-useremail{
+	margin: auto; width: 160px;
+}
+
+.find-username>label, .find-useremail>label{
+
+}
+
+.find_form{
+	width:20vmin;
+	margin: auto;
 }

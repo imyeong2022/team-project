@@ -7,11 +7,8 @@
     <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript">
         function idsearch() {
-
             var nameExp = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/; // 이름 유효성 검사
             var emailExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/; // 이메일 유효성 검사
-
-
             let username = $('#user_name').val();
             let useremail = $('#user_email').val();
 
@@ -46,30 +43,22 @@
 
         }
     </script>
-
-    <style>
-        form {
-
-            margin: 0 auto;
-            width: 200px;
-        }
-    </style>
 </head>
 
 <body>
-    <form name="find" action="/accountfind_proc">
-        <div class="search-title" style="margin: auto; width: 80px;">
+    <form class="find_form"name="find" action="/accountfind_proc">
+        <div class="search-title">
             <h3>본인확인</h3>
         </div>
         회원님의 정보와 이메일을 확인합니다.
         <section class="form-search">
-            <div class="find-username" style="margin: auto; width: 160px;">
-                <label style="margin: auto; width: 50px;">이름</label>
+            <div class="find-username">
+                <label>이름</label>
                 <input type="text" id="user_name" placeholder="등록한 이름">
                 <br>
             </div>
             <p>
-            <div class="find-useremail" style="margin: auto; width: 160px;">
+            <div class="find-useremail">
                 <label>이메일</label>
                 <input type="text" id="user_email" placeholder="이메일 주소">
             </div>

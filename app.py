@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template, request , flash , flash, jsonify
+from flask import Flask, redirect, url_for, render_template, request , flash, jsonify
 from flask import request, session
 from flask_mail import Mail, Message
 import pymysql
@@ -61,7 +61,7 @@ def passfind():
 
 @app.route('/')
 def home():
-    sql = "SELECT * from recruitment"
+    sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
     data_list = data_list
@@ -73,23 +73,44 @@ def home():
 
 # --------------------------메뉴-----------------------------------
 
-
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
     sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
-    data_list = data_list
     return render_template('Board/Condition.html', data_list=data_list)
 
-
-@app.route('/company/<int:data_id>')  ############ 기업상세페이지
+@app.route('/company/<int:data_id>')  ############ 기업상세페이지 - [동종업계 추천기업] 내용 추가ver.
 def company(data_id):
     sql = "SELECT * from company_info where data_id = %s"
-    cursor.execute(sql, (data_id, ))
+    cursor.execute(sql, (data_id,))
     data_list = cursor.fetchall()
-    data_list = data_list
-    return render_template('Board/company.html', data_list=data_list)
+    
+    # code = '2' #도매 및 소매업
+    # allcom = "SELECT * FROM COMPANY_INFO where industry_code = %s" 
+    # cursor.execute(allcom,(code,))
+    # ----------------------------------------------위는 'industry_code' 버전 / 아래는 '업종' 버전
+    allcom = "SELECT * FROM COMPANY_INFO where 업종 = %s" 
+    cursor.execute(allcom,('도매 및 소매업',))
+    all_list = cursor.fetchall()
+    return render_template('Board/company.html', data_list=data_list, all_list=all_list)
+
+# @app.route('/company/<int:industry_code>/<int:data_id>')  ############ 기업상세페이지 [업종별] - 건설업
+# def company(industry_code, data_id):
+#     sql = "SELECT * from company_info where industry_code = %s and data_id = %s"
+#     cursor.execute(sql, (industry_code,data_id))
+#     data_list = cursor.fetchall()
+#     len(data_list)
+#     print(data_list)
+#     return render_template('Board/company.html', data_list=data_list )
+
+# @app.route('/test_script')  ################# 자바스크립트 필터 연습 페이지1
+# def test_script():
+#     return render_template('Board/test_script.html')
+
+@app.route('/products')  ################# 자바스크립트 필터 연습 페이지2 - 유튜브강의 
+def products():
+    return render_template('Board/products.html')
 
 
 @app.route('/jobs')  ################# 채용정보페이지
@@ -286,7 +307,6 @@ def my_page_proc():
 
             return render_template('Board/login.html')
 
-
 @app.route('/recent_inquiry_company')  # 활동내역 (열람기업)
 def recent_inquiry_company():
     return render_template('Board/r-i-c.html')
@@ -311,7 +331,6 @@ def trend():
 def chart():
     return render_template('Board/chart.html')
 
-
 @app.route('/bar')
 def bar():
     return render_template('Board/bar.html')
@@ -320,7 +339,6 @@ def bar():
 def excellence_employment():
     return render_template('Board/excellence_employment.html')
 #####################################
-
 
 SECRET_KEY = "dev"
 

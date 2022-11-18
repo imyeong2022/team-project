@@ -11,8 +11,8 @@ import json
 ########### 데이터베이스 접속 전역변수 선언############
 con = pymysql.connect(host='localhost',
                              user='root',
-                             password='qr395026',
-                             db='JOBARA',
+                             password='java',
+                             db='final_test',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
 cursor = con.cursor()
@@ -23,7 +23,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    sql = "SELECT * from company_info"
+    sql = "SELECT * from recruitment"
     cursor.execute(sql)
     data_list = cursor.fetchall()
     data_list = data_list
@@ -84,6 +84,7 @@ def company(data_id):
 @app.route('/excellence_employment') ###############채용정보페이지
 def excellence_employment():
     return render_template('Board/excellence_employment.html')
+
 
 @app.route('/trend')  ################# 구직트렌드페이지 
 def trends():
@@ -171,7 +172,7 @@ def login_proc():
             row = cursor.fetchone()
             print(row)  # row키확인해보자 딕셔너리로 넣어주기로한걸 볼 수 있다.
             if row:
-                if user_pw == row['PW']:
+                if pw_hash == row['PW']:
                     session['logFlag'] = True
                     session['ID'] = user_id
                     session['NAME'] = row['NAME']

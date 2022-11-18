@@ -53,6 +53,8 @@ def accountfind_proc():
 def passfind():
     return render_template('Board/account.html')
 
+
+
 ########### 구글메일 임시 종료 ##################
 
 

@@ -24,9 +24,10 @@ for(var checkbox of checkboxes){
 
 
 function checkbox_test(){
-    alert(areaList)
+    let str = areaList.join();
+    alert(str)
     const area='경기'
-    const param ={'area':area};
+    const param ={'area':str};
     $.ajax({
         type:'GET',
         url:'/employtest',

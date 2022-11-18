@@ -21,7 +21,8 @@
             var nameExp = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/; // 이름 유효성 검사
             var phoneExp = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/; // 휴대폰번호 유효성 검사
             //(01로 시작하고 (0,1,6,7,8,9 중 하나의 문자) -은 있을수도 없을수도 (숫자만 들어가면서 3~4 길이의 문자) - 은 있을수도 없을수도 (숫자만 들어가면서 4 길이의 문자) 
-            var birthExp = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/; // 생년월일 유효성 검사, 19xx년도부터 가능
+            var birthExp =
+                /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/; // 생년월일 유효성 검사, 19xx년도부터 가능
 
 
             var userId = document.getElementById("user_id");
@@ -30,7 +31,8 @@
             var username = document.getElementById("user_name");
             var useremail = document.getElementById("user_email");
             var userphone = document.getElementById("user_phone");
-            var userbirth = document.getElementById("user_birth-1").value + document.getElementById("user_birth-2").value + document.getElementById("user_birth-3").value;
+            var userbirth = document.getElementById("user_birth-1").value + document.getElementById("user_birth-2")
+                .value + document.getElementById("user_birth-3").value;
             console.log(userbirth)
 
 
@@ -114,71 +116,63 @@
             if (lastid == true) {
                 alert("이미 사용중인 아이디입니다.")
                 return false
-            }
-            else if (RegExp.test(userId.value) == false) {
+            } else if (RegExp.test(userId.value) == false) {
                 alert("아이디를 확인해주세요.")
                 return false
-            }
-            else {
+            } else {
                 alert("사용가능한 아이디입니다.")
                 return false
             }
         }
 
-            $(document).on("click", ".mail_check_button", function (code) {// 쿼리로 작성연습 해보기
-                var email = $(".join-mail_input").val();            // 입력한 이메일
-                var cehckBox = $(".mail_check_input");        // 인증번호 입력하는곳
-                var boxWrap = $(".mail_check_input_box");    // 인증번호 입력하는곳의 박스
-                
-                code = ""; //코드값 임시저장을 위한 변수 
-                console.log(email)
-                let randomStr = Math.random().toString(36).substring(2, 8); // 랜덤변수
+        $(document).on("click", ".mail_check_button", function (code) { // 쿼리로 작성연습 해보기
+            var email = $(".join-mail_input").val(); // 입력한 이메일
+            var cehckBox = $(".mail_check_input"); // 인증번호 입력하는곳
+            var boxWrap = $(".mail_check_input_box"); // 인증번호 입력하는곳의 박스
 
-                $.ajax({
+            code = ""; //코드값 임시저장을 위한 변수 
+            console.log(email)
+            let randomStr = Math.random().toString(36).substring(2, 8); // 랜덤변수
+
+            $.ajax({
 
                 type: "post",
                 url: '/mailcheck',
-                data : {
-                    email : email, // flask에 이메일과 랜덤코드를 보내자
-                    code : randomStr,
+                data: {
+                    email: email, // flask에 이메일과 랜덤코드를 보내자
+                    code: randomStr,
                 },
-                dataType : 'json',
- 
-                success: function (data) {
-                   cehckBox.attr("disabled", false); // attr : 속성(attribuce)의 값을 가져오거나 추가한다.
-                  boxWrap.attr("id", "mail_check_input_box_true"); // 이메일 인증 입력란[$(".mail_check_input_box")]의 색상이 변경
-                 code = randomStr; // 랜덤변수 데이터로 넘어간 것 code로 저장
+                dataType: 'json',
 
-                console.log("data : " + code);
+                success: function (data) {
+                    cehckBox.attr("disabled", false); // attr : 속성(attribuce)의 값을 가져오거나 추가한다.
+                    boxWrap.attr("id",
+                        "mail_check_input_box_true"
+                        ); // 이메일 인증 입력란[$(".mail_check_input_box")]의 색상이 변경
+                    code = randomStr; // 랜덤변수 데이터로 넘어간 것 code로 저장
+
+                    console.log("data : " + code);
                 }
 
                 // });
-                
-            });
-             $(document).on("blur", ".mail_check_input", function (){
-            var inputCode = $(".mail_check_input").val();        // 입력코드    
-            var checkResult = $("#mail_check_input_box_warn");    // 비교결과출력
-            console.log("코드data : " + code);
-            if (inputCode == code) {                            // 일치할 경우
-                checkResult.html("인증완료");
-                checkResult.attr("class", "correct");
-            } else {                                            // 일치하지 않을 경우
-                checkResult.html("인증번호를 다시 확인해주세요.");
-                checkResult.attr("class", "incorrect");
-            }
 
-        });
+            });
+            $(document).on("blur", ".mail_check_input", function () {
+                var inputCode = $(".mail_check_input").val(); // 입력코드    
+                var checkResult = $("#mail_check_input_box_warn"); // 비교결과출력
+                console.log("코드data : " + code);
+                if (inputCode == code) { // 일치할 경우
+                    checkResult.html("인증완료");
+                    checkResult.attr("class", "correct");
+                } else { // 일치하지 않을 경우
+                    checkResult.html("인증번호를 다시 확인해주세요.");
+                    checkResult.attr("class", "incorrect");
+                }
+
+            });
         });
 
         /* 인증번호 비교 */
-       
-
-
-
-
-
-
-
     </script>
 
 </head>
@@ -207,10 +201,11 @@
             <hr class="public-hr" />
             <div class="login-form-div">
                 <form class="login-form" action="/join_proc" method="post" onsubmit="return Validation();">
-                    <tr><input class="join-input" type="text" name="user_id" id="user_id" placeholder="ID"
+                    <div>
+                        <input class="join-input" type="text" name="user_id" id="user_id" placeholder="ID"
                             maxlength="12">
-                        <input type="button" value="중복 확인" id="btmCheck" onclick="idchk()" />
-                    </tr>
+                        <input class="join-check"type="button" value="중복 확인" id="btmCheck" onclick="idchk()" />
+                    </div>
                     <input class="join-input" type="password" name="user_pw" id="user_pw" placeholder="PassWord">
                     <input class="join-input" type="password" name="user_pw_check" id="user_pw_check"
                         placeholder="Password_check">
@@ -233,9 +228,9 @@
                     <input class="join-input" type="text" name="user_phone" id="user_phone" placeholder="Phone Number"
                         maxlength="11">
                     <input class="join-input-birth-first" type="text" name="user_birth-1" id="user_birth-1"
-                        placeholder="YYYY" maxlength="4">-
+                        placeholder="YYYY" maxlength="4">
                     <input class="join-input-birth" type="text" name="user_birth-2" id="user_birth-2" placeholder="MM"
-                        maxlength="2">-
+                        maxlength="2">
                     <input class="join-input-birth-end" type="text" name="user_birth-3" id="user_birth-3"
                         placeholder="DD" maxlength="2">
 
@@ -295,7 +290,7 @@
             <div></div>
         </section>
     </div>
-	{% include '/Board/footer.html' %}
+    {% include '/Board/footer.html' %}
 
 </body>
 

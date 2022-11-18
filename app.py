@@ -59,15 +59,6 @@ def passfind():
 
 
 ##################### Index ###############
-@app.route('/employtest') # test
-def employtest():
-    rs={}
-    content=request.args.get('area')
-    print(content)
-    sql='SELECT * from company_info where 지역=%s'
-    cursor.execute(sql,(content,))
-    rows=cursor.fetchall()
-    return rows
 
 @app.route('/')
 def home():

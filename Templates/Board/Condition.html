@@ -7,6 +7,31 @@
     <title>상세조건 검색</title>
 </head>
 
+<script>
+    function interestSave(obj){
+        //비로그인시 로그인화면으로 이동
+        if(!dev.isLogin){
+            $(obj).prop("checked",false);
+            if(confirm("로그인이 필요한 서비스입니다.\n로그인 하사겠습니다까?")){
+                dev.action.loginWithConitue();
+            }
+            } else {
+                // 여기서부터 이해해보기
+                var cmpIds = new Array();
+                $("#companyListArea .item").each(function(idx, item){
+                    cmpIds.push($(item).data("id"));
+                    $(item).find(":checkbox[id^=interestCheck]").prop("checked", true);
+                });
+
+                if(cmpIds.length > 0) {
+                    interestCompanySave(cmpIds, "Y", function (data) {
+                        alert("관심기업 일괄등록이 되었습니다.");
+                    });
+                }
+            }
+
+</script>
+
 <body>
     {% include 'Board/header.html' %}
     <div class="main-div">
@@ -285,8 +310,12 @@
                         <div>
                             <div>
                                 <a>
-                                    {# if문으로 관심기업아니면 ☆ 관심기업이면 ★ #}
-                                    <div>☆ 관심기업 등록하기</div>
+                                    {# onclick은 로그인이 안되어있을때  ★ #}
+                                    <div class="wish-checkbox">
+                                        <input type="checkbox" id="interestCheck" class="checkbox-star" 
+                                        onclick="interestSave(this);" name="interestCheck">
+                                        <label for="interestCheck">관심기업 등록하기</label>
+                                    </div>
                                     {# <div>★ 관심기업 해제하기</div> #}
                                 </a>
                                 <a>

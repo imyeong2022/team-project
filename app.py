@@ -11,8 +11,8 @@ import json
 ########### 데이터베이스 접속 전역변수 선언############
 con = pymysql.connect(host='localhost',
                              user='root',
-                             password='qr395026',
-                             db='JOBARA',
+                             password='java',
+                             db='final_test',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
 cursor = con.cursor()
@@ -23,7 +23,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def home():
-    sql = "SELECT * from company_info"
+    sql = "SELECT * from recruitment"
     cursor.execute(sql)
     data_list = cursor.fetchall()
     data_list = data_list
@@ -44,6 +44,32 @@ def condition():
     data_list = data_list
     return render_template('Board/Condition.html', data_list=data_list)
 
+####################################################
+@app.route('/employtest') # 체크박스 test
+def employtest():
+    content=json.loads(request.data)
+    # content=request.args.get('sendBases')
+    print(content)
+    print(json.load(content))
+    sql='SELECT * from company_info where 지역=%s'
+    cursor.execute(sql,(content,))
+    rows=cursor.fetchall()
+    return rows
+
+
+@app.route('/interest') ###############찜리스트 test
+def interest():
+    user_id=session['ID']
+    sql = "SELECT * from like_company_view where m_id=%s"
+    cursor.execute(sql,(user_id,))
+    interest_com = cursor.fetchall()
+    interest_len = len(interest_com)
+    return render_template('Board/interest_company.html', interest_com=interest_com,interest_len=interest_len)
+
+
+
+########################################################
+
 
 @app.route('/company/<int:data_id>')  ############ 기업상세페이지
 def company(data_id):
@@ -56,6 +82,7 @@ def company(data_id):
 @app.route('/excellence_employment') ###############채용정보페이지
 def excellence_employment():
     return render_template('Board/excellence_employment.html')
+
 
 @app.route('/trend')  ################# 구직트렌드페이지 
 def trends():
@@ -130,7 +157,7 @@ def login_proc():
             row = cursor.fetchone()
             print(row)  # row키확인해보자 딕셔너리로 넣어주기로한걸 볼 수 있다.
             if row:
-                if user_pw == row['PW']:
+                if pw_hash == row['PW']:
                     session['logFlag'] = True
                     session['ID'] = user_id
                     session['NAME'] = row['NAME']

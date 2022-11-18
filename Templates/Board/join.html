@@ -21,8 +21,7 @@
             var nameExp = /^[가-힣]{2,4}|[a-zA-Z]{2,10}\s[a-zA-Z]{2,10}$/; // 이름 유효성 검사
             var phoneExp = /^01([0|1|6|7|8|9])-?([0-9]{3,4})-?([0-9]{4})$/; // 휴대폰번호 유효성 검사
             //(01로 시작하고 (0,1,6,7,8,9 중 하나의 문자) -은 있을수도 없을수도 (숫자만 들어가면서 3~4 길이의 문자) - 은 있을수도 없을수도 (숫자만 들어가면서 4 길이의 문자) 
-            var birthExp =
-                /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/; // 생년월일 유효성 검사, 19xx년도부터 가능
+            var birthExp = /^(19[0-9][0-9]|20\d{2})(0[0-9]|1[0-2])(0[1-9]|[1-2][0-9]|3[0-1])$/; // 생년월일 유효성 검사, 19xx년도부터 가능
 
 
             var userId = document.getElementById("user_id");
@@ -31,8 +30,7 @@
             var username = document.getElementById("user_name");
             var useremail = document.getElementById("user_email");
             var userphone = document.getElementById("user_phone");
-            var userbirth = document.getElementById("user_birth-1").value + document.getElementById("user_birth-2")
-                .value + document.getElementById("user_birth-3").value;
+            var userbirth = document.getElementById("user_birth-1").value + document.getElementById("user_birth-2").value + document.getElementById("user_birth-3").value;
             console.log(userbirth)
 
 
@@ -116,10 +114,12 @@
             if (lastid == true) {
                 alert("이미 사용중인 아이디입니다.")
                 return false
-            } else if (RegExp.test(userId.value) == false) {
+            }
+            else if (RegExp.test(userId.value) == false) {
                 alert("아이디를 확인해주세요.")
                 return false
-            } else {
+            }
+            else {
                 alert("사용가능한 아이디입니다.")
                 return false
             }
@@ -223,17 +223,17 @@
                     <!-- 인증번호 공간 --><input class="join-mail_input" type="text" name="user_email" id="user_email"
                         placeholder="email">
                     <div class="mail_check_button" id="mail_check_button">
-                        <span>인증번호 전송</span>
+                        <span>인증 요청</span>
                     </div>
 
                     <div class="mail_check_wrap">
                         <div class="mail_check_input_box" id="mail_check_input_box_false">
                             <input class="mail_check_input" disabled="disabled">
+                            <div class="mail_auth_button" id="mail_auth_button">
+                                <span>인증 확인</span>
+                            </div>
                         </div>
-                        <div class="mail_auth_button" id="mail_auth_button">
-                            <span>인증번호확인</span>
-                        </div>
-
+                        
 
 
                         <div class="clearfix"></div>

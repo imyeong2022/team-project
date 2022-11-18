@@ -3,7 +3,17 @@
 	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
-}
+ }
+ 
+ html {
+	font-family: 'Pretendard-Regular';
+ }
+ 
+ body {
+	margin: 0px;
+	height: 3000px;
+ }
+ 
 
 html {
 	font-family: Helvetica, Tahoma;
@@ -1363,6 +1373,7 @@ input::placeholder {
 .spacing {
 	text-indent: 1.2em;
 }
+
 
 .spacing:nth-child(2) {
 	margin: 30px 0px 0px 0px;

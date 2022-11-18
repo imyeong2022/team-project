@@ -338,7 +338,20 @@ footer {
 	width: 85%;
 	background-color: white;
 }
-
+.page-title-area {
+	margin-left: 7.5%;
+	margin-right: 7.5%;
+	padding-top: 5vmin;
+	padding-bottom: 8vmin;
+	height: 20vmin;
+	width: 85%;
+	background-color: white;
+}
+.search-area{
+	position: relative;
+	max-width: 1380px;
+	margin: 5vmin auto;
+}
 .content-area {
 	position: relative;
 	max-width: 1380px;
@@ -351,7 +364,12 @@ footer {
 	position: relative;
 	padding: 2%;
 }
-
+.search-p-area{
+	height:auto;
+	display: flex;
+	position: relative;
+	padding: 2%;
+}
 
 .inner {}
 
@@ -388,6 +406,15 @@ footer {
 	width: 24.8%;
 }
 
+.item-title{
+	padding-top: 3vmin;
+	padding-bottom: 2vmin;
+	padding-left: 4%;
+	padding-right: 10%;
+	height: 2vmin;
+	width: 80%;
+}
+
 .search-fileter-child-title {
 	padding-top: 3vmin;
 	padding-bottom: 2vmin;
@@ -397,6 +424,14 @@ footer {
 	width: 80%;
 }
 
+
+
+.search-filter>.search-fileter-child:first-child {
+	border-style: solid;
+	border-color: #bdbdbd;
+	border-left-width: 1px;
+}
+
 .search-filter>.search-fileter-child:first-child {
 	border-style: solid;
 	border-color: #bdbdbd;
@@ -404,6 +439,10 @@ footer {
 }
 
 .search-fileter-child-title>span {
+	font-weight: bold;
+	font-size: 2vmin;
+}
+.search-fileter-child-title>a {
 	font-weight: bold;
 	font-size: 2vmin;
 }
@@ -419,7 +458,9 @@ footer {
 .search-fileter-child-item-list ::-webkit-scrollbar {
 	width: 8px;
 }
-
+.search-fileter-child-item-list ::-webkit-scrollbar {
+	width: 8px;
+}
 .search-fileter-child-item-list ::-webkit-scrollbar-thumb {
 	height: 30%;
 	background: #759ef7;
@@ -436,6 +477,14 @@ footer {
 	height: 25vmin;
 	width: 99%;
 }
+ /* .custom-checkbox */
+.custom-checkbox
+{
+	overflow-y: scroll;
+	float: left;
+	height: 25vmin;
+	width: 99%;
+}
 
 .search-fileter-checkbox>:first-child {
 	margin: 0px;
@@ -444,14 +493,33 @@ footer {
 .search-fileter-checkbox-item {
 	margin-top: 5px;
 }
+.custom-checkbox {
+	margin-top: 5px;
+}
 
 .search-fileter-checkbox-item>input {
 	margin: 0px;
 	height: 23px;
 	width: 23px;
 }
+.custom-checkbox>input {
+	margin: 0px;
+	height: 23px;
+	width: 23px;
+}
 
 .search-fileter-checkbox-item>label {
+	position: relative;
+	top: -3.1vmin;
+	left: 1.8vmin;
+	display: block;
+	padding-left: 1.5em;
+	text-indent: 0.3.5em;
+	width: 86%;
+
+}
+
+.custom-checkbox>label {
 	position: relative;
 	top: -3.1vmin;
 	left: 1.8vmin;

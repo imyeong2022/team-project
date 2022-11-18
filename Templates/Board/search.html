@@ -6,33 +6,65 @@
     <title>상세조건 검색</title>
 
     <!-- Lib js 파일 --> 
-    <script src="/static/js/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script>
+    <!-- <script src="/static/js/jquery-3.5.1.min.js"></script>
     <script src="/static/js/jquery.form.js"></script>
     <script src="/static/js/jquery.common.js"></script>
     <script src="/static/js/jquery.loadSelect.js"></script>
     <script src="/static/js/jquery.iframe-transport.js"></script>
-
     <script src="/static/js/pager.js"></script>
     <script src="/static/js/content_ui.js"></script>
     <script src="/static/js/html5shiv.js"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    <script src="/static/js/slick.min.js"></script>
+    <script src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/static/js/client.min.js"></script> -->
 
-    </script>
+    
+    <!-- Lib js 파일 -->
+    <script src="/static/js/jquery-3.5.1.min.js"></script>
+    <script src="/static/js/jquery.number.min.js"></script>
+    <script src="/static/js/jquery.form.js"></script>
+    <script src="/static/js/jquery.cookie.js"></script>
+    <script src="/static/js/jquery.iframe-transport.js"></script>
+    <script src="/static/js/slick.min.js"></script>
+    <script src="/static/js/client.min.js"></script>
+    <script src="/static/js/html5shiv.js"></script>
+    <script src="/static/js/clipboard.min.js"></script>
+    <script src="/static/js/idangerous.swiper.min.js"></script>
+    <script src="/static/js/idangerous.swiper.scrollbar-2.1.js"></script>
+    <script src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <!-- dev js 파일 -->
+    <script src="/static/js/common.js"></script>
+    <script src="/static/js/pager.js"></script>
+    <script src="/static/js/validate.js"></script>
+    <script src="/static/js/validateUtil.js"></script>
+    <script src="/static/js/jquery.common.js"></script>
+    <script src="/static/js/jquery.loadSelect.js"></script>
+    <script src="/static/js/jquery.fileDownload.js"></script>
+
+    <!-- ui js 파일 -->
+    <script src="/static/jscontent_ui.js"></script>
+    
     <style>
         .pagination {
             position: relative;
             text-align: center;
             font-size: 50;
         }
+        .board-option .sort {
+            display: table-cell;
+            vertical-align: bottom;
+        }
     </style>
 </head>
 <body>
 <div class="main-div">
 {% include 'Board/header.html' %}
-    <section id = "contents" class="main-section">
+    <section id = "contents" class="container">
     <!-- <section id = "contents" class="main-section"> -->
     
-        <div class="title-area"><!-- page-title-area -->
+        <div class="page-title-area"><!-- page-title-area -->
             <div class="inner"> 
                 <div class="public-list"> <!-- util-area -->
                     <ol class="public-ol">
@@ -51,7 +83,7 @@
         </div>
 
         <div class = "search-area"> <!-- content-area -->
-            <form id = "searchForm" name ="searchForm" method="get" action="/condition"> <!-- content-area -->
+            <form id = "searchForm" name ="searchForm" method="get" action="/search"> <!-- content-area -->
                 <input type = "hidden" id="pg" value="1">
                 <input type="hidden" id="area" name="area" value="">
                 <!-- 지역 -->
@@ -95,16 +127,19 @@
                 <!-- 체크박스-->
                 <div class="item-list" id="schTxtInputArea" style="display:none;">
                     <div class="search-fileter-checkbox-item">
-                        <input type="checkbox" id="check-schTxt" class="checkbox" name="schTxtTag" data-name="검색어 > ">
+                        <input type="checkbox" id="check-schTxt" class="checkbox" name="schTxtTag" data-name="검색어">
                         <label for="check-schTxt">검색어 &gt; </label>
                     </div>
                 </div>
 
-                <div class="search-filter"> <!-- item-list-->
+                <div class="item-list"> <!-- item-list-->
                     <dl class="item-content" id="areaContent" data-id="area" data-tit="지역은" data-max="5">
-                        <!-- <dt class="item-title"><a href="#none" data-cate="false">지역</a></dt> -->
+                    <!-- <dt class="item-title"><a href="#none" data-cate="false">지역</a></dt> -->
                     <div class="search-fileter-child">
                     <div class="search-fileter-child-title"><span>지역</span></div>
+                    <dt class="item-title">
+                        <a href="#none" data-cate="false">지역</a>
+                    </dt>
                         <div class="search-fileter-child-item-list">
                             <div class="search-fileter-checkbox">
                                 <div class="search-fileter-checkbox-item"> 
@@ -185,11 +220,12 @@
                     </dl>
 
                   
-            
+                
                     <dl class="item-content" id="sicContent" data-id="sic" data-tit="업종은" data-max="5">
-                        <!-- <dt class="item-title"><a href="#none" data-cate="false">업종</a></dt> -->
+                    <!-- <dt class="item-title"><a href="#none" data-cate="false">업종</a></dt> -->
                     <div class="search-fileter-child">
                     <div class="search-fileter-child-title"><span>업종</span></div>
+                    <dt class="item-title"><a href="#none" data-cate="false">업종</a></dt>
                         <div class="search-fileter-child-item-list">
                             <div class="search-fileter-checkbox">
                                 <div class="search-fileter-checkbox-item">
@@ -282,9 +318,10 @@
                     </dl>     
 
                     <dl class="item-content" id="scaleContent" data-id="scale" data-tit="규모는">
-                        <!-- <dt class="item-title"><a href="#none" data-cate="false">규모</a></dt> -->
+                    <!-- <dt class="item-title"><a href="#none" data-cate="false">규모</a></dt> -->
                     <div class="search-fileter-child">
                     <div class="search-fileter-child-title"><span>규모</span></div>
+                    <dt class="item-title"><a href="#none" data-cate="false">규모</a></dt>
                         <div class="search-fileter-child-item-list">
                             <div class="search-fileter-checkbox">
                             <div class="search-fileter-checkbox-item">
@@ -312,6 +349,7 @@
                                 <label>한시성중소기업</label>
                             </div>
                             </div>
+                        </div>
                     </div>
                     </dl>
 
@@ -349,8 +387,10 @@
                     <!-- </dl>  -->
 
                     <dl class="item-content" id="wlfrContent" data-id="wlfr" data-tit="복지는" data-max="10">
+                    <!-- <dt class="item-title"><a href="#none" data-cate="false">복지</a></dt> -->
                     <div class="search-fileter-child">
                         <div class="search-fileter-child-title"><span>복지</span></div>
+                        <dt class="item-title"><a href="#none" data-cate="false">복지</a></dt>
                         <div class="search-fileter-child-item-list">
                             <div class="search-fileter-checkbox">
                                 <div class="search-fileter-checkbox-item">
@@ -390,16 +430,43 @@
                     </div>
                     </dl>
                     
-                    <div class="print-values">
+                    <!-- <div class="print-values">
                         <p id="valueList"></p>
                     </div>
                     <div>
                         <input type="button" value="검색test" class="print-value" id="valueList" onclick="checkbox_test();">
-                    </div>
+                    </div> -->
 
                 </div>
+
+                <div class="frame-min">
+                    <div class="search-require" style="display: block;">
+                        <ul>
+                            <li>
+                                <span>제조업</span>
+                                <a href="#none" class="del-item"><i class="ico-close"></i>
+                                    <span class="hide">해당항목 삭제</span></a>
+                            </li>
+                        </ul>
+                        <button type="button" class="btn-txt" onclick="searchWrapInit();"><i class="ico-refresh"></i>
+                            <span>초기화</span>
+                        </button>
+                    </div>
+                </div>
             </form>
-            <div class="condition">
+            
+            <div class="frame-min mt50">
+            <div class="board-option">
+                <div class="sort">
+                    <span class="total text-grey">전체 <strong class="text-point">6,579</strong>건</span>
+                    <div class="custom-checkbox">
+                        <input type="checkbox" id="emptPrgsCheck" class="checkbox-onoff type2" name="emptPrgsCheck" onclick="search();">
+                        <label for="emptPrgsCheck">
+                            <span>전체</span>
+                            <span>채용중</span>
+                        </label>
+                    </div>
+                </div>
                 <ul class = "board-incruit mt15" id ="companyListArea">
                     {% for x in range(10) %} 
                     <li class="item" data-id="{{ data_list[x].data_id}}">
@@ -410,7 +477,7 @@
                                 <em class="badge-point">채용중</em></p>
                             <ul class="text text-grey">
                                 <li>{{ data_list[x].기업형태 }}</li>
-                                <li>{{ data_list[x].지역 }}</li>
+                                <li>{{ data_list[x].지역 }}</li>    
                                 <li>{{ data_list[x].대표 }}</li>
                             </ul>
                             <!-- <ul class="tag">
@@ -499,15 +566,12 @@
                                 <li class="hide">
                                     <button type="button" class="tag-primary" data-value="경영실적에 따라 하계휴가비, 명절휴가비, 연말상여금, 5월 가족의 달 상여 등 지급">#경영실적에 따라 하계휴가비, 명절휴가비, 연말상여금, 5월 가족의 달 상여 등 지급</button>
                                 </li>
-                            
-                                <li class="toggin-tab-btn">
-                                <button type="button" class="btn-icon-xs open">
-                                    <i class="ico-plus"></i>
-                                <span class="hide">태그 전체보기</span></button></li>
-                            </ul> -->
+                            <li class="toggin-tab-btn"><button type="button" class="btn-icon-xs open"><i class="ico-plus"></i>
+                                <span class="hide">태그 전체보기</span></button></li></ul> -->
                             <div class="box-btn-area">
                                 <!-- contextpath 추가 22.01.04 -->
-                                <a href="/gsmb/map/smart_employment/{{ data_list[x].data_id}}?xco={{ data_list[x].위도}}&amp;yco={{ data_list[x].경도}}&amp;keyword=" class="btn btn-default btn-md"><span>일자리지도 바로가기</span></a>
+                                <a href="/static/maart_employment/{{ data_list[x].data_id}}?xco={{ data_list[x].위도}}&amp;yco={{ data_list[x].경도}}&amp;keyword=" class="btn btn-default btn-md">
+                                    <span>일자리지도 바로가기</span></a>
                                 <div class="custom-checkbox">
                                     <input type="checkbox" id="interestCheck-{{ data_list[x].data_id}}" class="checkbox-star" onclick="intrstYnSave(this);" name="interestCheck-{{ data_list[x].data_id}}">
                                     <label for="interestCheck-{{ data_list[x].data_id}}">관심기업 등록하기</label>
@@ -519,12 +583,6 @@
 
 
                 </ul>
-
-
-
-
-
-
 
                 <!-- <ul class = "board-incruit mt15" id ="companyListArea">
                     
@@ -544,7 +602,7 @@
                                 <!-- </a> -->
 
                                 <!-- <a class="btn btn-default btn-md"><div><span>일자리 지도 보기</span></div></a> -->
-                                <!-- <a href="/gsmb/map/smart_employment/37177?xco=126.895314838586&amp;yco=37.4869823311106&amp;keyword=" class="btn btn-default btn-md">
+                                <!-- <a href="/static/maart_employment/37177?xco=126.895314838586&amp;yco=37.4869823311106&amp;keyword=" class="btn btn-default btn-md">
                                     <span>일자리지도 바로가기</span></a> -->
 
                                 <!-- <span class="sort text-primary text-md">{{ data_list[x].업종}}</span> -->
@@ -555,7 +613,7 @@
                                     <!-- <p class="grid-title">{{ data_list[x].회사 }}</p> -->
                                 <!-- </a> -->
 
-                                <!-- <p class="condition-sub-text">{{ data_list[x].기업형태 }} | {{ data_list[x].지역 }} | -->
+                                <!-- <p class="search-sub-text">{{ data_list[x].기업형태 }} | {{ data_list[x].지역 }} | -->
                                     <!-- {{ data_list[x].대표 }}</p> -->
                             <!-- </div> -->
                         <!-- </div> -->
@@ -583,28 +641,25 @@
 
             <div class="pagination">
                 <a href="javascript:void(0);" class="on">
-                    <span>1</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=2&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>2</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=3&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>3</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=4&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>4</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=5&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>5</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=6&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>6</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=7&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>7</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=8&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>8</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=9&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>9</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=10&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>10</span></a><a href="javascript:void(0);" class="btn-page next" title="다음" onclick="goPageAjax('/condition?pg=11&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>1</span></a><a href="javascript:void(0);" onclick="goPageAjax('/search?pg=2&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>2</span></a><a href="javascript:void(0);" onclick="goPageAjax('/search?pg=3&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>3</span></a><a href="javascript:void(0);" onclick="goPageAjax('/search?pg=4&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>4</span></a><a href="javascript:void(0);" onclick="goPageAjax('/search?pg=5&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>5</span></a><a href="javascript:void(0);" onclick="goPageAjax('/search?pg=6&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>6</span></a><a href="javascript:void(0);" onclick="goPageAjax('/search?pg=7&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>7</span></a><a href="javascript:void(0);" onclick="goPageAjax('/search?pg=8&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>8</span></a><a href="javascript:void(0);" onclick="goPageAjax('/search?pg=9&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>9</span></a><a href="javascript:void(0);" onclick="goPageAjax('/search?pg=10&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>10</span></a><a href="javascript:void(0);" class="btn-page next" title="다음" onclick="goPageAjax('/search?pg=11&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
                     <span class="blind">다음</span></a>
-                    <a href="javascript:void(0);" class="btn-page last" title="마지막" onclick="goPageAjax('/condition?pg=2798&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <a href="javascript:void(0);" class="btn-page last" title="마지막" onclick="goPageAjax('/search?pg=2798&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
                     <span class="blind">마지막</span></a>
             </div>
         </div>
+    </div>
     </section>
 </div>
 
-
-<!-- <table id="test">
-</table>
-<script src="../../static/js/app.js"></script> -->
 
 <script>
 
@@ -815,7 +870,7 @@
             /* contextpath 추가 22.01.04 */
             location.href = contextPath + "/search/reset";
 
-            // "/condition/reset"; 
+            // "/search/reset"; 
 
         // 검색
         function search(pg){
@@ -878,15 +933,14 @@
     </script>
     </div>
 
-<!-- 생활코딩 따라하기 -->
-<!-- <script>
-    var fetched = fecth('');
-    console.log('fetched', fetched);
-    fetched.then(function(result){
-        console.log('result')
-    })
+// <!-- 생활코딩 따라하기 -->
+// <script>
+//     var fetched = fecth('');
+//     console.log('fetched', fetched);
+//     fetched.then(function(result){
+//         console.log('result')
+//     })
 
-</script> -->
-
+// </script> 
 </body>
 </html>

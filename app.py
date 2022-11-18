@@ -23,7 +23,15 @@ cursor = con.cursor()
 
 app = Flask(__name__)
 ##################### Index ###############
-
+@app.route('/employtest') # test
+def employtest():
+    rs={}
+    content=request.args.get('area')
+    print(content)
+    sql='SELECT * from company_info where 지역=%s'
+    cursor.execute(sql,(content,))
+    rows=cursor.fetchall()
+    return rows
 
 @app.route('/')
 def home():
@@ -45,6 +53,13 @@ def condition():
     cursor.execute(sql)
     data_list = cursor.fetchall()
     return render_template('Board/Condition.html', data_list=data_list)
+
+@app.route('/search')  # 조건으로 찾기 - 기업정보
+def search():
+    sql = "SELECT * from company_info"
+    cursor.execute(sql)
+    data_list = cursor.fetchall()
+    return render_template('Board/search.html', data_list=data_list)
 
 @app.route('/company/<int:data_id>')  ############ 기업상세페이지 - [동종업계 추천기업] 내용 추가ver.
 def company(data_id):
@@ -70,9 +85,9 @@ def company(data_id):
 #     print(data_list)
 #     return render_template('Board/company.html', data_list=data_list )
 
-# @app.route('/test_script')  ################# 자바스크립트 필터 연습 페이지1
-# def test_script():
-#     return render_template('Board/test_script.html')
+@app.route('/test_script')  ################# 자바스크립트 필터 연습 페이지1
+def test_script():
+    return render_template('Board/test_script.html')
 
 @app.route('/products')  ################# 자바스크립트 필터 연습 페이지2 - 유튜브강의 
 def products():

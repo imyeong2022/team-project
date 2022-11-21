@@ -3,17 +3,17 @@
 	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
- }
- 
- html {
+}
+
+html {
 	font-family: 'Pretendard-Regular';
- }
- 
- body {
+}
+
+body {
 	margin: 0px;
 	height: 3000px;
- }
- 
+}
+
 
 html {
 	font-family: Helvetica, Tahoma;
@@ -292,59 +292,6 @@ footer {
 .clearfix {
 	clear: both;
 }
-
-@media only screen and (min-width: 1280px) {
-	.contain {
-		width: 1200px;
-		margin: 0 auto;
-	}
-}
-
-@media only screen and (max-width: 1139px) {
-	.contain .social {
-		width: 1000px;
-		display: block;
-	}
-
-	.social h1 {
-		margin: 0px;
-	}
-}
-
-@media only screen and (max-width: 950px) {
-	.footer .col {
-		width: 33%;
-	}
-
-	.footer .col h1 {
-		font-size: 14px;
-	}
-
-	.footer .col ul li {
-		font-size: 13px;
-	}
-}
-
-@media only screen and (max-width: 500px) {
-	.footer .col {
-		width: 50%;
-	}
-
-	.footer .col h1 {
-		font-size: 14px;
-	}
-
-	.footer .col ul li {
-		font-size: 13px;
-	}
-}
-
-@media only screen and (max-width: 340px) {
-	.footer .col {
-		width: 100%;
-	}
-}
-
 
 .recommend-div {
 	background: #f6f6f6;
@@ -956,14 +903,13 @@ input::placeholder {
 
 #mail_check_input_box_false {
 	clip-path: polygon(0px 0px, 0px 0px, 0px 0px, 0px 0px)
-
 }
 
 #mail_check_input_box_true {
 	background-color: white;
 }
 
-.mail_check_input{
+.mail_check_input {
 	width: 80%;
 	height: 6vmin;
 	padding-left: 1%;
@@ -974,7 +920,7 @@ input::placeholder {
 	border-color: #759ef7;
 }
 
-.mail_auth_button{
+.mail_auth_button {
 	float: right;
 	width: 15%;
 	height: 6.5vmin;
@@ -985,9 +931,9 @@ input::placeholder {
 	text-align: center;
 }
 
-.mail_auth_button>span{
+.mail_auth_button>span {
 	display: inline-block;
-    margin-top: 25%;
+	margin-top: 25%;
 }
 
 /* company */
@@ -1920,8 +1866,8 @@ h3 {
 }
 
 .trend-divi>h2,
-h3,
-h5 {
+.trend-divi>h3,
+.trend-divi>h5 {
 	text-align: center;
 }
 
@@ -2005,23 +1951,57 @@ p {
 
 /* account */
 
-.search-title{
-	margin: auto; width: 8vmin;
+.search-title {
+	margin: auto;
+	width: 8vmin;
 }
 
-.search-title>h3{
+.search-title>h3 {
 	text-align: center;
 }
 
-.find-username, .find-useremail{
-	margin: auto; width: 160px;
-}
-
-.find-username>label, .find-useremail>label{
-
-}
-
-.find_form{
-	width:20vmin;
+.find-username,
+.find-useremail {
 	margin: auto;
+	width: 160px;
+}
+
+.find-username>label,
+.find-useremail>label {}
+
+.find_form {
+	width: 20vmin;
+	margin: auto;
+}
+
+/* event */
+.event-content {
+	box-sizing: border-box;
+	height: 38vmin;
+	width: 100%;
+	padding: 3vmin;
+	overflow: inherit;
+	border-bottom: 0.1vmin solid #999;
+}
+
+.event-picture {
+	height: 100%;
+	width: 35%;
+	float: left;
+}
+
+.event-text {
+	height: 100%;
+	width: 60%;
+	display: flex;
+	align-items: center;
+}
+
+.event-sub {
+	padding: 5%;
+	margin: auto 0px;
+}
+
+.event-sub-gray{
+	color: #999;
 }

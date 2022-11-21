@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko">
 
-
-
-
 <head>
     <meta charset="UTF-8">
     <title>login_form.html</title>
-
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
     <script type="text/javascript">
         function selectAll(selectAll) {
             const checkboxes = document.getElementsByName('terms');
@@ -107,13 +104,19 @@
         function idchk() {
             let data = JSON.parse('{{ data | safe }}');
             var userId = document.getElementById("user_id");
+            var RegExp = /^[a-zA-Z0-9]{4,12}$/; // 아이디 유효성 검사
             console.log(data) // 0~4까지 아이디 각자 뜨는거 확인완료
             console.log(typeof (data))
             console.log(userId.value)
             lastid = data.some(v => v.ID === userId.value); // some으로 배열에 있는 값과 변수를 정확히비교(===)
             console.log(lastid)
+
             if (lastid == true) {
                 alert("이미 사용중인 아이디입니다.")
+                return false
+            }
+            else if (RegExp.test(userId.value) == false) {
+                alert("아이디를 확인해주세요.")
                 return false
             }
             else {
@@ -121,7 +124,59 @@
                 return false
             }
         }
-        
+
+            $(document).on("click", ".mail_check_button", function (code) {// 쿼리로 작성연습 해보기
+                var email = $(".join-mail_input").val();            // 입력한 이메일
+                var cehckBox = $(".mail_check_input");        // 인증번호 입력하는곳
+                var boxWrap = $(".mail_check_input_box");    // 인증번호 입력하는곳의 박스
+                
+                code = ""; //코드값 임시저장을 위한 변수 
+                console.log(email)
+                let randomStr = Math.random().toString(36).substring(2, 8); // 랜덤변수
+
+                $.ajax({
+
+                type: "post",
+                url: '/mailcheck',
+                data : {
+                    email : email, // flask에 이메일과 랜덤코드를 보내자
+                    code : randomStr,
+                },
+                dataType : 'json',
+ 
+                success: function (data) {
+                   cehckBox.attr("disabled", false); // attr : 속성(attribuce)의 값을 가져오거나 추가한다.
+                  boxWrap.attr("id", "mail_check_input_box_true"); // 이메일 인증 입력란[$(".mail_check_input_box")]의 색상이 변경
+                 code = randomStr; // 랜덤변수 데이터로 넘어간 것 code로 저장
+
+                console.log("data : " + code);
+                }
+
+                // });
+                
+            });
+             $(document).on("blur", ".mail_check_input", function (){
+            var inputCode = $(".mail_check_input").val();        // 입력코드    
+            var checkResult = $("#mail_check_input_box_warn");    // 비교결과출력
+            console.log("코드data : " + code);
+            if (inputCode == code) {                            // 일치할 경우
+                checkResult.html("인증완료");
+                checkResult.attr("class", "correct");
+            } else {                                            // 일치하지 않을 경우
+                checkResult.html("인증번호를 다시 확인해주세요.");
+                checkResult.attr("class", "incorrect");
+            }
+
+        });
+        });
+
+        /* 인증번호 비교 */
+       
+
+
+
+
+
 
 
     </script>
@@ -160,7 +215,21 @@
                     <input class="join-input" type="password" name="user_pw_check" id="user_pw_check"
                         placeholder="Password_check">
                     <input class="join-input" type="text" name="user_name" id="user_name" placeholder="Name">
-                    <input class="join-input" type="text" name="user_email" id="user_email" placeholder="email">
+                    <input class="join-mail_input" type="text" name="user_email" id="user_email" placeholder="email">
+                    <!-- 인증번호 공간 -->
+                    <div class="mail_check_wrap">
+                        <div class="mail_check_input_box" id="mail_check_input_box_false">
+                            <input class="mail_check_input" disabled="disabled">
+                        </div>
+
+                        <div class="mail_check_button" id="mail_check_button">
+                            <span>인증번호 전송</span>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <span id="mail_check_input_box_warn"></span> <!-- 일치여부 경고 -->
+                    </div>
+                    <!-- 인증번호 공간 -->
                     <input class="join-input" type="text" name="user_phone" id="user_phone" placeholder="Phone Number"
                         maxlength="11">
                     <input class="join-input-birth-first" type="text" name="user_birth-1" id="user_birth-1"

@@ -59,6 +59,11 @@ def company(data_id):
 def jobs():
     return render_template('Board/jobs.html')
 
+@app.route('/events')  ################# 채용정보페이지
+def events():
+    return render_template('Board/event.html')
+
+
 
 @app.route('/faq')  ############## 질문과 답변
 def faq():
@@ -103,6 +108,15 @@ def qustion_proc():
 
 
     return redirect('/qna')
+
+@app.route('/interest') ###############찜리스트 test
+def interest():
+    user_id=session['ID']
+    sql = "SELECT * from like_company_view where m_id=%s"
+    cursor.execute(sql,(user_id,))
+    interest_com = cursor.fetchall()
+    interest_len = len(interest_com)
+    return render_template('Board/interest_company.html', interest_com=interest_com,interest_len=interest_len)
 
 ##################### Index ###############
 

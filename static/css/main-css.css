@@ -3,18 +3,19 @@
 	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
-  }
-  
-  html {
-	font-family: 'Pretendard-Regular';
-  }
-  
-  body {
-	margin: 0px;
-  }
-  
+ }
  
  html {
+	font-family: 'Pretendard-Regular';
+ }
+ 
+ body {
+	margin: 0px;
+	height: 3000px;
+ }
+ 
+
+html {
 	font-family: Helvetica, Tahoma;
  }
  
@@ -124,10 +125,12 @@
  .main-section {
 	height: auto;
 	width: 100%;
-	overflow: hidden
- }
- 
- .bg-f6 {
+	overflow: hidden;
+	margin: 16vmin auto;
+
+}
+
+.bg-f6 {
 	background: #f6f6f6;
 	padding: 2vmin;
 	overflow: hidden;
@@ -210,36 +213,100 @@
 	height: 100%;
 	width: auto;
 	background: aliceblue;
- }
- 
- 
- 
- .recommend-div {
+}
+
+
+
+.footer {
+	width: 100%;
+	position: relative;
+	height: auto;
+	background-color: #070617;
+}
+
+.footer .col {
+	width: 190px;
+	height: auto;
+	float: left;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	padding: 0px 20px 20px 20px;
+}
+
+.footer .col h1 {
+	margin: 0;
+	padding: 0;
+	font-family: inherit;
+	font-size: 12px;
+	line-height: 17px;
+	padding: 20px 0px 5px 0px;
+	color: rgba(255, 255, 255, 0.2);
+	font-weight: normal;
+	text-transform: uppercase;
+	letter-spacing: 0.250em;
+}
+
+.footer .col ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.footer .col ul li {
+	color: #999999;
+	font-size: 14px;
+	font-family: inherit;
+	font-weight: bold;
+	padding: 5px 0px 5px 0px;
+	cursor: pointer;
+	transition: .2s;
+	-webkit-transition: .2s;
+	-moz-transition: .2s;
+}
+
+.social ul li {
+	display: inline-block;
+	padding-right: 5px !important;
+}
+
+.footer .col ul li:hover {
+	color: #ffffff;
+	transition: .1s;
+	-webkit-transition: .1s;
+	-moz-transition: .1s;
+}
+
+.clearfix {
+	clear: both;
+}
+
+.recommend-div {
 	background: #f6f6f6;
 	padding: 10% 5% 10% 5%;
 	width: 90%;
 	display: inline-block;
- }
- 
- 
- /* page */
- .title-area {
-	margin-left: 7.5%;
-	margin-right: 7.5%;
-	padding-top: 17vmin;
-	padding-bottom: 8vmin;
-	height: 20vmin;
-	width: 85%;
-	background-color: white;
- }
- 
- .content-area {
+}
+
+
+/* page */
+.title-area {
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+    height: 24vmin;
+    width: 85%;
+    background-color: white;
+}
+
+.content-area {
 	position: relative;
 	max-width: 1380px;
-	margin: 5vmin auto;
- }
- 
- .content-p-area {
+	margin: 0vmin auto;
+}
+
+.content-p-area {
 	height: auto;
 	display: flex;
 	position: relative;
@@ -734,39 +801,66 @@
  
  .join-check-list.sub {
 	padding-left: 40px;
- }
- /* 이메일 코드인증 */
- .join-mail_input{
-	width: 34%;
-	height: 60px;
-	margin-left: 32.5%;
-	margin-right: 32.5%;
+}
+
+/* 이메일 코드인증 */
+.join-mail_input {
+	width: 80%;
+	height: 6vmin;
 	padding-left: 1%;
-	margin-bottom: 15px;
-	font-size: 16px;
+	margin-bottom: 1.5vmin;
+	font-size: 1, 6vmin;
 	border-style: solid;
 	border-width: 2px;
 	border-color: #759ef7;
 }
 
- .correct{
-    color : green; 
-}
-.incorrect{
-    color : red;
-}
- 
-#mail_check_input_box_false{
-    background-color:#ebebe4;
-}
- 
-#mail_check_input_box_true{
-    background-color:white;
+.correct {
+	color: green;
 }
 
- /* company */
- 
- .title-area-company-bgimg {
+.incorrect {
+	color: red;
+}
+
+#mail_check_input_box_false {
+	clip-path: polygon(0px 0px, 0px 0px, 0px 0px, 0px 0px)
+}
+
+#mail_check_input_box_true {
+	background-color: white;
+}
+
+.mail_check_input {
+	width: 80%;
+	height: 6vmin;
+	padding-left: 1%;
+	margin-bottom: 1.5vmin;
+	font-size: 1, 6vmin;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
+.mail_auth_button {
+	float: right;
+	width: 15%;
+	height: 6.5vmin;
+	font-size: 1.6vmin;
+	background: #759ef7;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+}
+
+.mail_auth_button>span {
+	display: inline-block;
+	margin-top: 25%;
+}
+
+/* company */
+
+.title-area-company-bgimg {
 	position: relative;
 	padding-left: 7.5%;
 	padding-right: 7.5%;
@@ -1146,10 +1240,10 @@
  
  .spacing {
 	text-indent: 1.2em;
- }
- 
- 
- .spacing:nth-child(2) {
+}
+
+
+.spacing:nth-child(2) {
 	margin: 30px 0px 0px 0px;
 	padding: 0px 0px 15px 0px;
  }
@@ -1619,11 +1713,11 @@
 	float: left;
 	width: 48%;
 	margin: 1%;
- }
- 
- .trend-divi>h2,
- h3,
- h5 {
+}
+
+.trend-divi>h2,
+.trend-divi>h3,
+.trend-divi>h5 {
 	text-align: center;
  }
  
@@ -1703,6 +1797,84 @@
 	 font-size: 1.9vmin;
 	border-color: #759ef7;
  }
+
+/* account */
+
+.search-title {
+	margin: auto;
+	width: 8vmin;
+}
+
+.search-title>h3 {
+	text-align: center;
+}
+
+.find-username,
+.find-useremail {
+	margin: auto;
+	width: 160px;
+}
+
+.find-username>label,
+.find-useremail>label {}
+
+.find_form {
+	width: 20vmin;
+	margin: auto;
+}
+
+/* event */
+.event-content {
+	box-sizing: border-box;
+	height: 38vmin;
+	width: 100%;
+	padding: 3vmin;
+	overflow: inherit;
+	border-bottom: 0.1vmin solid #999;
+}
+
+.event-picture {
+	height: 100%;
+	width: 35%;
+	float: left;
+}
+
+.event-text {
+	height: 100%;
+	width: 60%;
+	display: flex;
+	align-items: center;
+}
+
+.event-sub {
+	padding: 5%;
+	margin: auto 0px;
+}
+
+.event-sub-gray{
+	color: #999;
+}
+
+.event-img {
+	height: 100%;
+	width: 100%;
+	vertical-align: middle;
+	/* line-height이랑 같이 세로중앙정렬 */
+}
+
+/* our_company */
+.our-content {
+	box-sizing: border-box;
+	height: 100%;
+	width: 100%;
+	margin: 5%10%;
+}
+
+.our-bg{
+	background: url(../source/our.png) no-repeat;
+}
+
+
  /* 계정찾기 css*/
 
  .bg-gradient-primary {

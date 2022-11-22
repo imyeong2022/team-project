@@ -3,18 +3,19 @@
 	src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
 	font-weight: normal;
 	font-style: normal;
-  }
-  
-  html {
-	font-family: 'Pretendard-Regular';
-  }
-  
-  body {
-	margin: 0px;
-  }
-  
+ }
  
  html {
+	font-family: 'Pretendard-Regular';
+ }
+ 
+ body {
+	margin: 0px;
+	height: 3000px;
+ }
+ 
+
+html {
 	font-family: Helvetica, Tahoma;
 }
 
@@ -124,7 +125,9 @@ footer {
 .main-section {
 	height: auto;
 	width: 100%;
-	overflow: hidden
+	overflow: hidden;
+	margin: 16vmin auto;
+
 }
 
 .bg-f6 {
@@ -214,6 +217,70 @@ footer {
 
 
 
+.footer {
+	width: 100%;
+	position: relative;
+	height: auto;
+	background-color: #070617;
+}
+
+.footer .col {
+	width: 190px;
+	height: auto;
+	float: left;
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	padding: 0px 20px 20px 20px;
+}
+
+.footer .col h1 {
+	margin: 0;
+	padding: 0;
+	font-family: inherit;
+	font-size: 12px;
+	line-height: 17px;
+	padding: 20px 0px 5px 0px;
+	color: rgba(255, 255, 255, 0.2);
+	font-weight: normal;
+	text-transform: uppercase;
+	letter-spacing: 0.250em;
+}
+
+.footer .col ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.footer .col ul li {
+	color: #999999;
+	font-size: 14px;
+	font-family: inherit;
+	font-weight: bold;
+	padding: 5px 0px 5px 0px;
+	cursor: pointer;
+	transition: .2s;
+	-webkit-transition: .2s;
+	-moz-transition: .2s;
+}
+
+.social ul li {
+	display: inline-block;
+	padding-right: 5px !important;
+}
+
+.footer .col ul li:hover {
+	color: #ffffff;
+	transition: .1s;
+	-webkit-transition: .1s;
+	-moz-transition: .1s;
+}
+
+.clearfix {
+	clear: both;
+}
+
 .recommend-div {
 	background: #f6f6f6;
 	padding: 10% 5% 10% 5%;
@@ -224,19 +291,19 @@ footer {
 
 /* page */
 .title-area {
-	margin-left: 7.5%;
-	margin-right: 7.5%;
-	padding-top: 17vmin;
-	padding-bottom: 8vmin;
-	height: 20vmin;
-	width: 85%;
-	background-color: white;
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+    height: 24vmin;
+    width: 85%;
+    background-color: white;
 }
 
 .content-area {
 	position: relative;
 	max-width: 1380px;
-	margin: 5vmin auto;
+	margin: 0vmin auto;
 }
 
 .content-p-area {
@@ -750,19 +817,58 @@ input::placeholder {
 }
 
 /* 이메일 코드인증 */
-.correct{
-    color : green; 
+.join-mail_input {
+	width: 80%;
+	height: 6vmin;
+	padding-left: 1%;
+	margin-bottom: 1.5vmin;
+	font-size: 1, 6vmin;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
 }
-.incorrect{
-    color : red;
+
+.correct {
+	color: green;
 }
- 
-#mail_check_input_box_false{
-    background-color:#ebebe4;
+
+.incorrect {
+	color: red;
 }
- 
-#mail_check_input_box_true{
-    background-color:white;
+
+#mail_check_input_box_false {
+	clip-path: polygon(0px 0px, 0px 0px, 0px 0px, 0px 0px)
+}
+
+#mail_check_input_box_true {
+	background-color: white;
+}
+
+.mail_check_input {
+	width: 80%;
+	height: 6vmin;
+	padding-left: 1%;
+	margin-bottom: 1.5vmin;
+	font-size: 1, 6vmin;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #759ef7;
+}
+
+.mail_auth_button {
+	float: right;
+	width: 15%;
+	height: 6.5vmin;
+	font-size: 1.6vmin;
+	background: #759ef7;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+}
+
+.mail_auth_button>span {
+	display: inline-block;
+	margin-top: 25%;
 }
 
 /* company */
@@ -1148,6 +1254,7 @@ input::placeholder {
 .spacing {
 	text-indent: 1.2em;
 }
+
 
 .spacing:nth-child(2) {
 	margin: 30px 0px 0px 0px;
@@ -1622,8 +1729,8 @@ h3 {
 }
 
 .trend-divi>h2,
-h3,
-h5 {
+.trend-divi>h3,
+.trend-divi>h5 {
 	text-align: center;
 }
 
@@ -1702,146 +1809,80 @@ h5 {
     border-radius: 30px;
     font-size: 1.9vmin;
 	border-color: #759ef7;
- }
- /* 계정찾기 css*/
-
- .bg-gradient-primary {
-    background-color: #4e73df;
-    background-image: linear-gradient(180deg, #4e73df 10%, #224abe 100%);
-    background-size: cover
 }
 
-.container {
-    width: 100%;
-    padding-right: .75rem;
-    padding-left: .75rem;
-    margin-right: auto;
-    margin-left: auto
+/* account */
+
+.search-title {
+	margin: auto;
+	width: 8vmin;
 }
 
-.justify-content-center {
-    justify-content: center !important
+.search-title>h3 {
+	text-align: center;
 }
 
-.col{
-	position: relative;
-    width: 100%;
-    padding-right: .75rem;
-    padding-left: .75rem
+.find-username,
+.find-useremail {
+	margin: auto;
+	width: 160px;
 }
 
-.border-0 {
-    border: 0 !important
+.find-username>label,
+.find-useremail>label {}
+
+.find_form {
+	width: 20vmin;
+	margin: auto;
 }
 
-.shadow-lg {
-    box-shadow: 0 1rem 3rem rgba(0, 0, 0, .175) !important
+/* event */
+.event-content {
+	box-sizing: border-box;
+	height: 38vmin;
+	width: 100%;
+	padding: 3vmin;
+	overflow: inherit;
+	border-bottom: 0.1vmin solid #999;
 }
 
-.my-5 {
-    margin-top: 3rem !important
+.event-picture {
+	height: 100%;
+	width: 35%;
+	float: left;
 }
 
-.card {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-    word-wrap: break-word;
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid #e3e6f0;
-    border-radius: .35rem
+.event-text {
+	height: 100%;
+	width: 60%;
+	display: flex;
+	align-items: center;
 }
 
-.o-hidden {
-    overflow: hidden !important
+.event-sub {
+	padding: 5%;
+	margin: auto 0px;
 }
 
-.card-body {
-    flex: 1 1 auto;
-    min-height: 1px;
-    padding: 1.25rem
+.event-sub-gray{
+	color: #999;
 }
 
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin-right: -.75rem;
-    margin-left: -.75rem
+.event-img {
+	height: 100%;
+	width: 100%;
+	vertical-align: middle;
+	/* line-height이랑 같이 세로중앙정렬 */
 }
 
-.p-5 {
-    padding: 3rem !important
+/* our_company */
+.our-content {
+	box-sizing: border-box;
+	height: 100%;
+	width: 100%;
+	margin: 5%10%;
 }
 
-.text-center {
-    text-align: center !important
-}
-
-.h4,
-h4{
-    margin-bottom: .5rem;
-    font-weight: 400;
-    line-height: 1.2
-}
-
-.mb-4,
-.my-4 {
-    margin-bottom: 1.5rem !important
-}
-
-
-form.user .custom-checkbox.small label {
-    line-height: 1.5rem
-}
-
-form.user .form-control-user {
-    font-size: .8rem;
-    border-radius: 10rem;
-    padding: 1.5rem 1rem
-}
-
-form.user .btn-user {
-    font-size: .8rem;
-    border-radius: 10rem;
-    padding: .75rem 1rem
-}
-
-small {
-    font-size: 80%
-}
-
-.find-username {
-    margin-bottom: 1rem
-}
-
-.btn {
-    display: inline-block;
-    font-weight: 400;
-    color: #858796;
-    text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: transparent;
-    border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1rem;
-    line-height: 1.5;
-    border-radius: .35rem;
-    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out
-}
-
-.btn-block {
-    display: block;
-    width: 100%
-}
-
-.btn-primary {
-    color: #fff;
-    background-color: #4e73df;
-    border-color: #4e73df
+.our-bg{
+	background: url(../source/our.png) no-repeat;
 }

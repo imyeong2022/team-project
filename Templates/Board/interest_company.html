@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>interest company</title>
+</head>
+
+<body>
+    관심기업
+<table id="like_company">
+    {% for x in range(interest_len) %}
+    <ul>
+        <li>
+            {{ interest_com[x].회사 }}
+        </li>
+        <li>
+            {{ interest_com[x].채용여부 }}
+        </li>
+        <li>
+            {{ interest_com[x].업종 }}
+        </li>
+        <li>
+            {{ interest_com[x].채용여부 }}
+        </li>
+    </ul>
+    {% endfor %}
+
+    
+
+</table>
+
+
+
+    
+</body>
+</html>

@@ -137,13 +137,47 @@ def company(data_id):
     sql = "SELECT * from company_info where data_id = %s"
     cursor.execute(sql, (data_id, ))
     data_list = cursor.fetchall()
-    data_list = data_list
-    return render_template('Board/company.html', data_list=data_list)
+    company=data_list[0]['industry']
+    
 
 
-@app.route('/jobs')  # 채용정보페이지
-def jobs():
-    return render_template('Board/jobs.html')
+    allcom = "SELECT * FROM COMPANY_INFO where industry = %s" 
+    cursor.execute(allcom,(company,))
+    all_list = cursor.fetchall()
+    all_list_len = len(all_list)
+    print(all_list_len)
+    return render_template('Board/company.html', data_list=data_list, all_list=all_list)
+
+
+@app.route('/excellence_employment') ###############채용정보페이지
+def excellence_employment():
+    return render_template('Board/excellence_employment.html')
+
+
+@app.route('/trend')  ################# 구직트렌드페이지 
+def trends():
+    return render_template('Board/trend.html')
+
+@app.route('/events')  ################# 채용정보페이지
+def events():
+    return render_template('Board/event.html')
+
+@app.route('/our_company')
+def our_company():
+    return render_template('Board/our_company.html')
+
+
+@app.route('/data')
+def data():
+    sql ='select All_Recruit,All_Employ from job_scale_total'
+    cursor.execute(sql)
+    data_list1 = cursor.fetchall()
+    data_list1 = data_list1
+    data_list1 = data_list1
+    data_list_len = len(data_list1)
+    print("인덱스길이data", data_list_len)
+   
+    return render_template('Board/data.html', data_list=data_list1)
 
 
 @app.route('/faq')  # 질문과 답변

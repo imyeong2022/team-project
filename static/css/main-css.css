@@ -2005,3 +2005,10 @@ p {
 .event-sub-gray{
 	color: #999;
 }
+
+.event-img {
+	height: 100%;
+	width: 100%;
+	vertical-align: middle;
+	/* line-height이랑 같이 세로중앙정렬 */
+}

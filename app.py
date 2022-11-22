@@ -1,7 +1,7 @@
 from flask import Flask, redirect, url_for, render_template, request , flash, jsonify
 from flask import request, session
 from flask_mail import Mail, Message
-import pymysql
+import pymysql, hashlib, json, re
 
 ## 2022 11 10 병합작업 1차버전입니다.
 ########### 데이터베이스 접속 전역변수 선언############
@@ -77,30 +77,70 @@ def home():
 
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
+    # print('여기')
     sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
     return render_template('Board/Condition.html', data_list=data_list)
-
-####################################################
 @app.route('/search')  # 조건으로 찾기 - 기업정보
 def search():
-    sql = "SELECT * from company_info"
-    cursor.execute(sql)
-    data_list = cursor.fetchall()
-    return render_template('Board/search.html', data_list=data_list)
+    try:
+        with con.cursor() as cursor:
+            
+            s=request.args.get('area') 
+            p = s.split(',')
+            content = ''
+            for i in range(len(p)):
+                if (i+1) == len(p):                    
+                    content += "'" + p[i] + "'"
+                else:
+                    content += "'" + p[i] + "',"
+            print('>>>>>>>>>>>>'+ content,type(content))
 
+            print('!!!!!!!!!!!!!!!!'+content)
+            
+            sql="SELECT * from company_info where `region` in ("+ content +")"
+            cursor.execute(sql)
+            rows=cursor.fetchall()
+            # print(rows)
+
+            for row in rows:
+                print('............',row)
+            # return jsonify(rows)
+            return rows  
+    finally:
+        con.close()
+
+
+    
 @app.route('/employtest') # 체크박스 test
 def employtest():
-    content=request.args.get('area') 
-    content = content.split(',')
-    content = tuple(content) #tuple로 변환햇는데 sql %s에는 한개만 들어감
-    print(content)
-    sql='SELECT * from company_info where 지역 in (%s)'
-    cursor.execute(sql, (content,))
-    rows=cursor.fetchall()
-    print('............',rows)
-    return rows
+    try:
+        with con.cursor() as cursor:
+            
+            s=request.args.get('area') 
+            p = s.split(',')
+            content = ''
+            for i in range(len(p)):
+                if (i+1) == len(p):                    
+                    content += "'" + p[i] + "'"
+                else:
+                    content += "'" + p[i] + "',"
+            print('>>>>>>>>>>>>'+ content,type(content))
+
+            print('!!!!!!!!!!!!!!!!'+content)
+            
+            sql="SELECT * from company_info where `region` in ("+ content +")"
+            cursor.execute(sql)
+            rows=cursor.fetchall()
+            # print(rows)
+
+            for row in rows:
+                print('............',row)
+            # return jsonify(rows)
+            return rows        
+    finally:
+        con.close()
 
 
 @app.route('/interest') ###############찜리스트 select
@@ -123,23 +163,13 @@ def company(data_id):
     cursor.execute(sql, (data_id,))
     data_list = cursor.fetchall()
     
-    # code = '2' #도매 및 소매업
-    # allcom = "SELECT * FROM COMPANY_INFO where industry_code = %s" 
-    # cursor.execute(allcom,(code,))
-    # ----------------------------------------------위는 'industry_code' 버전 / 아래는 '업종' 버전
-    allcom = "SELECT * FROM COMPANY_INFO where 업종 = %s" 
-    cursor.execute(allcom,('도매 및 소매업',))
+    #동종업계 추천하기
+    recommendation =data_list[0]['industry']
+    print(recommendation)
+    allcom = "SELECT * FROM COMPANY_INFO where industry = %s" 
+    cursor.execute(allcom,(recommendation,))
     all_list = cursor.fetchall()
     return render_template('Board/company.html', data_list=data_list, all_list=all_list)
-
-# @app.route('/company/<int:industry_code>/<int:data_id>')  ############ 기업상세페이지 [업종별] - 건설업
-# def company(industry_code, data_id):
-#     sql = "SELECT * from company_info where industry_code = %s and data_id = %s"
-#     cursor.execute(sql, (industry_code,data_id))
-#     data_list = cursor.fetchall()
-#     len(data_list)
-#     print(data_list)
-#     return render_template('Board/company.html', data_list=data_list )
 
 @app.route('/test_script')  ################# 자바스크립트 필터 연습 페이지1
 def test_script():

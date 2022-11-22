@@ -103,6 +103,9 @@ def jobs():
 def events():
     return render_template('Board/event.html')
 
+@app.route('/our_company')
+def our_company():
+    return render_template('Board/our_company.html')
 
 
 @app.route('/faq')  ############## 질문과 답변

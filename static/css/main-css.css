@@ -126,7 +126,7 @@ footer {
 	height: auto;
 	width: 100%;
 	overflow: hidden;
-	margin: 12vmin auto;
+	margin: 16vmin auto;
 
 }
 
@@ -303,19 +303,19 @@ footer {
 
 /* page */
 .title-area {
-	margin-left: 7.5%;
-	margin-right: 7.5%;
-	padding-top: 5vmin;
-	padding-bottom: 8vmin;
-	height: 20vmin;
-	width: 85%;
-	background-color: white;
+    margin-left: 7.5%;
+    margin-right: 7.5%;
+    padding-top: 5vmin;
+    padding-bottom: 5vmin;
+    height: 24vmin;
+    width: 85%;
+    background-color: white;
 }
 
 .content-area {
 	position: relative;
 	max-width: 1380px;
-	margin: 5vmin auto;
+	margin: 0vmin auto;
 }
 
 .content-p-area {
@@ -2011,4 +2011,16 @@ p {
 	width: 100%;
 	vertical-align: middle;
 	/* line-height이랑 같이 세로중앙정렬 */
+}
+
+/* our_company */
+.our-content {
+	box-sizing: border-box;
+	height: 100%;
+	width: 100%;
+	margin: 5%10%;
+}
+
+.our-bg{
+	background: url(../source/our.png) no-repeat;
 }

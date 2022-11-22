@@ -2,6 +2,7 @@ from flask import Flask, redirect, url_for, render_template, request , flash, js
 from flask import request, session
 from flask_mail import Mail, Message
 import pymysql
+import json, re, hashlib
 
 ## 2022 11 10 병합작업 1차버전입니다.
 ########### 데이터베이스 접속 전역변수 선언############
@@ -15,12 +16,12 @@ cursor = con.cursor()
 ###########데이터베이스 접속 전역변수 선언############
 app = Flask(__name__)
 ############ 구글메일(계정찾기 테스트) ################ 사이트 접근과 동시에 메일서버와 인터페이스 하면서 recipients 로 지정된 메일 주소로 이메일을 발송
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
-app.config['MAIL_PASSWORD'] = 'myhinigkzocytxcd'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
+# app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+# app.config['MAIL_PORT'] = 465
+# app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
+# app.config['MAIL_PASSWORD'] = 'myhinigkzocytxcd'
+# app.config['MAIL_USE_TLS'] = False
+# app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
 @app.route('/accountfind')
@@ -92,14 +93,45 @@ def search():
 
 @app.route('/employtest') # 체크박스 test
 def employtest():
-    content=request.args.get('area') 
-    content = content.split(',')
-    content = tuple(content) #tuple로 변환햇는데 sql %s에는 한개만 들어감
-    print(content)
-    sql='SELECT * from company_info where 지역 in (%s)'
-    cursor.execute(sql, (content,))
+    try:
+        with con.cursor() as cursor:
+            s=request.args.get('area') 
+            p = s.split(',')
+            content = ''
+            for i in range(len(p)):
+                if (i+1) == len(p):                    
+                    content += "'" + p[i] + "'"
+                else:
+                    content += "'" + p[i] + "',"
+            print('>>>>>>>>>>>>'+ content,type(content))
+
+            print('!!!!!!!!!!!!!!!!'+content)
+            
+            sql="SELECT * from company_info where `지역` in ("+ content +")"
+            cursor.execute(sql)
+            rows=cursor.fetchall()
+            # print(rows)
+
+            for row in rows:
+                print('............',row)
+            # return jsonify(rows)
+            return rows        
+    finally:
+        con.close()
+
+# @app.route('/employtest') # 체크박스 test
+# def employtest():
+#     content=request.args.get('area') 
+#     # content = content.split(',')
+#     content = tuple(content) 
+#     #tuple로  ntent)
+    
+    # s = "'건설업', '도매 및 소매업', '제조업'" 
+    sql="SELECT * from company_info"
+    cursor.execute(sql)
     rows=cursor.fetchall()
-    print('............',rows)
+    for row in rows:
+        print(row)
     return rows
 
 

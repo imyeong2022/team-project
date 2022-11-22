@@ -79,11 +79,16 @@ def home():
 
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
+    user_id=session['ID']
     sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
     data_list = data_list
-    return render_template('Board/Condition.html', data_list=data_list)
+
+    sql = "SELECT * from like_company_view where m_id=%s"
+    cursor.execute(sql,(user_id,))
+    interest_com = cursor.fetchall()
+    return render_template('Board/Condition.html', data_list=data_list,interest_com=interest_com)
 
 ####################################################
 @app.route('/employtest') # 체크박스 test
@@ -116,53 +121,55 @@ def employtest():
     finally:
         con.close()
         
+########################################################찜하기 기능 
 
-
-@app.route('/interest_select') ###############찜리스트 select
+@app.route('/interest_select') ###############.마이페이지 찜리스트 select
 def interest_select():
     user_id=session['ID']
     sql = "SELECT * from like_company_view where m_id=%s"
-    cursor.execute(sql,(user_id,))
+    cursor.execute(sql,(user_id))
     interest_com = cursor.fetchall()
     interest_len = len(interest_com)
     return render_template('Board/interest_company.html', interest_com=interest_com,interest_len=interest_len)
 
 
-@app.route('/interest_insert') ###############찜리스트 insert
+
+@app.route('/interest_insert') ###############찜리스트 INSERT,UPDATE(DELETE)
 def interest_insert():
+    rs={}
     try:
         user_id=session['ID']
-        data_id=13047
-        sql = "insert into like_company(ID,data_id,result) values(%s,%s,%s)"
-        cursor.execute(sql,(user_id,data_id,1))
-        con.commit()
-        cnt=cursor.rowcount
-        rs = {'status':cnt}
+        data_id=request.args.get('data_id')
+
+        sql="SELECT * from like_company where id=%s and data_id=%s"
+        cursor.execute(sql,(user_id,data_id))
+        like_company_all = cursor.fetchall()
+        print('>>>>>>',len(like_company_all))
+        if(len(like_company_all)>0):
+            print('like_update')
+            sql = "Update like_company SET result=%s where data_id=%s and id=%s;"
+            if(like_company_all[0]['result']=='0'):
+                cursor.execute(sql,(1,data_id,user_id))
+            else:
+                cursor.execute(sql,(0,data_id,user_id))
+            con.commit()
+            cnt=cursor.rowcount
+            rs = {'status':cnt}
+        else:
+            print('like_insert')
+            sql = "insert into like_company(ID,data_id,result) values(%s,%s,%s)"
+            cursor.execute(sql,(user_id,data_id,1))
+            con.commit()
+            cnt=cursor.rowcount
+            rs = {'status':cnt}
     except Exception as e:
         print(e)
         rs = {'status': 0}
-    finally:
-        con.close()
-        return rs
+    finally:  
+        return rs  
+        
 
 
-
-@app.route('/interest_delete') ###############찜리스트 delete
-def interest_delete():
-    try:
-        user_id=session['ID']
-        data_id=13047
-        sql = "DELETE FROM like_company WHERE data_id =%s and id=%s;"
-        cursor.execute(sql,(data_id,user_id))
-        con.commit()
-        cnt=cursor.rowcount
-        rs = {'status':cnt}
-    except Exception as e:
-        print(e)
-        rs = {'status': 0}
-    finally:
-        con.close()
-        return rs
 ########################################################
 
 
@@ -171,8 +178,15 @@ def company(data_id):
     sql = "SELECT * from company_info where data_id = %s"
     cursor.execute(sql, (data_id, ))
     data_list = cursor.fetchall()
-    data_list = data_list
-    return render_template('Board/company.html', data_list=data_list)
+    company=data_list[0]['업종']
+    
+
+
+    allcom = "SELECT * FROM COMPANY_INFO where 업종 = %s" 
+    cursor.execute(allcom,(company,))
+    all_list = cursor.fetchall()
+    return render_template('Board/company.html', data_list=data_list, all_list=all_list)
+
 
 @app.route('/excellence_employment') ###############채용정보페이지
 def excellence_employment():

@@ -230,13 +230,15 @@ def company(data_id):
     sql = "SELECT * from company_info where data_id = %s"
     cursor.execute(sql, (data_id, ))
     data_list = cursor.fetchall()
-    company=data_list[0]['업종']
+    company=data_list[0]['industry']
     
 
 
-    allcom = "SELECT * FROM COMPANY_INFO where 업종 = %s" 
+    allcom = "SELECT * FROM COMPANY_INFO where industry = %s" 
     cursor.execute(allcom,(company,))
     all_list = cursor.fetchall()
+    all_list_len = len(all_list)
+    print(all_list_len)
     return render_template('Board/company.html', data_list=data_list, all_list=all_list)
 
 

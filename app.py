@@ -79,7 +79,12 @@ def home():
 
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
-    user_id=session['ID']
+
+    if 'ID' in session:
+        user_id=session['ID']
+    else:
+        user_id='null'
+        
     sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
@@ -88,7 +93,9 @@ def condition():
     sql = "SELECT * from like_company_view where m_id=%s"
     cursor.execute(sql,(user_id,))
     interest_com = cursor.fetchall()
-    return render_template('Board/Condition.html', data_list=data_list,interest_com=interest_com)
+    interest_len=len(interest_com)
+    return render_template('Board/Condition.html',data_list=data_list,
+                interest_com=interest_com,interest_len=interest_len,user_id=user_id)
 
 ####################################################
 @app.route('/employtest') # 체크박스 test
@@ -140,7 +147,6 @@ def interest_insert():
     try:
         user_id=session['ID']
         data_id=request.args.get('data_id')
-
         sql="SELECT * from like_company where id=%s and data_id=%s"
         cursor.execute(sql,(user_id,data_id))
         like_company_all = cursor.fetchall()

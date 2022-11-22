@@ -5,18 +5,22 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>상세조건 검색</title>
+    <a href="javascript:void(0);" onclick="interestList();">초기화</a>
 </head>
 
 
+
+
+
 <script>
+    function interestList(){
+        alert('들어왓다')
+
+    }
     
-    function interestSave(obj,data_id){
-        //세션값 가져와야함 
-        // var userId=sessionStorage.getItem('ID')
-        // alert(userId)
-      
-        var userId='bingo'
-        if(userId==null){
+    function interestSave(obj,data_id,user_id){
+        var userId=user_id
+        if(userId=='null'){
             $(obj).prop("checked",false);
             if(confirm("로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?")){
                 location.href="/login_form_get";
@@ -58,10 +62,6 @@
 </script>
 
 <body>
-{% if session.get('logFlag') %}
-    const userId= {{ session['ID']}}
-    sessionStorage.setItem('ID', userId)
-{% endif %}
 
     {% include 'Board/header.html' %}
     <div class="main-div">
@@ -343,10 +343,13 @@
                                 <a>
                                     {# onclick은 로그인이 안되어있을때  ★ #}
                                     <div class="wish-checkbox">
+                                        <input type="text" value="{{interest_com[0].data_id}}">
                                         <input type="checkbox" id="interestCheck" class="checkbox-star" 
-                                        onclick="interestSave(this,'{{data_list[x].data_id}}');" name="interestCheck">
+                                        onclick="interestSave(this,'{{data_list[x].data_id}}','{{user_id}}');" name="interestCheck">
                                         <label for="interestCheck">관심기업 등록하기 </label>
                                     </div>
+
+
                                     {# <div>★ 관심기업 해제하기</div> #}
                                 </a>
                                 <a>

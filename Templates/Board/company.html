@@ -39,25 +39,24 @@
                 </div>
                 <div class="company-info">
                     <div>
-                        <span class="grid-red">{{ data_list[0].채용여부}}</span>
-                        <span class="company-sub" ID="업종",NAME="업종">{{ data_list[0].업종}}</span>
+                        {% if data_list[0].homepage != '-' %}
+                        <span class="grid-red">{{ data_list[0].employment}}</span>
+                        {% endif %}
+                        <span class="company-sub" ID="industry",NAME="industry">{{ data_list[0].industry}}</span>
                     </div>
-                    <h1 class="company-title">{{ data_list[0].회사}}</11>
-                    <h3 class="company-sub-title-Y"># 내실이 탄탄하고 성과보상이 확실한</h3>
-                    <h3 class="company-sub-title-W"># 복지 우수기업</h3>
+                    <h1 class="company-title">{{ data_list[0].company}}</11>
+                    <h3 class="company-sub-title-Y">{{ data_list[0].tag}}</h3>
+                    <!-- <h3 class="company-sub-title-W"># 복지 우수기업</h3> -->
                     <p></p>
+
                     <div class="button-box">
                         <!-- 홈페이지 주소가 있을 때에만 링크 띄워주기 -->
-                        {% if data_list[0].홈페이지 != '-' %}
-                        <a href='//{{data_list[0].홈페이지}}'>
-                            <i class="home-img"></i>
-                        </a>
+                        {% if data_list[0].homepage != '-' %}
+                        <a href='//{{data_list[0].homepage}}'><i class="home-img"></i></a>
                         {% endif %}
                         <!-- 관심기업 등록하기 -->
                         <div class="custom-checkbox">
-
-                            <p><input type="checkbox" id="interestCheck-1" class="checkbox-like type2"
-                                    onclick="intrstYnSave(this);" name="interestCheck">
+                            <p><input type="checkbox" id="interestCheck-1" class="checkbox-like type2"onclick="intrstYnSave(this);" name="interestCheck">
                                 <label for="star-check">28</label></p>
                         </div>
                     </div>
@@ -77,29 +76,29 @@
                         <div class="info-item">
                             <dl>
                                 <dt>대표자</dt>
-                                <dd>{{ data_list[0].대표}}</dd>
+                                <dd>{{ data_list[0].CEO}}</dd>
                             </dl>
                             <dl>
                                 <dt>업종</dt>
-                                <dd>{{ data_list[0].업종}}</dd>
+                                <dd>{{ data_list[0].industry}}</dd>
                             </dl>
                             <dl>
                                 <dt>주요제품명</dt>
-                                <dd>{{ data_list[0].주요제품명}}</dd>
+                                <dd>{{ data_list[0].main_product}}</dd>
                             </dl>
                         </div>
                         <div class="info-item fr">
                             <dl>
-                                <dt>기업형태</dt>
-                                <dd>{{ data_list[0].기업형태}}</dd>
+                                <dt>company_type</dt>
+                                <dd>{{ data_list[0].company_type}}</dd>
                             </dl>
                             <dl>
                                 <dt>홈페이지</dt>
-                                <dd>{{ data_list[0].홈페이지}}</dd>
+                                <dd>{{ data_list[0].homepage}}</dd>
                             </dl>
                             <dl>
                                 <dt>주소</dt>
-                                <dd>{{ data_list[0].회사주소}}</dd>
+                                <dd>{{ data_list[0].company_addr}}</dd>
                             </dl>
                         </div>
                     </div>
@@ -188,7 +187,7 @@
             <!--// article-title-area -->
             <div class="article-content">
                 <div class="sub-title-area">
-                    <p class="sub-info">{{ data_list[0].회사주소}}</p>
+                    <p class="sub-info">{{ data_list[0].company_addr}}</p>
                     <div class="right">
                         <!-- <a href="javascript:void(0);" data-id="{{ data_list[0].data_id}}" data-xco="{{ data_list[0].위도}}" data-yco="{{ data_list[0].경도}}"" onclick="moveSmartMap(this);" class="btn btn-default btn-md"><span>일자리지도 바로가기</span></a> -->
                     </div>
@@ -290,41 +289,41 @@
                     <div class="swiper-wrapper">
                         <div class="swiper-slide">
                             <a href="/company/{{all_list[1].data_id}}">
-                                <span class="grid-sub-blue">{{all_list[1].기업형태}}</span>
-                                <p class="grid-title-side">{{all_list[1].회사}}</p>
+                                <span class="grid-sub-blue">{{all_list[1].company_type}}</span>
+                                <p class="grid-title-side">{{all_list[1].company}}</p>
                                 <div class="company-swiper-div-margin">
-                                    <span class="condition-sub-text">{{all_list[1].지역}}</span>
-                                    <span class="grid-sub-red">{{all_list[1].채용여부}}</span>
+                                    <span class="condition-sub-text">{{all_list[1].region}}</span>
+                                    <span class="grid-sub-red">{{all_list[1].employment}}</span>
                                 </div>
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="/company/{{all_list[2].data_id}}">
-                                <span class="grid-sub-blue">{{all_list[2].기업형태}}</span>
-                                <p class="grid-title-side">{{all_list[2].회사}}</p>
+                                <span class="grid-sub-blue">{{all_list[2].company_type}}</span>
+                                <p class="grid-title-side">{{all_list[2].company}}</p>
                                 <div class="company-swiper-div-margin">
-                                    <span class="condition-sub-text">{{all_list[2].지역}}</span>
-                                    <span class="grid-sub-red">{{all_list[2].채용여부}}</span>
+                                    <span class="condition-sub-text">{{all_list[2].region}}</span>
+                                    <span class="grid-sub-red">{{all_list[2].employment}}</span>
                                 </div>
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="/company/{{all_list[3].data_id}}">
-                                <span class="grid-sub-blue">{{all_list[3].기업형태}}</span>
-                                <p class="grid-title-side">{{all_list[3].회사}}</p>
+                                <span class="grid-sub-blue">{{all_list[3].company_type}}</span>
+                                <p class="grid-title-side">{{all_list[3].company}}</p>
                                 <div class="company-swiper-div-margin">
-                                    <span class="condition-sub-text">{{all_list[3].지역}}</span>
-                                    <span class="grid-sub-red">{{all_list[3].채용여부}}</span>
+                                    <span class="condition-sub-text">{{all_list[3].region}}</span>
+                                    <span class="grid-sub-red">{{all_list[3].employment}}</span>
                                 </div>
                             </a>
                         </div>
                         <div class="swiper-slide">
                             <a href="/company/{{all_list[4].data_id}}">
-                                <span class="grid-sub-blue">{{all_list[4].기업형태}}</span>
-                                <p class="grid-title-side">{{all_list[4].회사}}</p>
+                                <span class="grid-sub-blue">{{all_list[4].company_type}}</span>
+                                <p class="grid-title-side">{{all_list[4].company}}</p>
                                 <div class="company-swiper-div-margin">
-                                    <span class="condition-sub-text">{{all_list[4].지역}}</span>
-                                    <span class="grid-sub-red">{{all_list[4].채용여부}}</span>
+                                    <span class="condition-sub-text">{{all_list[4].region}}</span>
+                                    <span class="grid-sub-red">{{all_list[4].employment}}</span>
                                 </div>
                             </a>
                         </div>

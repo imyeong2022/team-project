@@ -4,7 +4,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>상세조건 검색</title>
-
     <style>
         .pagination {
             position: relative;
@@ -12,6 +11,7 @@
             font-size: 50;
         }
     </style>
+    
 </head>
 
 <body>
@@ -37,11 +37,11 @@
             </div>
 
         <!-- <div class = "search-area"> content-area -->
-            <form class = "search-area" id = "searchForm" name ="searchForm" method="get" action="condition"> <!-- content-area -->
+            <form class = "search-area" id = "searchForm" name ="searchForm" method="get" action="/condition"> <!-- content-area -->
                 <input type = "hidden" id="pg" value="1">
-                <!-- <input type="hidden" id="area" name="area" value=""> -->
+                <input type="hidden" id="area" name="area" value="">
                 <!-- 지역 -->
-                <!-- <input type="hidden" id="sic" name="sic" value=""> -->
+                <input type="hidden" id="sic" name="sic" value="">
                 <!-- 업종 -->
                 <input type="hidden" id="thema" name="thema" value="">
                 <!-- 유형 -->
@@ -95,8 +95,8 @@
                         <div class="search-fileter-child-item-list">
                             <div class="search-fileter-checkbox">
                                 <div class="search-fileter-checkbox-item"> 
-                                    <!-- <input type="checkbox" id="check-100" class="checkbox check-all checked" name="areatag" value="" data-name="전체" checked="checked"> -->
-                                    <input type="checkbox"id="전체" value="전체" class="checkbox">
+                                    <input type="checkbox" id="check-100" class="checkbox check-all checked" name="areatag" value="" data-name="전체" checked="checked">
+                                    <!-- <input type="checkbox"id="전체" value="전체" class="checkbox"> -->
                                     <label for="check-100">전체</label>
                                 </div>
                                 <div class="search-fileter-checkbox-item">
@@ -276,7 +276,7 @@
                         <div class="search-fileter-child-item-list">
                             <div class="search-fileter-checkbox">
                             <div class="search-fileter-checkbox-item">
-                                <input type="checkbox" id="check-400" class="checkbox check-all checked" name="scaletag" value="" data-name="전체" checked="checked">
+                                <input type="checkbox" id="check-400" class="checkbox" name="scaletag" value="" data-name="전체" checked="checked">
                                 <label for="check-400">전체</label>
                             </div>
                             <div class="search-fileter-checkbox-item">
@@ -304,7 +304,7 @@
                     </dl>
 
                     <!-- <dl class="item-content" data-id="crtfnBiz" data-max="20" data-tit="기업역량은" id="crtfnBizContent"> -->
-                        <!-- <dt class="item-title"><a data-cate="true" href="#none">기업역량<i class="ico-arr-down"></i></a></dt> -->
+                        <!-- <dt class="item-title"><a data-cate="true"  href="#none">기업역량<i class="ico-arr-down"></i></a></dt> -->
                     <!-- <div class="search-fileter-child">
                     <div class="search-fileter-child-title"><span>기업역량</span></div> -->
                         <!-- <div class="search-fileter-child-item-list">
@@ -386,7 +386,7 @@
                     </div>
                 </div>
             </form>
-
+        
                 <div class="condition">
                 <!-- <ul class = "board-incruit mt15" id ="companyListArea"> -->
                     <!-- {% for x in range(10) %}  -->
@@ -519,7 +519,7 @@
 
                 <ul class = "board-incruit mt15" id ="companyListArea">
                     
-                    {% for x in range(10) %}    
+                    {% for x in range(10) %}
                     <li class="item">
                         <div class = "box-text">
                             <div class="box-btn-area">
@@ -555,6 +555,7 @@
                                     <button type="button" class="tag-mint" data-value="인재육성형 중소기업">#인재육성형 중소기업</button>
                                 </li>
                             </ul> -->
+                            <!-- <button type="button" onclick="location.href='/search'">search하기</button> -->
                         </div>
                     </li>
                     {% endfor %}

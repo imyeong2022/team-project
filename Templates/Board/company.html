@@ -46,18 +46,21 @@
                     </div>
                     <h1 class="company-title">{{ data_list[0].company}}</11>
                     <h3 class="company-sub-title-Y">{{ data_list[0].tag}}</h3>
-                    <!-- <h3 class="company-sub-title-W"># 복지 우수기업</h3> -->
+                    <h3 class="company-sub-title-W"></h3>
                     <p></p>
 
                     <div class="button-box">
+                      
+                    
                         <!-- 홈페이지 주소가 있을 때에만 링크 띄워주기 -->
                         {% if data_list[0].homepage != '-' %}
                         <a href='//{{data_list[0].homepage}}'><i class="home-img"></i></a>
                         {% endif %}
                         <!-- 관심기업 등록하기 -->
                         <div class="custom-checkbox">
-                            <p><input type="checkbox" id="interestCheck-1" class="checkbox-like type2"onclick="intrstYnSave(this);" name="interestCheck">
-                                <label for="star-check">28</label></p>
+                        <p><input type="checkbox" id="interestCheck-1" class="checkbox-like type2"
+                                onclick="intrstYnSave(this);" name="interestCheck">
+                            <label for="star-check"> 관심기업 {{interest_len}}</label></p>
                         </div>
                     </div>
                 </div>
@@ -259,7 +262,7 @@
                     <!-- // [Pub] 채용공고가 하나도 없을시 -->
 
                     <form id="pblancForm" name="pblancForm" method="post">
-                        <input type="hidden" name="cmpId" value=161510">
+                        <input type="hidden" name="cmpId" value="161510">
                         <input type="hidden" name="pblancSorcCd">
                         <input type="hidden" name="pblancNo">
                         <input type="hidden" name="pblancNm">
@@ -287,52 +290,18 @@
             <div class="article-content frame-min" id="sameIndustryArea">
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
+                        {% for x in range (10) %}
                         <div class="swiper-slide">
-                            <a href="/company/{{all_list[1].data_id}}">
-                                <span class="grid-sub-blue">{{all_list[1].company_type}}</span>
-                                <p class="grid-title-side">{{all_list[1].company}}</p>
+                            <a href="/company/{{all_list[x].data_id}}">
+                                <span class="grid-sub-blue">{{all_list[x].company_type}}</span>
+                                <p class="grid-title-side">{{all_list[x].company}}</p>
                                 <div class="company-swiper-div-margin">
-                                    <span class="condition-sub-text">{{all_list[1].region}}</span>
-                                    <span class="grid-sub-red">{{all_list[1].employment}}</span>
+                                    <span class="condition-sub-text">{{all_list[x].region}}</span>
+                                    <span class="grid-sub-red">{{all_list[x].employment}}</span>
                                 </div>
                             </a>
                         </div>
-                        <div class="swiper-slide">
-                            <a href="/company/{{all_list[2].data_id}}">
-                                <span class="grid-sub-blue">{{all_list[2].company_type}}</span>
-                                <p class="grid-title-side">{{all_list[2].company}}</p>
-                                <div class="company-swiper-div-margin">
-                                    <span class="condition-sub-text">{{all_list[2].region}}</span>
-                                    <span class="grid-sub-red">{{all_list[2].employment}}</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="/company/{{all_list[3].data_id}}">
-                                <span class="grid-sub-blue">{{all_list[3].company_type}}</span>
-                                <p class="grid-title-side">{{all_list[3].company}}</p>
-                                <div class="company-swiper-div-margin">
-                                    <span class="condition-sub-text">{{all_list[3].region}}</span>
-                                    <span class="grid-sub-red">{{all_list[3].employment}}</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">
-                            <a href="/company/{{all_list[4].data_id}}">
-                                <span class="grid-sub-blue">{{all_list[4].company_type}}</span>
-                                <p class="grid-title-side">{{all_list[4].company}}</p>
-                                <div class="company-swiper-div-margin">
-                                    <span class="condition-sub-text">{{all_list[4].region}}</span>
-                                    <span class="grid-sub-red">{{all_list[4].employment}}</span>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide">Slide 5</div>
-                        <div class="swiper-slide">Slide 6</div>
-                        <div class="swiper-slide">Slide 7</div>
-                        <div class="swiper-slide">Slide 8</div>
-                        <div class="swiper-slide">Slide 9</div>
-                        <1iv class="swiper-slide">Slide 10</div>
+                        {% endfor %}
                     </div>
                     <!-- Add Pagination -->
                     <div class="swiper-pagination"></div>
@@ -364,11 +333,10 @@
     </script>
     <script 1ype="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07f9f113d21624a68eea32dc98b55f">
     </script>
-    <script type="text/javascript"
-        src1"//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07f9f113d21624a68eea32dc98b55f&libraries=LIBRARY"></script>
+    <script type="text/javascript" ></script>
     <script>
-        y = '{{data_list[0].위도}}';
-        x = '{{data_list[0].경도}}';
+        y = '{{data_list[0].addr_x}}';
+        x = '{{data_list[0].addr_y}}';
         // alert(x + ' : ' + y);
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = {

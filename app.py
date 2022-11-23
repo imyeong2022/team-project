@@ -21,7 +21,7 @@ app = Flask(__name__)
 # app.config['MAIL_PASSWORD'] = 'myhinigkzocytxcd'
 # app.config['MAIL_USE_TLS'] = False
 # app.config['MAIL_USE_SSL'] = True
-mail = Mail(app)
+#mail = Mail(app)
 
 @app.route('/accountfind')
 def accountfind():
@@ -33,8 +33,8 @@ def accountfind():
 
     return render_template('Board/account.html')
 
-@app.route('/accountfind_proc', methods=['POST'])
-def accountfind_proc():
+#@app.route('/accountfind_proc', methods=['POST'])
+#def accountfind_proc():
     user_name_recive = request.form['user_name_give']
     user_email_recive = request.form['user_email_give']
     sql = "SELECT ID from member where name = %s and email = %s"
@@ -49,9 +49,9 @@ def accountfind_proc():
     return jsonify({'msg': '회원님의 이메일로 아이디를 전송했습니다.'})
 
 
-@app.route('/passfind')
-def passfind():
-    return render_template('Board/account.html')
+#@app.route('/passfind')
+#def passfind():
+#    return render_template('Board/account.html')
 
 
 
@@ -72,48 +72,50 @@ def home():
 
     return render_template('Board/index.html', data_list=data_list)
 
-
 # --------------------------메뉴-----------------------------------
-
-@app.route('/condition')  # 조건으로 찾기 - 기업정보
+@app.route('/condition',methods=['GET'])  # 조건으로 찾기 - 기업정보
 def condition():
     # print('여기')
     sql = "SELECT * from company_info"
     cursor.execute(sql)
-    data_list = cursor.fetchall()
+    data_list=cursor.fetchall()
+
     return render_template('Board/Condition.html', data_list=data_list)
+
+def company(data_id):
+    sql = "SELECT * from company_info where data_id = %s"
+    cursor.execute(sql, (data_id,))
+    data_list = cursor.fetchall()
     
-@app.route('/search')  # 조건으로 찾기 - 기업정보
+ #동종업계 추천하기
+    recommendation =data_list[0]['industry']
+    print(recommendation)
+    allcom = "SELECT * FROM COMPANY_INFO where industry = %s" 
+    cursor.execute(allcom,(recommendation,))
+    all_list = cursor.fetchall()
+    return render_template('Board/company.html', data_list=data_list, all_list=all_list)
+
+@app.route('/search', methods=['GET'])  # 조건으로 찾기 - 기업정보
 def search():
-    try:
-        with con.cursor() as cursor:
-            
-            s=request.args.get('area') 
-            p = s.split(',')
-            content = ''
-            for i in range(len(p)):
-                if (i+1) == len(p):                    
-                    content += "'" + p[i] + "'"
-                else:
-                    content += "'" + p[i] + "',"
-            print('>>>>>>>>>>>>'+ content,type(content))
+    with con.cursor() as cursor:
+        s=request.args.get('area') 
+        p = s.split(',')
+        content = ''
+        for i in range(len(p)):
+            if (i+1) == len(p):                    
+                content += "'" + p[i] + "'"
+            else:
+                content += "'" + p[i] + "',"
+        print('>>>>>>>>>>>>'+ content,type(content))
 
-            print('!!!!!!!!!!!!!!!!'+content)
-            
-            sql="SELECT * from company_info where `region` in ("+ content +")"
-            cursor.execute(sql)
-            rows=cursor.fetchall()
-            # print(rows)
+        print('!!!!!!!!!!!!!!!!'+content)
+        
+        sql="SELECT * from company_info where `region` in ("+ content +")"
+        cursor.execute(sql)
+        rows=cursor.fetchall()
+        return rows
+        # return render_template("Board/company.html",rows)
 
-            for row in rows:
-                print('............',row)
-            # return jsonify(rows)
-            return rows  
-    finally:
-        con.close()
-
-
-    
 @app.route('/employtest') # 체크박스 test
 def employtest():
     try:
@@ -135,10 +137,8 @@ def employtest():
             cursor.execute(sql)
             rows=cursor.fetchall()
             # print(rows)
-
             for row in rows:
                 print('............',row)
-            # return jsonify(rows)
             return rows        
     finally:
         con.close()
@@ -175,10 +175,6 @@ def company(data_id):
 @app.route('/test_script')  ################# 자바스크립트 필터 연습 페이지1
 def test_script():
     return render_template('Board/test_script.html')
-
-@app.route('/products')  ################# 자바스크립트 필터 연습 페이지2 - 유튜브강의 
-def products():
-    return render_template('Board/products.html')
 
 
 @app.route('/jobs')  ################# 채용정보페이지

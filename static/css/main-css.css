@@ -241,7 +241,7 @@ footer {
 }
 
 .selectBox2:before {
-  content: '?뷂툘';
+  content: '✔️';
   position: absolute;
   top: 50%;
   transform: translateY(-50%); 
@@ -649,7 +649,7 @@ footer {
 	display: inline-block;
 	box-shadow: 0 10px 35px rgba(0, 0, 0, 0.05), 0 6px 6px rgba(0, 0, 0, 0.1);
 	cursor: pointer;
-	/* 留덉슦???ъ씤?곕? ?щ졇?????먭??쎌쑝濡?諛붾?*/
+	/* 마우스 포인터를 올렸을 때 손가락으로 바뀜 */
 	transition: box-shadow 0.1s linear;
 }
 
@@ -997,7 +997,7 @@ input::placeholder {
 	padding-left: 40px;
 }
 
-/* ?대찓??肄붾뱶?몄쬆 */
+/* 이메일 코드인증 */
 .join-mail_input {
 	width: 80%;
 	height: 6vmin;
@@ -1088,14 +1088,14 @@ input::placeholder {
 	margin-right: 60px;
 	background: white;
 	line-height: 250px;
-	/* vertical-align?대옉 媛숈씠 ?몃줈以묒븰?뺣젹 */
+	/* vertical-align이랑 같이 세로중앙정렬 */
 }
 
 .company-logo-img {
 	height: auto;
 	width: 100%;
 	vertical-align: middle;
-	/* line-height?대옉 媛숈씠 ?몃줈以묒븰?뺣젹 */
+	/* line-height이랑 같이 세로중앙정렬 */
 }
 
 .company-info {
@@ -1115,7 +1115,7 @@ input::placeholder {
 .company-title {
 	margin-top: 20px;
 	margin-bottom: 0px;
-	/* 留뚯빟 利먭꺼李얘린 or ?ъ씠??二쇱냼 遺덈윭?ㅺ린 ?ㅽ뙣???쒖쇅 */
+	/* 만약 즐겨찾기 or 사이트 주소 불러오기 실패시 제외 */
 	font-size: 62px;
 	color: aliceblue;
 }
@@ -1374,7 +1374,7 @@ input::placeholder {
 	display: none;
 }
 
-/* 吏덈Ц?곸뿭 */
+/* 질문영역 */
 .faq label {
 	display: -webkit-box;
 	color: #000;
@@ -1384,9 +1384,9 @@ input::placeholder {
 	cursor: pointer;
 }
 
-/* 吏덈Ц?곸뿭 check ?댁쟾 */
+/* 질문영역 check 이전 */
 .faq>li>label::after {
-	content: "??;
+	content: "▽";
 	color: #759ef7;
 	display: block;
 	position: sticky;
@@ -1399,9 +1399,9 @@ input::placeholder {
 }
 
 
-/* 吏덈Ц?곸뿭 check ?댄썑 */
+/* 질문영역 check 이후 */
 .faq input:checked+label::after {
-	content: "??;
+	content: "△";
 	color: #759ef7;
 	display: block;
 	position: sticky;
@@ -1417,7 +1417,7 @@ input::placeholder {
 	margin-left: 1%;
 }
 
-/* ?듬??곸뿭 */
+/* 답변영역 */
 .faq div {
 	display: none;
 	color: #000;
@@ -1443,7 +1443,7 @@ input::placeholder {
 }
 
 .spacing:nth-child(2)::before {
-	content: "?? ";
+	content: "ㄴ  ";
 }
 
 /* qna */
@@ -1599,7 +1599,7 @@ table.table2 td {
 	border-bottom: 1px solid #ccc;
 }
 
-/* -----------company.html ?곸슜 -> ?쒖닔 ?묒뾽 ???꾩떆諛⑺렪 by ?쒖뿰 */
+/* -----------company.html 적용 -> 태수 작업 전 임시방편 by 서연 */
 .compony-frame {
 	position: relative;
 	max-width: 1380px;
@@ -2126,7 +2126,7 @@ p {
 	height: 100%;
 	width: 100%;
 	vertical-align: middle;
-	/* line-height?대옉 媛숈씠 ?몃줈以묒븰?뺣젹 */
+	/* line-height이랑 같이 세로중앙정렬 */
 }
 
 /* our_company */

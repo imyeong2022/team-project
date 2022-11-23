@@ -14,6 +14,7 @@
 
             let username = $('#user_name').val();
             let useremail = $('#user_email').val();
+            let userphone = $('#user_phone').val();
 
 
             if (!nameExp.test(username)) {
@@ -31,7 +32,8 @@
                 url: "/accountfind_proc",
                 data: {
                     user_name_give: username,
-                    user_email_give: useremail
+                    user_email_give: useremail,
+                    user_phone_give: userphone
                 },
                 // 파이썬으로 보내는 값들
                 success: function (response) { // 성공했을때 메세지띄울거임 response는 내장객체가아니라 그냥 내가 보기 편하게 선언하는 이름임. msg도 마찬가지.
@@ -72,6 +74,11 @@
             <div class="find-useremail" style="margin: auto; width: 160px;">
                 <label>이메일</label>
                 <input type="text" id="user_email" placeholder="이메일 주소">
+            </div>
+            <br>
+            <div class="find-userphone" style="margin: auto; width: 160px;">
+                <label>휴대폰번호</label>
+                <input type="text" id="user_phone" placeholder="-를 제외한 휴대폰번호">
             </div>
             <br>
         </section>

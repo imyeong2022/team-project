@@ -10,7 +10,7 @@ import json
 ########### 데이터베이스 접속 전역변수 선언############
 con = pymysql.connect(host='localhost',
                              user='root',
-                             password='java',
+                             password='qr395026',
                              db='final_test',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)

@@ -70,9 +70,15 @@
 						<a class="a-text-decoration a-color aos-item" href='/company/{{data_list[x].data_id}}'
 							style="cursor:pointer" data-aos="fade-right">
 							<li class="main-gird-li">
-								<span class="grid-sub-blue">{{ data_list[x].주요제품명 }}</span>
-								<p class="grid-title">{{ data_list[x].회사 }}</p>
-								<p class="grid-sub-text">{{ data_list[x].채용여부 }}</p>
+								<span class="grid-sub-blue">{{ data_list[x].main_product }}</span>
+								<p class="grid-title">{{ data_list[x].company }}</p>
+								{% if data_list[x].employment != '-' %}
+								<p class="grid-sub-text">{{ data_list[x].employment }}</p>
+								{% endif %}
+								
+								{% if data_list[x].tag != '-' %}
+								<p class="grid-sub-text">{{ data_list[x].tag }}</p>
+								{% endif %}
 							</li>
 						</a>
 						{% endfor %}

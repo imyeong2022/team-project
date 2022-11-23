@@ -535,8 +535,7 @@
                                 <span class="grid-sub-blue">{{ data_list[x].industry }}</span>
                                 
                                 <a onclick="location.href='/company/{{data_list[x].data_id}}';" style="cursor:pointer">
-                                    <!-- <p class="title">{{ data_list[x].company }}</p> -->
-                                    <p class="grid-title">{{ data_list[x].company }}</p>
+                                    <p class="grid-title" id="company_title">{{ data_list[x].company }}</p>
                                 </a>
                                 <p class="condition-sub-text">{{ data_list[x].company_type }} | {{ data_list[x].region }} |
                                     {{ data_list[x].CEO }}</p>
@@ -545,7 +544,9 @@
                         <div>
                             <!--태그-->
                             <ul class="tag">
+                                {% if data_list[x].tag != '-' %}
                                 <li>{{ data_list[x].tag }}</li>
+                                {% endif %}
                             </ul>
                             <!-- <ul class = "tag">
                                 <li>
@@ -581,9 +582,6 @@
         
         </section>
     </div>
-    
-    <table id="test">
-    </table>
     <script src="../../static/js/app_conditon.js"></script>
 
 </body>

@@ -21,15 +21,14 @@
 
         function findpassword() { // 팝업 가운데 띄우기
 
-            var _width = '500';
-            var _height = '400';
+            var _width = '750';
+            var _height = '600';
 
             // 팝업을 가운데 위치시키기 위해 스크린의 좌우길이를 구한후 반으로 나눠주고 적용시킨다.
             var _left = Math.ceil((window.screen.width - _width) / 2);
             var _top = Math.ceil((window.screen.height - _height) / 2);
 
-            window.open('/passfind', 'popup-test', 'width=' + _width + ', height=' + _height + ', left=' + _left +
-                ', top=' + _top);
+            window.open('/passwordfind', 'popup-test', 'width=' + _width + ', height=' + _height + ', left=' + _left + ', top=' + _top);
 
         }
     </script>
@@ -58,9 +57,9 @@
             </div>
             <hr class="public-hr" />
             <div class="login-form-div">
-                <form class="login-form" action="/login_proc" method="post">
-                    <!-- action = 라우터가 될거다 .-->
-                    <input class="login-input" type="text" name="user_id" placeholder="ID">
+
+                <form  class="login-form" action="/login_proc" method="post">                    <!-- action = 라우터가 될거다 .--> 
+                    <input class="login-input" type="text" name="user_id"placeholder="ID">
                     <input class="login-input" type="password" name="user_pw" placeholder="PassWord">
                     <input class="login-submit" type="submit" value="로그인">
                     <div class="login-join ">

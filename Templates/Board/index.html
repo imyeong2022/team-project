@@ -41,9 +41,11 @@
 		<section class="main-section">
 			<div class="main-section-slider-div">
 				<div class="swiper-container">
-					{% for i in range(4) %}
+					<div class="swiper-wrapper">
+						{% for i in range(4) %}
 						<div class="swiper-slide">Slide {{i}}</div>
 						{% endfor %}
+					</div>
 					<!-- Add Pagination -->
 					<div class="swiper-pagination"></div>
 				</div>

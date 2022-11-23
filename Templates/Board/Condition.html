@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>상세조건 검색</title>
+
     <style>
         .pagination {
             position: relative;
@@ -11,62 +12,7 @@
             font-size: 50;
         }
     </style>
-    
-    <a href="javascript:void(0);" onclick="interestList();">초기화</a>
 </head>
-
-
-
-
-
-<script>
-    function interestList(){
-        alert('들어왓다')
-
-    }
-    
-    function interestSave(obj,data_id,user_id){
-        var userId=user_id
-        if(userId=='null'){
-            $(obj).prop("checked",false);
-            if(confirm("로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?")){
-                location.href="/login_form_get";
-            }
-        } else {
-            alert('로그인!')
-            var cmpIds = new Array();
-            
-            // $("#interestCheck .item").each(function(idx, item){
-            //     cmpIds.push($(item).data("id"));
-            //     $(item).find(":checkbox[id^=interestCheck]").prop("checked", true);
-                const dataID=data_id
-                const param={'data_id':dataID};
-                alert(data_id)
-                $.ajax({
-                    type:'GET',
-                    url:'/interest_insert',
-                    dataType:'json',
-                    data:param,
-                    success: function (data) { 
-                        console.log(data); 
-                        if (data['result']!==1){
-                            $(obj).prop("checked",true);      
-                        }
-                        else{
-                            $(obj).prop("checked",false); 
-                        }     
-                    },
-                    error: function (request, status, error) {
-                        console.log(request, status,error);
-                    }
-                });    
-            // });
-        }
-
-        }
-
-
-</script>
 
 <body>
 {% include 'Board/header.html' %}
@@ -91,11 +37,11 @@
             </div>
 
         <!-- <div class = "search-area"> content-area -->
-            <form class = "search-area" id = "searchForm" name ="searchForm" method="get" action="/condition"> <!-- content-area -->
+            <form class = "search-area" id = "searchForm" name ="searchForm" method="get" action="condition"> <!-- content-area -->
                 <input type = "hidden" id="pg" value="1">
-                <input type="hidden" id="area" name="area" value="">
+                <!-- <input type="hidden" id="area" name="area" value=""> -->
                 <!-- 지역 -->
-                <input type="hidden" id="sic" name="sic" value="">
+                <!-- <input type="hidden" id="sic" name="sic" value=""> -->
                 <!-- 업종 -->
                 <input type="hidden" id="thema" name="thema" value="">
                 <!-- 유형 -->
@@ -149,8 +95,8 @@
                         <div class="search-fileter-child-item-list">
                             <div class="search-fileter-checkbox">
                                 <div class="search-fileter-checkbox-item"> 
-                                    <input type="checkbox" id="check-100" class="checkbox check-all checked" name="areatag" value="" data-name="전체" checked="checked">
-                                    <!-- <input type="checkbox"id="전체" value="전체" class="checkbox"> -->
+                                    <!-- <input type="checkbox" id="check-100" class="checkbox check-all checked" name="areatag" value="" data-name="전체" checked="checked"> -->
+                                    <input type="checkbox"id="전체" value="전체" class="checkbox">
                                     <label for="check-100">전체</label>
                                 </div>
                                 <div class="search-fileter-checkbox-item">
@@ -330,7 +276,7 @@
                         <div class="search-fileter-child-item-list">
                             <div class="search-fileter-checkbox">
                             <div class="search-fileter-checkbox-item">
-                                <input type="checkbox" id="check-400" class="checkbox" name="scaletag" value="" data-name="전체" checked="checked">
+                                <input type="checkbox" id="check-400" class="checkbox check-all checked" name="scaletag" value="" data-name="전체" checked="checked">
                                 <label for="check-400">전체</label>
                             </div>
                             <div class="search-fileter-checkbox-item">
@@ -358,7 +304,7 @@
                     </dl>
 
                     <!-- <dl class="item-content" data-id="crtfnBiz" data-max="20" data-tit="기업역량은" id="crtfnBizContent"> -->
-                        <!-- <dt class="item-title"><a data-cate="true"  href="#none">기업역량<i class="ico-arr-down"></i></a></dt> -->
+                        <!-- <dt class="item-title"><a data-cate="true" href="#none">기업역량<i class="ico-arr-down"></i></a></dt> -->
                     <!-- <div class="search-fileter-child">
                     <div class="search-fileter-child-title"><span>기업역량</span></div> -->
                         <!-- <div class="search-fileter-child-item-list">
@@ -440,7 +386,7 @@
                     </div>
                 </div>
             </form>
-        
+
                 <div class="condition">
                 <!-- <ul class = "board-incruit mt15" id ="companyListArea"> -->
                     <!-- {% for x in range(10) %}  -->
@@ -573,23 +519,16 @@
 
                 <ul class = "board-incruit mt15" id ="companyListArea">
                     
-                    {% for x in range(10) %}
+                    {% for x in range(10) %}    
                     <li class="item">
                         <div class = "box-text">
                             <div class="box-btn-area">
                                 <a class="btn btn-default btn-md"><div><span>☆ 관심기업 등록하기</span></div></a>
-                                    <!-- {# onclick은 로그인이 안되어있을때  ★ #}
+                                    <!-- {# if문으로 관심기업아니면 ☆ 관심기업이면 ★ #}
                                      <div class="custom-checkbox"> 
                                         <input type="checkbox" id="interestCheck-{{ data_list[x].data_id}}" class="checkbox-star" onclick="intrstYnSave(this);" name="interestCheck-{{ data_list[x].data_id}}">
-                                        <label for="interestCheck-{{ data_list[x].data_id}}"><span class="wish-checkbox">
-                                        <input type="text" value="{{interest_com[0].data_id}}">
-                                        <input type="checkbox" id="interestCheck" class="checkbox-star" 
-                                        onclick="interestSave(this,'{{data_list[x].data_id}}','{{user_id}}');" name="interestCheck">
-                                        <label for="interestCheck">관심기업 등록하기 </label>
-                                    </span></label>
+                                        <label for="interestCheck-{{ data_list[x].data_id}}"><span>☆ 관심기업 등록하기</span></label>
                                     </div>
-
-
                                     {# <div>★ 관심기업 해제하기</div> #} -->
                                 </a>
                                 <a class="btn btn-default btn-md"><div><span>일자리 지도 보기</span></div></a>
@@ -617,7 +556,6 @@
                                     <button type="button" class="tag-mint" data-value="인재육성형 중소기업">#인재육성형 중소기업</button>
                                 </li>
                             </ul> -->
-                            <!-- <button type="button" onclick="location.href='/search'">search하기</button> -->
                         </div>
                     </li>
                     {% endfor %}

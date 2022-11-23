@@ -126,7 +126,13 @@ def home():
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
 
-    if 'ID' in session:
+    # print('여기')
+    sql = "SELECT * from company_info"
+    cursor.execute(sql)
+    data_list=cursor.fetchall()
+
+    return render_template('Board/Condition.html', data_list=data_list)
+    """if 'ID' in session:
         user_id=session['ID']
     else:
         user_id='null'
@@ -141,7 +147,7 @@ def condition():
     interest_com = cursor.fetchall()
     interest_len=len(interest_com)
     return render_template('Board/Condition.html',data_list=data_list,
-                interest_com=interest_com,interest_len=interest_len,user_id=user_id)
+                interest_com=interest_com,interest_len=interest_len,user_id=user_id)"""
 
 ####################################################
 @app.route('/employtest') # 체크박스 test
@@ -360,6 +366,8 @@ def login_proc():
                     session['NAME'] = row['NAME']
                     session['Phone'] = row['Phone']
                     session['BIRTH'] = row['BIRTH']
+                    session['admin'] = row['admin']
+                    print(session['admin'])
                     # return redirect(url_for('main'))
                     return redirect('/')
                 else:

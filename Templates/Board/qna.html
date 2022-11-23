@@ -71,10 +71,10 @@
                                     <div class="qna-div-4">{{qna_list[x].create_date}}</div>
                                 </label>
                                 <div>
-                                    {% if session['ID'] == qna_list[x].ID %}
+                                    {% if ((session['ID'] == qna_list[x].ID) or (session['admin'] == '1')) %}
                                     <p class="spacing">{{qna_list[x].content}}</p>
                                     {% else %}
-                                    <p class="spacing">관리자 또는 작성자가 아니면 볼 수 없습니다.</p>
+                                    <p class="spacing">관리자 또는 작성자가 아니면 볼 수 없습니다.{{session['admin']}}</p>
                                     {% endif %}
 
                                     {% if qna_list[x].answer %}

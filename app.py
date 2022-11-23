@@ -84,32 +84,25 @@ def condition():
     return render_template('Board/Condition.html', data_list=data_list)
 @app.route('/search')  # 조건으로 찾기 - 기업정보
 def search():
-    try:
-        with con.cursor() as cursor:
-            
-            s=request.args.get('area') 
-            p = s.split(',')
-            content = ''
-            for i in range(len(p)):
-                if (i+1) == len(p):                    
-                    content += "'" + p[i] + "'"
-                else:
-                    content += "'" + p[i] + "',"
-            print('>>>>>>>>>>>>'+ content,type(content))
+    with con.cursor() as cursor:  
+        s=request.args.get('area') 
+        p = s.split(',')
+        content = ''
+        for i in range(len(p)):
+            if (i+1) == len(p):                    
+                content += "'" + p[i] + "'"
+            else:
+                content += "'" + p[i] + "',"
+        print('>>>>>>>>>>>>'+ content,type(content))
+        print('!!!!!!!!!!!!!!!!'+content)
+        sql="SELECT * from company_info where `region` in ("+ content +")"
+        cursor.execute(sql)
+        rows=cursor.fetchall()
+        for row in rows:
+            print('............',row)
+        # return jsonify(rows)
+        return rows
 
-            print('!!!!!!!!!!!!!!!!'+content)
-            
-            sql="SELECT * from company_info where `region` in ("+ content +")"
-            cursor.execute(sql)
-            rows=cursor.fetchall()
-            # print(rows)
-
-            for row in rows:
-                print('............',row)
-            # return jsonify(rows)
-            return rows  
-    finally:
-        con.close()
 
 
     

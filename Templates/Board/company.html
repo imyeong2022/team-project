@@ -39,7 +39,7 @@
                 </div>
                 <div class="company-info">
                     <div>
-                        {% if data_list[0].homepage != '-' %}
+                        {% if data_list[0].employment != '-' %}
                         <span class="grid-red">{{ data_list[0].employment}}</span>
                         {% endif %}
                         <span class="company-sub" ID="industry",NAME="industry">{{ data_list[0].industry}}</span>
@@ -92,7 +92,7 @@
                         </div>
                         <div class="info-item fr">
                             <dl>
-                                <dt>company_type</dt>
+                                <dt>기업형태</dt>
                                 <dd>{{ data_list[0].company_type}}</dd>
                             </dl>
                             <dl>

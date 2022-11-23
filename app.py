@@ -97,7 +97,7 @@ def company(data_id):
 
 @app.route('/search', methods=['GET'])  # 조건으로 찾기 - 기업정보
 def search():
-    with con.cursor() as cursor:
+    with con.cursor() as cursor:  
         s=request.args.get('area') 
         p = s.split(',')
         content = ''
@@ -107,14 +107,13 @@ def search():
             else:
                 content += "'" + p[i] + "',"
         print('>>>>>>>>>>>>'+ content,type(content))
-
         print('!!!!!!!!!!!!!!!!'+content)
-        
         sql="SELECT * from company_info where `region` in ("+ content +")"
         cursor.execute(sql)
         rows=cursor.fetchall()
+        for row in rows:
+            print('............',row)
         return rows
-        # return render_template("Board/company.html",rows)
 
 @app.route('/employtest') # 체크박스 test
 def employtest():

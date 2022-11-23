@@ -15,12 +15,12 @@ cursor = con.cursor()
 ###########데이터베이스 접속 전역변수 선언############
 app = Flask(__name__)
 ############ 구글메일(계정찾기 테스트) ################ 사이트 접근과 동시에 메일서버와 인터페이스 하면서 recipients 로 지정된 메일 주소로 이메일을 발송
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
-app.config['MAIL_PASSWORD'] = 'myhinigkzocytxcd'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
+# app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+# app.config['MAIL_PORT'] = 465
+# app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
+# app.config['MAIL_PASSWORD'] = 'myhinigkzocytxcd'
+# app.config['MAIL_USE_TLS'] = False
+# app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
 @app.route('/accountfind')
@@ -82,6 +82,7 @@ def condition():
     cursor.execute(sql)
     data_list = cursor.fetchall()
     return render_template('Board/Condition.html', data_list=data_list)
+    
 @app.route('/search')  # 조건으로 찾기 - 기업정보
 def search():
     with con.cursor() as cursor:  

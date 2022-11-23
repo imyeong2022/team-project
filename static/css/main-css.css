@@ -2024,3 +2024,11 @@ p {
 .our-bg{
 	background: url(../source/our.png) no-repeat;
 }
+
+.our-content>div{
+	margin-bottom: 4vmin;
+}
+
+.our-sub{
+	margin: 0.3vmin;
+}

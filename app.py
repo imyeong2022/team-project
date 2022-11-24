@@ -94,8 +94,7 @@ def condition():
     cursor.execute(sql,(user_id,))
     interest_com = cursor.fetchall()
     interest_len=len(interest_com)
-    return render_template('Board/Condition.html',data_list=data_list,
-                interest_com=interest_com,interest_len=interest_len,user_id=user_id)
+    return render_template('Board/Condition.html',data_list=data_list,interest_com=interest_com,interest_len=interest_len,user_id=user_id)
 
 ####################################################
 @app.route('/employtest') # 체크박스 test

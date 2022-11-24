@@ -245,7 +245,7 @@ footer {
 }
 
 .selectBoxList {
-	grid-gap: 30px;
+	grid-gap: 3vmin;
 }
 
 .selectBoxList>.box {
@@ -259,13 +259,12 @@ footer {
 .selectBox2 {
 	position: relative;
 	z-index: 1;
-	width: 150px;
-	height: 35px;
-	border-radius: 4px;
-	border: 2px solid white;
+	width: 15vmin;
+	height: 3.5vmin;
+	border-radius: 0.4vmin;
+	border: 0.1vmin solid white;
 	/* background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 7px) center no-repeat; */
-	background-size: 20px;
-	background-color: #54ABFF;
+	background-size: 2vmin;
 	cursor: pointer;
 }
 
@@ -274,7 +273,7 @@ footer {
 	position: absolute;
 	top: 50%;
 	transform: translateY(-50%);
-	right: 5px;
+	right: 0.5vmin;
 	z-index: -1;
 }
 
@@ -298,7 +297,7 @@ footer {
 	height: inherit;
 	border: 0 none;
 	outline: 0 none;
-	padding-left: 15px;
+	padding-left: 1.5vmin;
 	background: white;
 	cursor: pointer;
 }

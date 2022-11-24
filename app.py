@@ -142,14 +142,6 @@ def employtest():
         
 ########################################################찜하기 기능 ####################################
 
-@app.route('/interest_select') ###############.마이페이지 찜리스트 select
-def interest_select():
-    user_id=session['ID']
-    sql = "SELECT * from like_company_view where m_id=%s"
-    cursor.execute(sql,(user_id))
-    interest_com = cursor.fetchall()
-    interest_len = len(interest_com)
-    return render_template('Board/interest_company.html', interest_com=interest_com,interest_len=interest_len)
 
 
 
@@ -465,7 +457,16 @@ def my_page_proc():
 
 @app.route('/recent_inquiry_company')  # 활동내역 (열람기업)
 def recent_inquiry_company():
-    return render_template('Board/r-i-c.html')
+    user_id=session['ID']
+    sql = "SELECT * from like_company_view where m_id=%s"
+    cursor.execute(sql,(user_id))
+    interest_com = cursor.fetchall()
+    interest_len = len(interest_com)
+
+
+
+    
+    return render_template('Board/r-i-c.html',interest_com=interest_com,interest_len=interest_len)
 
 
 @app.route('/personal-info-change')  # 회원정보수정

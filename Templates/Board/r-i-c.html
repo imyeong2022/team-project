@@ -6,6 +6,43 @@
     <title>나의 활동 내역</title>
 </head>
 
+
+<script>
+    
+    
+    function checkSelectAll(data_id,user_id)  {
+    // 전체 체크박스
+    const checkboxes 
+        = document.querySelectorAll('input[name="likeCom"]');
+    // 선택된 체크박스
+    const checked 
+        = document.querySelectorAll('input[name="likeCom"]:checked');
+    // select all 체크박스
+    const selectAll 
+        = document.querySelector('input[name="All_likeCom"]');
+    
+    if(checkboxes.length === checked.length)  {
+        selectAll.checked = true;
+    }else {
+        selectAll.checked = false;
+    }
+
+
+    function checkboxAll(selectAll,user_id)  {
+      const checkboxes 
+         = document.querySelectorAll('input[name="likeCom"]');
+    
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = selectAll.checked;
+      })
+    }
+}
+
+
+
+
+</script>
+
 <body>
     {% include 'Board/header.html' %}
     <div class="main-div">
@@ -33,43 +70,41 @@
                     <span></span>
                 </div>
                 <div>
+                    
                     <table align="center" width="90%">
+                        <tr align="center" >
+                            <p>
+                                <td><button style="cursor:pointer" onclick="delete_likeCom();">삭제하기</button></td>
+                            </p>
+                        </tr>
                         <tr bgcolor="blue" align="center">
                             <p>
                                 <td colspan="5" span style="color:white">오늘의 수입/지출</td>
                             </p>
                         </tr>
                         <tr align="center" bgcolor="skybule">
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" class="checkbox_all" name="All_likeCom" onclick="checkboxAll(this,'{{user_id}}');"></td>
                             <td>기업명</td>
                             <td>진행중인 채용공고</td>
                             <td>확인 일자</td>
                             <td>관심기업 등록</td>
                         </tr>
+                        {% for x in range(interest_len) %}
                         <tr align="center">
-                            <td><input type="checkbox"></td>
-                            <td>1,000,000</td>
-                            <td>-</td>
+                            <td><input type="checkbox" class="checkbox_One" name="likeCom" onclick="checkSelectAll('{{interest_com[x].data_id}}','{{user_id}}');"></td>
+                            <td><a onclick="location.href='/company/{{interest_com[x].data_id}}';" style="cursor:pointer">{{ interest_com[x].company }}</a></td>
+                            <td>{{ interest_com[x].employment }}</td>
                             <td>2022.11.11</td>
                             <td>🌟</td>
                         </tr>
+                        {% endfor %}
                     </table>
+                    
                 </div>
             </article>
         </section>
     </div>
 
-
-    <div>
-        <div class="like">
-            <a class="like" href="/interest_select">찜리스트</a><p>
-        </div>
-        <div class="view">
-            <a class="view" href="#">최근 본 기업</a><p>
-        </div>
-
-
-    </div>
     {% include '/Board/footer.html' %}
 
 </body>

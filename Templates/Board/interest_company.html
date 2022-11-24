@@ -28,17 +28,18 @@
     {% for x in range(interest_len) %}
     <ul>
         <li>
-            {{ interest_com[x].회사 }}
+            {{ interest_com[x].data_id }}
         </li>
         <li>
-            {{ interest_com[x].채용여부 }}
+            {{ interest_com[x].company }}
         </li>
         <li>
-            {{ interest_com[x].업종 }}
+            {{ interest_com[x].employment }}
         </li>
         <li>
-            {{ interest_com[x].채용여부 }}
+            {{ interest_com[x].industry }}
         </li>
+        
     </ul>
     {% endfor %}
 

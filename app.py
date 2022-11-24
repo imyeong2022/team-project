@@ -158,15 +158,27 @@ def interest_insert():
         like_company_all = cursor.fetchall()
         print('>>>>>>',len(like_company_all))
         if(len(like_company_all)>0):
-            print('like_update')
-            sql = "Update like_company SET result=%s where data_id=%s and id=%s;"
-            if(like_company_all[0]['result']=='0'):
-                cursor.execute(sql,(1,data_id,user_id))
-            else:
-                cursor.execute(sql,(0,data_id,user_id))
+            print('like_delete')
+            sql = "delete from like_company where data_id=%s and id=%s;"
+            cursor.execute(sql,(data_id,user_id))
             con.commit()
             cnt=cursor.rowcount
-            rs = {'status':cnt}
+            if(cnt>0):
+                rs = {'status':1000}
+            # print('like_update')
+            # sql = "Update like_company SET result=%s where data_id=%s and id=%s;"
+            # if(like_company_all[0]['result']=='0'):
+            #     cursor.execute(sql,(1,data_id,user_id))
+            # else:
+            #     cursor.execute(sql,(0,data_id,user_id))
+            # con.commit()
+            # cnt=cursor.rowcount
+            # if(like_company_all[0]['result']=='1' and cnt>0):
+            #     cnt=2
+            #     rs = {'status':cnt}
+            # if(like_company_all[0]['result']=='0' and cnt>0):
+            #     cnt=1
+            #     rs = {'status':cnt}
         else:
             print('like_insert')
             sql = "insert into like_company(ID,data_id,result) values(%s,%s,%s)"

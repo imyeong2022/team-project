@@ -122,7 +122,7 @@ def employtest():
 
             print('!!!!!!!!!!!!!!!!'+content)
             
-            sql="SELECT * from company_info where `지역` in ("+ content +")"
+            sql="SELECT * from company_info where `region` in ("+ content +")"
             cursor.execute(sql)
             rows=cursor.fetchall()
             # print(rows)
@@ -190,11 +190,11 @@ def company(data_id):
     sql = "SELECT * from company_info where data_id = %s"
     cursor.execute(sql, (data_id, ))
     data_list = cursor.fetchall()
-    company=data_list[0]['업종']
+    company=data_list[0]['industry']
     
 
 
-    allcom = "SELECT * FROM COMPANY_INFO where 업종 = %s" 
+    allcom = "SELECT * FROM COMPANY_INFO where industry = %s" 
     cursor.execute(allcom,(company,))
     all_list = cursor.fetchall()
     return render_template('Board/company.html', data_list=data_list, all_list=all_list)

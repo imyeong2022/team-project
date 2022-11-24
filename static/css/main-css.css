@@ -1955,6 +1955,20 @@ li>.title {
 	margin: 0 10px 0 0;
 }
 
+.checkbox-star[type="checkbox"]+.star-inner {
+    display: block;
+    height: 24px;
+    background: url('../source/A-none.png') no-repeat 0 0px / contain;
+}
+
+.checkbox-star[type='checkbox']:checked+.star-inner {
+    background: url('../source/A.png') no-repeat 0 1px / contain;
+}
+
+.checkbox-star[type="checkbox"] {
+    display: none;
+}
+
 /* trend */
 .bg-75 {
 	background: #759ef7;

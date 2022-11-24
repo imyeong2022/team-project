@@ -35,10 +35,10 @@ function checkbox_test() {
           '<li class="item"><div class = "box-text"><div class="box-btn-area"><a class="btn btn-default btn-md"><div><span>☆ 관심기업 등록하기</span></div></a>'
           +'<a class="btn btn-default btn-md" href=\'/company/'+
           data_list[i].data_id + '#location_map' +'\';" style="cursor:pointer">'
-          +'<div><span>일자리 지도 보기</span></div></a><!-- 1라인--><span class="grid-sub-blue">' +
+          +'<div><span>일자리 지도 보기</span></div></a><!-- 1라인--><span class="grid-sub-blue">' + 
           data_list[i]["industry"] +
           '</span><a onclick="location.href=\'/company/'
-          +data_list[i].data_id +'\';" style="cursor:pointer"><p class="grid-title">' +
+          + data_list[i].data_id +'\';" style="cursor:pointer"><p class="grid-title">' +
           data_list[i]["company"] +
           '</p></a><p class="condition-sub-text">' +
           data_list[i]["company_type"] +

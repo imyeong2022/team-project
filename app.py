@@ -25,16 +25,18 @@ mail = Mail(app)
 
 @app.route('/accountfind')
 def accountfind():
+    cursor = con.cursor()
     sql = "SELECT ID,email from member"
     cursor.execute(sql)
     userlist2 = cursor.fetchall()
     print(type(userlist2))
     print(userlist2)
-
+    con.close()
     return render_template('Board/account.html')
 
 @app.route('/accountfind_proc', methods=['POST'])
 def accountfind_proc():
+    cursor = con.cursor()
     user_name_recive = request.form['user_name_give']
     user_email_recive = request.form['user_email_give']
     sql = "SELECT ID from member where name = %s and email = %s"
@@ -45,12 +47,13 @@ def accountfind_proc():
     msg = Message('[잡아라]' +user_name_recive+'님의 아이디를 안내드립니다.', sender='kongjh941109@gmail.com', recipients=['cjsdur@naver.com'])
     msg.body = '회원님 안녕하세요.''회원님의 아이디는 다음과 같습니다.\n' '['+find_userid+ ']\n 앞으로도 더욱 편리한 서비스를 제공하기 위해 최선을 다하겠습니다.'
     mail.send(msg)
-
+    con.close()
     return jsonify({'msg': '회원님의 이메일로 아이디를 전송했습니다.'})
 
 
 @app.route('/passfind')
 def passfind():
+    cursor = con.cursor()
     return render_template('Board/account.html')
 
 
@@ -62,6 +65,7 @@ def passfind():
 
 @app.route('/')
 def home():
+    cursor = con.cursor()
     sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
@@ -77,11 +81,14 @@ def home():
 
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
+    cursor = con.cursor()
     # print('여기')
     sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
+    con.close()
     return render_template('Board/Condition.html', data_list=data_list)
+     
     
 @app.route('/search')  # 조건으로 찾기 - 기업정보
 def search():
@@ -103,7 +110,30 @@ def search():
             print('............',row)
         return rows
 
+@app.route('/')  # 조건으로 찾기 - 기업정보
+def searchIndex():
+    with con.cursor() as cursor:  
+        s=request.args.get('area') 
+        p =s.split(',')
+        content = ''
+        for i in range(len(p)):
+            if (i+1) == len(p):                    
+                content += "'" + p[i] + "'"
+            else:
+                content += "'" + p[i] + "',"
+        print('>>>>>>>>>>>>'+ content,type(content))
+        print('!!!!!!!!!!!!!!!!'+content)
+        sql="SELECT * from company_info where `region` in ("+ content +")"
+        cursor.execute(sql)
+        rows=cursor.fetchall()
+        for row in rows:
+            print('............',row)
+        con.close()
+        return rows
 
+@app.route('/excellence_employment')
+def excellence_employment():
+    return render_template('Board/excellence_employment.html')
 
     
 @app.route('/employtest') # 체크박스 test
@@ -163,15 +193,6 @@ def company(data_id):
     cursor.execute(allcom,(recommendation,))
     all_list = cursor.fetchall()
     return render_template('Board/company.html', data_list=data_list, all_list=all_list)
-
-@app.route('/test_script')  ################# 자바스크립트 필터 연습 페이지1
-def test_script():
-    return render_template('Board/test_script.html')
-
-@app.route('/products')  ################# 자바스크립트 필터 연습 페이지2 - 유튜브강의 
-def products():
-    return render_template('Board/products.html')
-
 
 @app.route('/jobs')  ################# 채용정보페이지
 def jobs():
@@ -395,9 +416,11 @@ def chart():
 def bar():
     return render_template('Board/bar.html')
 
-@app.route('/excellence_employment')
-def excellence_employment():
-    return render_template('Board/excellence_employment.html')
+@app.route('/events')
+def evnet():
+    return render_template('Board/event.html')
+
+
 #####################################
 
 SECRET_KEY = "dev"

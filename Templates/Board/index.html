@@ -83,30 +83,66 @@
 								<h1 class="tit cw nm">어떤 조건의<br>중소기업을 찾고 계신가요?</h1>
 								<h1 class="cw">인재님에 대해 알려주시면 우수 기업을 추천해 드릴게요!</h1>
 							</div>
-							<div class="selectBoxList fl w50">
+							<form class="selectBoxList fl w50">
 								<!-- selectBox1 -->
 								<div class="qustion fl"><strong>01</strong><span>일하고 싶은 지역은 어디신가요?</span></div>
 								<div class="box fl">
 									<div class="selectBox2 ">
-										<button class="label">지역 🍊</button>
+										<button type="button" class="label">지역 🍊</button>
 										<ul class="optionList">
-											<li class="optionItem" data-value="서울"><span>서울</span></a></li>
-											<li class="optionItem" data-value="부산"><span>부산</span></a></li>
-											<li class="optionItem" data-value="대구"><span>대구</span></a></li>
-											<li class="optionItem" data-value="인천"><span>인천</span></a></li>
-											<li class="optionItem" data-value="광주"><span>광주</span></a></li>
-											<li class="optionItem" data-value="대전"><span>대전</span></a></li>
-											<li class="optionItem" data-value="울산"><span>울산</span></a></li>
-											<li class="optionItem" data-value="세종"><span>세종</span></a></li>
-											<li class="optionItem" data-value="경기"><span>경기</span></a></li>
-											<li class="optionItem" data-value="강원"><span>강원</span></a></li>
-											<li class="optionItem" data-value="충북"><span>충북</span></a></li>
-											<li class="optionItem" data-value="충남"><span>충남</span></a></li>
-											<li class="optionItem" data-value="전북"><span>전북</span></a></li>
-											<li class="optionItem" data-value="전남"><span>전남</span></a></li>
-											<li class="optionItem" data-value="경북"><span>경북</span></a></li>
-											<li class="optionItem" data-value="경남"><span>경남</span></a></li>
-											<li class="optionItem" data-value="제주"><span>제주</span></a></li>
+											<li class="optionItem" data-value="서울"><input type="checkbox"id="전체" value="전체" class="checkbox">
+												<label for="check-100">전체</label></li>
+											<li class="optionItem" data-value="서울"><input type="checkbox" id="check-서울"
+													class="checkbox" name="areatag" value="서울" data-name="서울">
+												<label for="check-서울">서울</label></li>
+											<li class="optionItem" data-value="부산"><input type="checkbox" id="check-부산"
+													class="checkbox" name="areatag" value="부산" data-name="부산">
+												<label for="check-부산">부산</label></li>
+											<li class="optionItem" data-value="대구"><input type="checkbox" id="check-대구"
+													class="checkbox" name="areatag" value="대구" data-name="대구">
+												<label for="check-대구">대구</label></li>
+											<li class="optionItem" data-value="인천"><input type="checkbox" id="check-인천"
+													class="checkbox" name="areatag" value="인천" data-name="인천">
+												<label for="check-인천">인천</label></li>
+											<li class="optionItem" data-value="광주"><input type="checkbox" id="check-광주"
+													class="checkbox" name="areatag" value="광주" data-name="광주">
+												<label for="check-광주">광주</label></li>
+											<li class="optionItem" data-value="대전"><input type="checkbox" id="check-대전"
+													class="checkbox" name="areatag" value="대전" data-name="대전">
+												<label for="check-대전">대전</label></li>
+											<li class="optionItem" data-value="울산"><input type="checkbox" id="check-울산"
+													class="checkbox" name="areatag" value="울산" data-name="울산">
+												<label for="check-울산">울산</label></li>
+											<li class="optionItem" data-value="세종"><input type="checkbox" id="check-세종"
+													class="checkbox" name="areatag" value="세종" data-name="세종">
+												<label for="check-세종">세종</label></li>
+											<li class="optionItem" data-value="경기"><input type="checkbox" id="check-경기"
+													class="checkbox" name="areatag" value="경기" data-name="경기">
+												<label for="check-경기">경기</label></li>
+											<li class="optionItem" data-value="강원"><input type="checkbox" id="check-강원"
+													class="checkbox" name="areatag" value="강원" data-name="강원">
+												<label for="check-강원">강원</label></li>
+											<li class="optionItem" data-value="충북"><input type="checkbox" id="check-충북"
+													class="checkbox" name="areatag" value="충북" data-name="충북">
+												<label for="check-충북">충북</label></li>
+											<li class="optionItem" data-value="충남"><input type="checkbox" id="check-충남"
+													class="checkbox" name="areatag" value="충남" data-name="충남">
+												<label for="check-충남">충남</label></li>
+											<li class="optionItem" data-value="전북"> <input type="checkbox" id="check-전북"
+													class="checkbox" name="areatag" value="전북" data-name="전북">
+												<label for="check-전북">전북</label></a></li>
+											<li class="optionItem" data-value="전남"><input type="checkbox" id="check-전남"
+													class="checkbox" name="areatag" value="전남" data-name="전남">
+												<label for="check-전남">전남</label></li>
+											<li class="optionItem" data-value="경북"><input type="checkbox" id="check-경북"
+													class="checkbox" name="areatag" value="경북" data-name="경북">
+												<label for="check-경북">경북</label></li>
+											<li class="optionItem" data-value="경남"><input type="checkbox" id="check-경남"
+													class="checkbox" name="areatag" value="경남" data-name="경남">
+												<label for="check-경남">경남</label></li>
+											<li class="optionItem" data-value="제주"><input type="checkbox" id="check-제주"
+													class="checkbox" name="areatag" value="제주" data-name="제주">
+												<label for="check-제주">제주</label></a></li>
 										</ul>
 
 									</div>
@@ -115,12 +151,25 @@
 								<div class="qustion fl"><strong>01</strong><span>일하고 싶은 지역은 어디신가요?</span></div>
 								<div class="box fl">
 									<div class="selectBox2  ">
-										<button class="label">업종 🎈</button>
+										<button type="button" class="label">업종 🎈</button>
 										<ul class="optionList">
-											<li class="optionItem">Red</li>
-											<li class="optionItem">orange</li>
-											<li class="optionItem">purple</li>
-											<li class="optionItem">green</li>
+											<li class="optionItem"> <input type="checkbox" id="check-400"
+													class="checkbox check-all checked" name="scaletag" value=""
+													data-name="전체" checked="checked">
+												<label for="check-400">전체</label></li>
+											<li class="optionItem"> <input type="checkbox" id="check-02"
+													class="checkbox" name="scaletag" value="02" data-name="중기업">
+												<label for="check-02">중기업</label></li>
+											<li class="optionItem"> <input type="checkbox" id="check-03"
+													class="checkbox" name="scaletag" value="03" data-name="소기업">
+												<label for="check-03">소기업</label></li>
+											<li class="optionItem"><input type="checkbox" id="check-999"
+													class="checkbox" name="scaletag" value="999" data-name="스타트업">
+												<label for="check-999">스타트업</label></li>
+											<li class="optionItem"><input type="checkbox">
+												<label>소상공인</label></li>
+											<li class="optionItem"><input type="checkbox">
+												<label>한시성중소기업</label></li>
 										</ul>
 									</div>
 								</div>
@@ -128,16 +177,27 @@
 								<div class="qustion fl"><strong>01</strong><span>일하고 싶은 지역은 어디신가요?</span></div>
 								<div class="box fl">
 									<div class="selectBox2  ">
-										<button class="label">복지 🍟</button>
+										<button type="button" class="label">복지 🍟</button>
 										<ul class="optionList">
-											<li class="optionItem">pizza</li>
-											<li class="optionItem">ramen</li>
-											<li class="optionItem">kimchi</li>
-											<li class="optionItem">somori gukbob</li>
+											<li class="optionItem" value="pizza"><label for="check-600">전체</label>
+												<input type="checkbox" id="check-600" class="checkbox check-all checked" name="welfaretag" data-name="전체" checked="checked"></li>
+											<li class="optionItem"><input type="checkbox" id="check-W00" class="checkbox check-empty" name="welfaretag" data-name="공제·기타">
+												<label for="check-W00">공제·기타</label></li>
+											<li class="optionItem"><input type="checkbox" id="check-W01" class="checkbox check-empty" name="welfaretag" data-name="연금·보험">
+												<label for="check-W01">연금·보험</label></li>
+											<li class="optionItem"><input type="checkbox" id="check-W02" class="checkbox check-empty" name="welfaretag" data-name="교육·연수">
+												<label for="check-W02">교육·연수</label></li>
+											<li class="optionItem"><input type="checkbox" id="check-W03" class="checkbox check-empty" name="welfaretag" data-name="생활편의·여가행사">
+												<label for="check-W03">생활편의·여가행사</label></li>
+											<li class="optionItem"><input type="checkbox" id="check-W04" class="checkbox check-empty" name="welfaretag" data-name="보상·수당·지원">
+												<label for="check-W04">보상·수당·지원</label></li>
+											<li class="optionItem"> <input type="checkbox" id="check-W06" class="checkbox check-empty" name="welfaretag" data-name="휴무·휴가·행사">
+												<label for="check-W06">휴무·휴가·행사</label></li>
 										</ul>
 									</div>
 								</div>
-							</div>
+								<button type="submit">전송</button>
+							</form>
 						</div>
 					</article>
 				</section>
@@ -203,6 +263,7 @@
 		}
 		const handleSelect = (label, item) => {
 			label.innerHTML = item.textContent;
+			console.log(item.textContent)
 			label.parentNode.classList.remove('active');
 		}
 	</script>

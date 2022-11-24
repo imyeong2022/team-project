@@ -88,13 +88,20 @@ def condition():
     sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
-    data_list = data_list
+
+
+    sql="select * from company_info left join like_company on company_info.data_id= like_company.data_id" 
+    cursor.execute(sql)
+    like_checked=cursor.fetchall()
+    print(like_checked[0]['id'])
+
+
 
     sql = "SELECT * from like_company_view where m_id=%s"
     cursor.execute(sql,(user_id,))
     interest_com = cursor.fetchall()
     interest_len=len(interest_com)
-    return render_template('Board/Condition.html',data_list=data_list,interest_com=interest_com,interest_len=interest_len,user_id=user_id)
+    return render_template('Board/Condition.html',like_checked=like_checked,data_list=data_list,interest_com=interest_com,interest_len=interest_len,user_id=user_id)
 
 ####################################################
 @app.route('/employtest') # 체크박스 test

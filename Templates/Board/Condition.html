@@ -7,10 +7,6 @@
     <title>상세조건 검색</title>
 </head>
 
-
-
-
-
 <script>
     function interestSave(obj,data_id,user_id){
         var userId=user_id
@@ -23,9 +19,6 @@
             alert('로그인!')
             var cmpIds = new Array();
             
-            // $("#interestCheck .item").each(function(idx, item){
-            //     cmpIds.push($(item).data("id"));
-            //     $(item).find(":checkbox[id^=interestCheck]").prop("checked", true);
             const dataID=data_id
             const param={'data_id':dataID};
             alert(data_id)
@@ -337,9 +330,16 @@
                                 <a>
                                     <!-- {# onclick은 로그인이 안되어있을때  ★ #} -->
                                     <div class="wish-checkbox">
-                                        <input type="checkbox" id="interestCheck" class="checkbox-star" 
-                                        onclick="interestSave(this,'{{data_list[x].data_id}}','{{user_id}}');" name="interestCheck">
-                                        <label for="interestCheck">관심기업 등록하기 </label>
+                                        {% if like_checked[x]['id']==user_id and data_list[x].data_id == like_checked[x].data_id %}
+                                            <input type="checkbox" checked id="interestCheck" class="checkbox-star" 
+                                            onclick="interestSave(this,'{{data_list[x].data_id}}','{{user_id}}');" name="interestCheck">
+                                            <label for="interestCheck">관심기업 등록하기 </label>
+                                        {% else %}
+                                            <input type="checkbox" id="interestCheck" class="checkbox-star" 
+                                            onclick="interestSave(this,'{{data_list[x].data_id}}','{{user_id}}');" name="interestCheck">
+                                            <label for="interestCheck">관심기업 등록하기 </label>
+
+                                        {% endif %}
                                     </div>
                                     <!-- {# <div>★ 관심기업 해제하기</div> #} -->
                                 </a>

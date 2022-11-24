@@ -103,7 +103,9 @@ def search():
             print('............',row)
         return rows
 
-
+@app.route('/excellence_employment')
+def excellence_employment():
+    return render_template('Board/excellence_employment.html')
 
     
 @app.route('/employtest') # 체크박스 test
@@ -163,15 +165,6 @@ def company(data_id):
     cursor.execute(allcom,(recommendation,))
     all_list = cursor.fetchall()
     return render_template('Board/company.html', data_list=data_list, all_list=all_list)
-
-@app.route('/test_script')  ################# 자바스크립트 필터 연습 페이지1
-def test_script():
-    return render_template('Board/test_script.html')
-
-@app.route('/products')  ################# 자바스크립트 필터 연습 페이지2 - 유튜브강의 
-def products():
-    return render_template('Board/products.html')
-
 
 @app.route('/jobs')  ################# 채용정보페이지
 def jobs():
@@ -395,9 +388,11 @@ def chart():
 def bar():
     return render_template('Board/bar.html')
 
-@app.route('/excellence_employment')
-def excellence_employment():
-    return render_template('Board/excellence_employment.html')
+@app.route('/events')
+def evnet():
+    return render_template('Board/event.html')
+
+
 #####################################
 
 SECRET_KEY = "dev"

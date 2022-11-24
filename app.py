@@ -79,29 +79,33 @@ def home():
 
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
-
-    if 'ID' in session:
-        user_id=session['ID']
-    else:
-        user_id='null'
-        
-    sql = "SELECT * from company_info"
-    cursor.execute(sql)
-    data_list = cursor.fetchall()
-
-
-    sql="select * from company_info left join like_company on company_info.data_id= like_company.data_id" 
-    cursor.execute(sql)
-    like_checked=cursor.fetchall()
-    print(like_checked[0]['id'])
+    try:
+        if 'ID' in session:
+            user_id=session['ID']
+        else:
+            user_id='null'
+            
+        sql = "SELECT * from company_info"
+        cursor.execute(sql)
+        data_list = cursor.fetchall()
 
 
+        sql="select * from company_info left join like_company on company_info.data_id= like_company.data_id" 
+        cursor.execute(sql)
+        like_checked=cursor.fetchall()
+        print(like_checked[0]['id'])
 
-    sql = "SELECT * from like_company_view where m_id=%s"
-    cursor.execute(sql,(user_id,))
-    interest_com = cursor.fetchall()
-    interest_len=len(interest_com)
-    return render_template('Board/Condition.html',like_checked=like_checked,data_list=data_list,interest_com=interest_com,interest_len=interest_len,user_id=user_id)
+
+
+        sql = "SELECT * from like_company_view where m_id=%s"
+        cursor.execute(sql,(user_id,))
+        interest_com = cursor.fetchall()
+        interest_len=len(interest_com)
+    except Exception as e:
+        print(e)
+    finally:
+        # con.close()
+        return render_template('Board/Condition.html',like_checked=like_checked,data_list=data_list,interest_com=interest_com,interest_len=interest_len,user_id=user_id)
 
 ####################################################
 @app.route('/employtest') # 체크박스 test
@@ -130,11 +134,13 @@ def employtest():
             for row in rows:
                 print('............',row)
             # return jsonify(rows)
-            return rows        
-    finally:
-        con.close()
+            return rows       
+    except Exception as e:
+        print(e)
+    # finally:
+        # con.close()
         
-########################################################찜하기 기능 
+########################################################찜하기 기능 ####################################
 
 @app.route('/interest_select') ###############.마이페이지 찜리스트 select
 def interest_select():
@@ -159,15 +165,27 @@ def interest_insert():
         like_company_all = cursor.fetchall()
         print('>>>>>>',len(like_company_all))
         if(len(like_company_all)>0):
-            print('like_update')
-            sql = "Update like_company SET result=%s where data_id=%s and id=%s;"
-            if(like_company_all[0]['result']=='0'):
-                cursor.execute(sql,(1,data_id,user_id))
-            else:
-                cursor.execute(sql,(0,data_id,user_id))
+            print('like_delete')
+            sql = "delete from like_company where data_id=%s and id=%s;"
+            cursor.execute(sql,(data_id,user_id))
             con.commit()
             cnt=cursor.rowcount
-            rs = {'status':cnt}
+            if(cnt>0):
+                rs = {'status':1000}
+            # print('like_update')
+            # sql = "Update like_company SET result=%s where data_id=%s and id=%s;"
+            # if(like_company_all[0]['result']=='0'):
+            #     cursor.execute(sql,(1,data_id,user_id))
+            # else:
+            #     cursor.execute(sql,(0,data_id,user_id))
+            # con.commit()
+            # cnt=cursor.rowcount
+            # if(like_company_all[0]['result']=='1' and cnt>0):
+            #     cnt=2
+            #     rs = {'status':cnt}
+            # if(like_company_all[0]['result']=='0' and cnt>0):
+            #     cnt=1
+            #     rs = {'status':cnt}
         else:
             print('like_insert')
             sql = "insert into like_company(ID,data_id,result) values(%s,%s,%s)"
@@ -179,11 +197,12 @@ def interest_insert():
         print(e)
         rs = {'status': 0}
     finally:  
+        # con.close()
         return rs  
         
 
 
-########################################################
+################################################################################
 
 
 @app.route('/company/<int:data_id>')  ############ 기업상세페이지
@@ -355,6 +374,19 @@ def mailcheck():
     print(value['code'])
 
     return jsonify(result = "success")
+    # return jsonify(result = "success")
+    mail_code = request.form
+    check_mail = mail_code['email']
+    check_code = mail_code['code']
+    print("메일체크"+check_mail)
+    print("코드체크"+check_code)
+    msg = Message('[잡아라] 회원가입 이메일 인증번호.',
+                  sender='kongjh941109@gmail.com', recipients=[check_mail])
+    msg.body = ('안녕하세요! 잡아라에서 알려드립니다.\n 회원가입 이메일 인증번호를 알려드립니다.\n -인증번호 : ' +
+                check_code+'\n 앞으로도 더욱 편리한 서비스를 제공하기 위해 최선을 다하겠습니다.')
+    mail.send(msg)
+
+    return jsonify({'msg': '회원님의 이메일로 아이디를 전송했습니다.'})
 
 
 @app.route('/join_proc', methods=['GET','POST'])

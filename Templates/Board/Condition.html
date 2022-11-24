@@ -28,18 +28,18 @@
                 data:param,
                 success: function (data) { 
                     console.log(data); 
-                    if (data['result']!==1){
+                    console.log("콘솔 ",data['status'])
+                    if (data['status']=='1'){
                         $(obj).prop("checked",true);      
-                    }
+                    }  
                     else{
                         $(obj).prop("checked",false); 
-                    }     
+                    }
                 },
                 error: function (request, status, error) {
                     console.log(request, status,error);
                 }
             });    
-            // });
         }
     </style>
 </head>

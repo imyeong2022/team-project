@@ -257,6 +257,7 @@ footer {
 
 .selectBoxList {
 	grid-gap: 3vmin;
+	grid-gap: 30px;
 }
 
 .selectBoxList>.box {
@@ -276,6 +277,13 @@ footer {
 	border: 0.1vmin solid white;
 	/* background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 7px) center no-repeat; */
 	background-size: 2vmin;
+	width: 150px;
+	height: 35px;
+	border-radius: 4px;
+	border: 2px solid white;
+	/* background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 7px) center no-repeat; */
+	background-size: 20px;
+	background-color: #54ABFF;
 	cursor: pointer;
 }
 
@@ -309,6 +317,7 @@ footer {
 	border: 0 none;
 	outline: 0 none;
 	padding-left: 1.5vmin;
+	padding-left: 15px;
 	background: white;
 	cursor: pointer;
 }

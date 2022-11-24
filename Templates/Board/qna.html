@@ -57,28 +57,40 @@
                     </form>
                 </div>
                 <div class="faq-content">
-                    <p>전체 : {{qna_len}}건 | 완료된 질문 {{qna_len}}건/ {{qna_len}}건 | 현재 페이지 n/n</p>
+                    <p>전체 : {{qna_len}}건 | 완료된 질문 {{reply_len}}건/ {{qna_len}}건 | 현재 페이지 n/n</p>
                     <hr />
                     <div class="qna-section">
                         <ul class="qna">
                             {% for x in range(qna_len) %}
                             <li>
                                 <input type="checkbox" id="qna-{{x}}">
-                                <label for="qna-{{x}}">
+                                <label for="qna-{{x}}" , id="qnaidx{{x}}">
                                     <div class="qna-div-1">{{qna_list[x].idx}}</div>
-                                    <div class="qna-div-2"  style="cursor:pointer">{{qna_list[x].subject}}</div>
+                                    <div class="qna-div-2" style="cursor:pointer">{{qna_list[x].subject}}</div>
                                     <div class="qna-div-3">{{qna_list[x].ID}}</div>
                                     <div class="qna-div-4">{{qna_list[x].create_date}}</div>
                                 </label>
                                 <div>
-                                    {% if ((session['ID'] == qna_list[x].ID) or (session['admin'] == '1')) %}
+                                    {% if session['ID'] == qna_list[x].ID %}
                                     <p class="spacing">{{qna_list[x].content}}</p>
-                                    {% else %}
-                                    <p class="spacing">관리자 또는 작성자가 아니면 볼 수 없습니다.{{session['admin']}}</p>
                                     {% endif %}
 
-                                    {% if qna_list[x].answer %}
-                                    <p class="spacing">{{qna_list[x].answer}}</p>
+                                    {% if session['admin'] == '1' %}
+                                    <p class="spacing">{{qna_list[x].content}}<br><br> </p>
+                                    <textarea id='question_content{{x}}' cols=85 rows=15 placeholder="답변을 상세하게 작성해주세요"
+                                        onfocus="this.placeholder=''"></textarea>
+                                    <button type="button" onclick="AAA('{{x}}')"> 답변하기</button>
+                                    {% endif %}
+
+                                    {% if session['ID'] != qna_list[x].ID %}
+                                        {% if session['admin'] == '0' %}
+                                        <p class="spacing">관리자 또는 작성자가 아니면 볼 수 없습니다.</p>
+                                        {% endif %}
+                                    {% endif %}
+
+                                    {% if (session['admin'] == '1' or session['ID'] == qna_list[x].ID) and qna_list[x].answer%}
+                                    <p class="spacing"><b>{{qna_list[x].subject}}에 대한 답변입니다.</b>
+                                    <p></p>{{qna_list[x].answer}}</p>
                                     {% endif %}
                                 </div>
                             </li>
@@ -115,6 +127,34 @@
             var option = optionList[i];
             option.addEventListener("click", onClickOption);
         }
+
+
+        function AAA(e) {
+
+            console.log(e)
+            var question_content = $("#question_content" + e).val();
+            console.log(question_content)
+            var idx = $("#qnaidx" + e).children(".qna-div-1").text();
+            console.log(idx)
+
+            $.ajax({
+                type: "post",
+                url: '/answer',
+                data: {
+                    question_content : question_content, // flask에 이메일과 랜덤코드를 보내자
+                    idx : idx,
+
+                },
+                dataType: 'json',
+                success: function (data) {
+                    alert(data["msg"]);
+                    location.replace('/qna');
+                    console.log(question_content);
+                    console.log("data : " + idx);
+                }
+            });
+        }
+
     </script>
 </body>
 

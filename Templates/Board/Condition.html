@@ -498,11 +498,6 @@
                                 <li class="hide">
                                     <button type="button" class="tag-primary" data-value="경영실적에 따라 하계휴가비, 명절휴가비, 연말상여금, 5월 가족의 달 상여 등 지급">#경영실적에 따라 하계휴가비, 명절휴가비, 연말상여금, 5월 가족의 달 상여 등 지급</button>
                                 </li>
-                            
-                                <li class="toggin-tab-btn">
-                                <button type="button" class="btn-icon-xs open">
-                                    <i class="ico-plus"></i>
-                                <span class="hide">태그 전체보기</span></button></li>
                             </ul> -->
                             <!-- <div class="box-btn-area"> -->
                                 <!-- contextpath 추가 22.01.04 -->
@@ -531,7 +526,8 @@
                                     </div>
                                     {# <div>★ 관심기업 해제하기</div> #} -->
                                 </a>
-                                <a class="btn btn-default btn-md"><div><span>일자리 지도 보기</span></div></a>
+                                <a class="btn btn-default btn-md" href="/company/{{data_list[x].data_id}}#location_map">
+                                    <div><span>일자리 지도 보기</span></div></a>
                                 <span class="grid-sub-blue">{{ data_list[x].industry }}</span>
                                 
                                 <a onclick="location.href='/company/{{data_list[x].data_id}}';" style="cursor:pointer">

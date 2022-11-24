@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>login_form.html</title>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
     <script type="text/javascript">
         function selectAll(selectAll) {
             const checkboxes = document.getElementsByName('terms');
@@ -171,12 +171,6 @@
         });
 
         /* 인증번호 비교 */
-       
-
-
-
-
-
 
 
     </script>
@@ -191,9 +185,9 @@
                 <div class="inner">
                     <div class="public-list">
                         <ol class="public-ol">
-                            <li class="public-li">index ></li>
-                            <li class="public-li">> 로그인 ></li>
-                            <li class="public-li">> 간편 회원가입</li>
+                            <li class="public-li">index</li>
+                            <li class="public-li">로그인</li>
+                            <li class="public-li">간편 회원가입</li>
                         </ol>
                     </div>
                     <div class="public-title">
@@ -206,6 +200,11 @@
             </div>
             <hr class="public-hr" />
             <div class="login-form-div">
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
+>>>>>>> 52683a87e8991c17034ced4f0f90ec502c4777ad
                 <form class="login-form" action="/join_proc" method="post" onsubmit="return Validation();">
                     <tr><input class="join-input" type="text" name="user_id" id="user_id" placeholder="ID"
                             maxlength="12">
@@ -239,6 +238,13 @@
                     <input class="join-input-birth-end" type="text" name="user_birth-3" id="user_birth-3"
                         placeholder="DD" maxlength="2">
 
+                <form class="login-form" action="/join_proc" method="post">
+                    <input class="join-input" type="text" name="user_id" placeholder="ID">
+                    <input class="join-input" type="text" name="user_pw" placeholder="PassWord">
+                    <input class="join-input" type="text" name="user_pw_check" placeholder="Re PassWord">
+                    <input class="join-input" type="text" name="user_name" placeholder="Name">
+                    <input class="join-input" type="text" name="user_phone" placeholder="Phone Number">
+                    <input class="join-input" type="text" name="user_birth" placeholder="Birth">
                     <hr />
                     <div class="join-check-all">
                         <input type="checkbox" name="terms" value="selectAll" onclick="selectAll(this)" /><b>모두 확인하였으며
@@ -263,15 +269,12 @@
                                 개인정보 수집 및 이용 동의.</b><br />
                         </div>
                         <div class="join-check-list">
-                            <input type="checkbox" name="terms" value="select-essential-4" required /><b>[필수] 개인정보 제3자
-                                제공
-                                동의.</b><br />
-                        </div>
+                            <input type="checkbox" name="terms" value="select-essential-4" /><b>[필수] 개인정보 제3자 제공
+                                동의.</b><br /></div>
                         <div class="join-check-list">
                             <input type="checkbox" name="terms" value="select-necessary-1" /><b>[선택] 마케팅 목적의 개인정보 수집 및
                                 이용
-                                동의.</b><br />
-                        </div>
+                                동의.</b><br /></div>
                         <div class="join-check-list">
                             <input type="checkbox" name="terms" value="select-necessary-2" /><b>[선택] 광고성 정보 수신
                                 동의.</b><br />
@@ -295,7 +298,6 @@
             <div></div>
         </section>
     </div>
-
 </body>
 
 </html>

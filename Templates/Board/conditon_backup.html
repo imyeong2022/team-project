@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>상세조건 검색</title>
+
+    <!-- Lib js 파일 --> 
+    <script src="/static/js/jquery-3.5.1.min.js"></script>
+    <script src="/static/js/jquery.form.js"></script>
+    <script src="/static/js/jquery.common.js"></script>
+    <script src="/static/js/jquery.loadSelect.js"></script>
+    <script src="/static/js/jquery.iframe-transport.js"></script>
+
+    <script src="/static/js/pager.js"></script>
+    <script src="/static/js/content_ui.js"></script>
+    <script src="/static/js/html5shiv.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+
+    </script>
+    <style>
+        .pagination {
+            position: relative;
+            text-align: center;
+            font-size: 50;
+        }
+    </style>
+</head>
+<body>
+<div class="main-div">
+{% include 'Board/header.html' %}
+    <section id = "contents" class="main-section">
+    <!-- <section id = "contents" class="main-section"> -->
+    
+        <div class="title-area"><!-- page-title-area -->
+            <div class="inner"> 
+                <div class="public-list"> <!-- util-area -->
+                    <ol class="public-ol">
+                        <li class="public-li"><a href="/">index </a></li>
+                        <li class="public-li">조건으로 찾기></li>
+                        <li class="public-li">상세조건 검색</li>   
+                    </ol>
+                </div>
+                <div class="public-title">
+                    상세조건 검색
+                </div>
+                <div class="public-title-sub">
+                    원하는 조건에 따라 좋은 기업을 찾아보세요.
+                </div>
+            </div>
+        </div>
+
+        <div class = "search-area"> <!-- content-area -->
+            <form id = "searchForm" name ="searchForm" method="get" action="/condition"> <!-- content-area -->
+                <input type = "hidden" id="pg" value="1">
+                <input type="hidden" id="area" name="area" value="">
+                <!-- 지역 -->
+                <input type="hidden" id="sic" name="sic" value="">
+                <!-- 업종 -->
+                <input type="hidden" id="thema" name="thema" value="">
+                <!-- 유형 -->
+                <input type="hidden" id="scale" name="scale" value="">
+                <!-- 규모 -->
+                <input type="hidden" id="crtfnBiz" name="crtfnBiz" value="">
+                <!-- 인증사업 -->
+                <input type="hidden" id="wlfr" name="wlfr" value="">
+               <!-- 복지 -->
+                <input type="hidden" id="emptPrgsYn" name="emptPrgsYn" value="">
+                <!-- 채용진행여부 -->
+                <input type="hidden" id="sortStd" name="sortStd" value="">
+                <!-- 정렬기준 -->
+                <input type="hidden" id="searchCnd" name="searchCnd" value="">
+                <!-- 검색조건 -->
+                <div class="company-search-wrap">
+                <div class="search-bar-div"> <!--article-wrap bg-blue-->
+                    <div class="search-frame"><!--article frame-min-->
+                        <!--검색 부분 추가 및 수정함 22/11/15 서연-->
+                        <div class="input-group-wrap">
+                            <div class="input-group input-lg">
+                                <label for="schTxt" class="blind">기업명 검색</label>
+                                <input type="text" id="schTxt" name="schTxt" class="input-text" placeholder="기업명, 지역, 업종을 검색해주세요." value="" onkeypress="dev.action.enterSubmit(search);">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn-search" title="검색하기" onclick="search();">
+                                        <i class="ico-search"></i>
+                                        <span class="blind">검색하기</span>
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                        <!-- end / 검색 부분 추가 및 수정함 22/11/15 서연 -->
+                    </div>
+                </div>
+                </div>
+
+                <!-- 체크박스-->
+                <div class="item-list" id="schTxtInputArea" style="display:none;">
+                    <div class="search-fileter-checkbox-item">
+                        <input type="checkbox" id="check-schTxt" class="checkbox" name="schTxtTag" data-name="검색어 > ">
+                        <label for="check-schTxt">검색어 &gt; </label>
+                    </div>
+                </div>
+
+                <div class="search-filter"> <!-- item-list-->
+                    <dl class="item-content" id="areaContent" data-id="area" data-tit="지역은" data-max="5">
+                        <!-- <dt class="item-title"><a href="#none" data-cate="false">지역</a></dt> -->
+                    <div class="search-fileter-child">
+                    <div class="search-fileter-child-title"><span>지역</span></div>
+                        <div class="search-fileter-child-item-list">
+                            <div class="search-fileter-checkbox">
+                                <div class="search-fileter-checkbox-item"> 
+                                    <input type="checkbox" id="check-100" class="checkbox check-all checked" name="areatag" value="" data-name="전체" checked="checked">
+                                    <label for="check-100">전체</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-서울" class="checkbox" name="areatag" value="서울" data-name="서울">
+                                    <label for="check-서울">서울</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-부산" class="checkbox" name="areatag" value="부산" data-name="부산">
+                                    <label for="check-부산">부산</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-대구" class="checkbox" name="areatag" value="대구" data-name="대구">
+                                    <label for="check-대구">대구</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-인천" class="checkbox" name="areatag" value="인천" data-name="인천">
+                                    <label for="check-인천">인천</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-광주" class="checkbox" name="areatag" value="광주" data-name="광주">
+                                    <label for="check-광주">광주</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-대전" class="checkbox" name="areatag" value="대전" data-name="대전">
+                                    <label for="check-대전">대전</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-울산" class="checkbox" name="areatag" value="울산" data-name="울산">
+                                    <label for="check-울산">울산</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-세종" class="checkbox" name="areatag" value="세종" data-name="세종">
+                                    <label for="check-세종">세종</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-경기" class="checkbox" name="areatag" value="경기" data-name="경기">
+                                    <label for="check-경기">경기</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-강원" class="checkbox" name="areatag" value="강원" data-name="강원">
+                                    <label for="check-강원">강원</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-충북" class="checkbox" name="areatag" value="충북" data-name="충북">
+                                    <label for="check-충북">충북</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-충남" class="checkbox" name="areatag" value="충남" data-name="충남">
+                                    <label for="check-충남">충남</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-전북" class="checkbox" name="areatag" value="전북" data-name="전북">
+                                    <label for="check-전북">전북</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-전남" class="checkbox" name="areatag" value="전남" data-name="전남">
+                                    <label for="check-전남">전남</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-경북" class="checkbox" name="areatag" value="경북" data-name="경북">
+                                    <label for="check-경북">경북</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-경남" class="checkbox" name="areatag" value="경남" data-name="경남">
+                                    <label for="check-경남">경남</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-제주" class="checkbox" name="areatag" value="제주" data-name="제주">
+                                    <label for="check-제주">제주</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </dl>
+
+                  
+            
+                    <dl class="item-content" id="sicContent" data-id="sic" data-tit="업종은" data-max="5">
+                        <!-- <dt class="item-title"><a href="#none" data-cate="false">업종</a></dt> -->
+                    <div class="search-fileter-child">
+                    <div class="search-fileter-child-title"><span>업종</span></div>
+                        <div class="search-fileter-child-item-list">
+                            <div class="search-fileter-checkbox">
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-200" class="checkbox check-all checked" name="sectortag" value="" data-name="전체" checked="checked">
+                                    <label for="check-200">전체</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-C" class="checkbox" name="sectortag" value="C" data-name="제조업">
+                                    <label for="check-C">제조업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-G" class="checkbox" name="sectortag" value="G" data-name="도매 및 소매업">
+                                    <label for="check-G">도매 및 소매업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-J" class="checkbox" name="sectortag" value="J" data-name="정보통신업">
+                                    <label for="check-J">정보통신업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-M" class="checkbox" name="sectortag" value="M" data-name="전문, 과학 및 기술 서비스업">
+                                    <label for="check-M">전문, 과학 및 기술 서비스업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-F" class="checkbox" name="sectortag" value="F" data-name="건설업">
+                                    <label for="check-F">건설업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-N" class="checkbox" name="sectortag" value="N" data-name="사업시설 관리, 사업 지원 및 임대 서비스업">
+                                    <label for="check-N">사업시설 관리, 사업 지원 및 임대 서비스업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-H" class="checkbox" name="sectortag" value="H" data-name="운수 및 창고업">
+                                    <label for="check-H">운수 및 창고업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-E" class="checkbox" name="sectortag" value="E" data-name="수도, 하수 및 폐기물 처리, 원료 재생업">
+                                    <label for="check-E">수도, 하수 및 폐기물 처리, 원료 재생업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-S" class="checkbox" name="sectortag" value="S" data-name="협회 및 단체, 수리 및 기타 개인 서비스업">
+                                    <label for="check-S">협회 및 단체, 수리 및 기타 개인 서비스업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-P" class="checkbox" name="sectortag" value="P" data-name="교육 서비스업">
+                                    <label for="check-P">교육 서비스업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-I" class="checkbox" name="sectortag" value="I" data-name="숙박 및 음식점업">
+                                    <label for="check-I">숙박 및 음식점업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-R" class="checkbox" name="sectortag" value="R" data-name="예술, 스포츠 및 여가관련 서비스업">
+                                    <label for="check-R">예술, 스포츠 및 여가관련 서비스업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-Q" class="checkbox" name="sectortag" value="Q" data-name="보건업 및 사회복지 서비스업">
+                                    <label for="check-Q">보건업 및 사회복지 서비스업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-A" class="checkbox" name="sectortag" value="A" data-name="농업, 임업 및 어업">
+                                    <label for="check-A">농업, 임업 및 어업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-K" class="checkbox" name="sectortag" value="K" data-name="금융 및 보험업">
+                                    <label for="check-K">금융 및 보험업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-D" class="checkbox" name="sectortag" value="D" data-name="전기, 가스, 증기 및 공기 조절 공급업">
+                                    <label for="check-D">전기, 가스, 증기 및 공기 조절 공급업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-B" class="checkbox" name="sectortag" value="B" data-name="광업">
+                                    <label for="check-B">광업</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-O" class="checkbox" name="sectortag" value="O" data-name="공공행정, 국방 및 사회보장 행정">
+                                    <label for="check-O">공공행정, 국방 및 사회보장 행정</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-U" class="checkbox" name="sectortag" value="U" data-name="국제 및 외국기관">
+                                    <label for="check-U">국제 및 외국기관</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-T" class="checkbox" name="sectortag" value="T" data-name="가구 내 고용활동 및 달리 분류되지 않은 자가소비 생산활동">
+                                    <label for="check-T">가구 내 고용활동 및 달리 분류되지 않은 자가소비 생산활동</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </dl>     
+
+                    <dl class="item-content" id="scaleContent" data-id="scale" data-tit="규모는">
+                        <!-- <dt class="item-title"><a href="#none" data-cate="false">규모</a></dt> -->
+                    <div class="search-fileter-child">
+                    <div class="search-fileter-child-title"><span>규모</span></div>
+                        <div class="search-fileter-child-item-list">
+                            <div class="search-fileter-checkbox">
+                            <div class="search-fileter-checkbox-item">
+                                <input type="checkbox" id="check-400" class="checkbox check-all checked" name="scaletag" value="" data-name="전체" checked="checked">
+                                <label for="check-400">전체</label>
+                            </div>
+                            <div class="search-fileter-checkbox-item">
+                                <input type="checkbox" id="check-02" class="checkbox" name="scaletag" value="02" data-name="중기업">
+                                <label for="check-02">중기업</label>
+                            </div>
+                            <div class="search-fileter-checkbox-item">
+                                <input type="checkbox" id="check-03" class="checkbox" name="scaletag" value="03" data-name="소기업">
+                                <label for="check-03">소기업</label>
+                            </div>
+                            <div class="search-fileter-checkbox-item">
+                                <input type="checkbox" id="check-999" class="checkbox" name="scaletag" value="999" data-name="스타트업">
+                                <label for="check-999">스타트업</label>
+                            </div>
+                            <div class="search-fileter-checkbox-item">
+                                <input type="checkbox">
+                                <label>소상공인</label>
+                            </div>
+                            <div class="search-fileter-checkbox-item">
+                                <input type="checkbox">
+                                <label>한시성중소기업</label>
+                            </div>
+                            </div>
+                    </div>
+                    </dl>
+
+                    <!-- <dl class="item-content" data-id="crtfnBiz" data-max="20" data-tit="기업역량은" id="crtfnBizContent"> -->
+                        <!-- <dt class="item-title"><a data-cate="true" href="#none">기업역량<i class="ico-arr-down"></i></a></dt> -->
+                    <!-- <div class="search-fileter-child">
+                    <div class="search-fileter-child-title"><span>기업역량</span></div> -->
+                        <!-- <div class="search-fileter-child-item-list">
+                            <div class="search-fileter-checkbox">
+                                <input type="checkbox" id="check-500" class="checkbox check-all checked" name="biztag" data-name="전체" checked="checked">
+                                <label for="check-500">전체</label>
+                            </div>
+                            <div class="search-fileter-checkbox">
+                                <input type="checkbox" id="check-250003" class="checkbox check-empty" name="biztag" data-name="기술력이 뛰어난 기업">
+                                <label for="check-250003">기술력이 뛰어난 기업</label>
+                            </div>
+                            <div class="search-fileter-checkbox">
+                                <input type="checkbox" id="check-250004" class="checkbox check-empty" name="biztag" data-name="세계 시장에서 인정받는 기업">
+                                <label for="check-250004">세계 시장에서 인정받는 기업</label>
+                            </div>
+                            <div class="search-fileter-checkbox">
+                                <input type="checkbox" id="check-250005" class="checkbox check-empty" name="biztag" data-name="꾸준히 성장하는 기업">
+                                <label for="check-250005">꾸준히 성장하는 기업</label>
+                            </div>
+                            <div class="search-fileter-checkbox">
+                                <input type="checkbox" id="check-250006" class="checkbox check-empty" name="biztag" data-name="사회적 책임을 다하는 기업">
+                                <label for="check-250006">사회적 책임을 다하는 기업</label>
+                            </div>
+                            <div class="search-fileter-checkbox">
+                                <input type="checkbox" id="check-250007" class="checkbox check-empty" name="biztag" data-name="우리 지역을 대표하는 기업">
+                                <label for="check-250007">우리 지역을 대표하는 기업</label>
+                            </div>
+                        </div> -->
+                    <!-- </div> -->
+                    <!-- </dl>  -->
+
+                    <dl class="item-content" id="wlfrContent" data-id="wlfr" data-tit="복지는" data-max="10">
+                    <div class="search-fileter-child">
+                        <div class="search-fileter-child-title"><span>복지</span></div>
+                        <div class="search-fileter-child-item-list">
+                            <div class="search-fileter-checkbox">
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-600" class="checkbox check-all checked" name="welfaretag" data-name="전체" checked="checked">
+                                    <label for="check-600">전체</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-W00" class="checkbox check-empty" name="welfaretag" data-name="공제·기타">
+                                    <label for="check-W00">공제·기타</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-W01" class="checkbox check-empty" name="welfaretag" data-name="연금·보험">
+                                    <label for="check-W01">연금·보험</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-W02" class="checkbox check-empty" name="welfaretag" data-name="교육·연수">
+                                    <label for="check-W02">교육·연수</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-W03" class="checkbox check-empty" name="welfaretag" data-name="생활편의·여가행사">
+                                    <label for="check-W03">생활편의·여가행사</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-W04" class="checkbox check-empty" name="welfaretag" data-name="보상·수당·지원">
+                                    <label for="check-W04">보상·수당·지원</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-W05" class="checkbox check-empty" name="welfaretag" data-name="사내시설·장애인지원">
+                                    <label for="check-W05">사내시설·장애인지원</label>
+                                </div>
+                                <div class="search-fileter-checkbox-item">
+                                    <input type="checkbox" id="check-W06" class="checkbox check-empty" name="welfaretag" data-name="휴무·휴가·행사">
+                                    <label for="check-W06">휴무·휴가·행사</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </dl>
+                    
+                    <div class="print-values">
+                        <p id="valueList"></p>
+                    </div>
+                    <div>
+                        <input type="button" value="검색test" class="print-value" id="valueList" onclick="checkbox_test();">
+                    </div>
+
+                </div>
+            </form>
+            <div class="condition">
+                <ul class = "board-incruit mt15" id ="companyListArea">
+                    {% for x in range(10) %} 
+                    <li class="item" data-id="{{ data_list[x].data_id}}">
+                        <div class="box-text">
+                            <span class="sort text-primary text-md">{{ data_list[x].업종 }}</span>
+                            <!-- contextPath 추가 22.01.04 -->
+                            <p class="title"><a href="/company/{{ data_list[x].data_id}}">{{ data_list[x].회사 }}</a> 
+                                <em class="badge-point">채용중</em></p>
+                            <ul class="text text-grey">
+                                <li>{{ data_list[x].기업형태 }}</li>
+                                <li>{{ data_list[x].지역 }}</li>
+                                <li>{{ data_list[x].대표 }}</li>
+                            </ul>
+                            <!-- <ul class="tag">
+                                <li><button type="button" class="tag-point" data-best1-ty-cd="C005" data-best2-ty-cd="C004">#내실이 탄탄하고 성과보상이 확실한</button></li>
+                                <li>
+                                    <button type="button" class="tag-mint" data-value="벤처기업">#벤처기업</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="tag-mint" data-value="이노비즈">#이노비즈</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="tag-mint" data-value="기업부설연구소 인정">#기업부설연구소 인정</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="tag-primary" data-value="국민연금">#국민연금</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="tag-primary" data-value="고용보험">#고용보험</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="tag-primary" data-value="산재보험">#산재보험</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="tag-primary" data-value="건강보험">#건강보험</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="tag-primary" data-value="퇴직연금">#퇴직연금</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="tag-primary" data-value="상해보험">#상해보험</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="신입사원교육(OJT)">#신입사원교육(OJT)</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="건강검진">#건강검진</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="석식제공">#석식제공</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="퇴직금">#퇴직금</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="각종 경조금 지원">#각종 경조금 지원</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="자녀 학자금 지원">#자녀 학자금 지원</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="우수사원 표창/포상">#우수사원 표창/포상</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="야근수당">#야근수당</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="휴일수당">#휴일수당</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="성과급">#성과급</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="휴게실">#휴게실</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="주차장">#주차장</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="주5일근무">#주5일근무</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="연차">#연차</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="경조휴가">#경조휴가</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="노동절 휴무">#노동절 휴무</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="워크샵/MT">#워크샵/MT</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="야유회">#야유회</button>
+                                </li>
+                                <li class="hide">
+                                    <button type="button" class="tag-primary" data-value="경영실적에 따라 하계휴가비, 명절휴가비, 연말상여금, 5월 가족의 달 상여 등 지급">#경영실적에 따라 하계휴가비, 명절휴가비, 연말상여금, 5월 가족의 달 상여 등 지급</button>
+                                </li>
+                            
+                                <li class="toggin-tab-btn">
+                                <button type="button" class="btn-icon-xs open">
+                                    <i class="ico-plus"></i>
+                                <span class="hide">태그 전체보기</span></button></li>
+                            </ul> -->
+                            <div class="box-btn-area">
+                                <!-- contextpath 추가 22.01.04 -->
+                                <a href="/gsmb/map/smart_employment/{{ data_list[x].data_id}}?xco={{ data_list[x].위도}}&amp;yco={{ data_list[x].경도}}&amp;keyword=" class="btn btn-default btn-md"><span>일자리지도 바로가기</span></a>
+                                <div class="custom-checkbox">
+                                    <input type="checkbox" id="interestCheck-{{ data_list[x].data_id}}" class="checkbox-star" onclick="intrstYnSave(this);" name="interestCheck-{{ data_list[x].data_id}}">
+                                    <label for="interestCheck-{{ data_list[x].data_id}}">관심기업 등록하기</label>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    {% endfor %}
+
+
+                </ul>
+
+
+
+
+
+
+
+                <!-- <ul class = "board-incruit mt15" id ="companyListArea">
+                    
+                    {% for x in range(10) %}    
+                    <li class="item">
+                        <div class = "box-text">
+                            <div class="box-btn-area">
+                                <a>
+                                    <!-- {# if문으로 관심기업아니면 ☆ 관심기업이면 ★ #} -->
+                                    <!-- <div class="custom-checkbox">
+                                        <input type="checkbox" id="interestCheck-{{ data_list[x].data_id}}" class="checkbox-star" onclick="intrstYnSave(this);" name="interestCheck-{{ data_list[x].data_id}}">
+                                        <label for="interestCheck-{{ data_list[x].data_id}}">
+                                            ☆ 관심기업 등록하기
+                                        </label>
+                                    </div> -->
+                                    <!-- {# <div>★ 관심기업 해제하기</div> #} -->
+                                <!-- </a> -->
+
+                                <!-- <a class="btn btn-default btn-md"><div><span>일자리 지도 보기</span></div></a> -->
+                                <!-- <a href="/gsmb/map/smart_employment/37177?xco=126.895314838586&amp;yco=37.4869823311106&amp;keyword=" class="btn btn-default btn-md">
+                                    <span>일자리지도 바로가기</span></a> -->
+
+                                <!-- <span class="sort text-primary text-md">{{ data_list[x].업종}}</span> -->
+                                <!-- <span class="grid-sub-blue">{{ data_list[x].업종}}</span> -->
+                                
+                                <!-- <a onclick="location.href='/company/{{data_list[x].data_id}}';" style="cursor:pointer"> -->
+                                    <!-- <p class="title">{{ data_list[x].회사 }}</p> -->
+                                    <!-- <p class="grid-title">{{ data_list[x].회사 }}</p> -->
+                                <!-- </a> -->
+
+                                <!-- <p class="condition-sub-text">{{ data_list[x].기업형태 }} | {{ data_list[x].지역 }} | -->
+                                    <!-- {{ data_list[x].대표 }}</p> -->
+                            <!-- </div> -->
+                        <!-- </div> -->
+                        <!-- <div> -->
+                            <!--태그-->
+                            <!-- <ol class="tag">
+                                <li>#이 기업 경기가 대단하다</li>
+                                <li>#복지 최고</li>
+                                <li>#취업시켜줘</li>
+                            </ol> -->
+                            <!-- <ul class = "tag">
+                                <li>
+                                    <button type="button" class="tag-point" data-best1-ty-cd="C005" data-best2-ty-cd="C002">#조직문화가 건강하고 성과보상이 확실한</button>
+                                </li>
+                                <li>
+                                    <button type="button" class="tag-mint" data-value="인재육성형 중소기업">#인재육성형 중소기업</button>
+                                </li>
+                            </ul> -->
+                        <!-- </div> -->
+                    <!-- </li> -->
+                    <!-- {% endfor %} -->
+                <!-- </ul>  -->
+
+            </div>
+
+            <div class="pagination">
+                <a href="javascript:void(0);" class="on">
+                    <span>1</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=2&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>2</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=3&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>3</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=4&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>4</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=5&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>5</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=6&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>6</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=7&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>7</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=8&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>8</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=9&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>9</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=10&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span>10</span></a><a href="javascript:void(0);" class="btn-page next" title="다음" onclick="goPageAjax('/condition?pg=11&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span class="blind">다음</span></a>
+                    <a href="javascript:void(0);" class="btn-page last" title="마지막" onclick="goPageAjax('/condition?pg=2798&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
+                    <span class="blind">마지막</span></a>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<!-- <table id="test">
+</table>
+<script src="../../static/js/app.js"></script> -->
+
+<script>
+
+    var ageArr = new Array(); //필터 내용을 저장하는 배열
+    var showFilterValue = document.getElementById("showFilter");//필터입력값 보여주기 위한 text
+
+    //필터 내용을 저장하는 function
+    function makeFilter(target){
+
+        var ageVal = target.value; //check value
+        var confirmCheck = target.checked; //check여부 확인
+        console.log("필터 선택값 : "+ageVal);
+        console.log("선택여부 : "+confirmCheck);
+
+        // check true
+        if(confirmCheck == true){
+
+            console.log("check");
+            ageArr.push(ageVal); // check value filter 배열에 입력
+
+        // check false
+        }else{
+
+            ageArr.splice(ageArr.indexOf(ageVal), 1); // check value filter 배열내용 삭제            
+        }
+
+        showFilterValue.value = ageArr; // textBox에 필터 배열 추가
+        console.log("필터입력값 출력 : "+ageArr);
+
+    }
+
+    </script>
+    <script>
+        // 검색 조건 input 데이터 저장 Object
+        var searchDataStr = null || '';
+        var searchDataArr = searchDataStr != '' ? searchDataStr.split(",") : new Array();
+        // var searchCond = ["area", "sic", "thema", "scale"]; // 기업역량, 복지 -> 제외
+        var searchCond = ["area", "sic", "thema", "scale", "crtfnBiz", "wlfr"];
+        // var searchData = {
+        //     "area" : null,
+        //     "sic" : null,
+        //     "thema" : null,
+        //     "scale" : null
+        // };
+        var searchData = {
+            "area" : null,
+            "sic" : null,
+            "thema" : null,
+            "scale" : null,
+            "crtfnBiz" : null,
+            "wlfr" : null
+        };
+
+        $(window).on("load", function(){
+            // 최초 검색
+            filterBoxSort();
+            search("1");
+        });
+
+        // 필터 내 검색조건 클릭
+        $(document).on("click", ui.searchCustom.input, function(e){
+            var $this = $(this);
+            var prefix = $this.parents(".item-content").data("id");
+            var maxCnt = $this.parents(".item-content").data("max") || 0;
+            var tit = $this.parents(".item-content").data("tit");
+
+            if(maxCnt > 0){
+                var currentCnt = $(".item-content[data-id='" + prefix + "']").find("input:not(.check-all):not(.check-empty):checked").length;
+                if(currentCnt > maxCnt){
+                    alert(tit + " 최대 " + maxCnt + "개까지 선택 가능합니다.");
+                    e.preventDefault();
+                }
+            }
+        });
+
+        // 검색조건 input change
+        $(document).on("change", ui.searchCustom.input, function(){
+            inputChange($(this));
+        });
+
+        // 검색 input change 이벤트 (checkbox요소, 검색 여부)
+        function inputChange(obj){
+            $(obj).each(function(idx, item){ // input 여러개 선택할수 있음
+                setSearchData($(item), idx == ($(obj).length-1)); // 마지막 데이터 세팅 완료 시 검색여부 true
+            });
+        }
+
+        // 선택한 input 데이터 검색조건 변수에 저장
+        function setSearchData(obj, searchFlag){
+            var $this = $(obj);
+            var name = $this.attr("name");
+            var prefix = $this.parents(".item-content").data("id");
+
+            if($this.hasClass("check-empty")){
+                if($this.attr("id").indexOf("-empty") > -1){ // 인증사업, 복지 전체 카테고리에 있는 체크박스 클릭시
+                    $("#" + $this.attr("id").replace("-empty", "")).prop("checked", $this.is(":checked")).change();
+                }
+            } else { // 일반
+                if ($this.hasClass("check-all")){
+                    var eachObj = $this.parents(".item-content").find("input:not(.check-all):not(.check-empty)");
+
+                    $(eachObj).each(function(idx, item){
+                        if($("#" + $(item).attr("id") + "-empty").length > 0){ // 인증사업, 복지 전체 카테고리에 있는 체크박스 클릭시
+                            $("#" + $(item).attr("id") + "-empty").prop("checked", false);
+                        }
+
+                        var conatinsIdx = $.inArray($(item).val(), searchDataArr); // 선택한 조건이 검색어 배열에 존재하는지 index 확인
+                        if(conatinsIdx > -1){
+                            searchDataArr.splice(conatinsIdx, 1);
+                        }
+                        conatinsIdx = $.inArray($(item).val(), searchData[prefix]); // 선택한 조건이 검색어 배열에 존재하는지 index 확인
+                        if(conatinsIdx > -1){
+                            searchData[prefix].splice(conatinsIdx, 1);
+                        }
+                    });
+                } else {
+                    var $empty = $("#" + $this.attr("id") + "-empty");
+                    if($empty.length > 0){ // 인증사업, 복지 전체 카테고리에 있는 체크박스 클릭시
+                        $empty.prop("checked", $this.is(":checked"));
+                        if ($empty.parents(ui.searchCustom.dep02).find(":checked").length == 0){
+                            $empty.parents(ui.searchCustom.dep02).siblings(ui.searchCustom.inputBox).find('.check-all').prop('checked', true);
+                        }
+                    }
+
+                    var value = $this.val();
+                    var conatinsIdx = $.inArray(value, searchDataArr); // 선택한 조건이 검색어 배열에 존재하는지 index 확인
+
+                    if ($this.is(":checked")) {
+                        if(conatinsIdx < 0){
+                            searchDataArr.push(value);
+
+                            if(typeof searchData[prefix] == "undefined" || searchData[prefix] == null){
+                                searchData[prefix] = new Array();
+                            }
+                            searchData[prefix].push(value);
+                        }
+                    } else {
+                        if(conatinsIdx > -1){
+                            searchDataArr.splice(conatinsIdx, 1);
+                            var conatinsIdx2 = $.inArray(value, searchData[prefix]); // 선택한 조건이 검색어 배열에 존재하는지 index 확인
+                            searchData[prefix].splice(conatinsIdx2, 1);
+                        }
+                    }
+                }
+
+                filterBoxSort();
+
+                // 선택필터 노출 영역 재정렬 및 검색
+                if(searchFlag) {
+                    search();
+                }
+            }
+        }
+
+        // data-checked-seq, 선택필터 노출 영역 재정렬
+        function filterBoxSort(){
+            ui.searchCustom.searchBoxReset();
+            $(ui.searchCustom.input).data("checked-seq", "");
+
+            var htmlArr = new Array();
+            $.each(searchDataArr, function(idx, value){
+                var $this = $(ui.searchCustom.input).filter(":not(.check-empty)[value='" + value + "']");
+                $this.data("checked-seq", idx);
+                htmlArr[idx] = '<li><span>'+$this.data("name")
+                    +'</span><a href="#none" class="del-item"><i class="ico-close"></i><span class="hide">해당항목 삭제</span></a></li>';
+            });
+
+            if(searchDataArr.length > 0){
+                $(ui.searchCustom.require).children('ul').empty().append(htmlArr.join(""));
+            }
+        }
+
+        // 검색필터 삭제
+        $(document).on("click", ".del-item", function(){
+            var text = $(this).siblings("span").text();
+            $(this).parents("li").remove();
+
+            if(text.indexOf("검색어 > ") > -1){
+                $("#schTxt").val("");
+                var $this = $("#check-schTxt");
+                $this.prop("checked", false).change();
+            } else {
+                var $this = $(ui.searchCustom.input).filter(":not(.check-empty)[data-name='" + text + "']");
+                $this.prop("checked", false).change();
+            }
+
+            ui.searchCustom.depthClose($(ui.searchCustom.wrap));
+        });
+
+        // 리스트 내 해시태그 클릭
+        $(document).on("click", ".tag button", function(){
+            if(!$(this).parents("li").hasClass("toggin-tab-btn")){
+                if($(this).hasClass("tag-point")) {
+                    var $this = $(ui.searchCustom.input).filter(":not(.check-empty)[value='" + $(this).data("best1TyCd") + "'],[value='" + $(this).data("best2TyCd") + "']");
+                    $this.prop("checked", true).change();
+                } else {
+                    var text = $(this).data("value") || '';
+                    var $this = $(ui.searchCustom.input).filter(":not(.check-empty)[data-name='" + text + "']");
+                    $this.prop("checked", true).change();
+                }
+
+                $("html, body").stop().animate({ scrollTop : $(".board-option").offset().top - 300}, 10);
+            }
+        });
+
+        // 검색 조건 영역 초기화
+        function searchWrapInit(){
+            /* contextpath 추가 22.01.04 */
+            location.href = contextPath + "/search/reset";
+
+            // "/condition/reset"; 
+
+        // 검색
+        function search(pg){
+            dev.action.loading.show();
+            $("#pg").val(pg || 1);
+
+            var schtext = $("#schTxt").val();
+            $("#schTxt").val(specialTextRemove(schtext));
+
+            $("#searchCnd").val(searchDataArr.join(","));
+            // 지역, 업종, 유형, 규모, 인증사업, 복지 check된 값 세팅
+            $.each(searchCond, function(idx, item){
+                $("#" + item).val(searchData[item] || []);
+            });
+
+            $("#emptPrgsYn").val($("#emptPrgsCheck").is(":checked") ? "Y" : ""); // 채용진행여부
+
+            /* contextPaht 추가 2022.01.04 */
+            loadHtmlAjax(contextPath + "/searchs", "GET", $("#searchForm").serialize(), function(data){
+                $("#companyListArea").html(data);
+                ui.tagToggleEvt.init();
+                dev.action.loading.hide();
+            });
+        }
+
+        // 정렬 기준 변경
+        function sortStdChange(std){
+            $("#sortStd").val(std);
+
+            var sortStdMap = {"rdcnt":"\uC870\uD68C\uC218\uC21C","intrstCnt":"\uAD00\uC2EC\uB3C4\uC21C"};
+            var sortStdMapKeySet = ["rdcnt","intrstCnt"];
+            var html = '';
+            $.each(sortStdMapKeySet, function(idx, key){
+                if(key != std){
+                    html += '<li>';
+                    html += '    <a href="#none" onclick="sortStdChange(\'' + key + '\');"><span>' + sortStdMap[key] + '</span></a>';
+                    html += '</li>';
+                }
+            });
+
+            $(".select-value").text(sortStdMap[std]);
+            $("#sortStdArea").empty().append(html);
+            search();
+        }
+
+        // 선택 필터 영역에 검색어 추가
+        function setSchTxt(text){
+            // 선택 필터 영역 내 검색어 노출
+            var schTxtPrefix = "검색어 > ";
+            $("span:contains('" + schTxtPrefix + "')").parents("li").remove();
+
+            if(text != ""){
+                var schTxtVal = schTxtPrefix + text;
+                $("#schTxtInputArea input").attr("data-name", schTxtVal).prop("checked", true);
+                $("#schTxtInputArea label").text(schTxtVal);
+                $(ui.searchCustom.require).find("ul").prepend('<li><span>'+schTxtVal+'</span><a href="#none" class="del-item"><i class="ico-close"></i><span class="hide">해당항목 삭제</span></a></li>');
+                $(ui.searchCustom.require).show();
+            }
+        }
+    </script>
+    </div>
+
+<!-- 생활코딩 따라하기 -->
+<!-- <script>
+    var fetched = fecth('');
+    console.log('fetched', fetched);
+    fetched.then(function(result){
+        console.log('result')
+    })
+
+</script> -->
+
+</body>
+</html>

@@ -1,7 +1,10 @@
-from flask import Flask, redirect, url_for, render_template, request , flash, jsonify
+from flask import Flask, redirect, url_for, render_template, request , flash , flash, jsonify
 from flask import request, session
 from flask_mail import Mail, Message
-import pymysql, hashlib, json, re
+import pymysql
+import hashlib
+import re
+import json
 
 ## 2022 11 10 병합작업 1차버전입니다.
 ########### 데이터베이스 접속 전역변수 선언############
@@ -15,12 +18,12 @@ cursor = con.cursor()
 ###########데이터베이스 접속 전역변수 선언############
 app = Flask(__name__)
 ############ 구글메일(계정찾기 테스트) ################ 사이트 접근과 동시에 메일서버와 인터페이스 하면서 recipients 로 지정된 메일 주소로 이메일을 발송
-# app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-# app.config['MAIL_PORT'] = 465
-# app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
-# app.config['MAIL_PASSWORD'] = 'myhinigkzocytxcd'
-# app.config['MAIL_USE_TLS'] = False
-# app.config['MAIL_USE_SSL'] = True
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
+app.config['MAIL_PASSWORD'] = 'myhinigkzocytxcd'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
 @app.route('/accountfind')
@@ -53,8 +56,6 @@ def accountfind_proc():
 def passfind():
     return render_template('Board/account.html')
 
-
-
 ########### 구글메일 임시 종료 ##################
 
 
@@ -62,7 +63,7 @@ def passfind():
 
 @app.route('/')
 def home():
-    sql = "SELECT * from company_info"
+    sql = "SELECT * from recruitment"
     cursor.execute(sql)
     data_list = cursor.fetchall()
     data_list = data_list
@@ -75,45 +76,41 @@ def home():
 
 # --------------------------메뉴-----------------------------------
 
+
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
-    # print('여기')
+
+    if 'ID' in session:
+        user_id=session['ID']
+    else:
+        user_id='null'
+        
     sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
-    return render_template('Board/Condition.html', data_list=data_list)
-    
-@app.route('/search')  # 조건으로 찾기 - 기업정보
-def search():
-    with con.cursor() as cursor:  
-        s=request.args.get('area') 
-        p = s.split(',')
-        content = ''
-        for i in range(len(p)):
-            if (i+1) == len(p):                    
-                content += "'" + p[i] + "'"
-            else:
-                content += "'" + p[i] + "',"
-        print('>>>>>>>>>>>>'+ content,type(content))
-        print('!!!!!!!!!!!!!!!!'+content)
-        sql="SELECT * from company_info where `region` in ("+ content +")"
-        cursor.execute(sql)
-        rows=cursor.fetchall()
-        for row in rows:
-            print('............',row)
-        return rows
 
-@app.route('/excellence_employment')
-def excellence_employment():
-    return render_template('Board/excellence_employment.html')
 
-    
+    sql="select * from company_info left join like_company on company_info.data_id= like_company.data_id" 
+    cursor.execute(sql)
+    like_checked=cursor.fetchall()
+    print(like_checked[0]['id'])
+
+
+
+    sql = "SELECT * from like_company_view where m_id=%s"
+    cursor.execute(sql,(user_id,))
+    interest_com = cursor.fetchall()
+    interest_len=len(interest_com)
+    return render_template('Board/Condition.html',like_checked=like_checked,data_list=data_list,interest_com=interest_com,interest_len=interest_len,user_id=user_id)
+
+####################################################
 @app.route('/employtest') # 체크박스 test
 def employtest():
     try:
         with con.cursor() as cursor:
             
             s=request.args.get('area') 
+            
             p = s.split(',')
             content = ''
             for i in range(len(p)):
@@ -136,17 +133,53 @@ def employtest():
             return rows        
     finally:
         con.close()
+        
+########################################################찜하기 기능 
+
+@app.route('/interest_select') ###############.마이페이지 찜리스트 select
+def interest_select():
+    user_id=session['ID']
+    sql = "SELECT * from like_company_view where m_id=%s"
+    cursor.execute(sql,(user_id))
+    interest_com = cursor.fetchall()
+    interest_len = len(interest_com)
+    return render_template('Board/interest_company.html', interest_com=interest_com,interest_len=interest_len)
 
 
-# @app.route('/interest') ###############찜리스트 select
-# def interest():
-#     user_id=session['ID']
-#     sql = "SELECT * from like_company_view where m_id=%s"
-#     cursor.execute(sql,(user_id,))
-#     interest_com = cursor.fetchall()
-#     interest_len = len(interest_com)
-#     return render_template('Board/interest_company.html', interest_com=interest_com,interest_len=interest_len)
 
+@app.route('/interest_insert') ###############찜리스트 INSERT,UPDATE(DELETE)
+def interest_insert():
+    rs={}
+    try:
+        user_id=session['ID']
+        data_id=request.args.get('data_id')
+        sql="SELECT * from like_company where id=%s and data_id=%s"
+        cursor.execute(sql,(user_id,data_id))
+        like_company_all = cursor.fetchall()
+        print('>>>>>>',len(like_company_all))
+        if(len(like_company_all)>0):
+            print('like_update')
+            sql = "Update like_company SET result=%s where data_id=%s and id=%s;"
+            if(like_company_all[0]['result']=='0'):
+                cursor.execute(sql,(1,data_id,user_id))
+            else:
+                cursor.execute(sql,(0,data_id,user_id))
+            con.commit()
+            cnt=cursor.rowcount
+            rs = {'status':cnt}
+        else:
+            print('like_insert')
+            sql = "insert into like_company(ID,data_id,result) values(%s,%s,%s)"
+            cursor.execute(sql,(user_id,data_id,1))
+            con.commit()
+            cnt=cursor.rowcount
+            rs = {'status':cnt}
+    except Exception as e:
+        print(e)
+        rs = {'status': 0}
+    finally:  
+        return rs  
+        
 
 
 ########################################################
@@ -155,20 +188,47 @@ def employtest():
 @app.route('/company/<int:data_id>')  ############ 기업상세페이지
 def company(data_id):
     sql = "SELECT * from company_info where data_id = %s"
-    cursor.execute(sql, (data_id,))
+    cursor.execute(sql, (data_id, ))
     data_list = cursor.fetchall()
+    company=data_list[0]['industry']
     
-    #동종업계 추천하기
-    recommendation =data_list[0]['industry']
-    print(recommendation)
+
+
     allcom = "SELECT * FROM COMPANY_INFO where industry = %s" 
-    cursor.execute(allcom,(recommendation,))
+    cursor.execute(allcom,(company,))
     all_list = cursor.fetchall()
     return render_template('Board/company.html', data_list=data_list, all_list=all_list)
 
-@app.route('/jobs')  ################# 채용정보페이지
-def jobs():
-    return render_template('Board/jobs.html')
+
+@app.route('/excellence_employment') ###############채용정보페이지
+def excellence_employment():
+    return render_template('Board/excellence_employment.html')
+
+
+@app.route('/trend')  ################# 구직트렌드페이지 
+def trends():
+    return render_template('Board/trend.html')
+
+@app.route('/events')  ################# 채용정보페이지
+def events():
+    return render_template('Board/event.html')
+
+@app.route('/our_company')
+def our_company():
+    return render_template('Board/our_company.html')
+
+
+@app.route('/data')
+def data():
+    sql ='select All_Recruit,All_Employ from job_scale_total'
+    cursor.execute(sql)
+    data_list1 = cursor.fetchall()
+    data_list1 = data_list1
+    data_list1 = data_list1
+    data_list_len = len(data_list1)
+    print("인덱스길이data", data_list_len)
+   
+    return render_template('Board/data.html', data_list=data_list1)
 
 
 @app.route('/faq')  ############## 질문과 답변
@@ -214,6 +274,15 @@ def qustion_proc():
 
 
     return redirect('/qna')
+
+@app.route('/interest') ###############찜리스트 test
+def interest():
+    user_id=session['ID']
+    sql = "SELECT * from like_company_view where m_id=%s"
+    cursor.execute(sql,(user_id,))
+    interest_com = cursor.fetchall()
+    interest_len = len(interest_com)
+    return render_template('Board/interest_company.html', interest_com=interest_com,interest_len=interest_len)
 
 ##################### Index ###############
 
@@ -295,6 +364,7 @@ def join_proc():
         # 키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
         user_id = request.form['user_id']
         user_pw = request.form['user_pw']
+        # 키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
         user_name = request.form['user_name']
         user_phone = request.form['user_phone']
         user_email = request.form['user_email']
@@ -360,6 +430,7 @@ def my_page_proc():
 
             return render_template('Board/login.html')
 
+
 @app.route('/recent_inquiry_company')  # 활동내역 (열람기업)
 def recent_inquiry_company():
     return render_template('Board/r-i-c.html')
@@ -384,16 +455,14 @@ def trend():
 def chart():
     return render_template('Board/chart.html')
 
+
 @app.route('/bar')
 def bar():
     return render_template('Board/bar.html')
 
-@app.route('/events')
-def evnet():
-    return render_template('Board/event.html')
-
 
 #####################################
+
 
 SECRET_KEY = "dev"
 

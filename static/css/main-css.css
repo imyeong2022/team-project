@@ -224,29 +224,36 @@ footer {
 
 /* main select */
 .selectBoxList {
-	display: flex;
-	grid-gap: 30px;
+	grid-gap: 3vmin;
 }
-.selectBox2 * { box-sizing: border-box; }
+
+.selectBoxList>.box {
+	margin-bottom: 3vmin;
+}
+
+.selectBox2 * {
+	box-sizing: border-box;
+}
+
 .selectBox2 {
-  position: relative;
-  z-index: 1;
-  width: 150px;
-  height: 35px;
-  border-radius: 4px;
-  border: 2px solid lightcoral;
-  /* background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 7px) center no-repeat; */
-  background-size: 20px;
-  cursor: pointer;
+	position: relative;
+	z-index: 1;
+	width: 15vmin;
+	height: 3.5vmin;
+	border-radius: 0.4vmin;
+	border: 0.1vmin solid white;
+	/* background: url('https://freepikpsd.com/media/2019/10/down-arrow-icon-png-7-Transparent-Images.png') calc(100% - 7px) center no-repeat; */
+	background-size: 2vmin;
+	cursor: pointer;
 }
 
 .selectBox2:before {
-  content: '✔️';
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%); 
-  right: 5px; 
-  z-index: -1;
+	content: '✔️';
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	right: 0.5vmin;
+	z-index: -1;
 }
 
 
@@ -262,15 +269,16 @@ footer {
 }
 
 .selectBox2 .label {
-  display: flex;
-  align-items: center;
-  width: inherit;
-  height: inherit;
-  border: 0 none;
-  outline: 0 none;
-  padding-left: 15px;
-  background: transparent;
-  cursor: pointer;
+	color: #54ABFF;
+	display: flex;
+	align-items: center;
+	width: inherit;
+	height: inherit;
+	border: 0 none;
+	outline: 0 none;
+	padding-left: 1.5vmin;
+	background: white;
+	cursor: pointer;
 }
 
 .selectBox2 .optionList {

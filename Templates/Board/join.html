@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>login_form.html</title>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
     <script type="text/javascript">
         function selectAll(selectAll) {
             const checkboxes = document.getElementsByName('terms');
@@ -238,8 +238,13 @@
                     <input class="join-input-birth-end" type="text" name="user_birth-3" id="user_birth-3"
                         placeholder="DD" maxlength="2">
 
-=======
->>>>>>> 7fcae0f (11/22, 10:51 // our_company 추가)
+                <form class="login-form" action="/join_proc" method="post">
+                    <input class="join-input" type="text" name="user_id" placeholder="ID">
+                    <input class="join-input" type="text" name="user_pw" placeholder="PassWord">
+                    <input class="join-input" type="text" name="user_pw_check" placeholder="Re PassWord">
+                    <input class="join-input" type="text" name="user_name" placeholder="Name">
+                    <input class="join-input" type="text" name="user_phone" placeholder="Phone Number">
+                    <input class="join-input" type="text" name="user_birth" placeholder="Birth">
                     <hr />
                     <div class="join-check-all">
                         <input type="checkbox" name="terms" value="selectAll" onclick="selectAll(this)" /><b>모두 확인하였으며
@@ -264,15 +269,12 @@
                                 개인정보 수집 및 이용 동의.</b><br />
                         </div>
                         <div class="join-check-list">
-                            <input type="checkbox" name="terms" value="select-essential-4" required /><b>[필수] 개인정보 제3자
-                                제공
-                                동의.</b><br />
-                        </div>
+                            <input type="checkbox" name="terms" value="select-essential-4" /><b>[필수] 개인정보 제3자 제공
+                                동의.</b><br /></div>
                         <div class="join-check-list">
                             <input type="checkbox" name="terms" value="select-necessary-1" /><b>[선택] 마케팅 목적의 개인정보 수집 및
                                 이용
-                                동의.</b><br />
-                        </div>
+                                동의.</b><br /></div>
                         <div class="join-check-list">
                             <input type="checkbox" name="terms" value="select-necessary-2" /><b>[선택] 광고성 정보 수신
                                 동의.</b><br />
@@ -296,7 +298,6 @@
             <div></div>
         </section>
     </div>
-
 </body>
 
 </html>

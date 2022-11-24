@@ -517,6 +517,10 @@ def chart():
 def bar():
     return render_template('Board/bar.html')
 
+@app.route('/events')
+def evnet():
+    return render_template('Board/event.html')
+
 
 #####################################
 

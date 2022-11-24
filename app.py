@@ -134,7 +134,7 @@ def employtest():
     finally:
         con.close()
         
-########################################################찜하기 기능 
+########################################################찜하기 기능 ####################################
 
 @app.route('/interest_select') ###############.마이페이지 찜리스트 select
 def interest_select():
@@ -158,15 +158,27 @@ def interest_insert():
         like_company_all = cursor.fetchall()
         print('>>>>>>',len(like_company_all))
         if(len(like_company_all)>0):
-            print('like_update')
-            sql = "Update like_company SET result=%s where data_id=%s and id=%s;"
-            if(like_company_all[0]['result']=='0'):
-                cursor.execute(sql,(1,data_id,user_id))
-            else:
-                cursor.execute(sql,(0,data_id,user_id))
+            print('like_delete')
+            sql = "delete from like_company where data_id=%s and id=%s;"
+            cursor.execute(sql,(data_id,user_id))
             con.commit()
             cnt=cursor.rowcount
-            rs = {'status':cnt}
+            if(cnt>0):
+                rs = {'status':1000}
+            # print('like_update')
+            # sql = "Update like_company SET result=%s where data_id=%s and id=%s;"
+            # if(like_company_all[0]['result']=='0'):
+            #     cursor.execute(sql,(1,data_id,user_id))
+            # else:
+            #     cursor.execute(sql,(0,data_id,user_id))
+            # con.commit()
+            # cnt=cursor.rowcount
+            # if(like_company_all[0]['result']=='1' and cnt>0):
+            #     cnt=2
+            #     rs = {'status':cnt}
+            # if(like_company_all[0]['result']=='0' and cnt>0):
+            #     cnt=1
+            #     rs = {'status':cnt}
         else:
             print('like_insert')
             sql = "insert into like_company(ID,data_id,result) values(%s,%s,%s)"
@@ -182,7 +194,7 @@ def interest_insert():
         
 
 
-########################################################
+################################################################################
 
 
 @app.route('/company/<int:data_id>')  ############ 기업상세페이지
@@ -354,6 +366,19 @@ def mailcheck():
     print(value['code'])
 
     return jsonify(result = "success")
+    # return jsonify(result = "success")
+    mail_code = request.form
+    check_mail = mail_code['email']
+    check_code = mail_code['code']
+    print("메일체크"+check_mail)
+    print("코드체크"+check_code)
+    msg = Message('[잡아라] 회원가입 이메일 인증번호.',
+                  sender='kongjh941109@gmail.com', recipients=[check_mail])
+    msg.body = ('안녕하세요! 잡아라에서 알려드립니다.\n 회원가입 이메일 인증번호를 알려드립니다.\n -인증번호 : ' +
+                check_code+'\n 앞으로도 더욱 편리한 서비스를 제공하기 위해 최선을 다하겠습니다.')
+    mail.send(msg)
+
+    return jsonify({'msg': '회원님의 이메일로 아이디를 전송했습니다.'})
 
 
 @app.route('/join_proc', methods=['GET','POST'])
@@ -459,6 +484,10 @@ def chart():
 @app.route('/bar')
 def bar():
     return render_template('Board/bar.html')
+
+@app.route('/events')
+def evnet():
+    return render_template('Board/event.html')
 
 
 #####################################

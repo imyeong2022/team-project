@@ -28,18 +28,28 @@
                 data:param,
                 success: function (data) { 
                     console.log(data); 
-                    if (data['result']!==1){
-                        $(obj).prop("checked",true);      
-                    }
-                    else{
-                        $(obj).prop("checked",false); 
-                    }     
+                    // if (data['status']!=='0'){
+                    //     $(obj).prop("checked",true);      
+                    // }  
+                    // else if(data['status']!=='0' & data['status']=='1000'){
+                    //     $(obj).prop("checked",false); 
+                    // }
+                    // else{
+                    //     $(obj).prop("checked",false); 
+                    // }
+                    var chkList = $("input[name=interestCheck]");
+                    $("#interestCheck").on("click", function(){ 
+                        if($(this).is(":checked")){
+                            chkList.prop("checked", true);
+                        }else
+                            chkList.prop("checked", false);
+
+                    });
                 },
                 error: function (request, status, error) {
                     console.log(request, status,error);
                 }
             });    
-            // });
         }
 
         }

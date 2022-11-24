@@ -79,29 +79,33 @@ def home():
 
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
-
-    if 'ID' in session:
-        user_id=session['ID']
-    else:
-        user_id='null'
-        
-    sql = "SELECT * from company_info"
-    cursor.execute(sql)
-    data_list = cursor.fetchall()
-
-
-    sql="select * from company_info left join like_company on company_info.data_id= like_company.data_id" 
-    cursor.execute(sql)
-    like_checked=cursor.fetchall()
-    print(like_checked[0]['id'])
+    try:
+        if 'ID' in session:
+            user_id=session['ID']
+        else:
+            user_id='null'
+            
+        sql = "SELECT * from company_info"
+        cursor.execute(sql)
+        data_list = cursor.fetchall()
 
 
+        sql="select * from company_info left join like_company on company_info.data_id= like_company.data_id" 
+        cursor.execute(sql)
+        like_checked=cursor.fetchall()
+        print(like_checked[0]['id'])
 
-    sql = "SELECT * from like_company_view where m_id=%s"
-    cursor.execute(sql,(user_id,))
-    interest_com = cursor.fetchall()
-    interest_len=len(interest_com)
-    return render_template('Board/Condition.html',like_checked=like_checked,data_list=data_list,interest_com=interest_com,interest_len=interest_len,user_id=user_id)
+
+
+        sql = "SELECT * from like_company_view where m_id=%s"
+        cursor.execute(sql,(user_id,))
+        interest_com = cursor.fetchall()
+        interest_len=len(interest_com)
+    except Exception as e:
+        print(e)
+    finally:
+        # con.close()
+        return render_template('Board/Condition.html',like_checked=like_checked,data_list=data_list,interest_com=interest_com,interest_len=interest_len,user_id=user_id)
 
 ####################################################
 @app.route('/employtest') # 체크박스 test
@@ -130,9 +134,11 @@ def employtest():
             for row in rows:
                 print('............',row)
             # return jsonify(rows)
-            return rows        
-    finally:
-        con.close()
+            return rows       
+    except Exception as e:
+        print(e)
+    # finally:
+        # con.close()
         
 ########################################################찜하기 기능 ####################################
 
@@ -190,6 +196,7 @@ def interest_insert():
         print(e)
         rs = {'status': 0}
     finally:  
+        # con.close()
         return rs  
         
 

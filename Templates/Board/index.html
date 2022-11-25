@@ -33,6 +33,19 @@
 			align-items: center;
 		}
 	</style>
+
+	<script type="text/javascript">
+		function commpanypage(e) {
+			// 자바스크립트로 링크 이동하기 : location.href
+			var link = 
+			location.href = "/company/" + link;
+			// form에서는 페이지 이동 전에 데이터가 들어있는지 확인이 번거롭다.
+			// 데이터를 확인하고 그 데이터를 가지고 링크를 이동하기 위해서는 
+			// 자바스크립트에서 데이터 확인을 거치고 직접 보내주는 것이 좋다
+
+
+		}
+	</script>
 </head>
 
 <body>
@@ -64,14 +77,15 @@
 						<a class="a-text-decoration" href="/condition">전체보기</a>
 					</div>
 					<form method='post' action="/">
-					<ul class="main-gird-ul">
-						{% for x in range(6) %}
-						<a class="a-text-decoration a-color aos-item" name="cookie" href='/company/{{data_list[x].data_id}}'
+						<ul class="main-gird-ul">
+							{% for x in range(6) %}
+							<a class="a-text-decoration a-color aos-item" name="cookie" onclick="commpanypage('{{x}}')"
 							style="cursor:pointer" data-aos="fade-right">
 							<li class="main-gird-li">
 								<span class="grid-sub-blue">{{ data_list[x].main_product }}</span>
 								<p class="grid-title">{{ data_list[x].company }}</p>
 								<p class="grid-sub-text">{{ data_list[x].employment }}</p>
+								<input type="hidden" id="data_id" name="data_id" value="{{data_list[x].data_id}}">
 							</li>
 						</a>
 						{% endfor %}
@@ -85,33 +99,32 @@
 	<script src="../../static/js/aos.js"></script>
 	<script>
 		AOS.init({
-			easing: 'ease-in-out-sine'
-		});
-	</script>
-	<!-- Swiper JS -->
-	<script src="./js/swiper.min.js"></script>
-	<script>
-		var swiper = new Swiper('.swiper-container', {
-			loop: true,
-			loopAdditionalSlides: 1,
-			keyboard: {
-				enabled: true,
-			},
-			cubeEffect: {
-				shadow: true,
-				slideShadows: true,
-				shadowOffset: 20,
-				shadowScale: 0.94,
-			},
-			pagination: {
-				el: '.swiper-pagination',
-			},
-			autoplay: {
-				delay: 2500,
-				disableOnInteraction: false,
-			},
-		});
-	</script>
+			easing: ' ease-in-out-sine'
+		}); </script>
+								<!-- Swiper JS -->
+								<script src="./js/swiper.min.js"></script>
+								<script>
+									var swiper = new Swiper('.swiper-container', {
+										loop: true,
+										loopAdditionalSlides: 1,
+										keyboard: {
+											enabled: true,
+										},
+										cubeEffect: {
+											shadow: true,
+											slideShadows: true,
+											shadowOffset: 20,
+											shadowScale: 0.94,
+										},
+										pagination: {
+											el: '.swiper-pagination',
+										},
+										autoplay: {
+											delay: 2500,
+											disableOnInteraction: false,
+										},
+									});
+								</script>
 </body>
 
 </html>

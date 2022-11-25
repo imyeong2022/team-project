@@ -16,6 +16,7 @@
                         <ol class="public-ol">
                             <li class="public-li">index</li>
                             <li class="public-li">마이페이지</li>
+                            <li class="public-li">나의 활동 내역</li>
                             <li class="public-li">나의 문의 내역</li>
                         </ol>
                     </div>
@@ -39,22 +40,42 @@
                                 <td colspan="5">문의내역</td>
                             </p>
                         </tr>
-                        <tr align="center" bgcolor="skybule">
+                        <tr align="center" bgcolor="skybule" >
 
-                            <td>번호</td>
+                            <td>문의번호</td>
                             <td>제목</td>
                             <td>문의 일자</td>
                             <td>답변 여부</td>
+                            <td>답변 일자</td>
                         </tr>
                         {% for x in range(my_qna_view_len) %}
-                        <tr align="center">
+                        <tr align="center" style="line-height:2;">
                             
-                            <td>1,000,000</td>
-                            <td>-</td>
-                            <td>2022.11.11</td>
-                            <td>🌟</td>
+                            <td>{{ my_qna_view[x].idx }}</td>
+                            <td>{{ my_qna_view[x].subject }}</td>
+                            <td>{{ date_list[x] }}</td>
+                            {% if (my_qna_view[x].reply == 'Y') %}
+                            <td>답변완료</td>
+                            <td>{{ reply_list[x] }}</td>
+                            {% else %}
+                            <td>미답변</td>
+                            {% endif %}
+                            
                         </tr>
                         {% endfor %}
+                        {% if my_qna_view_len == 0 %}
+                        <br>
+                        <tr align="center">
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                        <tr align="center">
+                        <td colspan="5">문의내역이 없습니다.</td>
+                        </tr>
+                        {% endif %}
                     </table>
                 </div>
             </article>

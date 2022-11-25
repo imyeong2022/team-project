@@ -92,6 +92,7 @@
                 return false;
             }
 
+
             if (!birthExp.test(userbirth)) {
                 alert("생년월일이 올바르지 않습니다.")
                 return false;
@@ -202,6 +203,7 @@
             </div>
             <hr class="public-hr" />
             <div class="login-form-div">
+
                 <form class="login-form" action="/join_proc" method="post" onsubmit="return Validation();">
                     <div>
                         <input class="join-input" type="text" name="user_id" id="user_id" placeholder="ID"

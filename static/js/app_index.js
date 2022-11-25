@@ -33,7 +33,7 @@ function area_search() {
     const param = { areatag: str };
     $.ajax({
         type: "GET",
-        url: "/condition",
+        url: "/searchIndex",
         dataType: "json",
         data: param,
         success: function (data_list) {

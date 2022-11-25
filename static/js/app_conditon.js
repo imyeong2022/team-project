@@ -1,7 +1,6 @@
 var valueList = document.getElementById("valueList");
 var text = "<span> You have selected : </span>";
 var areaList = []; 
-
 var checkboxes = document.querySelectorAll(".checkbox"); // condition 페이지
 
 for (var checkbox of checkboxes) {
@@ -17,11 +16,14 @@ for (var checkbox of checkboxes) {
 }
 
 
-
+const form = document.searchform;
 function checkbox_test() {
   let str = areaList.join();
   alert(str);
-  const param = { area: str };
+  alert('aaa');
+  const param = { areatag: str };
+
+
   $.ajax({
     type: "GET",
     url: "/search",

@@ -2,16 +2,23 @@ from flask import Flask, redirect, url_for, render_template, request , flash, js
 from flask import request, session
 from flask_mail import Mail, Message
 import pymysql, hashlib, json, re
+# import mysql.connector
 
-## 2022 11 10 병합작업 1차버전입니다.
-########### 데이터베이스 접속 전역변수 선언############
+host='localhost'
+user='root'
+password='java'
+db='final_test'
+charset='utf8mb4'
+# def main(): #DB Connection 생성
 con = pymysql.connect(host='localhost',
-                             user='root',
-                             password='java',
-                             db='final_test',
-                             charset='utf8mb4',
-                             cursorclass=pymysql.cursors.DictCursor)
-cursor = con.cursor()
+                                user='root',
+                                password='java',
+                                db='final_test',
+                                charset='utf8mb4',
+                                cursorclass=pymysql.cursors.DictCursor)
+# sql_all =  "SELECT * from company_info"                              
+cursor = con.cursor() # 커서 생성   
+# con.close()
 ###########데이터베이스 접속 전역변수 선언############
 app = Flask(__name__)
 ############ 구글메일(계정찾기 테스트) ################ 사이트 접근과 동시에 메일서버와 인터페이스 하면서 recipients 로 지정된 메일 주소로 이메일을 발송
@@ -53,8 +60,6 @@ def accountfind_proc():
 def passfind():
     return render_template('Board/account.html')
 
-
-
 ########### 구글메일 임시 종료 ##################
 
 
@@ -71,20 +76,31 @@ def home():
     print("인덱스길이", data_list_len)
 
     return render_template('Board/index.html', data_list=data_list)
-
+    
 
 # --------------------------메뉴-----------------------------------
 
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
     # print('여기')
-    sql = "SELECT * from company_info"
-    cursor.execute(sql)
-    data_list = cursor.fetchall()
-    return render_template('Board/Condition.html', data_list=data_list)
+    # try :
+    #     with con.cursor() as cursor:
+    #         sql = "SELECT * from company_info"
+    #         cursor.execute(sql)
+    #         data_list = cursor.fetchall()
+    #         return render_template('Board/Condition.html', data_list=data_list)
+    # finally :
+    #     con.close()
+     with con.cursor() as cursor:
+        sql = "SELECT * from company_info"
+        cursor.execute(sql)
+        data_list = cursor.fetchall()
+        # cursor.close()
+        return render_template('Board/Condition.html', data_list=data_list)
     
 @app.route('/search')  # 조건으로 찾기 - 기업정보
 def search():
+
     with con.cursor() as cursor:  
         s=request.args.get('area') 
         p = s.split(',')
@@ -97,11 +113,34 @@ def search():
         print('>>>>>>>>>>>>'+ content,type(content))
         print('!!!!!!!!!!!!!!!!'+content)
         sql="SELECT * from company_info where `region` in ("+ content +")"
-        cursor.execute(sql)
+        cursor = con.execute(sql)
         rows=cursor.fetchall()
         for row in rows:
             print('............',row)
         return rows
+
+    # try:
+    #     with con.cursor() as cursor:  
+    #         s=request.args.get('area') 
+    #         p = s.split(',')
+    #         content = ''
+    #         for i in range(len(p)):
+    #             if (i+1) == len(p):                    
+    #                 content += "'" + p[i] + "'"
+    #             else:
+    #                 content += "'" + p[i] + "',"
+    #         print('>>>>>>>>>>>>'+ content,type(content))
+    #         print('!!!!!!!!!!!!!!!!'+content)
+    #         sql="SELECT * from company_info where `region` in ("+ content +")"
+    #         cursor.execute(sql)
+    #         rows=cursor.fetchall()
+    #         for row in rows:
+    #             print('............',row)
+    #         return rows
+    # finally:
+    #     con.close()
+
+
 
 @app.route('/excellence_employment')
 def excellence_employment():

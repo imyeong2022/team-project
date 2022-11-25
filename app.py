@@ -163,20 +163,6 @@ def interest_insert():
             cnt=cursor.rowcount
             if(cnt>0):
                 rs = {'status':1000}
-            # print('like_update')
-            # sql = "Update like_company SET result=%s where data_id=%s and id=%s;"
-            # if(like_company_all[0]['result']=='0'):
-            #     cursor.execute(sql,(1,data_id,user_id))
-            # else:
-            #     cursor.execute(sql,(0,data_id,user_id))
-            # con.commit()
-            # cnt=cursor.rowcount
-            # if(like_company_all[0]['result']=='1' and cnt>0):
-            #     cnt=2
-            #     rs = {'status':cnt}
-            # if(like_company_all[0]['result']=='0' and cnt>0):
-            #     cnt=1
-            #     rs = {'status':cnt}
         else:
             print('like_insert')
             sql = "insert into like_company(ID,data_id,result) values(%s,%s,%s)"
@@ -286,7 +272,7 @@ def qustion_proc():
 
     return redirect('/qna')
 
-@app.route('/interest') ###############찜리스트 test
+@app.route('/interest') ###############마이페이지 나의 활동내역 --찜리스트 select
 def interest():
     user_id=session['ID']
     sql = "SELECT * from like_company_view where m_id=%s"
@@ -294,6 +280,59 @@ def interest():
     interest_com = cursor.fetchall()
     interest_len = len(interest_com)
     return render_template('Board/interest_company.html', interest_com=interest_com,interest_len=interest_len)
+
+
+@app.route('/interest_delete') ###############마이페이지 나의 활동내역 --찜리스트 delete
+def interest_delete():
+    user_id=session['ID']
+    try:
+        with con.cursor() as cursor:
+            s=request.args.get('likeDelete') 
+            
+            s=int(s)
+            print('>>>>>>>>>>>>'+ s,type(s))
+            
+
+            p = s.split(',')
+            content = ''
+            for i in range(len(p)):
+                if (i+1) == len(p):                    
+                    content += "'" + p[i] + "'"
+                else:
+                    content += "'" + p[i] + "',"
+            print('>>>>>>>>>>>>'+ content,type(content))
+
+            print('!!!!!!!!!!!!!!!!'+content)
+            
+            content=int(content)
+            print('>>>>>>>>>>>>'+ content,type(content))
+
+            sql="delete from like_company where 'data_id' in ("+ content +") and id=%s;"
+
+            # sql="delete from like_company where 'data_id' in ("+ content +") and id=%s;"
+            cursor.execute(sql,(user_id,))
+            cnt=cursor.rowcount
+            rs = {'status':cnt}
+            print(rs)
+            # rs={}
+            # user_id=session['ID']
+            # data_id=1212
+            # sql = "delete from like_company where data_id=%s and id=%s;"
+            # cursor.execute(sql,(data_id,user_id,))
+            # cnt=cursor.rowcount
+            # rs = {'status':cnt}
+    except Exception as e:
+        rs = {'status':0}
+        print(e)
+    finally:
+        return rs
+
+
+    
+
+
+
+
 
 ##################### Index ###############
 
@@ -458,15 +497,13 @@ def my_page_proc():
 @app.route('/recent_inquiry_company')  # 활동내역 (열람기업)
 def recent_inquiry_company():
     user_id=session['ID']
-    sql = "SELECT * from like_company_view where m_id=%s"
-    cursor.execute(sql,(user_id))
+    sql = "select * from like_company left join like_company_view on like_company.data_id= like_company_view.data_id where id=%s"
+    cursor.execute(sql,(user_id,))
     interest_com = cursor.fetchall()
-    interest_len = len(interest_com)
+    interest_len=len(interest_com)
 
-
-
-    
     return render_template('Board/r-i-c.html',interest_com=interest_com,interest_len=interest_len)
+
 
 
 @app.route('/personal-info-change')  # 회원정보수정

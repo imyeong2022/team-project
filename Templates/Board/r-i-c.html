@@ -40,6 +40,45 @@
 
 
 
+function delete_likeCom(){
+    var DeleteList=[]
+
+    const query = 'input[name="likeCom"]:checked';
+    const selectedEls = 
+        document.querySelectorAll(query);
+    
+    // 선택된 목록에서 value 찾기
+    let result = '';
+    selectedEls.forEach((el) => {
+        result += el.value + ',';
+    });
+    const newStr = result.substring(0, result.length - 1);
+    DeleteList.push(newStr)
+    alert(DeleteList)
+
+    
+    let str = DeleteList.join();
+    alert(str)
+    const param ={'likeDelete':str};
+    //체크박스 값들 
+    $.ajax({
+        type:'GET',
+        url:'/interest_delete',
+        dataType:'json',
+        data:param,
+        success: function (data) { 
+            console.log(data); 
+        },
+        error: function (request, status, error) {
+            console.log(request, status,error);
+        }
+    });    
+}
+
+
+
+
+
 
 </script>
 
@@ -91,10 +130,10 @@
                         </tr>
                         {% for x in range(interest_len) %}
                         <tr align="center">
-                            <td><input type="checkbox" class="checkbox_One" name="likeCom" onclick="checkSelectAll('{{interest_com[x].data_id}}','{{user_id}}');"></td>
+                            <td><input type="checkbox" class="checkbox_One" name="likeCom" value="{{ interest_com[x].data_id }}" onclick="checkSelectAll('{{interest_com[x].data_id}}','{{user_id}}');"></td>
                             <td><a onclick="location.href='/company/{{interest_com[x].data_id}}';" style="cursor:pointer">{{ interest_com[x].company }}</a></td>
                             <td>{{ interest_com[x].employment }}</td>
-                            <td>2022.11.11</td>
+                            <td>{{ interest_com[x].indate.strftime("%Y-%m-%d") }}</td>
                             <td>🌟</td>
                         </tr>
                         {% endfor %}

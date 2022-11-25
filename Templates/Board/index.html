@@ -12,12 +12,13 @@
     <![endif]-->
 	<!-- slider styles -->
 
-	
+
 	<style>
 		.swiper-container {
 			width: 100%;
 			height: 80vmin;
 		}
+
 		.swiper-slide {
 			text-align: center;
 			font-size: 18px;
@@ -38,6 +39,7 @@
 		}
 	</style>
 </head>
+
 <body>
 	{% include '/Board/header.html' %}
 	<div class="main-div">
@@ -45,9 +47,26 @@
 			<div class="main-section-slider-div">
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
-						{% for i in range(4) %}
-						<div class="swiper-slide">Slide {{i}}</div>
-						{% endfor %}
+						<div class="swiper-slide">
+							<a href="https://www.smes.go.kr/gsmb/main">
+								<img src="../../static/source/index/01.jpg">
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="/condition">
+								<img src="../../static/source/index/02.jpg">
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="/evnet">
+								<img src="../../static/source/index/03.jpg">
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="/trent">
+								<img src="../../static/source/index/04.jpg">
+							</a>
+						</div>
 					</div>
 					<!-- Add Pagination -->
 					<div class="swiper-pagination"></div>
@@ -67,18 +86,18 @@
 						<a class="a-text-decoration" href="/condition">전체보기</a>
 					</div>
 					<form method='post' action="/">
-					<ul class="main-gird-ul">
-						{% for x in range(6) %}
-						<a class="a-text-decoration a-color aos-item" name="cookie" href='/company/{{data_list[x].data_id}}'
-							style="cursor:pointer" data-aos="fade-right">
-							<li class="main-gird-li">
-								<span class="grid-sub-blue">{{ data_list[x].main_product }}</span>
-								<p class="grid-title">{{ data_list[x].company }}</p>
-								<p class="grid-sub-text">{{ data_list[x].employment }}</p>
-							</li>
-						</a>
-						{% endfor %}
-					</ul>
+						<ul class="main-gird-ul">
+							{% for x in range(6) %}
+							<a class="a-text-decoration a-color aos-item" name="cookie"
+								href='/company/{{data_list[x].data_id}}' style="cursor:pointer" data-aos="fade-right">
+								<li class="main-gird-li">
+									<span class="grid-sub-blue">{{ data_list[x].main_product }}</span>
+									<p class="grid-title">{{ data_list[x].company }}</p>
+									<p class="grid-sub-text">{{ data_list[x].employment }}</p>
+								</li>
+							</a>
+							{% endfor %}
+						</ul>
 					</form>
 				</article>
 				<section class="bg-47 bg-index">
@@ -95,7 +114,8 @@
 									<div class="selectBox2 ">
 										<button type="button" class="label">지역 🍊</button>
 										<ul class="optionList">
-											<li class="optionItem" data-value="서울"><input type="checkbox"id="전체" value="전체" class="checkbox">
+											<li class="optionItem" data-value="서울"><input type="checkbox" id="전체"
+													value="전체" class="checkbox">
 												<label for="check-100">전체</label></li>
 											<li class="optionItem" data-value="서울"><input type="checkbox" id="check-서울"
 													class="checkbox" name="areatag" value="서울" data-name="서울">
@@ -185,23 +205,31 @@
 										<button type="button" class="label">복지 🍟</button>
 										<ul class="optionList">
 											<li class="optionItem" value="pizza"><label for="check-600">전체</label>
-												<input type="checkbox" id="check-600" class="checkbox check-all checked" name="welfaretag" data-name="전체" checked="checked"></li>
-											<li class="optionItem"><input type="checkbox" id="check-W00" class="checkbox check-empty" name="welfaretag" data-name="공제·기타">
+												<input type="checkbox" id="check-600" class="checkbox check-all checked"
+													name="welfaretag" data-name="전체" checked="checked"></li>
+											<li class="optionItem"><input type="checkbox" id="check-W00"
+													class="checkbox check-empty" name="welfaretag" data-name="공제·기타">
 												<label for="check-W00">공제·기타</label></li>
-											<li class="optionItem"><input type="checkbox" id="check-W01" class="checkbox check-empty" name="welfaretag" data-name="연금·보험">
+											<li class="optionItem"><input type="checkbox" id="check-W01"
+													class="checkbox check-empty" name="welfaretag" data-name="연금·보험">
 												<label for="check-W01">연금·보험</label></li>
-											<li class="optionItem"><input type="checkbox" id="check-W02" class="checkbox check-empty" name="welfaretag" data-name="교육·연수">
+											<li class="optionItem"><input type="checkbox" id="check-W02"
+													class="checkbox check-empty" name="welfaretag" data-name="교육·연수">
 												<label for="check-W02">교육·연수</label></li>
-											<li class="optionItem"><input type="checkbox" id="check-W03" class="checkbox check-empty" name="welfaretag" data-name="생활편의·여가행사">
+											<li class="optionItem"><input type="checkbox" id="check-W03"
+													class="checkbox check-empty" name="welfaretag"
+													data-name="생활편의·여가행사">
 												<label for="check-W03">생활편의·여가행사</label></li>
-											<li class="optionItem"><input type="checkbox" id="check-W04" class="checkbox check-empty" name="welfaretag" data-name="보상·수당·지원">
+											<li class="optionItem"><input type="checkbox" id="check-W04"
+													class="checkbox check-empty" name="welfaretag" data-name="보상·수당·지원">
 												<label for="check-W04">보상·수당·지원</label></li>
-											<li class="optionItem"> <input type="checkbox" id="check-W06" class="checkbox check-empty" name="welfaretag" data-name="휴무·휴가·행사">
+											<li class="optionItem"> <input type="checkbox" id="check-W06"
+													class="checkbox check-empty" name="welfaretag" data-name="휴무·휴가·행사">
 												<label for="check-W06">휴무·휴가·행사</label></li>
 										</ul>
 									</div>
 								</div>
-								<button type="submit">전송</button>
+								<button class="index-button" type="submit">전송</button>
 							</form>
 						</div>
 					</article>
@@ -274,10 +302,11 @@
 		}
 	</script>
 </body>
+
 </html>
 
-	<!-- Swiper JS -->
-	<!-- <script src="./js/swiper.min.js"></script>
+<!-- Swiper JS -->
+<!-- <script src="./js/swiper.min.js"></script>
 	<script>
 		var swiper = new Swiper('.swiper-container', {
 			loop: true,

@@ -9,13 +9,15 @@ import datetime
 
 ## 2022 11 10 병합작업 1차버전입니다.
 ########### 데이터베이스 접속 전역변수 선언############
-con = pymysql.connect(host='localhost',
+def dbcall():
+    con = pymysql.connect(host='localhost',
                              user='root',
                              password='java',
                              db='final_test',
                              charset='utf8mb4',
                              cursorclass=pymysql.cursors.DictCursor)
-cursor = con.cursor()
+    return con
+    
 ###########데이터베이스 접속 전역변수 선언############
 app = Flask(__name__)
 ############ 구글메일(계정찾기 테스트) ################ 사이트 접근과 동시에 메일서버와 인터페이스 하면서 recipients 로 지정된 메일 주소로 이메일을 발송
@@ -45,6 +47,8 @@ def getcookie():
 
 @app.route('/accountfind')
 def accountfind():
+    con = dbcall()
+    cursor = con.cursor()
     sql = "SELECT ID,email from member"
     cursor.execute(sql)
     userlist2 = cursor.fetchall()
@@ -55,6 +59,8 @@ def accountfind():
 
 @app.route('/accountfind_proc', methods=['POST'])
 def accountfind_proc():
+    con = dbcall()
+    cursor = con.cursor()
     user_name_recive = request.form['user_name_give']
     user_email_recive = request.form['user_email_give']
     sql = "SELECT ID from member where name = %s and email = %s"
@@ -71,7 +77,7 @@ def accountfind_proc():
 
 @app.route('/passfind')
 def passfind():
-    return render_template('Board/account.html')
+    return render_template('Board/password.html')
 
 ########### 구글메일 임시 종료 ##################
 
@@ -80,6 +86,8 @@ def passfind():
 
 @app.route('/')
 def home():
+    con = dbcall()
+    cursor = con.cursor()
     sql = "SELECT * from recruitment"
     cursor.execute(sql)
     data_list = cursor.fetchall()
@@ -103,6 +111,8 @@ def home():
 
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
+    con = dbcall()
+    cursor = con.cursor()
     try:
         if 'ID' in session:
             user_id=session['ID']
@@ -134,6 +144,8 @@ def condition():
 ####################################################
 @app.route('/employtest') # 체크박스 test
 def employtest():
+    con = dbcall()
+    cursor = con.cursor()
     try:
         with con.cursor() as cursor:
             
@@ -168,6 +180,8 @@ def employtest():
 
 @app.route('/interest_select') ###############.마이페이지 찜리스트 select
 def interest_select():
+    con = dbcall()
+    cursor = con.cursor()
     user_id=session['ID']
     sql = "SELECT * from like_company_view where m_id=%s"
     cursor.execute(sql,(user_id,))
@@ -180,6 +194,8 @@ def interest_select():
 
 @app.route('/interest_insert') ###############찜리스트 INSERT,UPDATE(DELETE)
 def interest_insert():
+    con = dbcall()
+    cursor = con.cursor()
     rs={}
     try:
         user_id=session['ID']
@@ -231,6 +247,8 @@ def interest_insert():
 
 @app.route('/company/<int:data_id>')  ############ 기업상세페이지
 def company(data_id):
+    con = dbcall()
+    cursor = con.cursor()
     sql = "SELECT * from company_info where data_id = %s"
     cursor.execute(sql, (data_id, ))
     data_list = cursor.fetchall()
@@ -264,6 +282,8 @@ def our_company():
 
 @app.route('/data')
 def data():
+    con = dbcall()
+    cursor = con.cursor()
     sql ='select All_Recruit,All_Employ from job_scale_total'
     cursor.execute(sql)
     data_list1 = cursor.fetchall()
@@ -277,6 +297,8 @@ def data():
 
 @app.route('/faq')  ############## 질문과 답변
 def faq():
+    con = dbcall()
+    cursor = con.cursor()
     sql = "SELECT * from faq"
     cursor.execute(sql)
     faq_list = cursor.fetchall()
@@ -287,6 +309,8 @@ def faq():
 
 @app.route('/qna') ########### 질문게시판
 def qna():
+    con = dbcall()
+    cursor = con.cursor()
     sql = "SELECT * from qna"
     cursor.execute(sql)
     qna_list = cursor.fetchall()
@@ -304,6 +328,8 @@ def qnastion():
         
 @app.route('/question_proc', methods=['POST']) ########## 질문페이지
 def qustion_proc():
+    con = dbcall()
+    cursor = con.cursor()
     if request.method == 'POST':
         print(session['ID'])
         ID = request.form['ID']
@@ -322,6 +348,8 @@ def qustion_proc():
 
 @app.route('/answer', methods=['POST'])  # 답변으로 넘기기
 def answer():
+    con = dbcall()
+    cursor = con.cursor()
     cursor = con.cursor()
     if (session['logFlag'] == True) and (session['admin'] == '1'):
         print("세션확인", session['logFlag'], session['admin'])
@@ -340,6 +368,7 @@ def answer():
 
 @app.route('/qnaview')  #마이페이지 나의 문의목록
 def qnaview():
+    con = dbcall()
     cursor = con.cursor()
     user_id = session['ID']
     sql = "SELECT * from my_qna_view where id=%s"
@@ -362,6 +391,8 @@ def qnaview():
 
 @app.route('/interest')  # 찜리스트 test
 def interest():
+    con = dbcall()
+    cursor = con.cursor()
     user_id=session['ID']
     sql = "SELECT * from like_company_view where m_id=%s"
     cursor.execute(sql,(user_id,))
@@ -379,6 +410,8 @@ def login_form_get():
 
 @app.route('/login_proc', methods=['POST'])
 def login_proc():
+    con = dbcall()
+    cursor = con.cursor()
 
     if request.method == 'POST':  # request객체 안에 method 기능있음(자바도 마찬가지).
         # 키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
@@ -424,12 +457,14 @@ def logout_proc():
 
 @app.route('/join_form_get')
 def join_form_get():
-        idcheck = 'select ID from member'
-        cursor.execute(idcheck)
-        id_list = cursor.fetchall()
-        print("id_list값",id_list)
-        print("id_list의타입",type(id_list))
-        return render_template('Board/join.html' , data=json.dumps(id_list, ensure_ascii=False))
+    con = dbcall()
+    cursor = con.cursor()
+    idcheck = 'select ID from member'
+    cursor.execute(idcheck)
+    id_list = cursor.fetchall()
+    print("id_list값",id_list)
+    print("id_list의타입",type(id_list))
+    return render_template('Board/join.html' , data=json.dumps(id_list, ensure_ascii=False))
 
 @app.route('/mailcheck', methods=['post'])    
 def mailcheck():
@@ -456,6 +491,8 @@ def mailcheck():
 
 @app.route('/join_proc', methods=['GET','POST'])
 def join_proc():
+    con = dbcall()
+    cursor = con.cursor()
     Idexp = re.compile('^[a-zA-Z0-9]{4,12}$')
 
     if request.method == 'POST':  # request객체 안에 method 기능있음(자바도 마찬가지).
@@ -511,7 +548,8 @@ def my_page():
 
 @app.route('/my_page_proc', methods=['GET', 'POST'])
 def my_page_proc():
-
+    con = dbcall()
+    cursor = con.cursor()
     if request.method == 'POST':  # request객체 안에 method 기능있음(자바도 마찬가지).
         # 키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
         user_id = request.form['user_id']
@@ -558,9 +596,13 @@ def chart():
 def bar():
     return render_template('Board/bar.html')
 
-@app.route('/events')
+@app.route('/event')
 def evnet():
     return render_template('Board/event.html')
+
+@app.route('/ourcompany')
+def ourcompany():
+    return render_template('Board/our_company.html')
 
 
 #####################################

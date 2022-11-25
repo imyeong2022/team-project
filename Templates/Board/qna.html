@@ -9,7 +9,7 @@
 <body>
     {% include 'Board/header.html' %}
     <div class="main-div">
-        <section class="main-section">
+        <section class="main-section m16">
             <div class="title-area">
                 <div class="inner">
                     <div class="public-list">
@@ -58,6 +58,12 @@
                 </div>
                 <div class="faq-content">
                     <p>전체 : {{qna_len}}건 | 완료된 질문 {{qna_len}}건/ {{qna_len}}건</p>
+                    <div class="ib">
+                        <div class="qna-div-1 fl">번호</div>
+                        <div class="qna-div-2 fl" style="cursor:pointer">제목</div>
+                        <div class="qna-div-3 fl">작성자</div>
+                        <div class="qna-div-4 fl">작성시간</div>
+                    </div>
                     <hr />
                     <div class="qna-section">
                         <ul class="qna">
@@ -66,7 +72,7 @@
                                 <input type="checkbox" id="qna-{{x}}">
                                 <label for="qna-{{x}}">
                                     <div class="qna-div-1">{{qna_list[x].idx}}</div>
-                                    <div class="qna-div-2"  style="cursor:pointer">{{qna_list[x].subject}}</div>
+                                    <div class="qna-div-2" style="cursor:pointer">{{qna_list[x].subject}}</div>
                                     <div class="qna-div-3">{{qna_list[x].ID}}</div>
                                     <div class="qna-div-4">{{qna_list[x].create_date}}</div>
                                 </label>

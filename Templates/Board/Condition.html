@@ -39,7 +39,7 @@
         <!-- <div class = "search-area"> content-area -->
             <form class = "search-area" id = "searchForm" name ="searchForm" method="get" action="condition"> <!-- content-area -->
                 <input type = "hidden" id="pg" value="1">
-                <!-- <input type="hidden" id="area" name="area" value=""> -->
+                <input type="hidden" id="area" name="area" value="">
                 <!-- 지역 -->
                 <!-- <input type="hidden" id="sic" name="sic" value=""> -->
                 <!-- 업종 -->
@@ -361,12 +361,7 @@
                         <div class = "box-text">
                             <div class="box-btn-area">
                                 <a class="btn btn-default btn-md"><div><span>☆ 관심기업 등록하기</span></div></a>
-                                    <!-- {# if문으로 관심기업아니면 ☆ 관심기업이면 ★ #}
-                                     <div class="custom-checkbox"> 
-                                        <input type="checkbox" id="interestCheck-{{ data_list[x].data_id}}" class="checkbox-star" onclick="intrstYnSave(this);" name="interestCheck-{{ data_list[x].data_id}}">
-                                        <label for="interestCheck-{{ data_list[x].data_id}}"><span>☆ 관심기업 등록하기</span></label>
-                                    </div>
-                                    {# <div>★ 관심기업 해제하기</div> #} -->
+                 
                                 </a>
                                 <a class="btn btn-default btn-md" href="/company/{{data_list[x].data_id}}#location_map">
                                     <div><span>일자리 지도 보기</span></div></a>

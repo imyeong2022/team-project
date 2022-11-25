@@ -83,7 +83,7 @@
                         <h1 class="tit cw nm">어떤 조건의<br>중소기업을 찾고 계신가요?</h1>
                         <h1 class="cw">인재님에 대해 알려주시면 우수 기업을 추천해 드릴게요!</h1>
                      </div>
-                     <form class="selectBoxList fl w50" action="/search">
+                     <form name="searchform" id="searchForm" class="selectBoxList fl w50" method="get" action="/condition/searchIndex">
                         <!-- selectBox1 -->
                         <div class="qustion fl"><strong>01</strong><span>일하고 싶은 지역은 어디신가요?</span></div>
                         <div class="box fl">
@@ -196,18 +196,13 @@
                               </ul>
                            </div>
                         </div>
-                        <!-- <button type="submit">전송</button> -->
-						<div class="print-values">
-							<p id="valueList_Index"></p>
-						</div>
-						<div>
-							<!-- <input type="button" value="검색" class="print-value" id="valueList_Index" onclick="checkbox_test();"> -->
-							<input type="button" value="검색" class="print-value" id="valueList_Index" onclick="javascript:checkbox_test(); location.replace('/condition');">
-							<!-- <input type="button" value="검색" class="print-value" id="valueList_Index" onclick="javascript:checkbox_test();"> -->
-
-							<!-- onclick="location.replace('link')" -->
-							
-						</div>
+                        <!-- <button type="submit" onclick="area_search()"">전송</button> -->
+                  <div class="print-values">
+                     <p id="valueList_index"></p>
+                  </div>
+                  <div>
+                     <input type="button" value="검색" class="print-value" id="valueList_index" onclick="area_search();">
+                  </div>
                      </form>
                   </div>
                </article>
@@ -216,7 +211,7 @@
    </div>
 
    <script src="../../static/js/aos.js"></script>
-   <!-- <script src="../../static/js/app_index.js"></script> -->
+   <script src="../../static/js/app_index.js"></script>
    <script>
       AOS.init({
          easing: 'ease-in-out-sine'

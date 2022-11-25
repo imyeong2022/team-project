@@ -63,18 +63,20 @@
 					<div>
 						<a class="a-text-decoration" href="/condition">전체보기</a>
 					</div>
+					<form method='post' action="/">
 					<ul class="main-gird-ul">
 						{% for x in range(6) %}
-						<a class="a-text-decoration a-color aos-item" href='/company/{{data_list[x].data_id}}'
+						<a class="a-text-decoration a-color aos-item" name="cookie" href='/company/{{data_list[x].data_id}}'
 							style="cursor:pointer" data-aos="fade-right">
 							<li class="main-gird-li">
-								<span class="grid-sub-blue">{{ data_list[x].주요제품명 }}</span>
-								<p class="grid-title">{{ data_list[x].회사 }}</p>
-								<p class="grid-sub-text">{{ data_list[x].채용여부 }}</p>
+								<span class="grid-sub-blue">{{ data_list[x].main_product }}</span>
+								<p class="grid-title">{{ data_list[x].company }}</p>
+								<p class="grid-sub-text">{{ data_list[x].employment }}</p>
 							</li>
 						</a>
 						{% endfor %}
 					</ul>
+					</form>
 				</article>
 		</section>
 	</div>

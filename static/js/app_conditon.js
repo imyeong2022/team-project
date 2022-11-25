@@ -1,24 +1,21 @@
 var valueList = document.getElementById("valueList");
-var valueList_index = document.getElementById("valueList_Index");
 var text = "<span> You have selected : </span>";
 var areaList = []; 
 
 var checkboxes = document.querySelectorAll(".checkbox"); // condition 페이지
-// var selectboxes = document.querySelectorAll(".optionItem"); // index 페이지
 
 for (var checkbox of checkboxes) {
   checkbox.addEventListener("click", function () {
     if (this.checked == true) {
       areaList.push(this.value);
       valueList.innerHTML = text + areaList.join(",");
-      valueList_Index.innerHTML = text + areaList.join(",");
-
     } else {
       areaList = areaList.filter((e) => e !== this.value);
       valueList.innerHTML = text + areaList.join(",");
     }
   });
 }
+
 
 
 function checkbox_test() {

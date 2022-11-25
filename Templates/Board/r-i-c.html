@@ -54,7 +54,6 @@ function delete_likeCom(){
     });
     const newStr = result.substring(0, result.length - 1);
     DeleteList.push(newStr)
-    alert(DeleteList)
 
     
     let str = DeleteList.join();
@@ -68,12 +67,31 @@ function delete_likeCom(){
         data:param,
         success: function (data) { 
             console.log(data); 
+            alert("여기");
+            let html_tr = data[""];
+            for (let i =0;i<data.length;i++){
+                html_tr+=
+                    '<td>'+ '<a onclick="location.href=\'/company/data[i].data_id;" style="cursor:pointer">'+data[i].company+ '</a></td>'
+                    '<td>'+data[i].employment+'</td>'
+                    '<td>'+data[i].indate.strftime+'</td>'
+                    '<td>'+'🌟'+'</td>';
+            }
+            console.log(html_tr)
+            const tb=document.querySelector("#like_select")
+            tb.innerHTML=html_tr
+                
+            
+            // $('#like_list').html(html_tr);
+
         },
         error: function (request, status, error) {
             console.log(request, status,error);
+
         }
     });    
 }
+
+
 
 
 
@@ -129,8 +147,8 @@ function delete_likeCom(){
                             <td>관심기업 등록</td>
                         </tr>
                         {% for x in range(interest_len) %}
-                        <tr align="center">
-                            <td><input type="checkbox" class="checkbox_One" name="likeCom" value="{{ interest_com[x].data_id }}" onclick="checkSelectAll('{{interest_com[x].data_id}}','{{user_id}}');"></td>
+                        <tr align="center" id="like_select">
+                            <td><input type="checkbox" id="like_list" class="checkbox_One" name="likeCom" value="{{ interest_com[x].data_id }}" onclick="checkSelectAll('{{interest_com[x].data_id}}','{{user_id}}');"></td>
                             <td><a onclick="location.href='/company/{{interest_com[x].data_id}}';" style="cursor:pointer">{{ interest_com[x].company }}</a></td>
                             <td>{{ interest_com[x].employment }}</td>
                             <td>{{ interest_com[x].indate.strftime("%Y-%m-%d") }}</td>

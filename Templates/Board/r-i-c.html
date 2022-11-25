@@ -110,18 +110,15 @@ function delete_likeCom(){
                 <div id="aaaaa" >
                     
                     <table align="center" width="90%">
-                        <tr align="center" >
-                            <p>
-                                <td><button style="cursor:pointer" onclick="delete_likeCom();">삭제하기</button></td>
-                            </p>
-                        </tr>
                         <tr bgcolor="blue" align="center">
                             <p>
                                 <td colspan="5" span style="color:white">오늘의 수입/지출</td>
                             </p>
                         </tr>
                         <tr align="center" bgcolor="skybule">
-                            <td><input type="hidden"  class="checkbox_all" name="All_likeCom" onclick="checkboxAll(this,'{{user_id}}');"></td>
+                            <!-- <td><input type="hidden"  class="checkbox_all" name="All_likeCom" onclick="checkboxAll(this,'{{user_id}}');"></td> -->
+                            <td><button style="cursor:pointer" onclick="delete_likeCom();">삭제하기</button></td>
+                            
                             <td>기업명</td>
                             <td>진행중인 채용공고</td>
                             <td>확인 일자</td>

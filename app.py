@@ -6,47 +6,54 @@ import hashlib
 import re
 import json
 import datetime
-
+app = Flask(__name__)
 # 2022 11 10 병합작업 1차버전입니다.
 ########### 데이터베이스 접속 전역변수 선언############
 
 
-con = pymysql.connect(host='localhost',
-                    user='root',
-                    password='java',
-                    db='final_test',
-                    charset='utf8mb4',
-                    cursorclass=pymysql.cursors.DictCursor)
+def dbcall():
+    con = pymysql.connect(host='localhost',
+                      user='root',
+                      password='java',
+                      db='final_test',
+                      charset='utf8mb4',
+                      cursorclass=pymysql.cursors.DictCursor)
+    return con
 
 ########### 데이터베이스 접속 전역변수 선언############
-app = Flask(__name__)
-# 구글메일(계정찾기 테스트) ################ 사이트 접근과 동시에 메일서버와 인터페이스 하면서 recipients 로 지정된 메일 주소로 이메일을 발송
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
-app.config['MAIL_PASSWORD'] = 'snuejrgmmznyneie'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
-mail = Mail(app)
+def mailcall():
 
-##쿠키테스트
-@app.route('/setcookie', methods=['POST','GET'])
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    app.config['MAIL_PORT'] = 465
+    app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'snuejrgmmznyneie'
+    app.config['MAIL_USE_TLS'] = False
+    app.config['MAIL_USE_SSL'] = True
+    mail = Mail(app)
+    return mail
+
+# 쿠키테스트
+
+
+@app.route('/setcookie', methods=['POST', 'GET'])
 def setcookie():
     if request.method == 'POST':
         user = request.form['coocke']
-        print("쿠키테스트",user)
+        print("쿠키테스트", user)
         resp = make_response("Cookie Setting Complete")
         resp.set_cookie('userID', user)
     return resp
 
+
 @app.route('/getcookie')
 def getcookie():
-   name = request.cookies.get('userID')
-   return name
+    name = request.cookies.get('userID')
+    return name
 
 
 @app.route('/accountfind')
 def accountfind():
+    con = dbcall()
     cursor = con.cursor()
     sql = "SELECT ID,email,phone from member"
     cursor.execute(sql)
@@ -55,12 +62,12 @@ def accountfind():
     print(userlist2)
     cursor.close()
     return render_template('Board/account.html')
-    
-
 
 
 @app.route('/accountfind_proc', methods=['POST'])
 def accountfind_proc():
+    mail = mailcall()
+    con = dbcall()
     cursor = con.cursor()
     user_name_recive = request.form['user_name_give']
     user_email_recive = request.form['user_email_give']
@@ -82,6 +89,7 @@ def accountfind_proc():
 
 @app.route('/passwordfind')
 def passwordfind():
+    con = dbcall()
     cursor = con.cursor()
     sql = "SELECT ID,email,phone from member"
     cursor.execute(sql)
@@ -94,6 +102,8 @@ def passwordfind():
 
 @app.route('/passwordfind_proc', methods=['POST'])
 def passwordfind_proc():
+    mail = mailcall()
+    con = dbcall()
     cursor = con.cursor()
     user_name_recive = request.form['user_name_give']
     user_id_recive = request.form['user_id_give']
@@ -134,6 +144,7 @@ def passfind():
 
 @app.route('/')
 def home():
+    con = dbcall()
     cursor = con.cursor()
     sql = "SELECT * from company_info"
     cursor.execute(sql)
@@ -146,7 +157,7 @@ def home():
 
     if request.method == 'POST':
         user = request.form['coocke']
-        print("쿠키테스트",user)
+        print("쿠키테스트", user)
         resp = make_response("Cookie Setting Complete")
         resp.set_cookie('userID', user)
 
@@ -158,6 +169,7 @@ def home():
 
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
+    con = dbcall()
     cursor = con.cursor()
 
     # print('여기')
@@ -188,7 +200,7 @@ def condition():
 
 @app.route('/employtest')  # 체크박스 test
 def employtest():
-    
+    con = dbcall()
     try:
         with con.cursor() as cursor:
 
@@ -222,6 +234,7 @@ def employtest():
 
 @app.route('/interest_select')  # .마이페이지 찜리스트 select
 def interest_select():
+    con = dbcall()
     cursor = con.cursor()
     user_id = session['ID']
     sql = "SELECT * from like_company_view where m_id=%s"
@@ -234,6 +247,7 @@ def interest_select():
 
 @app.route('/interest_insert')  # 찜리스트 INSERT,UPDATE(DELETE)
 def interest_insert():
+    con = dbcall()
     cursor = con.cursor()
     rs = {}
     try:
@@ -266,7 +280,6 @@ def interest_insert():
     finally:
         cursor.close()
         return rs
-        
 
 
 ########################################################
@@ -274,6 +287,7 @@ def interest_insert():
 
 @app.route('/company/<int:data_id>')  # 기업상세페이지
 def company(data_id):
+    con = dbcall()
     cursor = con.cursor()
     sql = "SELECT * from company_info where data_id = %s"
     cursor.execute(sql, (data_id, ))
@@ -311,6 +325,7 @@ def our_company():
 
 @app.route('/data')
 def data():
+    con = dbcall()
     cursor = con.cursor()
     sql = 'select All_Recruit,All_Employ from job_scale_total'
     cursor.execute(sql)
@@ -324,6 +339,7 @@ def data():
 
 @app.route('/faq')  # 질문과 답변
 def faq():
+    con = dbcall()
     cursor = con.cursor()
     sql = "SELECT * from faq"
     cursor.execute(sql)
@@ -336,6 +352,7 @@ def faq():
 
 @app.route('/qna')  # 질문게시판
 def qna():
+    con = dbcall()
     cursor = con.cursor()
     sql = "SELECT * from qna"
     cursor.execute(sql)
@@ -348,7 +365,7 @@ def qna():
     cursor.execute(sql2)
     reply = cursor.fetchone()
     reply_len = reply['count(*)']
-    print("리플타입값",type(reply))
+    print("리플타입값", type(reply))
     print(reply)
     print(reply['count(*)'])
     cursor.close()
@@ -366,6 +383,7 @@ def qnastion():
 
 @app.route('/question_proc', methods=['POST'])  # 질문페이지
 def qustion_proc():
+    con = dbcall()
     cursor = con.cursor()
     if request.method == 'POST':
         print(session['ID'])
@@ -384,6 +402,7 @@ def qustion_proc():
 
 @app.route('/answer', methods=['POST'])  # 답변으로 넘기기
 def answer():
+    con = dbcall()
     cursor = con.cursor()
     if (session['logFlag'] == True) and (session['admin'] == '1'):
         print("세션확인", session['logFlag'], session['admin'])
@@ -391,7 +410,7 @@ def answer():
         question_content = answer['question_content']
         idx = answer['idx']
         print(question_content)
-        print("인덱스값",answer['idx'])
+        print("인덱스값", answer['idx'])
         print(type(idx))
         sql = 'UPDATE qna SET answer=%s, reply="Y" WHERE idx= %s'
         cursor.execute(sql, (question_content, idx, ))
@@ -400,8 +419,9 @@ def answer():
         return jsonify({'msg': '답변등록이 완료되었습니다.'})
 
 
-@app.route('/qnaview')  #마이페이지 나의 문의목록
+@app.route('/qnaview')  # 마이페이지 나의 문의목록
 def qnaview():
+    con = dbcall()
     cursor = con.cursor()
     user_id = session['ID']
     sql = "SELECT * from my_qna_view where id=%s"
@@ -412,7 +432,7 @@ def qnaview():
 
     date_list = []
     reply_list = []
-    for i in range(my_qna_view_len): # timestamp -> 날짜형식 변환
+    for i in range(my_qna_view_len):  # timestamp -> 날짜형식 변환
         print(my_qna_view[i]['create_date'])
         date_list.append(my_qna_view[i]['create_date'].strftime('%Y/%m/%d'))
         reply_list.append(my_qna_view[i]['create_date'].strftime('%Y/%m/%d'))
@@ -424,6 +444,7 @@ def qnaview():
 
 @app.route('/interest')  # 찜리스트 test
 def interest():
+    con = dbcall()
     cursor = con.cursor()
     user_id = session['ID']
     sql = "SELECT * from like_company_view where m_id=%s"
@@ -445,6 +466,7 @@ def login_form_get():
 
 @app.route('/login_proc', methods=['POST'])
 def login_proc():
+    con = dbcall()
     cursor = con.cursor()
 
     if request.method == 'POST':  # request객체 안에 method 기능있음(자바도 마찬가지)
@@ -494,6 +516,7 @@ def logout_proc():
 
 @app.route('/join_form_get')
 def join_form_get():
+    con = dbcall()
     cursor = con.cursor()
     idcheck = 'select ID from member'
     cursor.execute(idcheck)
@@ -506,7 +529,7 @@ def join_form_get():
 
 @app.route('/mailcheck', methods=['post'])
 def mailcheck():
-
+    mail = mailcall()
     # return jsonify(result = "success")
     mail_code = request.form
     check_mail = mail_code['email']
@@ -518,12 +541,14 @@ def mailcheck():
     msg.body = ('안녕하세요! 잡아라에서 알려드립니다.\n 회원가입 이메일 인증번호를 알려드립니다.\n -인증번호 : ' +
                 check_code+'\n 앞으로도 더욱 편리한 서비스를 제공하기 위해 최선을 다하겠습니다.')
     mail.send(msg)
+    
 
     return jsonify({'msg': '회원님의 이메일로 아이디를 전송했습니다.'})
 
 
 @app.route('/join_proc', methods=['GET', 'POST'])
 def join_proc():
+    con = dbcall()
     cursor = con.cursor()
     Idexp = re.compile('^[a-zA-Z0-9]{4,12}$')
     Idexp = re.compile('^[a-zA-Z0-9]{4,12}$')
@@ -581,6 +606,7 @@ def my_page():
 
 @app.route('/my_page_proc', methods=['GET', 'POST'])
 def my_page_proc():
+    con = dbcall()
     cursor = con.cursor()
 
     if request.method == 'POST':  # request객체 안에 method 기능있음(자바도 마찬가지).

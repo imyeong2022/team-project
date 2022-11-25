@@ -22,11 +22,9 @@ function checkbox_test() {
   alert(str);
   alert('aaa');
   const param = { areatag: str };
-
-
   $.ajax({
     type: "GET",
-    url: "/search",
+    url: "/condition",
     dataType: "json",
     data: param,
     success: function (data_list) {

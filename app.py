@@ -1,10 +1,11 @@
-from flask import Flask, redirect, url_for, render_template, request , flash , flash, jsonify
+from flask import Flask, redirect, url_for, render_template, request, flash, flash, jsonify, make_response
 from flask import request, session
 from flask_mail import Mail, Message
 import pymysql
 import hashlib
 import re
 import json
+import datetime
 
 ## 2022 11 10 병합작업 1차버전입니다.
 ########### 데이터베이스 접속 전역변수 선언############
@@ -25,6 +26,22 @@ app.config['MAIL_PASSWORD'] = 'myhinigkzocytxcd'
 app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
+
+##쿠키테스트
+@app.route('/setcookie', methods=['POST','GET'])
+def setcookie():
+    if request.method == 'POST':
+        user = request.form['coocke']
+        print("쿠키테스트",user)
+        resp = make_response("Cookie Setting Complete")
+        resp.set_cookie('userID', user)
+    return resp
+
+@app.route('/getcookie')
+def getcookie():
+   name = request.cookies.get('userID')
+   return name
+
 
 @app.route('/accountfind')
 def accountfind():
@@ -70,6 +87,13 @@ def home():
     print("인덱스타입",type(data_list))
     data_list_len = len(data_list)
     print("인덱스길이", data_list_len)
+    cursor.close()
+
+    if request.method == 'POST':
+        user = request.form['coocke']
+        print("쿠키테스트",user)
+        resp = make_response("Cookie Setting Complete")
+        resp.set_cookie('userID', user)
 
     return render_template('Board/index.html', data_list=data_list)
 
@@ -295,7 +319,48 @@ def qustion_proc():
 
     return redirect('/qna')
 
-@app.route('/interest') ###############찜리스트 test
+
+@app.route('/answer', methods=['POST'])  # 답변으로 넘기기
+def answer():
+    cursor = con.cursor()
+    if (session['logFlag'] == True) and (session['admin'] == '1'):
+        print("세션확인", session['logFlag'], session['admin'])
+        answer = request.form
+        question_content = answer['question_content']
+        idx = answer['idx']
+        print(question_content)
+        print("인덱스값",answer['idx'])
+        print(type(idx))
+        sql = 'UPDATE qna SET answer=%s, reply="Y" WHERE idx= %s'
+        cursor.execute(sql, (question_content, idx, ))
+        con.commit()
+        cursor.close()
+        return jsonify({'msg': '답변등록이 완료되었습니다.'})
+
+
+@app.route('/qnaview')  #마이페이지 나의 문의목록
+def qnaview():
+    cursor = con.cursor()
+    user_id = session['ID']
+    sql = "SELECT * from my_qna_view where id=%s"
+    cursor.execute(sql, (user_id))
+    my_qna_view = cursor.fetchall()
+    print(type(my_qna_view))
+    my_qna_view_len = len(my_qna_view)
+
+    date_list = []
+    reply_list = []
+    for i in range(my_qna_view_len): # timestamp -> 날짜형식 변환
+        print(my_qna_view[i]['create_date'])
+        date_list.append(my_qna_view[i]['create_date'].strftime('%Y/%m/%d'))
+        reply_list.append(my_qna_view[i]['create_date'].strftime('%Y/%m/%d'))
+    print(date_list)
+    print(type(date_list))
+    cursor.close()
+    return render_template('Board/qnaview.html', my_qna_view=my_qna_view, my_qna_view_len=my_qna_view_len, date_list=date_list, reply_list=reply_list)
+
+
+@app.route('/interest')  # 찜리스트 test
 def interest():
     user_id=session['ID']
     sql = "SELECT * from like_company_view where m_id=%s"

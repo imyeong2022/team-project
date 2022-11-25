@@ -124,9 +124,18 @@ def employtest():
     try:
         with con.cursor() as cursor:
             
-            s=request.args.get('area') 
+            areaList=request.args.get('area') 
+            industryList=request.args.get('industry') 
+            company_typeList=request.args.get('company_type') 
+
+            print(areaList)
+            print(industryList)
+
+            print(company_typeList)
+
+
             
-            p = s.split(',')
+            p = areaList.split(',')
             content = ''
             for i in range(len(p)):
                 if (i+1) == len(p):                    

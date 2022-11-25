@@ -255,6 +255,10 @@ footer {
 	margin-bottom: 3vmin;
 }
 
+.qustion>span{
+	width: 50px;
+}
+
 .selectBoxList {
 	grid-gap: 3vmin;
 	grid-gap: 30px;

@@ -315,7 +315,7 @@ def interest_delete():
     con = dbcall()
     cursor=con.cursor()
     user_id=session['ID']
-    rows={}
+    rs={}
     try:
         with con.cursor() as cursor:
             s=request.args.get('likeDelete') 
@@ -330,18 +330,14 @@ def interest_delete():
             cursor.execute(sql,(user_id,))
             con.commit()
             cnt=cursor.rowcount
-            if(cnt>0):
-                sql = "select * from like_company left join like_company_view on like_company.data_id= like_company_view.data_id where id=%s"
-                cursor.execute(sql,(user_id,))
-                rows=cursor.fetchall()
-
-                for row in rows:
-                    print('............',row)
+            rs={'status':cnt}
+            
 
     except Exception as e:
+        rs={'status':0}
         print(e)
     finally:
-        return rows    
+        return rs    
         
 
 

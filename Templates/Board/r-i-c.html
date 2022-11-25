@@ -67,21 +67,7 @@ function delete_likeCom(){
         data:param,
         success: function (data) { 
             console.log(data); 
-            alert("여기");
-            let html_tr = data[""];
-            for (let i =0;i<data.length;i++){
-                html_tr+=
-                    '<td>'+ '<a onclick="location.href=\'/company/data[i].data_id;" style="cursor:pointer">'+data[i].company+ '</a></td>'
-                    '<td>'+data[i].employment+'</td>'
-                    '<td>'+data[i].indate.strftime+'</td>'
-                    '<td>'+'🌟'+'</td>';
-            }
-            console.log(html_tr)
-            const tb=document.querySelector("#like_select")
-            tb.innerHTML=html_tr
-                
-            
-            // $('#like_list').html(html_tr);
+            location.href='/recent_inquiry_company'
 
         },
         error: function (request, status, error) {
@@ -90,11 +76,6 @@ function delete_likeCom(){
         }
     });    
 }
-
-
-
-
-
 
 
 
@@ -126,7 +107,7 @@ function delete_likeCom(){
                 <div class="infomation-subtext">
                     <span></span>
                 </div>
-                <div>
+                <div id="aaaaa" >
                     
                     <table align="center" width="90%">
                         <tr align="center" >
@@ -140,7 +121,7 @@ function delete_likeCom(){
                             </p>
                         </tr>
                         <tr align="center" bgcolor="skybule">
-                            <td><input type="checkbox" class="checkbox_all" name="All_likeCom" onclick="checkboxAll(this,'{{user_id}}');"></td>
+                            <td><input type="hidden"  class="checkbox_all" name="All_likeCom" onclick="checkboxAll(this,'{{user_id}}');"></td>
                             <td>기업명</td>
                             <td>진행중인 채용공고</td>
                             <td>확인 일자</td>

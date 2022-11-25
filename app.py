@@ -76,7 +76,9 @@ def home():
     # print("인덱스타입",type(data_list))
     data_list_len = len(data_list)
     print("인덱스길이", data_list_len)
-    cursor.close()
+
+    area_list =data_list[0]['region']
+    con.close()
     return render_template('Board/index.html', data_list=data_list)
 
 
@@ -90,7 +92,17 @@ def condition():
     sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
-    data_list = data_list
+
+    
+    # content = ''
+    # for i in range(len(p)):
+    #         if (i+1) == len(p):                    
+    #             content += "'" + p[i] + "'"
+    #         else:
+    #             content += "'" + p[i] + "',"
+    # Index_sql="SELECT * from company_info where `region` in ("+ content +")"
+    # cursor.execute(Index_sql)
+    cursor.close()
     cursor.close()
 
     region = request.args.get('areatag')

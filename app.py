@@ -8,26 +8,32 @@ import json
 
 # 2022 11 10 병합작업 1차버전입니다.
 ########### 데이터베이스 접속 전역변수 선언############
-con = pymysql.connect(host='localhost',
+def dbcall():
+    con = pymysql.connect(host='localhost',
                       user='root',
                       password='java',
                       db='final_test',
                       charset='utf8mb4',
                       cursorclass=pymysql.cursors.DictCursor)
-cursor = con.cursor()
+    return con
+
 ########### 데이터베이스 접속 전역변수 선언############
 app = Flask(__name__)
 # 구글메일(계정찾기 테스트) ################ 사이트 접근과 동시에 메일서버와 인터페이스 하면서 recipients 로 지정된 메일 주소로 이메일을 발송
-app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-app.config['MAIL_PORT'] = 465
-app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
-app.config['MAIL_PASSWORD'] = 'myhinigkzocytxcd'
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = True
-mail = Mail(app)
+def mailcall():
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    app.config['MAIL_PORT'] = 465
+    app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'myhinigkzocytxcd'
+    app.config['MAIL_USE_TLS'] = False
+    app.config['MAIL_USE_SSL'] = True
+    mail = Mail(app)
+    return mail
 
 @app.route('/accountfind')
 def accountfind():
+    con = dbcall()
+    cursor = con.cursor()
     sql = "SELECT ID,email,phone from member"
     cursor.execute(sql)
     userlist2 = cursor.fetchall()
@@ -68,6 +74,9 @@ def passwordfind():
 
 @app.route('/passwordfind_proc', methods=['POST'])
 def passwordfind_proc():
+    con = dbcall()
+    cursor = con.cursor()
+    mail = mailcall()
     user_name_recive = request.form['user_name_give']
     user_id_recive = request.form['user_id_give']
     user_phone_recive = request.form['user_phone_give']
@@ -106,6 +115,7 @@ def passfind():
 
 @app.route('/')
 def home():
+    
     con = dbcall()
     cursor = con.cursor()
     sql = "SELECT * from company_info"
@@ -131,6 +141,8 @@ def home():
 
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
+    con = dbcall()
+    cursor = con.cursor()
 
     if 'ID' in session:
         user_id=session['ID']
@@ -314,7 +326,7 @@ def qna():
     print(qna_list)
     qna_len = len(qna_list)
     print(qna_len)
-
+    return render_template('Board/qna.html', qna_list=qna_list, qna_len=qna_len)
 
 @app.route('/question')  # 질문으로 넘기기
 def qnastion():
@@ -456,6 +468,8 @@ def logout_proc():
 
 @app.route('/join_form_get')
 def join_form_get():
+    con = dbcall()
+    cursor = con.cursor()
     idcheck = 'select ID from member'
     cursor.execute(idcheck)
     id_list = cursor.fetchall()
@@ -466,6 +480,7 @@ def join_form_get():
 
 @app.route('/mailcheck', methods=['post'])    
 def mailcheck():
+    mail = mailcall()
     value = request.form
     print(value)
     print(value['email'])

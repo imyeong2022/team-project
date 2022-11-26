@@ -343,7 +343,6 @@
                                 <a>
                                     {# onclick은 로그인이 안되어있을때  ★ #}
                                     <div class="wish-checkbox">
-                                        <input type="text" value="{{interest_com[0].data_id}}">
                                         <input type="checkbox" id="interestCheck" class="checkbox-star" 
                                         onclick="interestSave(this,'{{data_list[x].data_id}}','{{user_id}}');" name="interestCheck">
                                         <label for="interestCheck">관심기업 등록하기 </label>
@@ -355,12 +354,12 @@
                                 <a>
                                     <div>일자리 지도 보기</div>
                                 </a>
-                                <span class="grid-sub-blue">{{ data_list[x].업종}}</span>
+                                <span class="grid-sub-blue">{{ data_list[x].industry}}</span>
                                 <a onclick="location.href='/company/{{data_list[x].data_id}}';" style="cursor:pointer">
-                                    <p class="grid-title">{{ data_list[x].회사 }}</p>
+                                    <p class="grid-title">{{ data_list[x].company }}</p>
                                 </a>
-                                <p class="condition-sub-text">{{ data_list[x].기업형태 }} | {{ data_list[x].지역 }} |
-                                    {{ data_list[x].대표 }}</p>
+                                <p class="condition-sub-text">{{ data_list[x].company_type }} | {{ data_list[x].region }} |
+                                    {{ data_list[x].CEO }}</p>
                             </div>
                         </div>
                         <div>

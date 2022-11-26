@@ -7,17 +7,21 @@
 	<title>index</title>
 	<link rel="stylesheet" href="../../static/css/styles.css" />
 	<link rel="stylesheet" href="../../static/css/aos.css" />
+	<!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+	<!-- slider styles -->
+
+	
 	<style>
 		.swiper-container {
 			width: 100%;
 			height: 80vmin;
 		}
-
 		.swiper-slide {
 			text-align: center;
 			font-size: 18px;
 			background: #fff;
-
 			/* Center slide text vertically */
 			display: -webkit-box;
 			display: -ms-flexbox;
@@ -34,7 +38,6 @@
 		}
 	</style>
 </head>
-
 <body>
 	{% include '/Board/header.html' %}
 	<div class="main-div">
@@ -68,17 +71,87 @@
 						<a class="a-text-decoration a-color aos-item" href='/company/{{data_list[x].data_id}}'
 							style="cursor:pointer" data-aos="fade-right">
 							<li class="main-gird-li">
-								<span class="grid-sub-blue">{{ data_list[x].주요제품명 }}</span>
-								<p class="grid-title">{{ data_list[x].회사 }}</p>
-								<p class="grid-sub-text">{{ data_list[x].채용여부 }}</p>
+								<span class="grid-sub-blue">{{ data_list[x].main_product }}</span>
+								<p class="grid-title">{{ data_list[x].company }}</p>
+								{% if data_list[x].employment != '-' %}
+								<p class="grid-sub-text">{{ data_list[x].employment }}</p>
+								{% endif %}
+								
+								{% if data_list[x].tag != '-' %}
+								<p class="grid-sub-text">{{ data_list[x].tag }}</p>
+								{% endif %}
 							</li>
 						</a>
 						{% endfor %}
 					</ul>
 				</article>
+				<section class="bg-47 bg-index">
+					<article class="frame-middle">
+						<div class="main-company-search-area">
+							<div class="fl w50">
+								<h1 class="tit cw nm">어떤 조건의<br>중소기업을 찾고 계신가요?</h1>
+								<h1 class="cw">인재님에 대해 알려주시면 우수 기업을 추천해 드릴게요!</h1>
+							</div>
+							<div class="selectBoxList fl w50">
+								<!-- selectBox1 -->
+								<div class="qustion fl"><strong>01</strong><span>일하고 싶은 지역은 어디신가요?</span></div>
+								<div class="box fl">
+									<div class="selectBox2 ">
+										<button class="label">지역 🍊</button>
+										<ul class="optionList">
+											<li class="optionItem" data-value="서울"><span>서울</span></a></li>
+											<li class="optionItem" data-value="부산"><span>부산</span></a></li>
+											<li class="optionItem" data-value="대구"><span>대구</span></a></li>
+											<li class="optionItem" data-value="인천"><span>인천</span></a></li>
+											<li class="optionItem" data-value="광주"><span>광주</span></a></li>
+											<li class="optionItem" data-value="대전"><span>대전</span></a></li>
+											<li class="optionItem" data-value="울산"><span>울산</span></a></li>
+											<li class="optionItem" data-value="세종"><span>세종</span></a></li>
+											<li class="optionItem" data-value="경기"><span>경기</span></a></li>
+											<li class="optionItem" data-value="강원"><span>강원</span></a></li>
+											<li class="optionItem" data-value="충북"><span>충북</span></a></li>
+											<li class="optionItem" data-value="충남"><span>충남</span></a></li>
+											<li class="optionItem" data-value="전북"><span>전북</span></a></li>
+											<li class="optionItem" data-value="전남"><span>전남</span></a></li>
+											<li class="optionItem" data-value="경북"><span>경북</span></a></li>
+											<li class="optionItem" data-value="경남"><span>경남</span></a></li>
+											<li class="optionItem" data-value="제주"><span>제주</span></a></li>
+										</ul>
+
+									</div>
+								</div>
+								<!-- selectBox2 -->
+								<div class="qustion fl"><strong>01</strong><span>일하고 싶은 지역은 어디신가요?</span></div>
+								<div class="box fl">
+									<div class="selectBox2  ">
+										<button class="label">업종 🎈</button>
+										<ul class="optionList">
+											<li class="optionItem">Red</li>
+											<li class="optionItem">orange</li>
+											<li class="optionItem">purple</li>
+											<li class="optionItem">green</li>
+										</ul>
+									</div>
+								</div>
+								<!-- selectBox3 -->
+								<div class="qustion fl"><strong>01</strong><span>일하고 싶은 지역은 어디신가요?</span></div>
+								<div class="box fl">
+									<div class="selectBox2  ">
+										<button class="label">복지 🍟</button>
+										<ul class="optionList">
+											<li class="optionItem">pizza</li>
+											<li class="optionItem">ramen</li>
+											<li class="optionItem">kimchi</li>
+											<li class="optionItem">somori gukbob</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</article>
+				</section>
 		</section>
 	</div>
-
 	<footer></footer>
 	<script src="../../static/js/aos.js"></script>
 	<script>
@@ -86,6 +159,7 @@
 			easing: 'ease-in-out-sine'
 		});
 	</script>
+
 	<!-- Swiper JS -->
 	<script src="./js/swiper.min.js"></script>
 	<script>
@@ -110,6 +184,63 @@
 			},
 		});
 	</script>
+	<script>
+		const label = document.querySelectorAll('.label');
+		label.forEach(function (lb) {
+			lb.addEventListener('click', e => {
+				let optionList = lb.nextElementSibling;
+				let optionItems = optionList.querySelectorAll('.optionItem');
+				clickLabel(lb, optionItems);
+			})
+		});
+		const clickLabel = (lb, optionItems) => {
+			if (lb.parentNode.classList.contains('active')) {
+				lb.parentNode.classList.remove('active');
+				optionItems.forEach((opt) => {
+					opt.removeEventListener('click', () => {
+						handleSelect(lb, opt)
+					})
+				})
+			} else {
+				lb.parentNode.classList.add('active');
+				optionItems.forEach((opt) => {
+					opt.addEventListener('click', () => {
+						handleSelect(lb, opt)
+					})
+				})
+			}
+		}
+		const handleSelect = (label, item) => {
+			label.innerHTML = item.textContent;
+			label.parentNode.classList.remove('active');
+		}
+	</script>
 </body>
-
 </html>
+
+	<!-- Swiper JS -->
+	<!-- <script src="./js/swiper.min.js"></script>
+	<script>
+		var swiper = new Swiper('.swiper-container', {
+			loop: true,
+			loopAdditionalSlides: 1,
+			keyboard: {
+				enabled: true,
+			},
+			cubeEffect: {
+				shadow: true,
+				slideShadows: true,
+				shadowOffset: 20,
+				shadowScale: 0.94,
+			},
+			pagination: {
+				el: '.swiper-pagination',
+			},
+			autoplay: {
+				delay: 2500,
+				disableOnInteraction: false,
+			},
+		});
+	</script>
+</body>
+</html> -->

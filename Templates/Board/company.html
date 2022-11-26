@@ -9,7 +9,7 @@
         html,
         body {
             position: relative;
-            height: 100%;
+           height: 100%;
         }
 
         .swiper-container {
@@ -39,28 +39,28 @@
                 </div>
                 <div class="company-info">
                     <div>
-                        {% if data_list[0].homepage != '-' %}
+                        {% if data_list[0].employment != '-' %}
                         <span class="grid-red">{{ data_list[0].employment}}</span>
                         {% endif %}
-                        <span class="company-sub" ID="industry" ,NAME="industry">{{ data_list[0].industry}}</span>
+                        <span class="company-sub" ID="industry",NAME="industry">{{ data_list[0].industry}}</span>
                     </div>
                     <h1 class="company-title">{{ data_list[0].company}}</11>
-                        <h3 class="company-sub-title-Y">{{ data_list[0].tag}}</h3>
-                        <!-- <h3 class="company-sub-title-W"># 복지 우수기업</h3> -->
-                        <p></p>
+                    <h3 class="company-sub-title-Y">{{ data_list[0].tag}}</h3>
+                    <h3 class="company-sub-title-W"></h3>
+                    <p></p>
 
-                        <div class="button-box">
-                            <!-- 홈페이지 주소가 있을 때에만 링크 띄워주기 -->
-                            {% if data_list[0].homepage != '-' %}
-                            <a href='//{{data_list[0].homepage}}'><i class="home-img"></i></a>
-                            {% endif %}
-                            <!-- 관심기업 등록하기 -->
-                            <div class="custom-checkbox">
-                                <p><input type="checkbox" id="interestCheck-1" class="checkbox-like type2"
-                                        onclick="intrstYnSave(this);" name="interestCheck">
-                                    <label for="star-check">28</label>
-                                </p>
-                            </div>
+                    <div class="button-box">
+                      
+                    
+                        <!-- 홈페이지 주소가 있을 때에만 링크 띄워주기 -->
+                        {% if data_list[0].homepage != '-' %}
+                        <a href='//{{data_list[0].homepage}}'><i class="home-img"></i></a>
+                        {% endif %}
+                        <!-- 관심기업 등록하기 -->
+                        <div class="custom-checkbox">
+                        <p><input type="checkbox" id="interestCheck-1" class="checkbox-like type2"
+                                onclick="intrstYnSave(this);" name="interestCheck">
+                            <label for="star-check"> 관심기업 {{interest_len}}</label></p>
                         </div>
                 </div>
         </section>
@@ -91,7 +91,7 @@
                         </div>
                         <div class="info-item fr">
                             <dl>
-                                <dt>company_type</dt>
+                                <dt>기업형태</dt>
                                 <dd>{{ data_list[0].company_type}}</dd>
                             </dl>
                             <dl>
@@ -182,20 +182,19 @@
 
     <!--// article-content :: 위치정보 -->
     <div class="bg-f6">
-        <article class="compony-frame">
+        <article class="compony-frame" id="location_map">
             <div class="article-title-area anchor-scroll" id="position">
-                <h3 class="title">위치정보</h3>
+                <h3 class="title" >위치정보</h3>
             </div>
             <!--// article-title-area -->
             <div class="article-content">
                 <div class="sub-title-area">
                     <p class="sub-info">{{ data_list[0].company_addr}}</p>
                     <div class="right">
-                        <!-- <a href="javascript:void(0);" data-id="{{ data_list[0].data_id}}" data-xco="{{ data_list[0].위도}}" data-yco="{{ data_list[0].경도}}"" onclick="moveSmartMap(this);" class="btn btn-default btn-md"><span>일자리지도 바로가기</span></a> -->
                     </div>
                 </div>
-                <!-- ## 카카오맵 -->
-                <div id="map" style="width:100%;height:550px;"></div>
+                <!-- ## 카카오맵 -->              
+                    <div id="map" style="width:100%;height:550px;"></div>
 
                 <!-- 검색목록 표출 -->
                 <!-- <div id="menu_wrap" class="bg_white">
@@ -250,7 +249,7 @@
                         <span>
                             <a href="https://www.saramin.co.kr/" target="_blank"><img
                                     src="data:image/png;base64,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"
-                                    data-deferred1"1" class="rg_i Q4LuWd" jsname="Q4LuWd" width="180" height="37"
+                                    data-deferred1"1" class="rg_i Q4LuWd" jsname="Q4LuWd" width="180" height="37" 
                                     alt="사람인에이치알 - 기업 상세 정보 - 로아" data-atf="true" data-iml="2081.800000000745"></a>
                         </span>
                     </div>
@@ -261,7 +260,7 @@
                     <!-- // [Pub] 채용공고가 하나도 없을시 -->
 
                     <form id="pblancForm" name="pblancForm" method="post">
-                        <input type="hidden" name="cmpId" value=161510">
+                        <input type="hidden" name="cmpId" value="161510">
                         <input type="hidden" name="pblancSorcCd">
                         <input type="hidden" name="pblancNo">
                         <input type="hidden" name="pblancNm">
@@ -289,15 +288,15 @@
             <div class="article-content frame-min" id="sameIndustryArea">
                 <div class="swiper-container">
                     <div class="swiper-wrapper">
-                        {%for i in range(10) %}
+                        {% for x in range (10) %}
                         <div class="swiper-slide">
-                            <a href="/company/{{all_list[i].data_id}}">
-                                <span class="grid-sub-blue">{{all_list[i].company_type}}</span>
-                                <p class="grid-title-side">{{all_list[i].company}}</p>
+                            <a href="/company/{{all_list[x].data_id}}">
+                                <span class="grid-sub-blue">{{all_list[x].company_type}}</span>
+                                <p class="grid-title-side">{{all_list[x].company}}</p>
                                 <div class="company-swiper-div-margin">
-                                    <span class="condition-sub-text">{{all_list[i].region}}</span>
-                                    <span class="grid-sub-red">{{all_list[i].employment}}</span>
-                                </div>a
+                                    <span class="condition-sub-text">{{all_list[x].region}}</span>
+                                    <span class="grid-sub-red">{{all_list[x].employment}}</span>
+                                </div>
                             </a>
                         </div>
                         {% endfor %}
@@ -332,11 +331,10 @@
     </script>
     <script 1ype="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07f9f113d21624a68eea32dc98b55f">
     </script>
-    <script type="text/javascript"
-        src1"//dapi.kakao.com/v2/maps/sdk.js?appkey=ee07f9f113d21624a68eea32dc98b55f&libraries=LIBRARY"></script>
+    <script type="text/javascript" ></script>
     <script>
-        y = '{{data_list[0].위도}}';
-        x = '{{data_list[0].경도}}';
+        y = '{{data_list[0].addr_x}}';
+        x = '{{data_list[0].addr_y}}';
         // alert(x + ' : ' + y);
         var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
             mapOption = {
@@ -361,5 +359,4 @@
         // marker.setMap(null);    
     </script>
 </body>
-
 </html>

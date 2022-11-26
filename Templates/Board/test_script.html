@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <title>SearchFilter</title>
+</head>
+<body>
+
+    <!-- 검색필터 선택 -->
+    <input type="checkbox" id="age10" name="age" value="10" onchange="makeFilter(this);"/>
+    <label for = "age10">10세</label>
+    <input type="checkbox" id="age20" name="age" value="20" onchange="makeFilter(this);"/>
+    <label for = "age20">20세</label>
+    <input type="checkbox" id="age30" name="age" value="30" onchange="makeFilter(this);"/>
+    <label for = "age30">30세</label>
+    <input type="checkbox" id="age40" name="age" value="40" onchange="makeFilter(this);"/>
+    <label for = "age40">40세</label>
+    <input type="checkbox" id="age50" name="age" value="50" onchange="makeFilter(this);"/>
+    <label for = "age50">50세</label>
+    <input type="checkbox" id="age60" name="age" value="60" onchange="makeFilter(this);"/>
+    <label for = "age60">60세</label>
+
+    <br>
+     필터입력값 : <input type="text" id="showFilter"/> <!--필터확인용, 기능과 무관함 -->
+
+    <script>
+
+    var ageArr = new Array(); //필터 내용을 저장하는 배열
+    var showFilterValue = document.getElementById("showFilter");//필터입력값 보여주기 위한 text
+
+    //필터 내용을 저장하는 function
+    function makeFilter(target){
+
+        var ageVal = target.value; //check value
+        var confirmCheck = target.checked; //check여부 확인
+        console.log("필터 선택값 : "+ageVal);
+        console.log("선택여부 : "+confirmCheck);
+
+        // check true
+        if(confirmCheck == true){
+
+            console.log("check");
+            ageArr.push(ageVal); // check value filter 배열에 입력
+
+        // check false
+        }else{
+
+            ageArr.splice(ageArr.indexOf(ageVal), 1); // check value filter 배열내용 삭제            
+        }
+
+        showFilterValue.value = ageArr; // textBox에 필터 배열 추가
+        console.log("필터입력값 출력 : "+ageArr);
+
+    }
+
+    </script>
+</body>
+</html>

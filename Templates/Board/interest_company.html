@@ -6,24 +6,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>interest company</title>
 </head>
+<script>
+    function getInterest_company(){
+        let html_tr='<tr>';
+            html_tr +='<th>idx</th>'
+            html_tr +='<th>id</th>'
+            html_tr +='<th>pw</th>'
+            html_tr +='<th>email</th>'
+            html_tr +='<th>date</th>'
+            html_tr+='<tr>';
+            html_tr+='<td>';
+            html_tr+=interest_com;
+            html_tr+='</td>';
+        $('#like_company').html(html_tr);
+    }
 
+</script>
 <body>
     관심기업
 <table id="like_company">
     {% for x in range(interest_len) %}
     <ul>
         <li>
-            {{ interest_com[x].회사 }}
+            {{ interest_com[x].data_id }}
         </li>
         <li>
-            {{ interest_com[x].채용여부 }}
+            {{ interest_com[x].company }}
         </li>
         <li>
-            {{ interest_com[x].업종 }}
+            {{ interest_com[x].employment }}
         </li>
         <li>
-            {{ interest_com[x].채용여부 }}
+            {{ interest_com[x].industry }}
         </li>
+        
     </ul>
     {% endfor %}
 

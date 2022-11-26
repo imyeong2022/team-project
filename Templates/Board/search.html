@@ -4,50 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>상세조건 검색</title>
-</head>
-
-<script>
-    function interestSave(obj,data_id,user_id){
-        var userId=user_id
-        if(userId=='null'){
-            $(obj).prop("checked",false);
-            if(confirm("로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?")){
-                location.href="/login_form_get";
-            }
-        } else {
-            alert('로그인!')
-            var cmpIds = new Array();
-            
-            const dataID=data_id
-            const param={'data_id':dataID};
-            alert(data_id)
-            $.ajax({
-                type:'GET',
-                url:'/interest_insert',
-                dataType:'json',
-                data:param,
-                success: function (data) { 
-                    console.log(data); 
-                    console.log("콘솔 ",data['status'])
-                    if (data['status']=='1'){
-                        $(obj).prop("checked",true);      
-                    }  
-                    else{
-                        $(obj).prop("checked",false); 
-                    }
-                },
-                error: function (request, status, error) {
-                    console.log(request, status,error);
-                }
-            });    
-        }
-
-        }
-
-
-</script>
-
-
+    <!-- <script src="/static/js/jquery.common.js"></script> -->
     <style>
         .pagination {
             position: relative;
@@ -55,6 +12,7 @@
             font-size: 50;
         }
     </style>
+    
 </head>
 
 <body>
@@ -80,11 +38,11 @@
             </div>
 
         <!-- <div class = "search-area"> content-area -->
-            <form class = "search-area" id = "searchForm" name ="searchForm" method="get" action="condition"> <!-- content-area -->
+            <form class = "search-area" id = "searchForm" name ="searchForm" method="get" action="/condition"> <!-- content-area -->
                 <input type = "hidden" id="pg" value="1">
-                <!-- <input type="hidden" id="area" name="area" value=""> -->
+                <input type="hidden" id="area" name="area" value="">
                 <!-- 지역 -->
-                <!-- <input type="hidden" id="sic" name="sic" value=""> -->
+                <input type="hidden" id="sic" name="sic" value="">
                 <!-- 업종 -->
                 <input type="hidden" id="thema" name="thema" value="">
                 <!-- 유형 -->
@@ -138,8 +96,8 @@
                         <div class="search-fileter-child-item-list">
                             <div class="search-fileter-checkbox">
                                 <div class="search-fileter-checkbox-item"> 
-                                    <!-- <input type="checkbox" id="check-100" class="checkbox check-all checked" name="areatag" value="" data-name="전체" checked="checked"> -->
-                                    <input type="checkbox"id="전체" value="전체" class="checkbox">
+                                    <input type="checkbox" id="check-100" class="checkbox check-all checked" name="areatag" value="" data-name="전체" checked="checked">
+                                    <!-- <input type="checkbox"id="전체" value="전체" class="checkbox"> -->
                                     <label for="check-100">전체</label>
                                 </div>
                                 <div class="search-fileter-checkbox-item">
@@ -319,7 +277,7 @@
                         <div class="search-fileter-child-item-list">
                             <div class="search-fileter-checkbox">
                             <div class="search-fileter-checkbox-item">
-                                <input type="checkbox" id="check-400" class="checkbox check-all checked" name="scaletag" value="" data-name="전체" checked="checked">
+                                <input type="checkbox" id="check-400" class="checkbox" name="scaletag" value="" data-name="전체" checked="checked">
                                 <label for="check-400">전체</label>
                             </div>
                             <div class="search-fileter-checkbox-item">
@@ -346,102 +304,29 @@
                     </div>
                     </dl>
 
-
-                    <dl class="item-content" id="wlfrContent" data-id="wlfr" data-tit="복지는" data-max="10">
-                    <div class="search-fileter-child">
-                        <div class="search-fileter-child-title"><span>복지</span></div>
-                        <div class="search-fileter-child-item-list">
-                            <div class="search-fileter-checkbox">
-                                <div class="search-fileter-checkbox-item">
-                                    <input type="checkbox" id="check-600" class="checkbox check-all checked" name="welfaretag" data-name="전체" checked="checked">
-                                    <label for="check-600">전체</label>
-                                </div>
-                                <div class="search-fileter-checkbox-item">
-                                    <input type="checkbox" id="check-W00" class="checkbox check-empty" name="welfaretag" data-name="공제·기타">
-                                    <label for="check-W00">공제·기타</label>
-                                </div>
-                                <div class="search-fileter-checkbox-item">
-                                    <input type="checkbox" id="check-W01" class="checkbox check-empty" name="welfaretag" data-name="연금·보험">
-                                    <label for="check-W01">연금·보험</label>
-                                </div>
-                                <div class="search-fileter-checkbox-item">
-                                    <input type="checkbox" id="check-W02" class="checkbox check-empty" name="welfaretag" data-name="교육·연수">
-                                    <label for="check-W02">교육·연수</label>
-                                </div>
-                                <div class="search-fileter-checkbox-item">
-                                    <input type="checkbox" id="check-W03" class="checkbox check-empty" name="welfaretag" data-name="생활편의·여가행사">
-                                    <label for="check-W03">생활편의·여가행사</label>
-                                </div>
-                                <div class="search-fileter-checkbox-item">
-                                    <input type="checkbox" id="check-W04" class="checkbox check-empty" name="welfaretag" data-name="보상·수당·지원">
-                                    <label for="check-W04">보상·수당·지원</label>
-                                </div>
-                                <div class="search-fileter-checkbox-item">
-                                    <input type="checkbox" id="check-W05" class="checkbox check-empty" name="welfaretag" data-name="사내시설·장애인지원">
-                                    <label for="check-W05">사내시설·장애인지원</label>
-                                </div>
-                                <div class="search-fileter-checkbox-item">
-                                    <input type="checkbox" id="check-W06" class="checkbox check-empty" name="welfaretag" data-name="휴무·휴가·행사">
-                                    <label for="check-W06">휴무·휴가·행사</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    </dl>
-                    
-                    <div class="print-values">
-                        <p id="valueList"></p>
-                    </div>
-                    <div>
-                        <input type="button" value="검색test" class="print-value" id="valueList" onclick="checkbox_test();">
-                    </div>
-                </div>
-            </form>
-
-                <div class="condition">
-               
-
                 <ul class = "board-incruit mt15" id ="companyListArea">
                     
                     {% for x in range(10) %}
-                    <li>
-                        <div>
-                            <div>
-                                <a>
-                                    <!-- {# onclick은 로그인이 안되어있을때  ★ #} -->
-                                    <div class="wish-checkbox">
-                                        {% if like_checked[x]['id']==user_id and data_list[x].data_id == like_checked[x].data_id %}
-                                            <input type="checkbox" checked id="interestCheck" class="checkbox-star" 
-                                            onclick="interestSave(this,'{{data_list[x].data_id}}','{{user_id}}');" name="interestCheck">
-                                            <label for="interestCheck">관심기업 등록하기 </label>
-                                        {% else %}
-                                            <input type="checkbox" id="interestCheck" class="checkbox-star" 
-                                            onclick="interestSave(this,'{{data_list[x].data_id}}','{{user_id}}');" name="interestCheck">
-                                            <label for="interestCheck">관심기업 등록하기 </label>
-
-                                        {% endif %}
-                                    </div>
-                                    <!-- {# <div>★ 관심기업 해제하기</div> #} -->
-                                </a>
-                                <a class="btn btn-default btn-md" href="/company/{{data_list[x].data_id}}#location_map">
-                                    <div><span>일자리 지도 보기</span></div></a>
-                                <span class="grid-sub-blue">{{ data_list[x].industry }}</span>
+                    <li class="item">
+                        <div class = "box-text">
+                            <div class="box-btn-area">
+                                <a class="btn btn-default btn-md"><div><span>☆ 관심기업 등록하기</span></div></a>
+                                <a class="btn btn-default btn-md"><div><span>일자리 지도 보기</span></div></a>
+                                <span class="grid-sub-blue">{{ rows[x].industry }}</span>
                                 
                                 <a onclick="location.href='/company/{{data_list[x].data_id}}';" style="cursor:pointer">
-                                    <p class="grid-title" id="company_title">{{ data_list[x].company }}</p>
+                                    <!-- <p class="title">{{ data_list[x].company }}</p> -->
+                                    <p class="grid-title">{{ rows[x].company }}</p>
                                 </a>
-                                <p class="condition-sub-text">{{ data_list[x].company_type }} | {{ data_list[x].region }} |
-                                    {{ data_list[x].CEO }}</p>
+                                <p class="condition-sub-text">{{ rows[x].company_type }} | {{ rows[x].region }} |
+                                    {{ rows[x].CEO }}</p>
                             </div>
                         </div>
                         <div>
                             <!--태그-->
                             <ul class="tag">
-                                {% if data_list[x].tag != '-' %}
-                                <li>{{ data_list[x].tag }}</li>
-                                {% endif %}
+                                <li>{{ rows[x].tag }}</li>
                             </ul>
-                            
                         </div>
                     </li>
                     {% endfor %}
@@ -449,26 +334,17 @@
 
                 </div>
 
-                <div class="pagination">
-                <a href="javascript:void(0);" class="on">
-                    <span>1</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=2&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>2</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=3&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>3</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=4&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>4</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=5&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>5</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=6&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>6</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=7&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>7</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=8&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>8</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=9&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>9</span></a><a href="javascript:void(0);" onclick="goPageAjax('/condition?pg=10&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span>10</span></a><a href="javascript:void(0);" class="btn-page next" title="다음" onclick="goPageAjax('/condition?pg=11&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span class="blind">다음</span></a>
-                    <a href="javascript:void(0);" class="btn-page last" title="마지막" onclick="goPageAjax('/condition?pg=2798&amp;pgSz=10&amp;area=&amp;sic=&amp;thema=&amp;scale=&amp;crtfnBiz=&amp;wlfr=&amp;emptPrgsYn=&amp;sortStd=&amp;searchCnd=&amp;schTxt=&amp;areatag=&amp;sectortag=&amp;scaletag=&amp;biztag=on&amp;welfaretag=on', callbackLoadList);">
-                    <span class="blind">마지막</span></a>
-                </div>
-        
         </section>
     </div>
-    <script src="../../static/js/app_conditon.js"></script>
 
+// <!-- 생활코딩 따라하기 -->
+// <script>
+//     var fetched = fecth('');
+//     console.log('fetched', fetched);
+//     fetched.then(function(result){
+//         console.log('result')
+//     })
+
+// </script> 
 </body>
 </html>

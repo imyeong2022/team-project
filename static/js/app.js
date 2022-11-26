@@ -5,10 +5,8 @@ var typeOfBusinessList=[]; //업종
 var typeOfEmploymentList=[];//고용형태
 var careerList=[]; //경력
 
-var checkboxes = document.querySelectorAll('.checkbox_area');
-
-
-for(var checkbox of checkboxes){
+var area_checkboxes = document.querySelectorAll('.checkbox_area');//지역 
+for(var checkbox of area_checkboxes){
     checkbox.addEventListener('click',function(){
         if(this.checked ==true){
             areaList.push(this.value);
@@ -20,13 +18,52 @@ for(var checkbox of checkboxes){
         }
     })
 }
+var business_checkboxes = document.querySelectorAll('.checkbox_business');//업종 
+for(var checkbox of business_checkboxes){
+    checkbox.addEventListener('click',function(){
+        if(this.checked ==true){
+            typeOfBusinessList.push(this.value);
+            valueList.innerHTML = text + typeOfBusinessList.join(',');
+           }
+        else{
+            typeOfBusinessList = typeOfBusinessList.filter(e => e !== this.value);
+            valueList.innerHTML = text + typeOfBusinessList.join(',');
+        }
+    })
+}
 
+var employ_checkboxes = document.querySelectorAll('.checkbox_employ');//고용형태
+for(var checkbox of employ_checkboxes){
+    checkbox.addEventListener('click',function(){
+        if(this.checked ==true){
+            typeOfEmploymentList.push(this.value);
+            valueList.innerHTML = text + typeOfEmploymentList.join(',');
+           }
+        else{
+            typeOfEmploymentList = typeOfEmploymentList.filter(e => e !== this.value);
+            valueList.innerHTML = text + typeOfEmploymentList.join(',');
+        }
+    })
+}
+
+var career_checkboxes = document.querySelectorAll('.checkbox_career');//경력 
+for(var checkbox of career_checkboxes){
+    checkbox.addEventListener('click',function(){
+        if(this.checked ==true){
+            careerList.push(this.value);
+            valueList.innerHTML = text + careerList.join(',');
+           }
+        else{
+            careerList = careerList.filter(e => e !== this.value);
+            valueList.innerHTML = text + careerList.join(',');
+        }
+    })
+}
 
 
 function checkbox_test(){
     let str = areaList.join();
     alert(str)
-    const area='경기'
     const param ={'area':str};
     $.ajax({
         type:'GET',

@@ -92,6 +92,34 @@ def condition():
     sql = "SELECT * from company_info"
     cursor.execute(sql)
     data_list = cursor.fetchall()
+    cursor.close()
+    return render_template('Board/Condition.html', data_list=data_list)
+    # with con.cursor() as cursor:  
+    #     region = request.args.get('areatag')
+    #     scaletag = request.args.get('scaletag')
+    #     welfaretag = request.args.get('welfaretag')
+    #     r = region.split(',')
+    #     s = scaletag.split(',')
+    #     w = welfaretag.split(',')
+    #     print(r,s,w)
+    #     content = ''
+    #     for i in range(len(r)):
+    #         if (i+1) == len(r):                    
+    #             content += "'" + r[i] + "'"
+    #         else:
+    #             content += "'" + r[i] + "',"
+    #     print('>>>>>>>>>>>>'+ content,type(content))
+    #     print('!!!!!!!!!!!!!!!!'+content)
+    #     sql="SELECT * from company_info where `region` in ("+ content +")"
+    #     cursor.execute(sql)
+    #     rows=cursor.fetchall()
+    #     for row in rows:
+    #         print('............',row)
+
+    #     con.close()
+    #     # return rows
+    #     return render_template('Board/Condition.html', data_list=rows)
+   
 
     
     # content = ''
@@ -101,35 +129,36 @@ def condition():
     #         else:
     #             content += "'" + p[i] + "',"
     # Index_sql="SELECT * from company_info where `region` in ("+ content +")"
-    # cursor.execute(Index_sql)
-    cursor.close()
-    cursor.close()
+    # # cursor.execute(Index_sql)
+    # cursor.close()
 
-    region = request.args.get('areatag')
-    print(region)
-    p = region.split(',')
-    print(p)
-    content = ''
-    con = dbcall()
-    with con.cursor() as cursor:  
-        s=request.args.get('areatag') 
-        p = s.split(',')
-        content = ''
-        for i in range(len(p)):
-            if (i+1) == len(p):                    
-                content += "'" + p[i] + "'"
-            else:
-                content += "'" + p[i] + "',"
-        print('>>>>>>>>>>>>'+ content,type(content))
-        print('!!!!!!!!!!!!!!!!'+content)
-        sql="SELECT * from company_info where `region` in ("+ content +")"
-        cursor.execute(sql)
-        rows=cursor.fetchall()
-        for row in rows:
-            print('............',row)
-        con.close()
-        # return rows
-    return render_template('Board/Condition.html', data_list=data_list, rows=rows)
+    # region = request.args.get('areatag')
+    # print(region)
+    # p = region.split(',')
+    # print(p)
+    # content = ''
+    # con = dbcall()
+    # with con.cursor() as cursor:  
+    #     s=request.args.get('areatag') 
+    #     p = s.split(',')
+    #     content = ''
+    #     for i in range(len(p)):
+    #         if (i+1) == len(p):                    
+    #             content += "'" + p[i] + "'"
+    #         else:
+    #             content += "'" + p[i] + "',"
+    #     print('>>>>>>>>>>>>'+ content,type(content))
+    #     print('!!!!!!!!!!!!!!!!'+content)
+    #     sql="SELECT * from company_info where `region` in ("+ content +")"
+    #     cursor.execute(sql)
+    #     rows=cursor.fetchall()
+    #     for row in rows:
+    #         print('............',row)
+    #     con.close()
+    #     # return rows
+    # return render_template('Board/Condition.html', data_list=data_list, rows=rows)
+
+    
     # region = request.args.get('areatag')
     # print(region)
     # p = region.split(',')
@@ -160,44 +189,44 @@ def condition():
     
     # return render_template('Board/Condition.html', data_list=data_list, rows=rows, region=region, datatype="json") 
 
-    return render_template('Board/Condition.html', data_list=data_list)
+    # return render_template('Board/Condition.html', data_list=data_list)
 
-def searchIndex():
-    con = dbcall()
-    cursor = con.cursor()
-    sql = "SELECT * from company_info"
-    cursor.execute(sql)
-    data_list = cursor.fetchall()
-    cursor.close()
+# def searchIndex():
+#     con = dbcall()
+#     cursor = con.cursor()
+#     sql = "SELECT * from company_info"
+#     cursor.execute(sql)
+#     data_list = cursor.fetchall()
+#     cursor.close()
 
-    region = request.args.get('areatag', type = str)
-    print(region)
-    p = region.split(',')
-    print(p)
-    content = ''
-    for i in range(len(p)):
-            if (i+1) == len(p):                    
-                content += "'" + p[i] + "'"
-            else:
-                content += "'" + p[i] + "',"
-    try:
-        con = dbcall()
-        cursor = con.cursor()
-        sql="SELECT * from company_info where `region` in ("+ content +")"
-        cursor.execute(sql)
-        rows = cursor.fetchall()
-        for row in rows:
-            print('............',row)
+#     region = request.args.get('areatag', type = str)
+#     print(region)
+#     p = region.split(',')
+#     print(p)
+#     content = ''
+#     for i in range(len(p)):
+#             if (i+1) == len(p):                    
+#                 content += "'" + p[i] + "'"
+#             else:
+#                 content += "'" + p[i] + "',"
+#     try:
+#         con = dbcall()
+#         cursor = con.cursor()
+#         sql="SELECT * from company_info where `region` in ("+ content +")"
+#         cursor.execute(sql)
+#         rows = cursor.fetchall()
+#         for row in rows:
+#             print('............',row)
         
-        # print(rows)
-        print('화이팅!')
-        data_list = rows
-    except Exception as e:
-        print(e)        
-    finally:
-        # con.close()
-        cursor.close()
-        return render_template('Board/Condition.html', data_list=data_list, rows=rows, region=region, datatype="json") 
+#         # print(rows)
+#         print('화이팅!')
+#         data_list = rows
+#     except Exception as e:
+#         print(e)        
+#     finally:
+#         # con.close()
+#         cursor.close()
+#         return render_template('Board/Condition.html', data_list=data_list, rows=rows, region=region, datatype="json") 
 
 @app.route('/search')  # 조건으로 찾기 - 기업정보 (condition 페이지 내)
 def search():
@@ -259,7 +288,7 @@ def search():
         con.close()
         return rows
 
-@app.route('/searchIndex')  # INDEX => 조건으로 찾기
+@app.route('/condition/searchIndex')  # INDEX => 조건으로 찾기
 def searchIndex():
     region = request.args.get('areatag')
     print(region)
@@ -288,7 +317,7 @@ def searchIndex():
     finally:
         # con.close()
         cursor.close()
-    return render_template('Board/search.html', data_list=data_list, rows=rows, region=region, datatype="json")
+    return render_template('Board/Condition.html', data_list=data_list, rows=rows, region=region, datatype="json")
 
 
 @app.route('/excellence_employment')

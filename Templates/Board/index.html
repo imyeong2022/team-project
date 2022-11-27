@@ -83,7 +83,7 @@
                         <h1 class="tit cw nm">어떤 조건의<br>중소기업을 찾고 계신가요?</h1>
                         <h1 class="cw">인재님에 대해 알려주시면 우수 기업을 추천해 드릴게요!</h1>
                      </div>
-                     <form name="searchform" id="searchForm" class="selectBoxList fl w50" method="get" action="/condition">
+                     <form name="searchform" id="searchForm" class="selectBoxList fl w50" method="get" action="/condition/searchIndex">
                         <!-- selectBox1 -->
                         <div class="qustion fl"><strong>01</strong><span>일하고 싶은 지역은 어디신가요?</span></div>
                         <div class="box fl">
@@ -201,7 +201,8 @@
                      <p id="valueList"></p>
                   </div>
                   <div>
-                     <button type="submit" onclick="checkbox_test()" id="valueList">전송</button>
+                     <!-- <button type="submit" onclick="checkbox_test()" id="valueList">전송</button> -->
+                     <button type="submit" onclick="area_search()" id="valueList" class="print-value" id="valueList_index">전송</button>
                      <!-- <input type="button" value="검색" class="print-value" id="valueList_index" onclick="area_search();"> -->
                   </div>
                      </form>
@@ -212,7 +213,8 @@
    </div>
 
    <script src="../../static/js/aos.js"></script>
-   <script src="../../static/js/app_conditon.js"></script>
+   <!-- <script src="../../static/js/app_conditon.js"></script> -->
+   <script src="../../static/js/app_index.js"></script>
    <script>
       AOS.init({
          easing: 'ease-in-out-sine'

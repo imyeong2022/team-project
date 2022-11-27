@@ -24,7 +24,7 @@ function checkbox_test() {
   const param = { areatag: str };
   $.ajax({
     type: "GET",
-    url: "/condition",
+    url: "/search",
     dataType: "json",
     data: param,
     success: function (data_list) {

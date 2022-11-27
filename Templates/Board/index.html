@@ -2,148 +2,137 @@
 <html>
 
 <head>
-   <meta charset="utf-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
-   <title>index</title>
-   <link rel="stylesheet" href="../../static/css/styles.css" />
-   <link rel="stylesheet" href="../../static/css/aos.css" />
-   <style>
-      .swiper-container {
-         width: 100%;
-         height: 80vmin;
-      }
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>index</title>
+	<link rel="stylesheet" href="../../static/css/styles.css" />
+	<link rel="stylesheet" href="../../static/css/aos.css" />
+	<!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+	<!-- slider styles -->
 
-      .swiper-slide {
-         text-align: center;
-         font-size: 18px;
-         background: #fff;
+	
+	<style>
+		.swiper-container {
+			width: 100%;
+			height: 80vmin;
+		}
+		.swiper-slide {
+			text-align: center;
+			font-size: 18px;
+			background: #fff;
+			/* Center slide text vertically */
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			-webkit-justify-content: center;
+			justify-content: center;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			-webkit-align-items: center;
+			align-items: center;
+		}
+	</style>
 
-         /* Center slide text vertically */
-         display: -webkit-box;
-         display: -ms-flexbox;
-         display: -webkit-flex;
-         display: flex;
-         -webkit-box-pack: center;
-         -ms-flex-pack: center;
-         -webkit-justify-content: center;
-         justify-content: center;
-         -webkit-box-align: center;
-         -ms-flex-align: center;
-         -webkit-align-items: center;
-         align-items: center;
-      }
-   </style>
+	<script type="text/javascript">
+		function commpanypage(e) {
+			// 자바스크립트로 링크 이동하기 : location.href
+			var link = document.getElementById("data_id").value;
+			location.href = "/company/" + link;
+			// form에서는 페이지 이동 전에 데이터가 들어있는지 확인이 번거롭다.
+			// 데이터를 확인하고 그 데이터를 가지고 링크를 이동하기 위해서는 
+			// 자바스크립트에서 데이터 확인을 거치고 직접 보내주는 것이 좋다
+
+
+		}
+	</script>
 </head>
 
 <body>
-   {% include '/Board/header.html' %}
-   <div class="main-div">
-      <section class="main-section">
-         <div class="main-section-slider-div">
-            <div class="swiper-container">
-               <div class="swiper-wrapper">
-                  {% for i in range(4) %}
-                  <div class="swiper-slide">Slide {{i}}</div>
-                  {% endfor %}
-               </div>
-               <!-- Add Pagination -->
-               <div class="swiper-pagination"></div>
-            </div>
-         </div>
-         <tbody>
-            <div class="search-bar-div">
-               <div class="search-frame">
-                  <input type="text" id="schTxt" name="schTxt" class="input-text">
-               </div>
-            </div>
-            <article class="recommend-div">
-               <div>
-                  <h1>실시간 인기 중소기업</h1>
-               </div>
-               <div>
-                  <a class="a-text-decoration" href="/condition">전체보기</a>
-               </div>
-               <ul class="main-gird-ul">
-                  {% for x in range(6) %}
-                  <a class="a-text-decoration a-color aos-item" href='/company/{{data_list[x].data_id}}'
-                     style="cursor:pointer" data-aos="fade-right">
-                     <li class="main-gird-li">
-                        <span class="grid-sub-blue">{{ data_list[x].main_product }}</span>
-                        <p class="grid-title">{{ data_list[x].company }}</p>
-                        <p class="grid-sub-text">{{ data_list[x].employment }}</p>
-                     </li>
-                  </a>
-                  {% endfor %}
-               </ul>
-            </article>
-            <section class="bg-47 bg-index">
-               <article class="frame-middle">
-                  <div class="main-company-search-area">
-                     <div class="fl w50">
-                        <h1 class="tit cw nm">어떤 조건의<br>중소기업을 찾고 계신가요?</h1>
-                        <h1 class="cw">인재님에 대해 알려주시면 우수 기업을 추천해 드릴게요!</h1>
-                     </div>
-                     <form name="searchform" id="searchForm" class="selectBoxList fl w50" method="get" action="/condition/searchIndex">
-                        <!-- selectBox1 -->
-                        <div class="qustion fl"><strong>01</strong><span>일하고 싶은 지역은 어디신가요?</span></div>
-                        <div class="box fl">
-                           <div class="selectBox2 ">
-                              <button type="button" class="label">지역 🍊</button>
-                              <ul class="optionList" id ="companyListArea">
-                                 <li class="optionItem" data-value="서울"><input type="checkbox"id="전체" value="전체" class="checkbox">
-                                    <label for="check-100">전체</label></li>
-                                 <li class="optionItem" data-value="서울"><input type="checkbox" id="check-서울"
-                                       class="checkbox" name="areatag" value="서울" data-name="서울">
-                                    <label for="check-서울">서울</label></li>
-                                 <li class="optionItem" data-value="부산"><input type="checkbox" id="check-부산"
-                                       class="checkbox" name="areatag" value="부산" data-name="부산">
-                                    <label for="check-부산">부산</label></li>
-                                 <li class="optionItem" data-value="대구"><input type="checkbox" id="check-대구"
-                                       class="checkbox" name="areatag" value="대구" data-name="대구">
-                                    <label for="check-대구">대구</label></li>
-                                 <li class="optionItem" data-value="인천"><input type="checkbox" id="check-인천"
-                                       class="checkbox" name="areatag" value="인천" data-name="인천">
-                                    <label for="check-인천">인천</label></li>
-                                 <li class="optionItem" data-value="광주"><input type="checkbox" id="check-광주"
-                                       class="checkbox" name="areatag" value="광주" data-name="광주">
-                                    <label for="check-광주">광주</label></li>
-                                 <li class="optionItem" data-value="대전"><input type="checkbox" id="check-대전"
-                                       class="checkbox" name="areatag" value="대전" data-name="대전">
-                                    <label for="check-대전">대전</label></li>
-                                 <li class="optionItem" data-value="울산"><input type="checkbox" id="check-울산"
-                                       class="checkbox" name="areatag" value="울산" data-name="울산">
-                                    <label for="check-울산">울산</label></li>
-                                 <li class="optionItem" data-value="세종"><input type="checkbox" id="check-세종"
-                                       class="checkbox" name="areatag" value="세종" data-name="세종">
-                                    <label for="check-세종">세종</label></li>
-                                 <li class="optionItem" data-value="경기"><input type="checkbox" id="check-경기"
-                                       class="checkbox" name="areatag" value="경기" data-name="경기">
-                                    <label for="check-경기">경기</label></li>
-                                 <li class="optionItem" data-value="강원"><input type="checkbox" id="check-강원"
-                                       class="checkbox" name="areatag" value="강원" data-name="강원">
-                                    <label for="check-강원">강원</label></li>
-                                 <li class="optionItem" data-value="충북"><input type="checkbox" id="check-충북"
-                                       class="checkbox" name="areatag" value="충북" data-name="충북">
-                                    <label for="check-충북">충북</label></li>
-                                 <li class="optionItem" data-value="충남"><input type="checkbox" id="check-충남"
-                                       class="checkbox" name="areatag" value="충남" data-name="충남">
-                                    <label for="check-충남">충남</label></li>
-                                 <li class="optionItem" data-value="전북"> <input type="checkbox" id="check-전북"
-                                       class="checkbox" name="areatag" value="전북" data-name="전북">
-                                    <label for="check-전북">전북</label></a></li>
-                                 <li class="optionItem" data-value="전남"><input type="checkbox" id="check-전남"
-                                       class="checkbox" name="areatag" value="전남" data-name="전남">
-                                    <label for="check-전남">전남</label></li>
-                                 <li class="optionItem" data-value="경북"><input type="checkbox" id="check-경북"
-                                       class="checkbox" name="areatag" value="경북" data-name="경북">
-                                    <label for="check-경북">경북</label></li>
-                                 <li class="optionItem" data-value="경남"><input type="checkbox" id="check-경남"
-                                       class="checkbox" name="areatag" value="경남" data-name="경남">
-                                    <label for="check-경남">경남</label></li>
-                                 <li class="optionItem" data-value="제주"><input type="checkbox" id="check-제주"
-                                       class="checkbox" name="areatag" value="제주" data-name="제주">
-                                    <label for="check-제주">제주</label></a></li>
-                              </ul>
+	{% include '/Board/header.html' %}
+	<div class="main-div">
+		<section class="main-section">
+			<div class="main-section-slider-div">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						{% for i in range(4) %}
+						<div class="swiper-slide">Slide {{i}}</div>
+						{% endfor %}
+					</div>
+					<!-- Add Pagination -->
+					<div class="swiper-pagination"></div>
+				</div>
+			</div>
+			<tbody>
+				<div class="search-bar-div">
+					<div class="search-frame">
+						<input type="text" id="schTxt" name="schTxt" class="input-text">
+					</div>
+				</div>
+				<article class="recommend-div">
+					<div>
+						<h1>실시간 인기 중소기업</h1>
+					</div>
+					<div>
+						<a class="a-text-decoration" href="/condition">전체보기</a>
+					</div>
+					<form method='post' action="/">
+						<ul class="main-gird-ul">
+							{% for x in range(6) %}
+							<a class="a-text-decoration a-color aos-item" name="cookie" onclick="commpanypage('{{x}}')"
+							style="cursor:pointer" data-aos="fade-right">
+							<li class="main-gird-li">
+								<span class="grid-sub-blue">{{ data_list[x].main_product }}</span>
+								<p class="grid-title">{{ data_list[x].company }}</p>
+								{% if data_list[x].employment != '-' %}
+								<p class="grid-sub-text">{{ data_list[x].employment }}</p>
+								{% endif %}
+								
+								{% if data_list[x].tag != '-' %}
+								<p class="grid-sub-text">{{ data_list[x].tag }}</p>
+								{% endif %}
+							</li>
+						</a>
+						{% endfor %}
+					</ul>
+					</form>
+				</article>
+				<section class="bg-47 bg-index">
+					<article class="frame-middle">
+						<div class="main-company-search-area">
+							<div class="fl w50">
+								<h1 class="tit cw nm">어떤 조건의<br>중소기업을 찾고 계신가요?</h1>
+								<h1 class="cw">인재님에 대해 알려주시면 우수 기업을 추천해 드릴게요!</h1>
+							</div>
+							<div class="selectBoxList fl w50">
+								<!-- selectBox1 -->
+								<div class="qustion fl"><strong>01</strong><span>일하고 싶은 지역은 어디신가요?</span></div>
+								<div class="box fl">
+									<div class="selectBox2 ">
+										<button class="label">지역 🍊</button>
+										<ul class="optionList">
+											<li class="optionItem" data-value="서울"><span>서울</span></a></li>
+											<li class="optionItem" data-value="부산"><span>부산</span></a></li>
+											<li class="optionItem" data-value="대구"><span>대구</span></a></li>
+											<li class="optionItem" data-value="인천"><span>인천</span></a></li>
+											<li class="optionItem" data-value="광주"><span>광주</span></a></li>
+											<li class="optionItem" data-value="대전"><span>대전</span></a></li>
+											<li class="optionItem" data-value="울산"><span>울산</span></a></li>
+											<li class="optionItem" data-value="세종"><span>세종</span></a></li>
+											<li class="optionItem" data-value="경기"><span>경기</span></a></li>
+											<li class="optionItem" data-value="강원"><span>강원</span></a></li>
+											<li class="optionItem" data-value="충북"><span>충북</span></a></li>
+											<li class="optionItem" data-value="충남"><span>충남</span></a></li>
+											<li class="optionItem" data-value="전북"><span>전북</span></a></li>
+											<li class="optionItem" data-value="전남"><span>전남</span></a></li>
+											<li class="optionItem" data-value="경북"><span>경북</span></a></li>
+											<li class="optionItem" data-value="경남"><span>경남</span></a></li>
+											<li class="optionItem" data-value="제주"><span>제주</span></a></li>
+										</ul>
 
                            </div>
                         </div>

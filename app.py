@@ -10,7 +10,7 @@ app = Flask(__name__)
 # app.config['MAIL_PASSWORD'] = 'myhinigkzocytxcd'
 # app.config['MAIL_USE_TLS'] = False
 # app.config['MAIL_USE_SSL'] = True
-mail = Mail(app)
+# mail = Mail(app)
 def dbcall():
     con = pymysql.connect(
     # host='localhost',
@@ -69,246 +69,34 @@ def home():
 # --------------------------메뉴-----------------------------------
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
-    con = dbcall()
-    cursor = con.cursor()
-    sql = "SELECT * from company_info"
-    cursor.execute(sql)
-    data_list = cursor.fetchall()
-    cursor.close()
-    return render_template('Board/Condition.html', data_list=data_list)
-    # with con.cursor() as cursor:  
-    #     region = request.args.get('areatag')
-    #     scaletag = request.args.get('scaletag')
-    #     welfaretag = request.args.get('welfaretag')
-    #     r = region.split(',')
-    #     s = scaletag.split(',')
-    #     w = welfaretag.split(',')
-    #     print(r,s,w)
-    #     content = ''
-    #     for i in range(len(r)):
-    #         if (i+1) == len(r):                    
-    #             content += "'" + r[i] + "'"
-    #         else:
-    #             content += "'" + r[i] + "',"
-    #     print('>>>>>>>>>>>>'+ content,type(content))
-    #     print('!!!!!!!!!!!!!!!!'+content)
-    #     sql="SELECT * from company_info where `region` in ("+ content +")"
-    #     cursor.execute(sql)
-    #     rows=cursor.fetchall()
-    #     for row in rows:
-    #         print('............',row)
-
-    #     con.close()
-    #     # return rows
-    #     return render_template('Board/Condition.html', data_list=rows)
-
-
-
-    # content = ''
-    # for i in range(len(p)):
-    #         if (i+1) == len(p):                    
-    #             content += "'" + p[i] + "'"
-    #         else:
-    #             content += "'" + p[i] + "',"
-    # Index_sql="SELECT * from company_info where `region` in ("+ content +")"
-    # cursor.execute(Index_sql)
-    cursor.close()
-    cursor.close()
-    # # cursor.execute(Index_sql)
-    # cursor.close()
-
-    region = request.args.get('areatag')
-    print(region)
-    p = region.split(',')
-    print(p)
-    content = ''
-    con = dbcall()
-    with con.cursor() as cursor:  
-        s=request.args.get('areatag') 
-        p = s.split(',')
-        content = ''
-        for i in range(len(p)):
-            if (i+1) == len(p):                    
-                content += "'" + p[i] + "'"
-            else:
-                content += "'" + p[i] + "',"
-        print('>>>>>>>>>>>>'+ content,type(content))
-        print('!!!!!!!!!!!!!!!!'+content)
-        sql="SELECT * from company_info where `region` in ("+ content +")"
-        cursor.execute(sql)
-        rows=cursor.fetchall()
-        for row in rows:
-            print('............',row)
-        con.close()
-        # return rows
-    return render_template('Board/Condition.html', data_list=data_list, rows=rows)
-    # region = request.args.get('areatag')
-    # print(region)
-    # p = region.split(',')
-    # print(p)
-    # content = ''
-    # con = dbcall()
-    # with con.cursor() as cursor:  
-    #     s=request.args.get('areatag') 
-    #     p = s.split(',')
-    #     content = ''
-    #     for i in range(len(p)):
-    #         if (i+1) == len(p):                    
-    #             content += "'" + p[i] + "'"
-    #         else:
-    #             content += "'" + p[i] + "',"
-    #     print('>>>>>>>>>>>>'+ content,type(content))
-    #     print('!!!!!!!!!!!!!!!!'+content)
-    #     sql="SELECT * from company_info where `region` in ("+ content +")"
-    #     cursor.execute(sql)
-    #     rows=cursor.fetchall()
-    #     for row in rows:
-    #         print('............',row)
-    #     con.close()
-    #     # return rows
-    # return render_template('Board/Condition.html', data_list=data_list, rows=rows)
-
-
-    # region = request.args.get('areatag')
-    # print(region)
-    # p = region.split(',')
-    # print(p)
-    # content = ''
-    # for i in range(len(p)):
-    #         if (i+1) == len(p):                    
-    #             content += "'" + p[i] + "'"
-    #         else:
-    #             content += "'" + p[i] + "',"
-    # try:
-    #     con = dbcall()
-    #     cursor = con.cursor()
-    #     sql="SELECT * from company_info where `region` in ("+ content +")"
-    #     cursor.execute(sql)
-    #     rows = cursor.fetchall()
-    #     for row in rows:
-    #         print('............',row)
-        
-    #     # print(rows)
-    #     print('화이팅!')
-    #     data_list = rows
-    # except Exception as e:
-    #     print(e)        
-    # finally:
-    #     # con.close()
-    #     cursor.close()
-
-    # return render_template('Board/Condition.html', data_list=data_list, rows=rows, region=region, datatype="json") 
-
-    return render_template('Board/Condition.html', data_list=data_list)
-
-def searchIndex():
-    con = dbcall()
-    cursor = con.cursor()
-    sql = "SELECT * from company_info"
-    cursor.execute(sql)
-    data_list = cursor.fetchall()
-    cursor.close()
-
-    region = request.args.get('areatag', type = str)
-    print(region)
-    p = region.split(',')
-    print(p)
-    content = ''
-    for i in range(len(p)):
-            if (i+1) == len(p):                    
-                content += "'" + p[i] + "'"
-            else:
-                content += "'" + p[i] + "',"
-    try:
+    if 'ID' in session:
+            user_id=session['ID']
+    else: 
+        user_id='null'
         con = dbcall()
         cursor = con.cursor()
-        sql="SELECT * from company_info where `region` in ("+ content +")"
+        sql = "SELECT * from company_info"
         cursor.execute(sql)
-        rows = cursor.fetchall()
-        for row in rows:
-            print('............',row)
-    # return render_template('Board/Condition.html', data_list=data_list)
-
-# def searchIndex():
-#     con = dbcall()
-#     cursor = con.cursor()
-#     sql = "SELECT * from company_info"
-#     cursor.execute(sql)
-#     data_list = cursor.fetchall()
-#     cursor.close()
-
-#     region = request.args.get('areatag', type = str)
-#     print(region)
-#     p = region.split(',')
-#     print(p)
-#     content = ''
-#     for i in range(len(p)):
-#             if (i+1) == len(p):                    
-#                 content += "'" + p[i] + "'"
-#             else:
-#                 content += "'" + p[i] + "',"
-#     try:
-#         con = dbcall()
-#         cursor = con.cursor()
-#         sql="SELECT * from company_info where `region` in ("+ content +")"
-#         cursor.execute(sql)
-#         rows = cursor.fetchall()
-#         for row in rows:
-#             print('............',row)
-
-        # print(rows)
-        print('화이팅!')
-        data_list = rows
-    except Exception as e:
-        print(e)        
-    finally:
-        # con.close()
+        data_list = cursor.fetchall()
         cursor.close()
-        return render_template('Board/Condition.html', data_list=data_list, rows=rows, region=region, datatype="json") 
-#         # print(rows)
-#         print('화이팅!')
-#         data_list = rows
-#     except Exception as e:
-#         print(e)        
-#     finally:
-#         # con.close()
-#         cursor.close()
-#         return render_template('Board/Condition.html', data_list=data_list, rows=rows, region=region, datatype="json") 
+
+        cursor = con.cursor()
+        sql="select * from company_info left join like_company on company_info.data_id= like_company.data_id" 
+        cursor.execute(sql)
+        like_checked=cursor.fetchall()
+        print(like_checked[0]['id'])
+        cursor.close()
+
+        cursor = con.cursor()
+        sql = "SELECT * from like_company_view where m_id=%s"
+        cursor.execute(sql,(user_id,))
+        interest_com = cursor.fetchall()
+        interest_len=len(interest_com)
+        cursor.close()
+        return render_template('Board/search.html',data_list=data_list, like_checked=like_checked, interest_com=interest_com, interest_len=interest_len, user_id=user_id)
 
 @app.route('/search')  # 조건으로 찾기 - 기업정보 (condition 페이지 내)
 def search():
-    # region = request.args.get('areatag')
-    # scaletag = request.args.get('scaletag')
-    # welfaretag = request.args.get('welfaretag')
-    # print(region)
-    # r = region.split(',')
-    # s = scaletag.split(',')
-    # w = welfaretag.split(',')
-    # print(r,s,w)
-    # content = ''
-    # for i in range(len(r)):
-    #         if (i+1) == len(r):                    
-    #             content += "'" + r[i] + "'"
-    #         else:
-    #             content += "'" + r[i] + "',"
-    # try:
-    #     con = dbcall()
-    #     cursor = con.cursor()
-    #     sql_content="SELECT * from company_info where `region` in ("+ content +")"
-    #     cursor.execute(sql_content)
-    #     rows = cursor.fetchall()
-    #     for row in rows:
-    #         print('............',row)
-        
-    #     # print(rows)
-    #     print('화이팅!')
-    #     data_list = rows
-    # except Exception as e:
-    #     print(e)        
-    # finally:
-    #     # con.close()
-    #     cursor.close()
-    # return render_template('Board/Condition.html', data_list=data_list, rows=rows, region=region, datatype="json") 
     region = request.args.get('areatag')
     print(region)
     p = region.split(',')
@@ -332,10 +120,9 @@ def search():
         for row in rows:
             print('............',row)
         
-        con.close()
+        cursor.close()
         return rows
 
-@app.route('/searchIndex')  # INDEX => 조건으로 찾기
 @app.route('/condition/searchIndex')  # INDEX => 조건으로 찾기
 def searchIndex():
     region = request.args.get('areatag')
@@ -355,19 +142,15 @@ def searchIndex():
         cursor.execute(sql)
         rows = cursor.fetchall()
         for row in rows:
-            print('............',row)
-        
+            print('............',row)    
         # print(rows)
         print('화이팅!')
         data_list = rows
     except Exception as e:
         print(e)        
     finally:
-        # con.close()
         cursor.close()
     return render_template('Board/search.html', data_list=data_list, rows=rows, region=region, datatype="json")
-    return render_template('Board/Condition.html', data_list=data_list, rows=rows, region=region, datatype="json")
-
 
 @app.route('/excellence_employment')
 def excellence_employment():
@@ -404,14 +187,16 @@ def employtest():
             return rows        
     finally:
         con.close()
-# @app.route('/interest') ###############찜리스트 select
-# def interest():
-#     user_id=session['ID']
-#     sql = "SELECT * from like_company_view where m_id=%s"
-#     cursor.execute(sql,(user_id,))
-#     interest_com = cursor.fetchall()
-#     interest_len = len(interest_com)
-#     return render_template('Board/interest_company.html', interest_com=interest_com,interest_len=interest_len)
+@app.route('/interest') ###############찜리스트 select
+def interest():
+    con = dbcall()
+    cursor = con.cursor()
+    user_id=session['ID']
+    sql = "SELECT * from like_company_view where m_id=%s"
+    cursor.execute(sql,(user_id,))
+    interest_com = cursor.fetchall()
+    interest_len = len(interest_com)
+    return render_template('Board/interest_company.html', interest_com=interest_com,interest_len=interest_len)
 ########################################################
 @app.route('/company/<int:data_id>')  ############ 기업상세페이지
 def company(data_id):

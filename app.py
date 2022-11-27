@@ -26,7 +26,7 @@ def mailcall():
     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
     app.config['MAIL_PORT'] = 465
     app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
-    app.config['MAIL_PASSWORD'] = 'myhinigkzocytxcd'
+    app.config['MAIL_PASSWORD'] = 'snuejrgmmznyneie'
     app.config['MAIL_USE_TLS'] = False
     app.config['MAIL_USE_SSL'] = True
     mail = Mail(app)

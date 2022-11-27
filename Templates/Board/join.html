@@ -2,6 +2,7 @@
 <html lang="ko">
 
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <title>login_form.html</title>
 
@@ -92,6 +93,7 @@
                 return false;
             }
 
+
             if (!birthExp.test(userbirth)) {
                 alert("생년월일이 올바르지 않습니다.")
                 return false;
@@ -125,53 +127,55 @@
             }
         }
 
-            $(document).on("click", ".mail_check_button", function (code) {// 쿼리로 작성연습 해보기
-                var email = $(".join-mail_input").val();            // 입력한 이메일
-                var cehckBox = $(".mail_check_input");        // 인증번호 입력하는곳
-                var boxWrap = $(".mail_check_input_box");    // 인증번호 입력하는곳의 박스
-                
-                code = ""; //코드값 임시저장을 위한 변수 
-                console.log(email)
-                let randomStr = Math.random().toString(36).substring(2, 8); // 랜덤변수
+        $(document).on("click", ".mail_check_button", function (code) {// 쿼리로 작성연습 해보기
+            var email = $(".join-mail_input").val();            // 입력한 이메일
+            var cehckBox = $(".mail_check_input");        // 인증번호 입력하는곳
+            var boxWrap = $(".mail_check_input_box");    // 인증번호 입력하는곳의 박스
 
-                $.ajax({
+            code = ""; //코드값 임시저장을 위한 변수 
+            console.log(email)
+            let randomStr = Math.random().toString(36).substring(2, 8); // 랜덤변수
+
+            $.ajax({
 
                 type: "post",
                 url: '/mailcheck',
-                data : {
-                    email : email, // flask에 이메일과 랜덤코드를 보내자
-                    code : randomStr,
+                data: {
+                    email: email, // flask에 이메일과 랜덤코드를 보내자
+                    code: randomStr,
                 },
-                dataType : 'json',
- 
-                success: function (data) {
-                   cehckBox.attr("disabled", false); // attr : 속성(attribuce)의 값을 가져오거나 추가한다.
-                  boxWrap.attr("id", "mail_check_input_box_true"); // 이메일 인증 입력란[$(".mail_check_input_box")]의 색상이 변경
-                 code = randomStr; // 랜덤변수 데이터로 넘어간 것 code로 저장
+                dataType: 'json',
 
-                console.log("data : " + code);
+                success: function (data) {
+                    cehckBox.attr("disabled", false); // attr : 속성(attribuce)의 값을 가져오거나 추가한다.
+                    boxWrap.attr("id", "mail_check_input_box_true"); // 이메일 인증 입력란[$(".mail_check_input_box")]의 색상이 변경
+                    code = randomStr; // 랜덤변수 데이터로 넘어간 것 code로 저장
+                    alert(data["msg"]);
+
+                    console.log("data : " + code);
                 }
 
                 // });
-                
-            });
-             $(document).on("blur", ".mail_check_input", function (){
-            var inputCode = $(".mail_check_input").val();        // 입력코드    
-            var checkResult = $("#mail_check_input_box_warn");    // 비교결과출력
-            console.log("코드data : " + code);
-            if (inputCode == code) {                            // 일치할 경우
-                checkResult.html("인증완료");
-                checkResult.attr("class", "correct");
-            } else {                                            // 일치하지 않을 경우
-                checkResult.html("인증번호를 다시 확인해주세요.");
-                checkResult.attr("class", "incorrect");
-            }
 
-        });
+            });
+            $(document).on("blur", ".mail_check_input", function () {
+                var inputCode = $(".mail_check_input").val();        // 입력코드    
+                var checkResult = $("#mail_check_input_box_warn");    // 비교결과출력
+                console.log("코드data : " + code);
+                $(document).on("click", ".mail_auth_button", function () {
+                    if (inputCode == code) {                            // 일치할 경우
+                        checkResult.html("인증완료");
+                        checkResult.attr("class", "correct");
+                    } else {                                            // 일치하지 않을 경우
+                        checkResult.html("인증번호를 다시 확인해주세요.");
+                        checkResult.attr("class", "incorrect");
+                    }
+
+                });
+            });
         });
 
         /* 인증번호 비교 */
-
 
     </script>
 
@@ -200,30 +204,33 @@
             </div>
             <hr class="public-hr" />
             <div class="login-form-div">
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 52683a87e8991c17034ced4f0f90ec502c4777ad
+
                 <form class="login-form" action="/join_proc" method="post" onsubmit="return Validation();">
-                    <tr><input class="join-input" type="text" name="user_id" id="user_id" placeholder="ID"
+                    <div>
+                        <input class="join-input" type="text" name="user_id" id="user_id" placeholder="ID"
                             maxlength="12">
-                        <input type="button" value="중복 확인" id="btmCheck" onclick="idchk()" />
-                    </tr>
+                        <input class="join-check"type="button" value="중복 확인" id="btmCheck" onclick="idchk()" />
+                    </div>
                     <input class="join-input" type="password" name="user_pw" id="user_pw" placeholder="PassWord">
                     <input class="join-input" type="password" name="user_pw_check" id="user_pw_check"
                         placeholder="Password_check">
                     <input class="join-input" type="text" name="user_name" id="user_name" placeholder="Name">
-                    <input class="join-mail_input" type="text" name="user_email" id="user_email" placeholder="email">
-                    <!-- 인증번호 공간 -->
+
+                    <!-- 인증번호 공간 --><input class="join-mail_input" type="text" name="user_email" id="user_email"
+                        placeholder="email">
+                    <div class="mail_check_button" id="mail_check_button">
+                        <span>인증 요청</span>
+                    </div>
+
                     <div class="mail_check_wrap">
                         <div class="mail_check_input_box" id="mail_check_input_box_false">
                             <input class="mail_check_input" disabled="disabled">
+                            <div class="mail_auth_button" id="mail_auth_button">
+                                <span>인증 확인</span>
+                            </div>
                         </div>
+                        
 
-                        <div class="mail_check_button" id="mail_check_button">
-                            <span>인증번호 전송</span>
-                        </div>
 
                         <div class="clearfix"></div>
                         <span id="mail_check_input_box_warn"></span> <!-- 일치여부 경고 -->
@@ -232,9 +239,9 @@
                     <input class="join-input" type="text" name="user_phone" id="user_phone" placeholder="Phone Number"
                         maxlength="11">
                     <input class="join-input-birth-first" type="text" name="user_birth-1" id="user_birth-1"
-                        placeholder="YYYY" maxlength="4">-
+                        placeholder="YYYY" maxlength="4">
                     <input class="join-input-birth" type="text" name="user_birth-2" id="user_birth-2" placeholder="MM"
-                        maxlength="2">-
+                        maxlength="2">
                     <input class="join-input-birth-end" type="text" name="user_birth-3" id="user_birth-3"
                         placeholder="DD" maxlength="2">
 
@@ -298,6 +305,8 @@
             <div></div>
         </section>
     </div>
+    {% include '/Board/footer.html' %}
+
 </body>
 
 </html>

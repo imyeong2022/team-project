@@ -6,6 +6,81 @@
     <title>나의 활동 내역</title>
 </head>
 
+
+<script>
+    
+    
+    function checkSelectAll(data_id,user_id)  {
+    // 전체 체크박스
+    const checkboxes 
+        = document.querySelectorAll('input[name="likeCom"]');
+    // 선택된 체크박스
+    const checked 
+        = document.querySelectorAll('input[name="likeCom"]:checked');
+    // select all 체크박스
+    const selectAll 
+        = document.querySelector('input[name="All_likeCom"]');
+    
+    if(checkboxes.length === checked.length)  {
+        selectAll.checked = true;
+    }else {
+        selectAll.checked = false;
+    }
+
+
+    function checkboxAll(selectAll,user_id)  {
+      const checkboxes 
+         = document.querySelectorAll('input[name="likeCom"]');
+    
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = selectAll.checked;
+      })
+    }
+}
+
+
+
+function delete_likeCom(){
+    var DeleteList=[]
+
+    const query = 'input[name="likeCom"]:checked';
+    const selectedEls = 
+        document.querySelectorAll(query);
+    
+    // 선택된 목록에서 value 찾기
+    let result = '';
+    selectedEls.forEach((el) => {
+        result += el.value + ',';
+    });
+    const newStr = result.substring(0, result.length - 1);
+    DeleteList.push(newStr)
+
+    
+    let str = DeleteList.join();
+    alert(str)
+    const param ={'likeDelete':str};
+    //체크박스 값들 
+    $.ajax({
+        type:'GET',
+        url:'/interest_delete',
+        dataType:'json',
+        data:param,
+        success: function (data) { 
+            console.log(data); 
+            location.href='/recent_inquiry_company'
+
+        },
+        error: function (request, status, error) {
+            console.log(request, status,error);
+
+        }
+    });    
+}
+
+
+
+</script>
+
 <body>
     {% include 'Board/header.html' %}
     <div class="main-div">
@@ -32,7 +107,8 @@
                 <div class="infomation-subtext">
                     <span></span>
                 </div>
-                <div>
+                <div id="aaaaa" >
+                    
                     <table align="center" width="90%">
                         <tr bgcolor="blue" align="center">
                             <p>
@@ -40,24 +116,34 @@
                             </p>
                         </tr>
                         <tr align="center" bgcolor="skybule">
-                            <td><input type="checkbox"></td>
+                            <!-- <td><input type="hidden"  class="checkbox_all" name="All_likeCom" onclick="checkboxAll(this,'{{user_id}}');"></td> -->
+                            <td><button style="cursor:pointer" onclick="delete_likeCom();">삭제하기</button></td>
+                            
                             <td>기업명</td>
                             <td>진행중인 채용공고</td>
                             <td>확인 일자</td>
                             <td>관심기업 등록</td>
                         </tr>
-                        <tr align="center">
-                            <td><input type="checkbox"></td>
-                            <td>1,000,000</td>
-                            <td>-</td>
-                            <td>2022.11.11</td>
+                        {% for x in range(interest_len) %}
+                        <tr align="center" id="like_select">
+                            <td><input type="checkbox" id="like_list" class="checkbox_One" name="likeCom" value="{{ interest_com[x].data_id }}" onclick="checkSelectAll('{{interest_com[x].data_id}}','{{user_id}}');"></td>
+                            <td><a onclick="location.href='/company/{{interest_com[x].data_id}}';" style="cursor:pointer">{{ interest_com[x].company }}</a></td>
+                            <td>{{ interest_com[x].employment }}</td>
+                            <td>{{ interest_com[x].indate.strftime("%Y-%m-%d") }}</td>
                             <td>🌟</td>
                         </tr>
+                        {% endfor %}
                     </table>
+                    
                 </div>
             </article>
         </section>
     </div>
+
+
+
+    {% include '/Board/footer.html' %}
+
 </body>
 
 </html>

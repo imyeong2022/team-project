@@ -89,7 +89,7 @@
                 </div>
             </article>
             <div class="compony-frame aos-item" data-aos="fade-right">
-                <h1 class="title">한눈에 보는 고용통계</h1>
+                <h1 class="title">한눈에 보는 구직통계</h1>
                 <div class="trend-div">
                     <div class="trend-divi aos-item" data-aos="fade-right">
                         <h1 class="title">연령별</h1>
@@ -111,7 +111,7 @@
                             <h3>여</h3>
                             <span class="icon woman"></span>
                             <h2>58%</h2>
-                            <h5>(407,876명)</h5>
+                            <h5>(203,938명)</h5>
                         </div>
                     </div>
                 </div>
@@ -152,6 +152,7 @@
         </section>
 
     </div>
+    {% include '/Board/footer.html' %}
 </body>
 <script src="../../static/js/aos.js"></script>
 <script>
@@ -174,7 +175,7 @@
                     label: 'test1', //차트 제목
                     fill: false, // line 형태일 때, 선 안쪽을 채우는지 안채우는지
                     data: [
-                        2416682, 4144830, 2399891, 1797696, 1521371, 2658666 //x축 label에 대응되는 데이터 값
+                        51072, 120023, 69291, 26614, 14198, 12810 //x축 label에 대응되는 데이터 값
                     ],
                     backgroundColor: [
                         //색상
@@ -218,7 +219,9 @@
         data: { // 차트에 들어갈 데이터
             labels: [
                 //x 축
-                '19세 이하', '20~29세', '30~39세', '40~49세', '50~59세', '60~69세', '70세 이상'
+                '19세 이하', '20~24세', '25~29세', '30~34세', '35~39세', 
+                '40~44세', '45~49세', '50~54세', '55~59세', '60~64세', 
+                '65세 이상', '무관'
             ],
             datasets: [{ //데이터
                     label: '연령별 차트', //차트 제목
@@ -344,7 +347,5 @@
     });
 </script>
 </body>
-
-</html>
 
 </html>

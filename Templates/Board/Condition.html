@@ -20,9 +20,9 @@
                 <div class="inner"> 
                     <div class="public-list"> <!-- util-area -->
                         <ol class="public-ol">
-                            <li class="public-li"><a href="/">index ></a></li>
-                            <li class="public-li">>조건으로 찾기></li>
-                            <li class="public-li">>상세조건 검색</li>   
+                            <li class="public-li"><a href="/">index </a></li>
+                            <li class="public-li">조건으로 찾기</li>
+                            <li class="public-li">상세조건 검색</li>   
                         </ol>
                     </div>
                     <div class="public-title">
@@ -36,9 +36,9 @@
         <!-- <div class = "search-area"> content-area -->
             <form class = "search-area" id = "searchForm" name ="searchForm" method="get" action="condition"> <!-- content-area -->
                 <input type = "hidden" id="pg" value="1">
-                <!-- <input type="hidden" id="area" name="area" value=""> -->
+                <input type="hidden" id="area" name="area" value="">
                 <!-- 지역 -->
-                <!-- <input type="hidden" id="sic" name="sic" value=""> -->
+                <input type="hidden" id="sic" name="sic" value="">
                 <!-- 업종 -->
                 <input type="hidden" id="thema" name="thema" value="">
                 <!-- 유형 -->
@@ -60,15 +60,9 @@
                         <!--검색 부분 추가 및 수정함 22/11/15 서연-->
                         <div class="input-group-wrap">
                             <div class="input-group input-lg">
-                                <label for="schTxt" class="blind">기업명 검색</label>
+                                <label for="schTxt" class="blind"></label>
                                 <input type="text" id="schTxt" name="schTxt" class="input-text" placeholder="기업명, 지역, 업종을 검색해주세요." value="" onkeypress="dev.action.enterSubmit(search);">
-                                <span class="input-group-btn">
-                                    <!-- <button type="button" class="btn-search" title="검색하기" onclick="search();">
-                                        <i class="ico-search"></i>
-                                        <span class="blind">검색하기</span>
-                                    </button> -->
-                               
-                                </span>
+                                <span class="input-group-btn"></span>
                             </div>
                         </div>
                         <!-- end / 검색 부분 추가 및 수정함 22/11/15 서연 -->
@@ -84,7 +78,6 @@
                 </div>
                 <div class="search-filter"> <!-- item-list-->
                     <dl class="item-content" id="areaContent" data-id="area" data-tit="지역은" data-max="5">
-                        <!-- <dt class="item-title"><a href="#none" data-cate="false">지역</a></dt> -->
                     <div class="search-fileter-child">
                     <div class="search-fileter-child-title"><span>지역</span></div>
                         <div class="search-fileter-child-item-list">
@@ -166,10 +159,7 @@
                         </div>
                     </div>
                     </dl>
-                  
-            
                     <dl class="item-content" id="sicContent" data-id="sic" data-tit="업종은" data-max="5">
-                        <!-- <dt class="item-title"><a href="#none" data-cate="false">업종</a></dt> -->
                     <div class="search-fileter-child">
                     <div class="search-fileter-child-title"><span>업종</span></div>
                         <div class="search-fileter-child-item-list">
@@ -263,7 +253,6 @@
                     </div>
                     </dl>     
                     <dl class="item-content" id="scaleContent" data-id="scale" data-tit="규모는">
-                        <!-- <dt class="item-title"><a href="#none" data-cate="false">규모</a></dt> -->
                     <div class="search-fileter-child">
                     <div class="search-fileter-child-title"><span>규모</span></div>
                         <div class="search-fileter-child-item-list">
@@ -378,143 +367,28 @@
                 </div>
             </form>
                 <div class="condition">
-                <!-- <ul class = "board-incruit mt15" id ="companyListArea"> -->
-                    <!-- {% for x in range(10) %}  -->
-                    <!-- <li class="item" data-id="{{ data_list[x].data_id}}"> -->
-                        <!-- <div class="box-text"> -->
-                            <!-- <a>
-                                {# if문으로 관심기업아니면 ☆ 관심기업이면 ★ #}
-                                <div class="custom-checkbox">
-                                    <input type="checkbox" id="interestCheck-{{ data_list[x].data_id}}" class="checkbox-star" onclick="intrstYnSave(this);" name="interestCheck-{{ data_list[x].data_id}}">
-                                    <label for="interestCheck-{{ data_list[x].data_id}}">
-                                        ☆ 관심기업 등록하기
-                                    </label>
-                                </div>
-                                {# <div>★ 관심기업 해제하기</div> #}
-                            </a> -->
-                            <!-- <span class="sort text-primary text-md">{{ data_list[x].industry }}</span> -->
-                            <!-- contextPath 추가 22.01.04 -->
-                            <!-- <p class="title"><a href="/company/{{ data_list[x].data_id}}">{{ data_list[x].company }}</a> 
-                              
-                                <em class="badge-point">{{ data_list[x].employment }}</em></p> 
-                            <ul class="text text-grey">
-                                <li>{{ data_list[x].company_type }}</li>
-                                <li>{{ data_list[x].region }}</li>
-                                <li>{{ data_list[x].CEO }}</li>
-                            </ul> -->
-                            <!-- <ul class="tag">
-                                <li><button type="button" class="tag-point" data-best1-ty-cd="C005" data-best2-ty-cd="C004">#내실이 탄탄하고 성과보상이 확실한</button></li>
-                                <li>
-                                    <button type="button" class="tag-mint" data-value="벤처기업">#벤처기업</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="tag-mint" data-value="이노비즈">#이노비즈</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="tag-mint" data-value="기업부설연구소 인정">#기업부설연구소 인정</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="tag-primary" data-value="국민연금">#국민연금</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="tag-primary" data-value="고용보험">#고용보험</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="tag-primary" data-value="산재보험">#산재보험</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="tag-primary" data-value="건강보험">#건강보험</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="tag-primary" data-value="퇴직연금">#퇴직연금</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="tag-primary" data-value="상해보험">#상해보험</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="신입사원교육(OJT)">#신입사원교육(OJT)</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="건강검진">#건강검진</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="석식제공">#석식제공</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="퇴직금">#퇴직금</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="각종 경조금 지원">#각종 경조금 지원</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="자녀 학자금 지원">#자녀 학자금 지원</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="우수사원 표창/포상">#우수사원 표창/포상</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="야근수당">#야근수당</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="휴일수당">#휴일수당</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="성과급">#성과급</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="휴게실">#휴게실</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="주차장">#주차장</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="주5일근무">#주5일근무</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="연차">#연차</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="경조휴가">#경조휴가</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="노동절 휴무">#노동절 휴무</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="워크샵/MT">#워크샵/MT</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="야유회">#야유회</button>
-                                </li>
-                                <li class="hide">
-                                    <button type="button" class="tag-primary" data-value="경영실적에 따라 하계휴가비, 명절휴가비, 연말상여금, 5월 가족의 달 상여 등 지급">#경영실적에 따라 하계휴가비, 명절휴가비, 연말상여금, 5월 가족의 달 상여 등 지급</button>
-                                </li>
-                            </ul> -->
-                            <!-- <div class="box-btn-area"> -->
-                                <!-- contextpath 추가 22.01.04 -->
-                                <!-- <a href="/gsmb/map/smart_employment/{{ data_list[x].data_id}}?xco={{ data_list[x].위도}}&amp;yco={{ data_list[x].경도}}&amp;keyword=" class="btn btn-default btn-md"><span>일자리지도 바로가기</span></a> -->
-                                <!-- <div class="custom-checkbox">
-                                    <input type="checkbox" id="interestCheck-{{ data_list[x].data_id}}" class="checkbox-star" onclick="intrstYnSave(this);" name="interestCheck-{{ data_list[x].data_id}}">
-                                    <label for="interestCheck-{{ data_list[x].data_id}}">관심기업 등록하기</label>
-                                </div>
-                            </div> -->
-                        <!-- </div> -->
-                    <!-- </li> -->
-                    <!-- {% endfor %} -->
-                <!-- </ul> -->
                 <ul class = "board-incruit mt15" id ="companyListArea">
-                    
                     {% for x in range(10) %}    
-                    <li class="item">
+                    <li class="item" data-id="{{ data_list[x].data_id}}">
                         <div class = "box-text">
                             <div class="box-btn-area">
-                                <a class="btn btn-default btn-md"><div><span>☆ 관심기업 등록하기</span></div></a>
-                                    <!-- {# if문으로 관심기업아니면 ☆ 관심기업이면 ★ #}
-                                     <div class="custom-checkbox"> 
-                                        <input type="checkbox" id="interestCheck-{{ data_list[x].data_id}}" class="checkbox-star" onclick="intrstYnSave(this);" name="interestCheck-{{ data_list[x].data_id}}">
-                                        <label for="interestCheck-{{ data_list[x].data_id}}"><span>☆ 관심기업 등록하기</span></label>
-                                    </div>
-                                    {# <div>★ 관심기업 해제하기</div> #} -->
-                                </a>
+                                <a onClick="window.location.reload()" style="cursor: pointer;">
+                                {# onclick은 로그인이 안되어있을때  ★ #}
+                                    <div class="wish-checkbox">
+                                    {# if문으로 관심기업아니면 ☆ 관심기업이면 ★ #}
+                                         {% if like_checked[x]['id']==user_id and data_list[x].data_id == like_checked[x].data_id %}
+                                         <!-- <div class="custom-checkbox"> -->
+                                         <div class="wish-checkbox">
+                                         <input type="checkbox" checked id="interestCheck{{x}}" class="checkbox-star" onclick="interestSave(this,'{{data_list[x].data_id}}','{{user_id}}');" name="interestCheck{{x}}">
+                                             <span class="star-inner">&nbsp;&nbsp;&nbsp;</span>
+                                             <label for="interestCheck{{x}}">관심기업 해제하기 </label>
+                                             {% else %}
+                                             <input type="checkbox" id="interestCheck-{{ data_list[x].data_id}}" class="checkbox-star" onclick="intrstYnSave(this);" name="interestCheck-{{ data_list[x].data_id}}">
+                                             <label for="interestCheck{{x}}">관심기업 등록하기</label>
+                                         </div>
+                                         {% endif %} 
+                                     </div>
+
                                 <a class="btn btn-default btn-md" href="/company/{{data_list[x].data_id}}#location_map">
                                     <div><span>일자리 지도 보기</span></div></a>
                                 <span class="grid-sub-blue">{{ data_list[x].industry }}</span>
@@ -533,14 +407,6 @@
                                 <li>{{ data_list[x].tag }}</li>
                                 {% endif %}
                             </ul>
-                            <!-- <ul class = "tag">
-                                <li>
-                                    <button type="button" class="tag-point" data-best1-ty-cd="C005" data-best2-ty-cd="C002">#조직문화가 건강하고 성과보상이 확실한</button>
-                                </li>
-                                <li>
-                                    <button type="button" class="tag-mint" data-value="인재육성형 중소기업">#인재육성형 중소기업</button>
-                                </li>
-                            </ul> -->
                         </div>
                     </li>
                     {% endfor %}
@@ -566,5 +432,43 @@
         </section>
     </div>
     <script src="../../static/js/app_conditon.js"></script>
+    <script>
+        function interestSave(obj, data_id, user_id) {
+            var userId = user_id
+            if (userId == 'null') {
+                $(obj).prop("checked", false);
+                if (confirm("로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?")) {
+                    location.href = "/login_form_get";
+                }
+            } else {
+                alert('로그인!')
+                var cmpIds = new Array();
+    
+                const dataID = data_id
+                const param = {
+                    'data_id': dataID
+                };
+                alert(data_id)
+                $.ajax({
+                    type: 'GET',
+                    url: '/interest_insert',
+                    dataType: 'json',
+                    data: param,
+                    success: function (data) {
+                        console.log(data);
+                        console.log("콘솔 ", data['status'])
+                        if (data['status'] == '1') {
+                            $(obj).prop("checked", true);
+                        } else {
+                            $(obj).prop("checked", false);
+                        }
+                    },
+                    error: function (request, status, error) {
+                        console.log(request, status, error);
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 </html>

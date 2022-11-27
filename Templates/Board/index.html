@@ -46,8 +46,6 @@
 			// form에서는 페이지 이동 전에 데이터가 들어있는지 확인이 번거롭다.
 			// 데이터를 확인하고 그 데이터를 가지고 링크를 이동하기 위해서는 
 			// 자바스크립트에서 데이터 확인을 거치고 직접 보내주는 것이 좋다
-
-
 		}
 	</script>
 </head>
@@ -82,9 +80,11 @@
 					</div>
 					<form method='post' action="/">
 						<ul class="main-gird-ul">
-							{% for x in range(6) %}
-							<a class="a-text-decoration a-color aos-item" name="cookie" onclick="commpanypage('{{x}}')"
-							style="cursor:pointer" data-aos="fade-right">
+						{% for x in range(6) %}
+							<!-- <a class="a-text-decoration a-color aos-item" name="cookie" onclick="commpanypage('{{x}}')" -->
+							<!-- style="cursor:pointer" data-aos="fade-right"> -->
+                     <!-- 위 자바스크립트 기능 구현이 안 되서 작동하는 코드로 아래 넣어둡니다-->
+                  <a class="a-text-decoration a-color aos-item" name="cookie" href='/company/{{data_list[x].data_id}}' style="cursor:pointer" data-aos="fade-right">
 							<li class="main-gird-li">
 								<span class="grid-sub-blue">{{ data_list[x].main_product }}</span>
 								<p class="grid-title">{{ data_list[x].company }}</p>
@@ -185,15 +185,11 @@
                               </ul>
                            </div>
                         </div>
-                        <!-- <button type="submit" onclick="area_search()"">전송</button> -->
-                  <div class="print-values">
-                     <p id="valueList"></p>
-                  </div>
-                  <div>
-                     <!-- <button type="submit" onclick="checkbox_test()" id="valueList">전송</button> -->
-                     <button type="submit" onclick="area_search()" id="valueList" class="print-value" id="valueList_index">전송</button>
-                     <!-- <input type="button" value="검색" class="print-value" id="valueList_index" onclick="area_search();"> -->
-                  </div>
+                        <!-- <button type="submit" onclick="area_search()" id="valueList" class="print-value" id="valueList_index">전송</button> -->
+                        <button type="submit" onclick="checkbox_test()" id="valueList" class="print-value" id="valueList_index">전송</button>
+                        <div class="print-values">
+                           <p id="valueList"></p>
+                        </div>
                      </form>
                   </div>
                </article>
@@ -202,8 +198,8 @@
    </div>
 
    <script src="../../static/js/aos.js"></script>
-   <!-- <script src="../../static/js/app_conditon.js"></script> -->
-   <script src="../../static/js/app_index.js"></script>
+   <script src="../../static/js/app_conditon.js"></script>
+   <!-- <script src="../../static/js/app_index.js"></script> -->
    <script>
       AOS.init({
          easing: 'ease-in-out-sine'

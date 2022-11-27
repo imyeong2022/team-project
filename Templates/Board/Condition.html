@@ -16,14 +16,12 @@
                 location.href = "/login_form_get";
             }
         } else {
-            alert('로그인!')
             var cmpIds = new Array();
 
             const dataID = data_id
             const param = {
                 'data_id': dataID
             };
-            alert(data_id)
             $.ajax({
                 type: 'GET',
                 url: '/interest_insert',

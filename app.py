@@ -419,19 +419,22 @@ def recent_inquiry_company():
 def persnal_info_change():
     return render_template('Board/personal-info-change.html')
 #################### END 마이페이지 ###################
-############ 미완성 및 미적용 루트 ########
-@app.route('/trend')
+@app.route('/introduction') # 회사소개 페이지
+def introduction():
+    return render_template('Board/our_company.html')
+@app.route('/event') # 이벤트 페이지
+def evnet():
+    return render_template('Board/event.html')
+@app.route('/trend') #트렌드 페이지
 def trend():
     return render_template('Board/trend.html')
+############ 미완성 및 미적용 루트 ########
 @app.route('/chart')
 def chart():
     return render_template('Board/chart.html')
 @app.route('/bar')
 def bar():
     return render_template('Board/bar.html')
-@app.route('/events')
-def evnet():
-    return render_template('Board/event.html')
 #####################################
 SECRET_KEY = "dev"
 if __name__ == '__main__':

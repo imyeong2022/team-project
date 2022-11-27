@@ -1886,7 +1886,7 @@ table.table2 td {
  }
  
  .qna-div-2 {
-	width: 60%;
+	width: 68%;
  }
  
  .qna-div-3 {
@@ -1895,10 +1895,6 @@ table.table2 td {
  
  .qna-div-4 {
 	width: 15%;
- }
-
- .qna-div-5 {
-	width: 8%;
  }
  
  .qna>li>div {
@@ -2322,6 +2318,30 @@ p {
 
 .col75{
 	color: #759ef7;
+}
+
+.qv-tr-h{
+	text-align: center;
+	color: white;
+	background: #759ef7;
+	height: 5vmin;
+}
+
+.tc{
+	text-align: center;
+}
+
+.w90{
+	width: 90%;
+}
+
+.bmg10>tbody>tr:nth-child(n+2){
+	line-height: 2;
+}
+
+.tbbr{
+	border: 0.3vmin solid #759ef7;
+	border-radius: 4px;
 }
 /*////////////////////////////RIP/////////////////////////////*/
 .RIP{

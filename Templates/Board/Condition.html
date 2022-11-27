@@ -8,8 +8,6 @@
 </head>
 
 <script>
-    
-
     function interestSave(obj, data_id, user_id) {
         var userId = user_id
         if (userId == 'null') {
@@ -36,7 +34,6 @@
                     console.log("콘솔 ", data['status'])
                     if (data['status'] == '1') {
                         $(obj).prop("checked", true);
-
                     } else {
                         $(obj).prop("checked", false);
                     }
@@ -70,9 +67,9 @@
                     <div class="public-list">
                         <!-- util-area -->
                         <ol class="public-ol">
-                            <li class="public-li"><a href="/">index ></a></li>
-                            <li class="public-li">>조건으로 찾기></li>
-                            <li class="public-li">>상세조건 검색</li>
+                            <li class="public-li">index</li>
+                            <li class="public-li">조건으로 찾기</li>
+                            <li class="public-li">상세조건 검색</li>
                         </ol>
                     </div>
                     <div class="public-title">
@@ -114,7 +111,6 @@
                             <!--검색 부분 추가 및 수정함 22/11/15 서연-->
                             <div class="input-group-wrap">
                                 <div class="input-group input-lg">
-                                    <label for="schTxt" class="blind">기업명 검색</label>
                                     <input type="text" id="schTxt" name="schTxt" class="input-text"
                                         placeholder="기업명, 지역, 업종을 검색해주세요." value=""
                                         onkeypress="dev.action.enterSubmit(search);">
@@ -453,8 +449,8 @@
                     <div class="print-values">
                         <p id="valueList"></p>
                     </div>
-                    <div>
-                        <input type="button" value="검색test" class="print-value" id="valueList"
+                    <div class="fr">
+                        <input class="index-button" type="button" value="검색" class="print-value" id="valueList"
                             onclick="checkbox_test();">
                     </div>
                 </div>
@@ -469,28 +465,28 @@
                     <li>
                         <div>
                             <div>
-                                <a>
+                                <a onClick="window.location.reload()" style="cursor: pointer;">
                                     <!-- {# onclick은 로그인이 안되어있을때  ★ #} -->
                                     <div class="wish-checkbox">
                                         {% if like_checked[x]['id']==user_id and data_list[x].data_id == like_checked[x].data_id %}
-                                        <input type="checkbox" checked id="interestCheck" class="checkbox-star"
+                                        <input type="checkbox" checked id="interestCheck{{x}}" class="checkbox-star"
                                             onclick="interestSave(this,'{{data_list[x].data_id}}','{{user_id}}');"
-                                            name="interestCheck">
+                                            name="interestCheck{{x}}">
                                         <span class="star-inner">&nbsp;&nbsp;&nbsp;</span>
-                                        <label id="labelch" >관심기업 등록하기 </label>
-                                        {% else %}
-                                        <input type="checkbox" id="interestCheck" class="checkbox-star"
-                                                onclick="interestSave(this,'{{data_list[x].data_id}}','{{user_id}}');"
-                                                name="interestCheck">
-                                        <span class="star-inner">&nbsp;&nbsp;&nbsp;</span>
-                                        <label id="labelch">관심기업 등록하기</label>
+                                        <label for="interestCheck{{x}}">관심기업 해제하기 </label>
 
+                                        {% else %}
+                                        <input type="checkbox" id="interestCheck{{x}}" class="checkbox-star"
+                                            onclick="interestSave(this,'{{data_list[x].data_id}}','{{user_id}}');"
+                                            name="interestCheck{{x}}">
+                                        <span class="star-inner">&nbsp;&nbsp;&nbsp;</span>
+                                        <label for="interestCheck{{x}}">관심기업 등록하기</label>
                                         {% endif %}
                                     </div>
                                     <!-- {# <div>★ 관심기업 해제하기</div> #} -->
                                 </a>
-                                <a class="btn btn-default btn-md" href="/company/{{data_list[x].data_id}}#location_map">
-                                    <div><span>일자리 지도 보기</span></div>
+                                <a class="btn btn-default btn-md header-logo-a" href="/company/{{data_list[x].data_id}}#location_map">
+                                    <div><span class="col75">일자리 지도 보기</span></div>
                                 </a>
                                 <span class="grid-sub-blue">{{ data_list[x].industry }}</span>
 
@@ -548,6 +544,8 @@
         </section>
     </div>
     <script src="../../static/js/app_conditon.js"></script>
+
+    {% include '/Board/footer.html' %}
 
 </body>
 

@@ -291,17 +291,18 @@
             <!--// article-title-area -->
             <div class="article-content frame-min" id="sameIndustryArea">
                 <div class="swiper-container">
+                 <!-- 자신(= 현재 기업페이지에 출력된 기업자신)을 제외한 동종업계 추천기업 리스트(x+1)-->
                     <div class="swiper-wrapper">
                         {% for x in range (10) %}
                         <div class="swiper-slide">
-                            <a href="/company/{{all_list[x].data_id}}">
-                                <span class="grid-sub-blue">{{all_list[x].company_type}}</span>
-                                <p class="grid-title-side">{{all_list[x].company}}</p>
-                                <div class="company-swiper-div-margin">
-                                    <span class="condition-sub-text">{{all_list[x].region}}</span>
-                                    <span class="grid-sub-red">{{all_list[x].employment}}</span>
-                                </div>
+                            <span class="grid-sub-blue">{{same_industry[x+1].company_type}}</span>
+                            <a href="/company/{{same_industry[x+1].data_id}}">
+                                <p class="grid-title-side">{{same_industry[x+1].company}}</p>
                             </a>
+                            <div class="company-swiper-div-margin">
+                                <span class="condition-sub-text">{{same_industry[x+1].region}}</span>
+                                <span class="grid-sub-red">{{same_industry[x+1].employment}}</span>
+                            </div>
                         </div>
                         {% endfor %}
                     </div>

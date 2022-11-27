@@ -211,9 +211,9 @@ def company(data_id):
     print(recommendation)
     allcom = "SELECT * FROM COMPANY_INFO where industry = %s" 
     cursor.execute(allcom,(recommendation,))
-    all_list = cursor.fetchall()
+    same_industry = cursor.fetchall()
     con.close()
-    return render_template('Board/company.html', data_list=data_list, all_list=all_list)
+    return render_template('Board/company.html', data_list=data_list, same_industry=same_industry)
 @app.route('/jobs')  ################# 채용정보페이지
 def jobs():
     return render_template('Board/jobs.html')

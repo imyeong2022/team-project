@@ -144,24 +144,34 @@ def home():
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
     con = dbcall()
-    cursor = con.cursor()
+    cursor=con.cursor()
+    try:
+        if 'ID' in session:
+            user_id=session['ID']
+        else:
+            user_id='null'
+            
+        sql = "SELECT * from company_info"
+        cursor.execute(sql)
+        data_list = cursor.fetchall()
 
-    if 'ID' in session:
-        user_id=session['ID']
-    else:
-        user_id='null'
-        
-    sql = "SELECT * from company_info"
-    cursor.execute(sql)
-    data_list = cursor.fetchall()
-    data_list = data_list
 
-    sql = "SELECT * from like_company_view where m_id=%s"
-    cursor.execute(sql,(user_id,))
-    interest_com = cursor.fetchall()
-    interest_len=len(interest_com)
-    return render_template('Board/Condition.html',data_list=data_list,
-                interest_com=interest_com,interest_len=interest_len,user_id=user_id)
+        sql="select * from company_info left join like_company on company_info.data_id= like_company.data_id" 
+        cursor.execute(sql)
+        like_checked=cursor.fetchall()
+        print(like_checked[0]['id'])
+
+
+
+        sql = "SELECT * from like_company_view where m_id=%s"
+        cursor.execute(sql,(user_id,))
+        interest_com = cursor.fetchall()
+        interest_len=len(interest_com)
+    except Exception as e:
+        print(e)
+    finally:
+        # con.close()
+        return render_template('Board/Condition.html',like_checked=like_checked,data_list=data_list,interest_com=interest_com,interest_len=interest_len,user_id=user_id)
 
 ####################################################
 
@@ -169,12 +179,22 @@ def condition():
 @app.route('/employtest')  # 체크박스 test
 def employtest():
     con = dbcall()
+    cursor=con.cursor()
     try:
         with con.cursor() as cursor:
+            
+            areaList=request.args.get('area') 
+            industryList=request.args.get('industry') 
+            company_typeList=request.args.get('company_type') 
 
-            s = request.args.get('area')
+            print(areaList)
+            print(industryList)
 
-            p = s.split(',')
+            print(company_typeList)
+
+
+            
+            p = areaList.split(',')
             content = ''
             for i in range(len(p)):
                 if (i+1) == len(p):
@@ -212,40 +232,40 @@ def interest_select():
     return render_template('Board/interest_company.html', interest_com=interest_com, interest_len=interest_len)
 
 
-@app.route('/interest_insert')  # 찜리스트 INSERT,UPDATE(DELETE)
+@app.route('/interest_insert') ###############찜리스트 INSERT,UPDATE(DELETE)
 def interest_insert():
     con = dbcall()
-    cursor = con.cursor()
-    rs = {}
+    cursor=con.cursor()
+    rs={}
     try:
-        user_id = session['ID']
-        data_id = request.args.get('data_id')
-        sql = "SELECT * from like_company where id=%s and data_id=%s"
-        cursor.execute(sql, (user_id, data_id))
+        user_id=session['ID']
+        data_id=request.args.get('data_id')
+        sql="SELECT * from like_company where id=%s and data_id=%s"
+        cursor.execute(sql,(user_id,data_id))
         like_company_all = cursor.fetchall()
         print('>>>>>>',len(like_company_all))
         if(len(like_company_all)>0):
-            print('like_update')
-            sql = "Update like_company SET result=%s where data_id=%s and id=%s;"
-            if(like_company_all[0]['result']=='0'):
-                cursor.execute(sql,(1,data_id,user_id))
-            else:
-                cursor.execute(sql,(0,data_id,user_id))
+            print('like_delete')
+            sql = "delete from like_company where data_id=%s and id=%s;"
+            cursor.execute(sql,(data_id,user_id))
             con.commit()
             cnt=cursor.rowcount
-            rs = {'status':cnt}
+            if(cnt>0):
+                rs = {'status':1000}
         else:
             print('like_insert')
             sql = "insert into like_company(ID,data_id,result) values(%s,%s,%s)"
-            cursor.execute(sql, (user_id, data_id, 1))
+            cursor.execute(sql,(user_id,data_id,1))
             con.commit()
-            cnt = cursor.rowcount
-            rs = {'status': cnt}
+            cnt=cursor.rowcount
+            rs = {'status':cnt}
     except Exception as e:
         print(e)
         rs = {'status': 0}
     finally:  
+        # con.close()
         return rs  
+        
         
 
 
@@ -259,11 +279,11 @@ def company(data_id):
     sql = "SELECT * from company_info where data_id = %s"
     cursor.execute(sql, (data_id, ))
     data_list = cursor.fetchall()
-    company=data_list[0]['업종']
+    company=data_list[0]['industry']
     
 
 
-    allcom = "SELECT * FROM COMPANY_INFO where 업종 = %s" 
+    allcom = "SELECT * FROM COMPANY_INFO where industry = %s" 
     cursor.execute(allcom,(company,))
     all_list = cursor.fetchall()
     all_list_len = len(all_list)
@@ -399,6 +419,57 @@ def qnaview():
     return render_template('Board/qnaview.html', my_qna_view=my_qna_view, my_qna_view_len=my_qna_view_len, date_list=date_list, reply_list=reply_list)
 
 
+
+# @app.route('/interest') ###############마이페이지 나의 활동내역 --찜리스트 select
+# def interest():
+#     print('여기11')
+#     con = dbcall()
+#     cursor=con.cursor()
+#     user_id=session['ID']
+#     sql = "select * from like_company left join like_company_view on like_company.data_id= like_company_view.data_id where id=%s"
+#     cursor.execute(sql,(user_id,))
+#     interest_com = cursor.fetchall()
+#     interest_len=len(interest_com)
+
+#     return rs
+
+
+@app.route('/interest_delete') ###############마이페이지 나의 활동내역 --찜리스트 delete
+def interest_delete():
+    con = dbcall()
+    cursor=con.cursor()
+    user_id=session['ID']
+    rs={}
+    try:
+        with con.cursor() as cursor:
+            s=request.args.get('likeDelete') 
+            p=s.split(',')#리스트 
+            content=''
+            for i in range(len(p)):
+                if (i+1) == len(p):                    
+                    content += "'" + p[i] + "'"
+                else:
+                    content += "'" + p[i] + "',"
+            sql="delete from like_company where id=%s and `data_id` in ("+ content +")"
+            cursor.execute(sql,(user_id,))
+            con.commit()
+            cnt=cursor.rowcount
+            rs={'status':cnt}
+            
+
+    except Exception as e:
+        rs={'status':0}
+        print(e)
+    finally:
+        return rs    
+        
+
+
+    
+
+
+
+
 @app.route('/interest')  # 찜리스트 test
 def interest():
     con = dbcall()
@@ -510,6 +581,8 @@ def join_proc():
     cursor = con.cursor()
     Idexp = re.compile('^[a-zA-Z0-9]{4,12}$')
     Idexp = re.compile('^[a-zA-Z0-9]{4,12}$')
+    con = dbcall()
+    cursor=con.cursor()
 
     if request.method == 'POST':  # request객체 안에 method 기능있음(자바도 마찬가지).
         # 키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
@@ -584,9 +657,18 @@ def my_page_proc():
             return render_template('Board/login.html')
 
 
-@app.route('/recent_inquiry_company')  # 활동내역 (열람기업)
+@app.route('/recent_inquiry_company')  # 찜리스트  활동내역 (열람기업) 
 def recent_inquiry_company():
-    return render_template('Board/r-i-c.html')
+    con = dbcall()
+    cursor=con.cursor()
+    user_id=session['ID']
+    sql = "select * from like_company left join like_company_view on like_company.data_id= like_company_view.data_id where id=%s"
+    cursor.execute(sql,(user_id,))
+    interest_com = cursor.fetchall()
+    interest_len=len(interest_com)
+
+    return render_template('Board/r-i-c.html',interest_com=interest_com,interest_len=interest_len)
+
 
 
 @app.route('/personal-info-change')  # 회원정보수정

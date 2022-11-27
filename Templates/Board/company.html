@@ -34,18 +34,22 @@
             <div class="title-area-company-bgimg">
             </div>
             <div class="title-area-company">
-                <div class="company-logo">
+                <!-- <div class="company-logo">
                     <img class="company-logo-img" src="{{ url_for('static', filename='source/jsolution.png') }}" alt="">
-                </div>
+                </div> -->
                 <div class="company-info">
                     <div>
+                        <!-- 채용중 일때만 보여주기 -->
                         {% if data_list[0].employment != '-' %}
                         <span class="grid-red">{{ data_list[0].employment}}</span>
                         {% endif %}
                         <span class="company-sub" ID="industry",NAME="industry">{{ data_list[0].industry}}</span>
                     </div>
                     <h1 class="company-title">{{ data_list[0].company}}</11>
-                    <h3 class="company-sub-title-Y">{{ data_list[0].tag}}</h3>
+                        <!-- 태그 칼럼에 내용이 있을 때에만 보여주기 -->
+                        {% if data_list[0].tag != '-' %}
+                        <h3 class="company-sub-title-Y">{{ data_list[0].tag}}</h3>
+                        {% endif %}
                     <h3 class="company-sub-title-W"></h3>
                     <p></p>
 

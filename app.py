@@ -65,6 +65,9 @@ def accountfind_proc():
 
 @app.route('/passwordfind')
 def passwordfind():
+    con = dbcall()
+    cursor = con.cursor()
+    
     sql = "SELECT ID,email,phone from member"
     cursor.execute(sql)
     userlist2 = cursor.fetchall()
@@ -174,7 +177,33 @@ def condition():
         return render_template('Board/Condition.html',like_checked=like_checked,data_list=data_list,interest_com=interest_com,interest_len=interest_len,user_id=user_id)
 
 ####################################################
-
+@app.route('/search')  # 조건으로 찾기 - 기업정보 (condition 페이지 내)
+def search():
+    region = request.args.get('areatag')
+    print(region)
+    p = region.split(',')
+    print(p)
+    content = ''
+    con = dbcall()
+    with con.cursor() as cursor:  
+        s=request.args.get('areatag') 
+        p = s.split(',')
+        content = ''
+        for i in range(len(p)):
+            if (i+1) == len(p):                    
+                content += "'" + p[i] + "'"
+            else:
+                content += "'" + p[i] + "',"
+        print('>>>>>>>>>>>>'+ content,type(content))
+        print('!!!!!!!!!!!!!!!!'+content)
+        sql="SELECT * from company_info where `region` in ("+ content +")"
+        cursor.execute(sql)
+        rows=cursor.fetchall()
+        for row in rows:
+            print('............',row)
+        
+        cursor.close()
+        return rows
 
 @app.route('/employtest')  # 체크박스 test
 def employtest():
@@ -185,15 +214,18 @@ def employtest():
             
             areaList=request.args.get('area') 
             industryList=request.args.get('industry') 
-            company_typeList=request.args.get('company_type') 
-
-            print(areaList)
-            print(industryList)
-
-            print(company_typeList)
+            career_details=request.args.get('career_detail') 
+            education=request.args.get('education') 
 
 
+
+            print("체크박스 area",areaList)
+            print("체크박스 industry",industryList)
+            print("체크박스 career",career_details)
+            print("체크박스 education",education)
             
+
+
             p = areaList.split(',')
             content = ''
             for i in range(len(p)):
@@ -205,19 +237,19 @@ def employtest():
 
             print('!!!!!!!!!!!!!!!!'+content)
             
-            sql="SELECT * from company_info where `지역` in ("+ content +")"
+            sql="SELECT * from company_employment where `region` in ("+ content +")"
             cursor.execute(sql)
             rows = cursor.fetchall()
-            # print(rows)
+            print("길이",len(rows))
 
             for row in rows:
                 print('............', row)
-            # return jsonify(rows)
-            return rows        
+            return jsonify(rows)
+            # return rows        
     finally:
         con.close()
         
-########################################################찜하기 기능 
+################################################################################찜하기 기능 
 
 @app.route('/interest_select')  # .마이페이지 찜리스트 select
 def interest_select():
@@ -232,7 +264,38 @@ def interest_select():
     return render_template('Board/interest_company.html', interest_com=interest_com, interest_len=interest_len)
 
 
-@app.route('/interest_insert') ###############찜리스트 INSERT,UPDATE(DELETE)
+
+@app.route('/interest_delete') ###############마이페이지 나의 활동내역 --찜리스트 delete
+def interest_delete():
+    con = dbcall()
+    cursor=con.cursor()
+    user_id=session['ID']
+    rs={}
+    try:
+        with con.cursor() as cursor:
+            s=request.args.get('likeDelete') 
+            p=s.split(',')#리스트 
+            content=''
+            for i in range(len(p)):
+                if (i+1) == len(p):                    
+                    content += "'" + p[i] + "'"
+                else:
+                    content += "'" + p[i] + "',"
+            sql="delete from like_company where id=%s and `data_id` in ("+ content +")"
+            cursor.execute(sql,(user_id,))
+            con.commit()
+            cnt=cursor.rowcount
+            rs={'status':cnt}
+            
+    except Exception as e:
+        rs={'status':0}
+        print(e)
+    finally:
+        return rs   
+
+
+
+@app.route('/interest_insert') ###############기업정보페이지 INSERT,UPDATE(DELETE)
 def interest_insert():
     con = dbcall()
     cursor=con.cursor()
@@ -265,7 +328,20 @@ def interest_insert():
     finally:  
         # con.close()
         return rs  
-        
+
+
+ 
+@app.route('/interest')  ####### 기업정보 찜리스트 select
+def interest():
+    con = dbcall()
+    cursor = con.cursor()
+    user_id = session['ID']
+    sql = "SELECT * from like_company_view where m_id=%s"
+    cursor.execute(sql, (user_id,))
+    interest_com = cursor.fetchall()
+    interest_len = len(interest_com)
+    cursor.close()
+    return render_template('Board/interest_company.html', interest_com=interest_com, interest_len=interest_len)
         
 
 
@@ -294,7 +370,20 @@ def company(data_id):
 
 @app.route('/excellence_employment')  # 채용정보페이지
 def excellence_employment():
-    return render_template('Board/excellence_employment.html')
+    con = dbcall()
+    cursor = con.cursor()
+    sql="select * from company_employment"
+    cursor.execute(sql)
+    employ_list = cursor.fetchall()
+    cursor.close()
+
+    cursor = con.cursor()
+    sql = "SELECT * from company_info"
+    cursor.execute(sql)
+    data_list = cursor.fetchall()
+    cursor.close()
+
+    return render_template('Board/excellence_employment.html',employ_list=employ_list,data_list=data_list)
 
 
 @app.route('/trend')  # 구직트렌드페이지
@@ -410,53 +499,7 @@ def qnaview():
 #     return rs
 
 
-@app.route('/interest_delete') ###############마이페이지 나의 활동내역 --찜리스트 delete
-def interest_delete():
-    con = dbcall()
-    cursor=con.cursor()
-    user_id=session['ID']
-    rs={}
-    try:
-        with con.cursor() as cursor:
-            s=request.args.get('likeDelete') 
-            p=s.split(',')#리스트 
-            content=''
-            for i in range(len(p)):
-                if (i+1) == len(p):                    
-                    content += "'" + p[i] + "'"
-                else:
-                    content += "'" + p[i] + "',"
-            sql="delete from like_company where id=%s and `data_id` in ("+ content +")"
-            cursor.execute(sql,(user_id,))
-            con.commit()
-            cnt=cursor.rowcount
-            rs={'status':cnt}
-            
 
-    except Exception as e:
-        rs={'status':0}
-        print(e)
-    finally:
-        return rs    
-        
-
-
-    
-
-
-
-
-@app.route('/interest')  # 찜리스트 test
-def interest():
-    con = dbcall()
-    cursor = con.cursor()
-    user_id = session['ID']
-    sql = "SELECT * from like_company_view where m_id=%s"
-    cursor.execute(sql, (user_id,))
-    interest_com = cursor.fetchall()
-    interest_len = len(interest_com)
-    cursor.close()
-    return render_template('Board/interest_company.html', interest_com=interest_com, interest_len=interest_len)
 
 ##################### Index ###############
 
@@ -644,6 +687,10 @@ def recent_inquiry_company():
     interest_len=len(interest_com)
 
     return render_template('Board/r-i-c.html',interest_com=interest_com,interest_len=interest_len)
+
+
+
+
 
 
 

@@ -1,10 +1,7 @@
 var valueList = document.getElementById("valueList");
 var text = "<span> You have selected : </span>";
-var areaList = []; //지역
-var test_list = [];
-
-var checkboxes = document.querySelectorAll(".checkbox");
-
+var areaList = []; 
+var checkboxes = document.querySelectorAll(".checkbox"); // condition 페이지
 for (var checkbox of checkboxes) {
   checkbox.addEventListener("click", function () {
     if (this.checked == true) {
@@ -16,13 +13,14 @@ for (var checkbox of checkboxes) {
     }
   });
 }
-
+const form = document.searchform;
 function checkbox_test() {
   let str = areaList.join();
   alert(str);
-  const param = { area: str };
+  const param = { areatag: str };
   $.ajax({
     type: "GET",
+    // url: "/condition",
     url: "/search",
     dataType: "json",
     data: param,

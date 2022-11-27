@@ -5,7 +5,9 @@ import pymysql
 import hashlib
 import re
 import json
-
+import datetime
+from tkinter import messagebox
+app = Flask(__name__)
 # 2022 11 10 병합작업 1차버전입니다.
 ########### 데이터베이스 접속 전역변수 선언############
 def dbcall():
@@ -360,7 +362,7 @@ def answer():
     con = dbcall()
     cursor = con.cursor()
     if (session['logFlag'] == True) and (session['admin'] == '1'):
-        print("세션확인", session['logFlag'], session['admin'])
+        print("세션확인", session['logFlag'], session['&nbsp;admin'])
         answer = request.form
         question_content = answer['question_content']
         idx = answer['idx']
@@ -427,28 +429,28 @@ def login_proc():
         user_id = request.form['user_id']
         user_pw = request.form['user_pw']
         pw_hash = hashlib.sha256(user_pw.encode('utf-8')).hexdigest()
-        if len(user_id) == 0 or len(user_pw) == 0:
-            return 'Error!! UserId or UserPw not found(null)'
-        else:
-            sql = 'SELECT * from member where ID =  %s '
-            cursor.execute(sql, (user_id, ))
-            row = cursor.fetchone()
-            print(row)  # row키확인해보자 딕셔너리로 넣어주기로한걸 볼 수 있다.
-            if row:
-                if pw_hash == row['PW']:
-                    session['logFlag'] = True
-                    session['ID'] = user_id
-                    session['NAME'] = row['NAME']
-                    session['Phone'] = row['Phone']
-                    session['BIRTH'] = row['BIRTH']
-                    session['admin'] = row['admin']
-                    print(session['admin'])
-                    # return redirect(url_for('main'))
-                    return redirect('/')
-                else:
-                    return ('password is def')
+
+        sql = 'SELECT * from member where ID =  %s '
+        cursor.execute(sql, (user_id, ))
+        row = cursor.fetchone()
+        print(row)  # row키확인해보자 딕셔너리로 넣어주기로한걸 볼 수 있다.
+        if row:
+            if pw_hash == row['PW']:
+                session['logFlag'] = True
+                session['ID'] = user_id
+                session['NAME'] = row['NAME']
+                session['Phone'] = row['Phone']
+                session['BIRTH'] = row['BIRTH']
+                session['admin'] = row['admin']
+                print(session['admin'])
+                # return redirect(url_for('main'))
+                return redirect('/')
             else:
-                return ('id not found')
+                flash("아이디나 비밀번호가 틀립니다.")
+                return render_template('Board/login.html')
+        else:
+            flash("아이디나 비밀번호가 틀립니다.")
+            return render_template('Board/login.html')
     cursor.close()
     return render_template('Board/index.html')
 
@@ -569,16 +571,16 @@ def my_page_proc():
         # 키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
         user_id = request.form['user_id']
         user_pw = request.form['user_pw']
-        user_name = request.form['user_name']
         user_phone = request.form['user_phone']
-        user_birth = request.form['user_birth']
+        pw_hash = hashlib.sha256(user_pw.encode('utf-8')).hexdigest()
         if len(user_pw) == 0:
             return '에러! 입력되지 않은 값이 있습니다!'
         else:
             sql = 'UPDATE MEMBER SET PW=%s, Phone=%s WHERE ID=%s'
-            cursor.execute(sql, (user_pw, user_phone, user_id, ))
+            cursor.execute(sql, (pw_hash, user_phone, user_id, ))
             con.commit()
             cursor.close()
+            session.clear()
             return render_template('Board/login.html')
 
 

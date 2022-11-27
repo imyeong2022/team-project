@@ -9,14 +9,13 @@
 <body>
     {% include 'Board/header.html' %}
     <div class="main-div">
-        <section class="main-section">
+        <section class="main-section m16">
             <div class="title-area">
                 <div class="inner">
                     <div class="public-list">
                         <ol class="public-ol">
                             <li class="public-li">index</li>
                             <li class="public-li">마이페이지</li>
-                            <li class="public-li">나의 활동 내역</li>
                             <li class="public-li">나의 문의 내역</li>
                         </ol>
                     </div>
@@ -29,19 +28,12 @@
                 </div>
             </div>
             <article class="content-area">
-                <hr>
                 <div class="infomation-subtext">
                     <span></span>
                 </div>
                 <div>
-                    <table align="center" width="90%">
-                        <tr align="center">
-                            <p>
-                                <td colspan="5">문의내역</td>
-                            </p>
-                        </tr>
-                        <tr align="center" bgcolor="skybule" >
-
+                    <table align="center" class="tbbr bmg10 w90">
+                        <tr class="qv-tr-h">
                             <td>문의번호</td>
                             <td>제목</td>
                             <td>문의 일자</td>
@@ -49,8 +41,7 @@
                             <td>답변 일자</td>
                         </tr>
                         {% for x in range(my_qna_view_len) %}
-                        <tr align="center" style="line-height:2;">
-                            
+                        <tr class="tc">
                             <td>{{ my_qna_view[x].idx }}</td>
                             <td>{{ my_qna_view[x].subject }}</td>
                             <td>{{ date_list[x] }}</td>
@@ -60,20 +51,20 @@
                             {% else %}
                             <td>미답변</td>
                             {% endif %}
-                            
+
                         </tr>
                         {% endfor %}
                         {% if my_qna_view_len == 0 %}
                         <br>
-                        <tr align="center">
+                        <tr class="tc" >
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                             <td>&nbsp;</td>
                         </tr>
-                        <tr align="center">
-                        <td colspan="5">문의내역이 없습니다.</td>
+                        <tr class="tc">
+                            <td colspan="5">문의내역이 없습니다.</td>
                         </tr>
                         {% endif %}
                     </table>
@@ -82,20 +73,6 @@
         </section>
     </div>
 
-
-    <div>
-        <div class="like">
-            <a class="like" href="/interest_select">찜리스트</a><p>
-        </div>
-        <div class="view">
-            <a class="view" href="#">최근 본 기업</a><p>
-        </div>
-        <div class="qnaview">
-            <a class="like" href="/qnaview">나의 문의내역</a><p>
-        </div>
-
-
-    </div>
     {% include '/Board/footer.html' %}
 
 </body>

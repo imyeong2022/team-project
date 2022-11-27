@@ -50,22 +50,6 @@ def getcookie():
     name = request.cookies.get('userID')
     return name
 
-##쿠키테스트
-@app.route('/setcookie', methods=['POST','GET'])
-def setcookie():
-    if request.method == 'POST':
-        user = request.form['coocke']
-        print("쿠키테스트",user)
-        resp = make_response("Cookie Setting Complete")
-        resp.set_cookie('userID', user)
-    return resp
-
-@app.route('/getcookie')
-def getcookie():
-   name = request.cookies.get('userID')
-   return name
-
-
 @app.route('/accountfind')
 def accountfind():
     con = dbcall()

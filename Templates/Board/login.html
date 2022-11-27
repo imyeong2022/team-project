@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="ko">
-
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <script>
+            alert("{{messages[-1]}}")
+        </script>
+    {% endif %}
+{% endwith %}
 <head>
     <meta charset="UTF-8">
     <title>login_form.html</title>
@@ -20,14 +26,33 @@
 
         function findpassword() { // 팝업 가운데 띄우기
 
-            var _width = '750';
-            var _height = '600';
+            var _width = '500';
+            var _height = '400';
 
             // 팝업을 가운데 위치시키기 위해 스크린의 좌우길이를 구한후 반으로 나눠주고 적용시킨다.
             var _left = Math.ceil((window.screen.width - _width) / 2);
             var _top = Math.ceil((window.screen.height - _height) / 2);
 
             window.open('/passwordfind', 'popup-test', 'width=' + _width + ', height=' + _height + ', left=' + _left + ', top=' + _top);
+
+        }
+
+        function Validation() {
+
+            let data = JSON.parse('{{ data | safe }}');
+            var userId = document.getElementById("user_id");
+            var userPw = document.getElementById("user_pw");
+            lastid = data.some(v => v.ID === userId.value);
+
+            if (userId.value == "") {
+                alert("ID를 입력해주세요.");
+                return false;
+            }
+
+            if (userPw.value == "") {
+                alert("Password를 입력해주세요.");
+                return false;
+            }
 
         }
     </script>
@@ -57,9 +82,9 @@
             <hr class="public-hr" />
             <div class="login-form-div">
 
-                <form  class="login-form" action="/login_proc" method="post">                    <!-- action = 라우터가 될거다 .--> 
-                    <input class="login-input" type="text" name="user_id"placeholder="ID">
-                    <input class="login-input" type="password" name="user_pw" placeholder="PassWord">
+                <form  class="login-form" action="/login_proc" method="post" onsubmit="return Validation();" >                    <!-- action = 라우터가 될거다 .--> 
+                    <input class="login-input" type="text" name="user_id" id="user_id" placeholder="ID">
+                    <input class="login-input" type="password" name="user_pw" id="user_pw" placeholder="PassWord">
                     <input class="login-submit" type="submit" value="로그인">
                     <div class="login-join ">
                         <a href="/join_form_get">회원가입</a>

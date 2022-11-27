@@ -2,9 +2,10 @@
 <html lang="ko">
 
 <head>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <title>login_form.html</title>
-    <script src="http://code.jquery.com/jquery-latest.js"></script>
+
     <script type="text/javascript">
         function selectAll(selectAll) {
             const checkboxes = document.getElementsByName('terms');
@@ -176,7 +177,6 @@
 
         /* 인증번호 비교 */
 
-
     </script>
 
 </head>
@@ -206,10 +206,11 @@
             <div class="login-form-div">
 
                 <form class="login-form" action="/join_proc" method="post" onsubmit="return Validation();">
-                    <tr><input class="join-input" type="text" name="user_id" id="user_id" placeholder="ID"
+                    <div>
+                        <input class="join-input" type="text" name="user_id" id="user_id" placeholder="ID"
                             maxlength="12">
-                        <input type="button" value="중복 확인" id="btmCheck" onclick="idchk()" />
-                    </tr>
+                        <input class="join-check"type="button" value="중복 확인" id="btmCheck" onclick="idchk()" />
+                    </div>
                     <input class="join-input" type="password" name="user_pw" id="user_pw" placeholder="PassWord">
                     <input class="join-input" type="password" name="user_pw_check" id="user_pw_check"
                         placeholder="Password_check">
@@ -218,17 +219,17 @@
                     <!-- 인증번호 공간 --><input class="join-mail_input" type="text" name="user_email" id="user_email"
                         placeholder="email">
                     <div class="mail_check_button" id="mail_check_button">
-                        <span>인증번호 전송</span>
+                        <span>인증 요청</span>
                     </div>
 
                     <div class="mail_check_wrap">
                         <div class="mail_check_input_box" id="mail_check_input_box_false">
                             <input class="mail_check_input" disabled="disabled">
+                            <div class="mail_auth_button" id="mail_auth_button">
+                                <span>인증 확인</span>
+                            </div>
                         </div>
-                        <div class="mail_auth_button" id="mail_auth_button">
-                            <span>인증번호확인</span>
-                        </div>
-
+                        
 
 
                         <div class="clearfix"></div>
@@ -238,12 +239,19 @@
                     <input class="join-input" type="text" name="user_phone" id="user_phone" placeholder="Phone Number"
                         maxlength="11">
                     <input class="join-input-birth-first" type="text" name="user_birth-1" id="user_birth-1"
-                        placeholder="YYYY" maxlength="4">-
+                        placeholder="YYYY" maxlength="4">
                     <input class="join-input-birth" type="text" name="user_birth-2" id="user_birth-2" placeholder="MM"
-                        maxlength="2">-
+                        maxlength="2">
                     <input class="join-input-birth-end" type="text" name="user_birth-3" id="user_birth-3"
                         placeholder="DD" maxlength="2">
 
+                <form class="login-form" action="/join_proc" method="post">
+                    <input class="join-input" type="text" name="user_id" placeholder="ID">
+                    <input class="join-input" type="text" name="user_pw" placeholder="PassWord">
+                    <input class="join-input" type="text" name="user_pw_check" placeholder="Re PassWord">
+                    <input class="join-input" type="text" name="user_name" placeholder="Name">
+                    <input class="join-input" type="text" name="user_phone" placeholder="Phone Number">
+                    <input class="join-input" type="text" name="user_birth" placeholder="Birth">
                     <hr />
                     <div class="join-check-all">
                         <input type="checkbox" name="terms" value="selectAll" onclick="selectAll(this)" /><b>모두 확인하였으며
@@ -268,15 +276,12 @@
                                 개인정보 수집 및 이용 동의.</b><br />
                         </div>
                         <div class="join-check-list">
-                            <input type="checkbox" name="terms" value="select-essential-4" required /><b>[필수] 개인정보 제3자
-                                제공
-                                동의.</b><br />
-                        </div>
+                            <input type="checkbox" name="terms" value="select-essential-4" /><b>[필수] 개인정보 제3자 제공
+                                동의.</b><br /></div>
                         <div class="join-check-list">
                             <input type="checkbox" name="terms" value="select-necessary-1" /><b>[선택] 마케팅 목적의 개인정보 수집 및
                                 이용
-                                동의.</b><br />
-                        </div>
+                                동의.</b><br /></div>
                         <div class="join-check-list">
                             <input type="checkbox" name="terms" value="select-necessary-2" /><b>[선택] 광고성 정보 수신
                                 동의.</b><br />

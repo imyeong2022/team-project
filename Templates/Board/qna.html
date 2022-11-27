@@ -9,7 +9,7 @@
 <body>
     {% include 'Board/header.html' %}
     <div class="main-div">
-        <section class="main-section">
+        <section class="main-section m16">
             <div class="title-area">
                 <div class="inner">
                     <div class="public-list">
@@ -57,18 +57,26 @@
                     </form>
                 </div>
                 <div class="faq-content">
-                    <p>전체 : {{qna_len}}건 | 완료된 질문 {{reply_len}}건/ {{qna_len}}건 | 현재 페이지 n/n</p>
+                    <p>전체 : {{qna_len}}건 | 완료된 질문 {{reply_len}}건/ {{qna_len}}건</p>
+                    <div class="ib" align="center">
+                        <div class="qna-div-1 fl">번호</div>
+                        <div class="qna-div-2 fl" style="cursor:pointer">제목</div>
+                        <div class="qna-div-3 fl">작성자</div>
+                        <div class="qna-div-4 fl">작성시간</div>
+                        <div class="qna-div-5 fl">답변여부</div>
+                    </div>
                     <hr />
                     <div class="qna-section">
                         <ul class="qna">
                             {% for x in range(qna_len) %}
                             <li>
                                 <input type="checkbox" id="qna-{{x}}">
-                                <label for="qna-{{x}}" , id="qnaidx{{x}}">
+                                <label for="qna-{{x}}" , id="qnaidx{{x}}" align="center">
                                     <div class="qna-div-1">{{qna_list[x].idx}}</div>
                                     <div class="qna-div-2" style="cursor:pointer">{{qna_list[x].subject}}</div>
                                     <div class="qna-div-3">{{qna_list[x].ID}}</div>
                                     <div class="qna-div-4">{{qna_list[x].create_date}}</div>
+                                    <div class="qna-div-5">&nbsp;{{qna_list[x].reply}}</div>
                                 </label>
                                 <div>
                                     {% if session['ID'] == qna_list[x].ID %}

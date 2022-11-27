@@ -300,33 +300,6 @@ def excellence_employment():
 @app.route('/trend')  # 구직트렌드페이지
 def trends():
     return render_template('Board/trend.html')
-<<<<<<< HEAD
-
-
-@app.route('/events')  # 채용정보페이지
-def events():
-    return render_template('Board/event.html')
-
-
-@app.route('/our_company')
-def our_company():
-    return render_template('Board/our_company.html')
-
-
-@app.route('/data')
-def data():
-    con = dbcall()
-    cursor = con.cursor()
-    sql = 'select All_Recruit,All_Employ from job_scale_total'
-    cursor.execute(sql)
-    data_list1 = cursor.fetchall()
-    data_list1 = data_list1
-    data_list_len = len(data_list1)
-    print("인덱스길이data", data_list_len)
-    cursor.close()
-    return render_template('Board/data.html', data_list=data_list1)
-=======
->>>>>>> 35f2924 (trend에 정적데이터 추가)
 
 
 @app.route('/faq')  ############## 질문과 답변

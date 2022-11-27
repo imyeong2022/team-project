@@ -24,15 +24,15 @@ import pymysql, hashlib, json, re
 
 app = Flask(__name__)
 # 구글메일(계정찾기 테스트) ################ 사이트 접근과 동시에 메일서버와 인터페이스 하면서 recipients 로 지정된 메일 주소로 이메일을 발송
-def mailcall():
-    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-    app.config['MAIL_PORT'] = 465
-    app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
-    app.config['MAIL_PASSWORD'] = 'snuejrgmmznyneie'
-    app.config['MAIL_USE_TLS'] = False
-    app.config['MAIL_USE_SSL'] = True
-    mail = Mail(app)
-    return mail
+# def mailcall():
+#     app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+#     app.config['MAIL_PORT'] = 465
+#     app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
+#     app.config['MAIL_PASSWORD'] = 'snuejrgmmznyneie'
+#     app.config['MAIL_USE_TLS'] = False
+#     app.config['MAIL_USE_SSL'] = True
+#     mail = Mail(app)
+#     return mail
 
 def dbcall():
     con = pymysql.connect(

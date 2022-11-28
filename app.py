@@ -121,27 +121,27 @@ def condition():
             user_id=session['ID']
     else: 
         user_id='null'
-        con = dbcall()
-        cursor = con.cursor()
-        sql = "SELECT * from company_info"
-        cursor.execute(sql)
-        data_list = cursor.fetchall()
-        cursor.close()
+    con = dbcall()
+    cursor = con.cursor()
+    sql = "SELECT * from company_info"
+    cursor.execute(sql)
+    data_list = cursor.fetchall()
+    cursor.close()
 
-        cursor = con.cursor()
-        sql="select * from company_info left join like_company on company_info.data_id= like_company.data_id" 
-        cursor.execute(sql)
-        like_checked=cursor.fetchall()
-        print(like_checked[0]['id'])
-        cursor.close()
+    cursor = con.cursor()
+    sql="select * from company_info left join like_company on company_info.data_id= like_company.data_id" 
+    cursor.execute(sql)
+    like_checked=cursor.fetchall()
+    print(like_checked[0]['id'])
+    cursor.close()
 
-        cursor = con.cursor()
-        sql = "SELECT * from like_company_view where m_id=%s"
-        cursor.execute(sql,(user_id,))
-        interest_com = cursor.fetchall()
-        interest_len=len(interest_com)
-        cursor.close()
-        return render_template('Board/search.html',data_list=data_list, like_checked=like_checked, interest_com=interest_com, interest_len=interest_len, user_id=user_id)
+    cursor = con.cursor()
+    sql = "SELECT * from like_company_view where m_id=%s"
+    cursor.execute(sql,(user_id,))
+    interest_com = cursor.fetchall()
+    interest_len=len(interest_com)
+    cursor.close()
+    return render_template('Board/condition.html',data_list=data_list, like_checked=like_checked, interest_com=interest_com, interest_len=interest_len, user_id=user_id)
 
 ####################################################
 @app.route('/search')  # 조건으로 찾기 - 기업정보 (condition 페이지 내)

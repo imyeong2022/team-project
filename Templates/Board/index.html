@@ -153,28 +153,50 @@
 									</div>
 								</div>
 								<!-- selectBox2 -->
-								<div class="qustion fl"><strong>01</strong><span>일하고 싶은 지역은 어디신가요?</span></div>
+								<div class="qustion fl"><strong>02</strong><span>일하고 싶은 업종은 무엇인가요?</span></div>
 								<div class="box fl">
 									<div class="selectBox2  ">
 										<button class="label">업종 🎈</button>
 										<ul class="optionList">
-											<li class="optionItem">Red</li>
-											<li class="optionItem">orange</li>
-											<li class="optionItem">purple</li>
-											<li class="optionItem">green</li>
-										</ul>
+											<li class="optionItem"> 
+												<input type="checkbox" 
+												  class="checkbox check-all checked" name="scaletag" value=""
+												  data-name="전체" checked="checked">
+											   <label for="check-400">전체</label></li>
+											<li class="optionItem"> 
+												<input type="checkbox" id="check-02"
+												  class="checkbox" name="scaletag" value="02" data-name="중기업">
+											   <label for="check-02">중기업</label></li>
+											<li class="optionItem"> 
+												<input type="checkbox" id="check-03"
+												  class="checkbox" name="scaletag" value="03" data-name="소기업">
+											   <label for="check-03">소기업</label></li>
+											<li class="optionItem">
+												<input type="checkbox" id="check-04"name="scaletag" value="04" data-name="한시성중소기업">
+											   <label>한시성중소기업</label></li>
+										 </ul>
 									</div>
 								</div>
 								<!-- selectBox3 -->
-								<div class="qustion fl"><strong>01</strong><span>일하고 싶은 지역은 어디신가요?</span></div>
+								<div class="qustion fl"><strong>03</strong><span>원하는 복지는 무엇인가요? </span></div>
 								<div class="box fl">
 									<div class="selectBox2  ">
 										<button class="label">복지 🍟</button>
 										<ul class="optionList">
-											<li class="optionItem">pizza</li>
-											<li class="optionItem">ramen</li>
-											<li class="optionItem">kimchi</li>
-											<li class="optionItem">somori gukbob</li>
+											<li class="optionItem" value="pizza"><label for="check-600">전체</label>
+												<input type="checkbox" id="check-600" class="checkbox check-all checked" name="welfaretag" data-name="전체" checked="checked"></li>
+											 <li class="optionItem"><input type="checkbox" id="check-W00" class="checkbox check-empty" name="welfaretag" data-name="공제·기타">
+												<label for="check-W00">공제·기타</label></li>
+											 <li class="optionItem"><input type="checkbox" id="check-W01" class="checkbox check-empty" name="welfaretag" data-name="연금·보험">
+												<label for="check-W01">연금·보험</label></li>
+											 <li class="optionItem"><input type="checkbox" id="check-W02" class="checkbox check-empty" name="welfaretag" data-name="교육·연수">
+												<label for="check-W02">교육·연수</label></li>
+											 <li class="optionItem"><input type="checkbox" id="check-W03" class="checkbox check-empty" name="welfaretag" data-name="생활편의·여가행사">
+												<label for="check-W03">생활편의·여가행사</label></li>
+											 <li class="optionItem"><input type="checkbox" id="check-W04" class="checkbox check-empty" name="welfaretag" data-name="보상·수당·지원">
+												<label for="check-W04">보상·수당·지원</label></li>
+											 <li class="optionItem"> <input type="checkbox" id="check-W06" class="checkbox check-empty" name="welfaretag" data-name="휴무·휴가·행사">
+												<label for="check-W06">휴무·휴가·행사</label></li>
 										</ul>
 									</div>
 								</div>

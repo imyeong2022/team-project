@@ -17,17 +17,17 @@ for (var checkbox of checkboxes) {
 }
 
 function area_search() {
-    let str = areaList.join();
-    alert(str);
+  let str = areaList.join();
+  alert(str);
   const form = document.searchform;
-  let areatag = form.areatag.value;
+  // let areatag = form.areatag.value;
   
   alert('aaa');
   form.submit();
-  document.getElementById("searchform").onsubmit = function (){
-  var sc =document.getElementsByName ("areatag");
-  console.log(sc.value)
-  }
+  // document.getElementById("searchform").onsubmit = function (){
+  // var sc =document.getElementsByName ("areatag");
+  // console.log(sc.value)
+  // }
 } 
 
 
@@ -37,8 +37,8 @@ function checkbox_index() {
     const param = { area: str };
     $.ajax({
       type: "GET",
-      url: "/searchIndex",
-      url : "/condition",
+      url: "/condition/searchIndex'",
+      // url : "/condition",
       dataType: "json",
       data: param,
       success: function (data_list) {

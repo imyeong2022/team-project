@@ -13,7 +13,6 @@ app = Flask(__name__)
 # mail = Mail(app)
 def dbcall():
     con = pymysql.connect(
-    # host='localhost',
     user='root',
     password='java',
     db='final_test',
@@ -50,6 +49,19 @@ def accountfind_proc():
 @app.route('/passfind')
 def passfind():
     return render_template('Board/account.html')
+@app.route('/delete_proc', methods=['POST','GET'])  # 회원탈퇴
+def delete_proc():
+    con = dbcall()
+    cursor = con.cursor()
+    if request.method == 'POST':
+        user_id = request.form['user_id']
+        print(user_id)
+        sql = "DELETE FROM member WHERE id = %s;"
+        cursor.execute(sql,(user_id,))
+        con.commit()
+        con.close()
+        session.clear() 
+        return redirect('/')
 ########### 구글메일 임시 종료 ##################
 ##################### Index ###############
 @app.route('/')
@@ -347,8 +359,15 @@ def qna():
     qna_list = cursor.fetchall()
     qna_len = len(qna_list)
     print(qna_len)
-    con.close()
-    return render_template('Board/qna.html', qna_len=qna_len, qna_list=qna_list)
+    sql2 = "SELECT count(*) from qna where reply='Y' "
+    cursor.execute(sql2)
+    reply = cursor.fetchone()
+    reply_len = reply['count(*)']
+    print("리플타입값", type(reply))
+    print(reply)
+    print(reply['count(*)'])
+    cursor.close()
+    return render_template('Board/qna.html', qna_len=qna_len, qna_list=qna_list, reply_len=reply_len)
 @app.route('/question') ######### 질문으로 넘기기
 def qnastion():
     if session['logFlag'] == True:
@@ -372,8 +391,49 @@ def qustion_proc():
     qna_list = cursor.fetchall()
     qna_len = len(qna_list)
     print(qna_len)
-    con.close()
+    cursor.close()
     return redirect('/qna')
+
+
+@app.route('/answer', methods=['POST'])  # 답변으로 넘기기
+def answer():
+    con = dbcall()
+    cursor = con.cursor()
+    if (session['logFlag'] == True) and (session['admin'] == '1'):
+        print("세션확인", session['logFlag'], session['admin'])
+        answer = request.form
+        question_content = answer['question_content']
+        idx = answer['idx']
+        print(question_content)
+        print("인덱스값", answer['idx'])
+        print(type(idx))
+        sql = 'UPDATE qna SET answer=%s, reply="Y" WHERE idx= %s'
+        cursor.execute(sql, (question_content, idx, ))
+        con.commit()
+        cursor.close()
+        return jsonify({'msg': '답변등록이 완료되었습니다.'})
+@app.route('/qnaview')  # 마이페이지 나의 문의목록
+def qnaview():
+    con = dbcall()
+    cursor = con.cursor()
+    user_id = session['ID']
+    sql = "SELECT * from my_qna_view where id=%s"
+    cursor.execute(sql, (user_id))
+    my_qna_view = cursor.fetchall()
+    print(type(my_qna_view))
+    my_qna_view_len = len(my_qna_view)
+
+    date_list = []
+    reply_list = []
+    for i in range(my_qna_view_len):  # timestamp -> 날짜형식 변환
+        print(my_qna_view[i]['create_date'])
+        date_list.append(my_qna_view[i]['create_date'].strftime('%Y/%m/%d'))
+        reply_list.append(my_qna_view[i]['create_date'].strftime('%Y/%m/%d'))
+    print(date_list)
+    print(type(date_list))
+    cursor.close()
+    return render_template('Board/qnaview.html', my_qna_view=my_qna_view, my_qna_view_len=my_qna_view_len, date_list=date_list, reply_list=reply_list)
+    
 ##################### Index ###############
 ##################### 로그인관련 ###############
 @app.route('/login_form_get')
@@ -411,6 +471,7 @@ def login_proc():
                     session['NAME'] = row['NAME']
                     session['Phone'] = row['Phone']
                     session['BIRTH'] = row['BIRTH']
+                    session['admin'] = row['admin']
                     # return redirect(url_for('main'))
                     return redirect('/')
                 else:

@@ -27,7 +27,7 @@ function checkbox_test() {
     success: function (data_list) {
       alert("여기");
       console.log(data_list);
-      let li = data_list[""];
+      let li = ""
       for (let i = 0; i < data_list.length; i++) {
         li +=
           '<li><div><div class="box-btn-area"><a onClick="window.location.reload()" style="cursor: pointer;"><div><span> 관심기업 등록하기</span></div></a>'

@@ -17,11 +17,10 @@ const form = document.searchform;
 function checkbox_test() {
   let str = areaList.join();
   alert(str);
-  alert('aaa');
   const param = { areatag: str };
   $.ajax({
     type: "GET",
-    url: "/condition",
+    // url: "/condition",
     url: "/search",
     dataType: "json",
     data: param,

@@ -1,9 +1,9 @@
-var valueList = document.getElementById('valueList');
+var valueList = document.getElementById('employ_value');
 var text ='<span> You have selected : </span>';
 var areaList = []; //지역
 var typeOfBusinessList=[]; //업종
-var typeOfEmploymentList=[];//고용형태
-var careerList=[]; //경력
+var career_details=[];//경력 
+var education_list=[]; //학력
 
 var area_checkboxes = document.querySelectorAll('.checkbox_area');//지역 
 for(var checkbox of area_checkboxes){
@@ -32,65 +32,86 @@ for(var checkbox of business_checkboxes){
     })
 }
 
-var employ_checkboxes = document.querySelectorAll('.checkbox_employ');//고용형태
-for(var checkbox of employ_checkboxes){
-    checkbox.addEventListener('click',function(){
-        if(this.checked ==true){
-            typeOfEmploymentList.push(this.value);
-            valueList.innerHTML = text + typeOfEmploymentList.join(',');
-           }
-        else{
-            typeOfEmploymentList = typeOfEmploymentList.filter(e => e !== this.value);
-            valueList.innerHTML = text + typeOfEmploymentList.join(',');
-        }
-    })
-}
-
-var career_checkboxes = document.querySelectorAll('.checkbox_career');//경력 
+var career_checkboxes = document.querySelectorAll('.career_details');//경력
 for(var checkbox of career_checkboxes){
     checkbox.addEventListener('click',function(){
         if(this.checked ==true){
-            careerList.push(this.value);
-            valueList.innerHTML = text + careerList.join(',');
+            career_details.push(this.value);
+            valueList.innerHTML = text + career_details.join(',');
            }
         else{
-            careerList = careerList.filter(e => e !== this.value);
-            valueList.innerHTML = text + careerList.join(',');
+            career_details = career_details.filter(e => e !== this.value);
+            valueList.innerHTML = text + career_details.join(',');
+        }
+    })
+}
+
+var education_checkboxes = document.querySelectorAll('.education');//학력
+for(var checkbox of education_checkboxes){
+    checkbox.addEventListener('click',function(){
+        if(this.checked ==true){
+            education_list.push(this.value);
+            valueList.innerHTML = text + education_list.join(',');
+           }
+        else{
+            education_list = education_list.filter(e => e !== this.value);
+            valueList.innerHTML = text + education_list.join(',');
         }
     })
 }
 
 
-function checkbox_test(){
-    let str = areaList.join();
-    alert(str)
-    const param ={'area':str};
+function employ_checkbox(){
+    let area = areaList.join();
+    let industry=typeOfBusinessList.join();
+    let career_detail=career_details.join();
+    let education=education_list.join();
+
+    alert(area)
+    alert(industry)
+    alert(career_detail)
+    alert(education)
+
     $.ajax({
         type:'GET',
         url:'/employtest',
         dataType:'json',
-        data:param,
-        success: function (data) {
-            console.log(data);
-            let html_tr='<tr>';
-                html_tr +='<th>NAME</th>'
-                html_tr +='<th>Phone</th>'
-                html_tr +='<th>BIRTH</th>'
-        for(let rows of data){
-            html_tr+='<tr>';
-            for(r of rows){
-                html_tr+='<td>';
-                html_tr+=r;
-                html_tr+='</td>';
-            }
-            html_tr +='</tr>'; 
-        }  
-        
-        $('#test').html(html_tr);
-    },
-        error: function (request, status, error) {
-            console.log(request, status,error);
-        }
-    });   
+        data:{'area':area,'industry':industry,'career_detail':career_detail,'education':education},
+        success: function (data_list) {
+            alert("여기");
+            console.log(data_list);
+            let li = data_list[""];
+            for (let i = 0; i < data_list.length; i++) {
+                li +=
+                '<li><div><div><a onClick="window.location.reload()" style="cursor: pointer;"></a>'+
+                '<a class="btn btn-default btn-md header-logo-a" href='+data_list[i]["url"]+
+                '><div><span class="col75">지원하러 가기</span></div></a><span class="grid-sub-blue"></span>'+
+                '<a onclick="#" style="cursor:pointer">'+
+                '<p class="grid-title" id="company_title">'+data_list[i]["company"]+'</p>'+
+                '<p class="grid-title" id="company_title">'+data_list[i]["title"]+'</p></a>'+
+                '<p class="condition-sub-text">'+data_list[i]["region"]+'|'+
+                data_list[i]["career_details"]+'|'+
+                data_list[i]["education"]+'|'+
+                data_list[i]["work_type"]+'|'+
+                data_list[i]["salary"]+'|'+
+                data_list[i]["d_day"]+'</p></div></div><div><ul class="tag"></ul></div></li>';
+                let region = data_list[i]["region"];
+                let career_details = data_list[i]["career_details"];
+                let education = data_list[i]["education"];
+                let work_type = data_list[i]["work_type"];
+                let salary = data_list[i]["salary"];
+                let d_day = data_list[i]["d_day"];
+                console.log(region, career_details, education, work_type, salary, d_day);        
+                    
+            }   
+                        
+            console.log(li);
+            const ul = document.querySelector("#employListArea");
+            ul.innerHTML = li;
+            },
+            error: function (request, status, error) {
+            console.log(request, status, error);
+            },
+        });
 }
 

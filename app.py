@@ -13,7 +13,6 @@ app = Flask(__name__)
 # mail = Mail(app)
 def dbcall():
     con = pymysql.connect(
-    # host='localhost',
     user='root',
     password='java',
     db='final_test',
@@ -47,57 +46,22 @@ def accountfind_proc():
     mail.send(msg)
     con.close()
     return jsonify({'msg': '회원님의 이메일로 아이디를 전송했습니다.'})
-
-
-@app.route('/passwordfind')
-def passwordfind():
-    con = dbcall()
-    cursor = con.cursor()
-    
-    sql = "SELECT ID,email,phone from member"
-    cursor.execute(sql)
-    userlist2 = cursor.fetchall()
-    print(type(userlist2))
-    print(userlist2)
-
-    return render_template('Board/accountpassword.html')
-
-
-@app.route('/passwordfind_proc', methods=['POST'])
-def passwordfind_proc():
-    con = dbcall()
-    cursor = con.cursor()
-    mail = mailcall()
-    user_name_recive = request.form['user_name_give']
-    user_id_recive = request.form['user_id_give']
-    user_phone_recive = request.form['user_phone_give']
-    code = request.form['code']
-    # sql = "UPDATE member SET member.PW = %s where email in(SELECT email from (select email from member where name = %s and id = %s and phone=%s)as TMP)"
-    # 서브쿼리로 처리해보려고했으나 email값을 변수로 사용을 못함... 다중sql문 쓰는게 맞을듯함
-    sql = "SELECT email from member where name = %s and id = %s and phone=%s"
-    cursor.execute(sql, (user_name_recive, user_id_recive, user_phone_recive, ))
-    find_useremail = cursor.fetchone()
-    sendmail = find_useremail['email']
-    re_pw_hash = hashlib.sha256(code.encode('utf-8')).hexdigest()
-    sql2 = "update member set pw = %s where email = %s"
-    cursor.execute(sql2, (re_pw_hash, sendmail, ))
-    con.commit()
-
-    msg = Message('[잡아라]에 요청하신 임시비밀번호입니다.',
-                  sender='kongjh941109@gmail.com', recipients=[sendmail])
-    msg.body = user_name_recive + \
-        '님 안녕하세요.\n 임시 비밀번호를 발급하오니 잡아라 홈페이지에 오셔서 로그인 하신 후.' + \
-            ' \n 마이페이지>>개인정보변경에서 반드시 비밀번호를 변경하여 주시기 바랍니다. ' + \
-            ' \n 임시비밀번호  :  ' +code + \
-            ' \n 앞으로도 더욱 편리한 서비스를 제공하기 위해 최선을 다하겠습니다.'
-    mail.send(msg)
-  
-    return jsonify({'msg': '회원님의 이메일로 임시 비밀번호를 전송했습니다.'})
-
-
 @app.route('/passfind')
 def passfind():
     return render_template('Board/account.html')
+@app.route('/delete_proc', methods=['POST','GET'])  # 회원탈퇴
+def delete_proc():
+    con = dbcall()
+    cursor = con.cursor()
+    if request.method == 'POST':
+        user_id = request.form['user_id']
+        print(user_id)
+        sql = "DELETE FROM member WHERE id = %s;"
+        cursor.execute(sql,(user_id,))
+        con.commit()
+        con.close()
+        session.clear() 
+        return redirect('/')
 ########### 구글메일 임시 종료 ##################
 ##################### Index ###############
 @app.route('/')
@@ -113,14 +77,10 @@ def home():
     print("인덱스길이", data_list_len)
     area_list =data_list[0]['region']
     con.close()
-    return render_template('Board/index.html', data_list=data_list)
+    return render_template('Board/index.html', data_list=data_list, area_list=area_list)
 # --------------------------메뉴-----------------------------------
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
-    if 'ID' in session:
-            user_id=session['ID']
-    else: 
-        user_id='null'
     con = dbcall()
     cursor = con.cursor()
     sql = "SELECT * from company_info"
@@ -128,6 +88,12 @@ def condition():
     data_list = cursor.fetchall()
     cursor.close()
 
+    cursor = con.cursor()
+    if 'ID' in session:
+            user_id=session['ID']
+    else: 
+        user_id='null'
+  
     cursor = con.cursor()
     sql="select * from company_info left join like_company on company_info.data_id= like_company.data_id" 
     cursor.execute(sql)
@@ -141,9 +107,8 @@ def condition():
     interest_com = cursor.fetchall()
     interest_len=len(interest_com)
     cursor.close()
-    return render_template('Board/condition.html',data_list=data_list, like_checked=like_checked, interest_com=interest_com, interest_len=interest_len, user_id=user_id)
-
-####################################################
+    return render_template('Board/Condition.html',data_list=data_list, like_checked=like_checked, interest_com=interest_com, interest_len=interest_len, user_id=user_id)
+      
 @app.route('/search')  # 조건으로 찾기 - 기업정보 (condition 페이지 내)
 def search():
     region = request.args.get('areatag')
@@ -171,90 +136,15 @@ def search():
         
         cursor.close()
         return rows
-
-@app.route('/employtest')  # 체크박스 test
-def employtest():
-    con = dbcall()
-    with con.cursor() as cursor:  
-        s=request.args.get('areatag') 
-        p = s.split(',')
-        content = ''
-        for i in range(len(p)):
-            if (i+1) == len(p):                    
-                content += "'" + p[i] + "'"
-            else:
-                content += "'" + p[i] + "',"
-        print('>>>>>>>>>>>>'+ content,type(content))
-        print('!!!!!!!!!!!!!!!!'+content)
-        sql="SELECT * from company_info where `region` in ("+ content +")"
-        cursor.execute(sql)
-        rows=cursor.fetchall()
-        for row in rows:
-            print('............',row)
-        
-        cursor.close()
-        return rows
-
-@app.route('/condition/searchIndex')  # INDEX => 조건으로 찾기
-def searchIndex():
-    region = request.args.get('areatag')
-    print(region)
-    p = region.split(',')
-    print(p)
-    content = ''
-    for i in range(len(p)):
-            if (i+1) == len(p):                    
-                content += "'" + p[i] + "'"
-            else:
-                content += "'" + p[i] + "',"
-    try:
-        with con.cursor() as cursor:
-            
-            areaList=request.args.get('area') 
-            industryList=request.args.get('industry') 
-            career_details=request.args.get('career_detail') 
-            education=request.args.get('education') 
-
-
-
-            print("체크박스 area",areaList)
-            print("체크박스 industry",industryList)
-            print("체크박스 career",career_details)
-            print("체크박스 education",education)
-            
-
-
-            p = areaList.split(',')
-            content = ''
-            for i in range(len(p)):
-                if (i+1) == len(p):                    
-                    content += "'" + p[i] + "'"
-                else:
-                    content += "'" + p[i] + "',"
-            print('>>>>>>>>>>>>'+ content,type(content))
-            print('!!!!!!!!!!!!!!!!'+content)
-            
-            sql="SELECT * from company_employment where `region` in ("+ content +")"
-            cursor.execute(sql)
-            rows = cursor.fetchall()
-            print("길이",len(rows))
-
-            for row in rows:
-                print('............', row)
-            return jsonify(rows)
-            # return rows        
-    finally:
-        con.close()
-        
 ################################################################################찜하기 기능 
 
 @app.route('/interest_select')  # .마이페이지 찜리스트 select
 def interest_select():
     con = dbcall()
     cursor = con.cursor()
-    user_id=session['ID']
+    user_id = session['ID']
     sql = "SELECT * from like_company_view where m_id=%s"
-    cursor.execute(sql,(user_id,))
+    cursor.execute(sql, (user_id))
     interest_com = cursor.fetchall()
     interest_len = len(interest_com)
     cursor.close()
@@ -342,26 +232,54 @@ def interest():
         
 
 
-########################################################
-@app.route('/company/<int:data_id>')  ############ 기업상세페이지
-def company(data_id):
+
+@app.route('/recent_inquiry_company')  # 찜리스트  활동내역 (열람기업) 
+def recent_inquiry_company():
     con = dbcall()
-    cursor = con.cursor()
-    sql = "SELECT * from company_info where data_id = %s"
-    cursor.execute(sql, (data_id,))
-    data_list = cursor.fetchall()
-    
-    #동종업계 추천하기
-    recommendation =data_list[0]['industry']
-    print(recommendation)
-    allcom = "SELECT * FROM COMPANY_INFO where industry = %s" 
-    cursor.execute(allcom,(recommendation,))
-    all_list = cursor.fetchall()
-    con.close()
-    return render_template('Board/company.html', data_list=data_list, all_list=all_list)
+    cursor=con.cursor()
+    user_id=session['ID']
+    sql = "select * from like_company left join like_company_view on like_company.data_id= like_company_view.data_id where id=%s"
+    cursor.execute(sql,(user_id,))
+    interest_com = cursor.fetchall()
+    interest_len=len(interest_com)
+
+    return render_template('Board/r-i-c.html',interest_com=interest_com,interest_len=interest_len)
 
 
-@app.route('/excellence_employment')  # 채용정보페이지
+########################################################
+@app.route('/condition/searchIndex')  # INDEX => 조건으로 찾기
+def searchIndex():
+    region = request.args.get('areatag')
+    print(region)
+    p = region.split(',')
+    print(p)
+    content = ''
+    for i in range(len(p)):
+            if (i+1) == len(p):                    
+                content += "'" + p[i] + "'"
+            else:
+                content += "'" + p[i] + "',"
+    try:
+        con = dbcall()
+        cursor = con.cursor()
+        sql="SELECT * from company_info where `region` in ("+ content +")"
+        cursor.execute(sql)
+        rows = cursor.fetchall()
+        for row in rows:
+            print('............',row)    
+        # print(rows)
+        print('화이팅!')
+        data_list = rows
+    except Exception as e:
+        print(e)        
+    finally:
+        cursor.close()
+    return render_template('Board/search.html', data_list=data_list, rows=rows, region=region, datatype="json")
+
+
+
+########################################################################################################################채용정보
+@app.route('/excellence_employment')
 def excellence_employment():
     con = dbcall()
     cursor = con.cursor()
@@ -377,11 +295,86 @@ def excellence_employment():
     cursor.close()
 
     return render_template('Board/excellence_employment.html',employ_list=employ_list,data_list=data_list)
+    
 
 
-@app.route('/trend')  # 구직트렌드페이지
-def trends():
-    return render_template('Board/trend.html')
+@app.route('/employtest') # 체크박스 test
+def employtest():
+    con = dbcall()
+    cursor = con.cursor()
+    try:
+        areaList=request.args.get('area') 
+        industryList=request.args.get('industry') 
+        career_details=request.args.get('career_detail') 
+        education=request.args.get('education') 
+
+        print("체크박스 area",areaList)
+        print("체크박스 industry",industryList)
+        print("체크박스 career",career_details)
+        print("체크박스 education",education)
+
+        p = areaList.split(',')
+        content = ''
+        for i in range(len(p)):
+            if (i+1) == len(p):                    
+                content += "'" + p[i] + "'"
+            else:
+                content += "'" + p[i] + "',"
+
+        print('!!!!!!!!!!!!!!!!'+content)
+
+        sql="SELECT * from company_employment where `region` in ("+ content +")"
+        cursor.execute(sql)
+        rows = cursor.fetchall()
+        print("길이",len(rows))
+
+        for row in rows:
+            print('............', row)
+        return jsonify(rows)
+    # return rows    
+    except Exception as e:
+        print(e)    
+    finally:
+        con.close()
+
+##############################################################################################################################
+@app.route('/company/<int:data_id>')  ############ 기업상세페이지
+def company(data_id):
+    con = dbcall()
+    cursor = con.cursor()
+    sql = "SELECT * from company_info where data_id = %s"
+    cursor.execute(sql, (data_id,))
+    data_list = cursor.fetchall()
+    
+    #동종업계 추천하기
+    recommendation =data_list[0]['industry']
+    print(recommendation)
+    allcom = "SELECT * FROM COMPANY_INFO where industry = %s" 
+    cursor.execute(allcom,(recommendation,))
+    same_industry = cursor.fetchall()
+    cursor.close()
+
+    cursor = con.cursor()
+    if 'ID' in session:
+        user_id=session['ID']
+    else: 
+        user_id='null'
+
+    cursor = con.cursor()
+    sql="select * from company_info left join like_company on company_info.data_id= like_company.data_id" 
+    cursor.execute(sql)
+    like_checked=cursor.fetchall()
+    print(like_checked[0]['id'])
+    cursor.close()
+
+    cursor = con.cursor()
+    sql = "SELECT * from like_company_view where m_id=%s"
+    cursor.execute(sql,(user_id,))
+    interest_com = cursor.fetchall()
+    interest_len=len(interest_com)
+    cursor.close()
+    return render_template('Board/company.html',data_list=data_list,same_industry=same_industry ,like_checked=like_checked, interest_com=interest_com, interest_len=interest_len, user_id=user_id)
+
 
 
 @app.route('/faq')  ############## 질문과 답변
@@ -404,8 +397,15 @@ def qna():
     qna_list = cursor.fetchall()
     qna_len = len(qna_list)
     print(qna_len)
-    con.close()
-    return render_template('Board/qna.html', qna_len=qna_len, qna_list=qna_list)
+    sql2 = "SELECT count(*) from qna where reply='Y' "
+    cursor.execute(sql2)
+    reply = cursor.fetchone()
+    reply_len = reply['count(*)']
+    print("리플타입값", type(reply))
+    print(reply)
+    print(reply['count(*)'])
+    cursor.close()
+    return render_template('Board/qna.html', qna_len=qna_len, qna_list=qna_list, reply_len=reply_len)
 @app.route('/question') ######### 질문으로 넘기기
 def qnastion():
     if session['logFlag'] == True:
@@ -429,7 +429,7 @@ def qustion_proc():
     qna_list = cursor.fetchall()
     qna_len = len(qna_list)
     print(qna_len)
-    con.close()
+    cursor.close()
     return redirect('/qna')
 
 
@@ -438,7 +438,7 @@ def answer():
     con = dbcall()
     cursor = con.cursor()
     if (session['logFlag'] == True) and (session['admin'] == '1'):
-        print("세션확인", session['logFlag'], session['&nbsp;admin'])
+        print("세션확인", session['logFlag'], session['admin'])
         answer = request.form
         question_content = answer['question_content']
         idx = answer['idx']
@@ -450,7 +450,6 @@ def answer():
         con.commit()
         cursor.close()
         return jsonify({'msg': '답변등록이 완료되었습니다.'})
-
 
 @app.route('/qnaview')  # 마이페이지 나의 문의목록
 def qnaview():
@@ -473,16 +472,7 @@ def qnaview():
     print(type(date_list))
     cursor.close()
     return render_template('Board/qnaview.html', my_qna_view=my_qna_view, my_qna_view_len=my_qna_view_len, date_list=date_list, reply_list=reply_list)
-
-
-
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 08ef882 ('채용정보기능 추가')
-
+    
 ##################### Index ###############
 ##################### 로그인관련 ###############
 @app.route('/login_form_get')
@@ -520,6 +510,7 @@ def login_proc():
                     session['NAME'] = row['NAME']
                     session['Phone'] = row['Phone']
                     session['BIRTH'] = row['BIRTH']
+                    session['admin'] = row['admin']
                     # return redirect(url_for('main'))
                     return redirect('/')
                 else:
@@ -631,28 +622,13 @@ def my_page_proc():
             con.commit()
             con.close()
             return render_template('Board/login.html')
-@app.route('/recent_inquiry_company')  # 활동내역 (열람기업)
-def recent_inquiry_company():
-    con = dbcall()
-    cursor=con.cursor()
-    user_id=session['ID']
-    sql = "select * from like_company left join like_company_view on like_company.data_id= like_company_view.data_id where id=%s"
-    cursor.execute(sql,(user_id,))
-    interest_com = cursor.fetchall()
-    interest_len=len(interest_com)
-
-    return render_template('Board/r-i-c.html',interest_com=interest_com,interest_len=interest_len)
-
-
-
-
-
 
 
 @app.route('/personal-info-change')  # 회원정보수정
 def persnal_info_change():
     return render_template('Board/personal-info-change.html')
 #################### END 마이페이지 ###################
+
 @app.route('/introduction') # 회사소개 페이지
 def introduction():
     return render_template('Board/our_company.html')
@@ -662,6 +638,7 @@ def evnet():
 @app.route('/trend') #트렌드 페이지
 def trend():
     return render_template('Board/trend.html')
+
 ############ 미완성 및 미적용 루트 ########
 @app.route('/chart')
 def chart():
@@ -674,3 +651,7 @@ SECRET_KEY = "dev"
 if __name__ == '__main__':
     #app.run('127.0.0.1', 5000, debug=True)
     app.run(debug=True)
+
+@app.route('/jobs')  ################# 채용정보페이지
+def jobs():
+    return render_template('Board/jobs.html')

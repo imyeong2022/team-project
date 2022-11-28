@@ -80,7 +80,9 @@ function employ_checkbox(){
         success: function (data_list) {
             alert("여기");
             console.log(data_list);
-            let li = data_list[""];
+            // let li = data_list[""];
+            let for10='{% for x in range(10) %}'
+            let li=data_list[""];
             for (let i = 0; i < data_list.length; i++) {
                 li +=
                 '<li><div><div><a onClick="window.location.reload()" style="cursor: pointer;"></a>'+

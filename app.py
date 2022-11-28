@@ -1,19 +1,34 @@
-from flask import Flask, redirect, url_for, render_template, request, flash, flash, jsonify
+from flask import Flask, redirect, url_for, render_template, request, flash, flash, jsonify, make_response
 from flask import request, session
 from flask_mail import Mail, Message
 import pymysql
 import hashlib
 import re
 import json
+import datetime
+from tkinter import messagebox
 
-# 2022 11 10 병합작업 1차버전입니다.
-########### 데이터베이스 접속 전역변수 선언############
-con = pymysql.connect(host='localhost',
-                      user='root',
-                      password='java',
-                      db='final_test',
-                      charset='utf8mb4',
-                      cursorclass=pymysql.cursors.DictCursor)
+app = Flask(__name__)
+############ 구글메일(계정찾기 테스트) ################ 사이트 접근과 동시에 메일서버와 인터페이스 하면서 recipients 로 지정된 메일 주소로 이메일을 발송
+def mailcall():
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    app.config['MAIL_PORT'] = 465
+    app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'snuejrgmmznyneie'
+    app.config['MAIL_USE_TLS'] = False
+    app.config['MAIL_USE_SSL'] = True
+    mail = Mail(app)
+    return mail
+
+def dbcall():
+    con = pymysql.connect(
+    user='root',
+    password='java',
+    db='final_test',
+    charset='utf8mb4',
+    cursorclass=pymysql.cursors.DictCursor)
+    return con
+
 cursor = con.cursor()
 ########### 데이터베이스 접속 전역변수 선언############
 app = Flask(__name__)
@@ -143,36 +158,6 @@ def condition():
     return render_template('Board/Condition.html',data_list=data_list,
                 interest_com=interest_com,interest_len=interest_len,user_id=user_id)
 
-####################################################
-@app.route('/employtest') # 체크박스 test
-def employtest():
-    try:
-        with con.cursor() as cursor:
-            
-            s=request.args.get('area') 
-            
-            p = s.split(',')
-            content = ''
-            for i in range(len(p)):
-                if (i+1) == len(p):                    
-                    content += "'" + p[i] + "'"
-                else:
-                    content += "'" + p[i] + "',"
-            print('>>>>>>>>>>>>'+ content,type(content))
-
-            print('!!!!!!!!!!!!!!!!'+content)
-            
-            sql="SELECT * from company_info where `지역` in ("+ content +")"
-            cursor.execute(sql)
-            rows=cursor.fetchall()
-            # print(rows)
-
-            for row in rows:
-                print('............',row)
-            # return jsonify(rows)
-            return rows        
-    finally:
-        con.close()
         
 ########################################################찜하기 기능 
 
@@ -240,9 +225,64 @@ def company(data_id):
     return render_template('Board/company.html', data_list=data_list, all_list=all_list)
 
 
-@app.route('/excellence_employment') ###############채용정보페이지
+########################################################################################################################채용정보
+@app.route('/excellence_employment')
 def excellence_employment():
-    return render_template('Board/excellence_employment.html')
+    con = dbcall()
+    cursor = con.cursor()
+    sql="select * from company_employment"
+    cursor.execute(sql)
+    employ_list = cursor.fetchall()
+    cursor.close()
+
+    cursor = con.cursor()
+    sql = "SELECT * from company_info"
+    cursor.execute(sql)
+    data_list = cursor.fetchall()
+    cursor.close()
+
+    return render_template('Board/excellence_employment.html',employ_list=employ_list,data_list=data_list)
+    
+
+
+@app.route('/employtest') # 체크박스 test
+def employtest():
+    con = dbcall()
+    cursor = con.cursor()
+    try:
+        areaList=request.args.get('area') 
+        industryList=request.args.get('industry') 
+        career_details=request.args.get('career_detail') 
+        education=request.args.get('education') 
+
+        print("체크박스 area",areaList)
+        print("체크박스 industry",industryList)
+        print("체크박스 career",career_details)
+        print("체크박스 education",education)
+
+        p = areaList.split(',')
+        content = ''
+        for i in range(len(p)):
+            if (i+1) == len(p):                    
+                content += "'" + p[i] + "'"
+            else:
+                content += "'" + p[i] + "',"
+
+        print('!!!!!!!!!!!!!!!!'+content)
+
+        sql="SELECT * from company_employment where `region` in ("+ content +")"
+        cursor.execute(sql)
+        rows = cursor.fetchall()
+        print("길이",len(rows))
+
+        for row in rows:
+            print('............', row)
+        return jsonify(rows)
+    # return rows    
+    except Exception as e:
+        print(e)    
+    finally:
+        con.close()
 
 
 @app.route('/trend')  ################# 구직트렌드페이지 

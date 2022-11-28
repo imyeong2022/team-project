@@ -65,36 +65,38 @@ def home():
     print("인덱스길이", data_list_len)
     area_list =data_list[0]['region']
     con.close()
-    return render_template('Board/index.html', data_list=data_list)
+    return render_template('Board/index.html', data_list=data_list, area_list=area_list)
 # --------------------------메뉴-----------------------------------
 @app.route('/condition')  # 조건으로 찾기 - 기업정보
 def condition():
+    con = dbcall()
+    cursor = con.cursor()
+    sql = "SELECT * from company_info"
+    cursor.execute(sql)
+    data_list = cursor.fetchall()
+    cursor.close()
+
+    cursor = con.cursor()
     if 'ID' in session:
             user_id=session['ID']
     else: 
         user_id='null'
-        con = dbcall()
-        cursor = con.cursor()
-        sql = "SELECT * from company_info"
-        cursor.execute(sql)
-        data_list = cursor.fetchall()
-        cursor.close()
+  
+    cursor = con.cursor()
+    sql="select * from company_info left join like_company on company_info.data_id= like_company.data_id" 
+    cursor.execute(sql)
+    like_checked=cursor.fetchall()
+    print(like_checked[0]['id'])
+    cursor.close()
 
-        cursor = con.cursor()
-        sql="select * from company_info left join like_company on company_info.data_id= like_company.data_id" 
-        cursor.execute(sql)
-        like_checked=cursor.fetchall()
-        print(like_checked[0]['id'])
-        cursor.close()
-
-        cursor = con.cursor()
-        sql = "SELECT * from like_company_view where m_id=%s"
-        cursor.execute(sql,(user_id,))
-        interest_com = cursor.fetchall()
-        interest_len=len(interest_com)
-        cursor.close()
-        return render_template('Board/search.html',data_list=data_list, like_checked=like_checked, interest_com=interest_com, interest_len=interest_len, user_id=user_id)
-
+    cursor = con.cursor()
+    sql = "SELECT * from like_company_view where m_id=%s"
+    cursor.execute(sql,(user_id,))
+    interest_com = cursor.fetchall()
+    interest_len=len(interest_com)
+    cursor.close()
+    return render_template('Board/Condition.html',data_list=data_list, like_checked=like_checked, interest_com=interest_com, interest_len=interest_len, user_id=user_id)
+      
 @app.route('/search')  # 조건으로 찾기 - 기업정보 (condition 페이지 내)
 def search():
     region = request.args.get('areatag')
@@ -122,7 +124,103 @@ def search():
         
         cursor.close()
         return rows
+################################################################################찜하기 기능 
 
+@app.route('/interest_select')  # .마이페이지 찜리스트 select
+def interest_select():
+    con = dbcall()
+    cursor = con.cursor()
+    user_id = session['ID']
+    sql = "SELECT * from like_company_view where m_id=%s"
+    cursor.execute(sql, (user_id))
+    interest_com = cursor.fetchall()
+    interest_len = len(interest_com)
+    cursor.close()
+    return render_template('Board/interest_company.html', interest_com=interest_com, interest_len=interest_len)
+
+
+
+@app.route('/interest_delete') ###############마이페이지 나의 활동내역 --찜리스트 delete
+def interest_delete():
+    con = dbcall()
+    cursor=con.cursor()
+    user_id=session['ID']
+    rs={}
+    try:
+        with con.cursor() as cursor:
+            s=request.args.get('likeDelete') 
+            p=s.split(',')#리스트 
+            content=''
+            for i in range(len(p)):
+                if (i+1) == len(p):                    
+                    content += "'" + p[i] + "'"
+                else:
+                    content += "'" + p[i] + "',"
+            sql="delete from like_company where id=%s and `data_id` in ("+ content +")"
+            cursor.execute(sql,(user_id,))
+            con.commit()
+            cnt=cursor.rowcount
+            rs={'status':cnt}
+            
+    except Exception as e:
+        rs={'status':0}
+        print(e)
+    finally:
+        return rs   
+
+
+
+@app.route('/interest_insert') ###############기업정보페이지 INSERT,UPDATE(DELETE)
+def interest_insert():
+    con = dbcall()
+    cursor=con.cursor()
+    rs={}
+    try:
+        user_id=session['ID']
+        data_id=request.args.get('data_id')
+        sql="SELECT * from like_company where id=%s and data_id=%s"
+        cursor.execute(sql,(user_id,data_id))
+        like_company_all = cursor.fetchall()
+        print('>>>>>>',len(like_company_all))
+        if(len(like_company_all)>0):
+            print('like_delete')
+            sql = "delete from like_company where data_id=%s and id=%s;"
+            cursor.execute(sql,(data_id,user_id))
+            con.commit()
+            cnt=cursor.rowcount
+            if(cnt>0):
+                rs = {'status':1000}
+        else:
+            print('like_insert')
+            sql = "insert into like_company(ID,data_id,result) values(%s,%s,%s)"
+            cursor.execute(sql,(user_id,data_id,1))
+            con.commit()
+            cnt=cursor.rowcount
+            rs = {'status':cnt}
+    except Exception as e:
+        print(e)
+        rs = {'status': 0}
+    finally:  
+        # con.close()
+        return rs  
+
+
+ 
+@app.route('/interest')  ####### 기업정보 찜리스트 select
+def interest():
+    con = dbcall()
+    cursor = con.cursor()
+    user_id = session['ID']
+    sql = "SELECT * from like_company_view where m_id=%s"
+    cursor.execute(sql, (user_id,))
+    interest_com = cursor.fetchall()
+    interest_len = len(interest_com)
+    cursor.close()
+    return render_template('Board/interest_company.html', interest_com=interest_com, interest_len=interest_len)
+        
+
+
+########################################################
 @app.route('/condition/searchIndex')  # INDEX => 조건으로 찾기
 def searchIndex():
     region = request.args.get('areatag')
@@ -187,16 +285,7 @@ def employtest():
             return rows        
     finally:
         con.close()
-@app.route('/interest') ###############찜리스트 select
-def interest():
-    con = dbcall()
-    cursor = con.cursor()
-    user_id=session['ID']
-    sql = "SELECT * from like_company_view where m_id=%s"
-    cursor.execute(sql,(user_id,))
-    interest_com = cursor.fetchall()
-    interest_len = len(interest_com)
-    return render_template('Board/interest_company.html', interest_com=interest_com,interest_len=interest_len)
+
 ########################################################
 @app.route('/company/<int:data_id>')  ############ 기업상세페이지
 def company(data_id):
@@ -211,9 +300,30 @@ def company(data_id):
     print(recommendation)
     allcom = "SELECT * FROM COMPANY_INFO where industry = %s" 
     cursor.execute(allcom,(recommendation,))
-    all_list = cursor.fetchall()
-    con.close()
-    return render_template('Board/company.html', data_list=data_list, all_list=all_list)
+    same_industry = cursor.fetchall()
+    cursor.close()
+
+    cursor = con.cursor()
+    if 'ID' in session:
+        user_id=session['ID']
+    else: 
+        user_id='null'
+
+    cursor = con.cursor()
+    sql="select * from company_info left join like_company on company_info.data_id= like_company.data_id" 
+    cursor.execute(sql)
+    like_checked=cursor.fetchall()
+    print(like_checked[0]['id'])
+    cursor.close()
+
+    cursor = con.cursor()
+    sql = "SELECT * from like_company_view where m_id=%s"
+    cursor.execute(sql,(user_id,))
+    interest_com = cursor.fetchall()
+    interest_len=len(interest_com)
+    cursor.close()
+    return render_template('Board/company.html',data_list=data_list,same_industry=same_industry ,like_checked=like_checked, interest_com=interest_com, interest_len=interest_len, user_id=user_id)
+
 @app.route('/jobs')  ################# 채용정보페이지
 def jobs():
     return render_template('Board/jobs.html')
@@ -412,13 +522,24 @@ def my_page_proc():
             con.commit()
             con.close()
             return render_template('Board/login.html')
-@app.route('/recent_inquiry_company')  # 활동내역 (열람기업)
+
+@app.route('/recent_inquiry_company')  # 찜리스트  활동내역 (열람기업) 
 def recent_inquiry_company():
-    return render_template('Board/r-i-c.html')
+    con = dbcall()
+    cursor=con.cursor()
+    user_id=session['ID']
+    sql = "select * from like_company left join like_company_view on like_company.data_id= like_company_view.data_id where id=%s"
+    cursor.execute(sql,(user_id,))
+    interest_com = cursor.fetchall()
+    interest_len=len(interest_com)
+
+    return render_template('Board/r-i-c.html',interest_com=interest_com,interest_len=interest_len)
+
 @app.route('/personal-info-change')  # 회원정보수정
 def persnal_info_change():
     return render_template('Board/personal-info-change.html')
 #################### END 마이페이지 ###################
+
 @app.route('/introduction') # 회사소개 페이지
 def introduction():
     return render_template('Board/our_company.html')
@@ -428,6 +549,7 @@ def evnet():
 @app.route('/trend') #트렌드 페이지
 def trend():
     return render_template('Board/trend.html')
+
 ############ 미완성 및 미적용 루트 ########
 @app.route('/chart')
 def chart():

@@ -24,7 +24,47 @@
             background: #fff;
             padding: 4%;
         }
+        
+
     </style>
+    <script>
+        function interestSave(obj, data_id, user_id) {
+            var userId = user_id
+            if (userId == 'null') {
+                $(obj).prop("checked", false);
+                if (confirm("로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?")) {
+                    location.href = "/login_form_get";
+                }
+            } else {
+                alert('로그인!')
+                var cmpIds = new Array();
+    
+                const dataID = data_id
+                const param = {
+                    'data_id': dataID
+                };
+                alert(data_id)
+                $.ajax({
+                    type: 'GET',
+                    url: '/interest_insert',
+                    dataType: 'json',
+                    data: param,
+                    success: function (data) {
+                        console.log(data);
+                        console.log("콘솔 ", data['status'])
+                        if (data['status'] == '1') {
+                            $(obj).prop("checked", true);
+                        } else {
+                            $(obj).prop("checked", false);
+                        }
+                    },
+                    error: function (request, status, error) {
+                        console.log(request, status, error);
+                    }
+                });
+            }
+        }
+    </script>
 </head>
 
 <body>
@@ -62,10 +102,31 @@
                         {% endif %}
                         <!-- 관심기업 등록하기 -->
                         <div class="custom-checkbox">
+                            <p>
+                            {% if like_checked[0]['id']==user_id and data_list[0].data_id == like_checked[0].data_id %}
+                            <input type="checkbox" checked id="interestCheck{{0}}" class="checkbox-star"
+                                onclick="interestSave(this,'{{data_list[0].data_id}}','{{user_id}}');"
+                                name="interestCheck{{0}}">
+                            <span class="star-inner">&nbsp;&nbsp;&nbsp;</span>
+                            <label for="interestCheck{{0}}">관심기업 해제하기 </label>
+
+                            {% else %}
+                            <input type="checkbox" id="interestCheck{{0}}" class="checkbox-star"
+                                onclick="interestSave(this,'{{data_list[0].data_id}}','{{user_id}}');"
+                                name="interestCheck{{0}}">
+                            <span class="star-inner">&nbsp;&nbsp;&nbsp;</span>
+                            <label for="interestCheck{{0}}">관심기업 등록하기</label>
+                            {% endif %}
+                            </p>
+                        </div>
+                        
+                        <!-- <div class="wish-checkbox">
                         <p><input type="checkbox" id="interestCheck-1" class="checkbox-like type2"
                                 onclick="intrstYnSave(this);" name="interestCheck">
-                            <label for="star-check"> 관심기업 {{interest_len}}</label></p>
-                        </div>
+                                <label > 관심기업 등록하기</label> -->
+                            <!-- <label for="star-check"> 관심기업 {{interest_len}}</label> -->
+                        <!-- </p> -->
+                        <!-- </div> -->
                 </div>
         </section>
         <!-- 헤더 아래 내용부분 => 태수 작업 전 임시방편 코드-->
@@ -291,17 +352,18 @@
             <!--// article-title-area -->
             <div class="article-content frame-min" id="sameIndustryArea">
                 <div class="swiper-container">
+                 <!-- 자신(= 현재 기업페이지에 출력된 기업자신)을 제외한 동종업계 추천기업 리스트(x+1)-->
                     <div class="swiper-wrapper">
                         {% for x in range (10) %}
                         <div class="swiper-slide">
-                            <a href="/company/{{all_list[x].data_id}}">
-                                <span class="grid-sub-blue">{{all_list[x].company_type}}</span>
-                                <p class="grid-title-side">{{all_list[x].company}}</p>
-                                <div class="company-swiper-div-margin">
-                                    <span class="condition-sub-text">{{all_list[x].region}}</span>
-                                    <span class="grid-sub-red">{{all_list[x].employment}}</span>
-                                </div>
+                            <span class="grid-sub-blue">{{same_industry[x+1].company_type}}</span>
+                            <a href="/company/{{same_industry[x+1].data_id}}">
+                                <p class="grid-title-side">{{same_industry[x+1].company}}</p>
                             </a>
+                            <div class="company-swiper-div-margin">
+                                <span class="condition-sub-text">{{same_industry[x+1].region}}</span>
+                                <span class="grid-sub-red">{{same_industry[x+1].employment}}</span>
+                            </div>
                         </div>
                         {% endfor %}
                     </div>

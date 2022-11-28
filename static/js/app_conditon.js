@@ -17,11 +17,10 @@ const form = document.searchform;
 function checkbox_test() {
   let str = areaList.join();
   alert(str);
-  alert('aaa');
   const param = { areatag: str };
   $.ajax({
     type: "GET",
-    url: "/condition",
+    // url: "/condition",
     url: "/search",
     dataType: "json",
     data: param,
@@ -31,7 +30,7 @@ function checkbox_test() {
       let li = data_list[""];
       for (let i = 0; i < data_list.length; i++) {
         li +=
-          '<li class="item"><div class = "box-text"><div class="box-btn-area"><a class="btn btn-default btn-md"><div><span>☆ 관심기업 등록하기</span></div></a>'
+          '<li><div><div class="box-btn-area"><a onClick="window.location.reload()" style="cursor: pointer;"><div><span> 관심기업 등록하기</span></div></a>'
           +'<a class="btn btn-default btn-md" href=\'/company/'+
           data_list[i].data_id + '#location_map' +'\';" style="cursor:pointer">'
           +'<div><span>일자리 지도 보기</span></div></a><!-- 1라인--><span class="grid-sub-blue">' + 

@@ -35,7 +35,8 @@
 
                 <form class="login-form" action="" method="post">
                     <input class="join-submit" type="button"onClick="location.href='/personal-info-change'" value="회원정보 수정">
-                    <input class="join-submit" type="button"onClick="location.href='/recent_inquiry_company'" value="나의 활동내역">
+                    <input class="join-submit" type="button"onClick="location.href='/qnaview'" value="나의 활동내역">
+                    <input class="join-submit" type="button"onClick="location.href='/recent_inquiry_company'" value="나의 관심기업">
 
                 </form>
             </div>
@@ -45,6 +46,8 @@
     {% else %}
     {% include 'Board/error.html' %}
     {% endif %}
+    {% include '/Board/footer.html' %}
+
 </body>
 
 </html>

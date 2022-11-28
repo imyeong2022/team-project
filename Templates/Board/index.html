@@ -7,17 +7,21 @@
 	<title>index</title>
 	<link rel="stylesheet" href="../../static/css/styles.css" />
 	<link rel="stylesheet" href="../../static/css/aos.css" />
+	
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    
+	<!-- slider styles -->
+
+	
 	<style>
 		.swiper-container {
 			width: 100%;
 			height: 80vmin;
 		}
-
 		.swiper-slide {
 			text-align: center;
 			font-size: 18px;
 			background: #fff;
-
 			/* Center slide text vertically */
 			display: -webkit-box;
 			display: -ms-flexbox;
@@ -33,8 +37,20 @@
 			align-items: center;
 		}
 	</style>
-</head>
 
+	<script type="text/javascript">
+		function commpanypage(e) {
+			// 자바스크립트로 링크 이동하기 : location.href
+			var link = document.getElementById("data_id").value;
+			location.href = "/company/" + link;
+			// form에서는 페이지 이동 전에 데이터가 들어있는지 확인이 번거롭다.
+			// 데이터를 확인하고 그 데이터를 가지고 링크를 이동하기 위해서는 
+			// 자바스크립트에서 데이터 확인을 거치고 직접 보내주는 것이 좋다
+
+
+		}
+	</script>
+</head>
 <body>
 	{% include '/Board/header.html' %}
 	<div class="main-div">
@@ -42,9 +58,26 @@
 			<div class="main-section-slider-div">
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
-						{% for i in range(4) %}
-						<div class="swiper-slide">Slide {{i}}</div>
-						{% endfor %}
+						<div class="swiper-slide">
+							<a href="https://www.smes.go.kr/gsmb/main">
+								<img src="../../static/source/index/01.jpg">
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="/condition">
+								<img src="../../static/source/index/02.jpg">
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="/event">
+								<img src="../../static/source/index/03.jpg">
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="/trend">
+								<img src="../../static/source/index/04.jpg">
+							</a>
+						</div>
 					</div>
 					<!-- Add Pagination -->
 					<div class="swiper-pagination"></div>
@@ -63,18 +96,27 @@
 					<div>
 						<a class="a-text-decoration" href="/condition">전체보기</a>
 					</div>
-					<ul class="main-gird-ul">
-						{% for x in range(6) %}
-						<a class="a-text-decoration a-color aos-item" href='/company/{{data_list[x].data_id}}'
+					<form method='post' action="/">
+						<ul class="main-gird-ul">
+							{% for x in range(6) %}
+							<a class="a-text-decoration a-color aos-item" name="cookie" onclick="commpanypage('{{x}}')"
 							style="cursor:pointer" data-aos="fade-right">
 							<li class="main-gird-li">
-								<span class="grid-sub-blue">{{ data_list[x].주요제품명 }}</span>
-								<p class="grid-title">{{ data_list[x].회사 }}</p>
-								<p class="grid-sub-text">{{ data_list[x].채용여부 }}</p>
+								<input type="hidden" id="data_id" name="data_id" value="{{data_list[x].data_id}}">
+								<span class="grid-sub-blue">{{ data_list[x].main_product }}</span>
+								<p class="grid-title">{{ data_list[x].company }}</p>
+								{% if data_list[x].employment != '-' %}
+								<p class="grid-sub-text">{{ data_list[x].employment }}</p>
+								{% endif %}
+								
+								{% if data_list[x].tag != '-' %}
+								<p class="grid-sub-text">{{ data_list[x].tag }}</p>
+								{% endif %}
 							</li>
 						</a>
 						{% endfor %}
 					</ul>
+					</form>
 				</article>
 				<section class="bg-47 bg-index">
 					<article class="frame-middle">
@@ -112,28 +154,50 @@
 									</div>
 								</div>
 								<!-- selectBox2 -->
-								<div class="qustion fl"><strong>01</strong><span>일하고 싶은 지역은 어디신가요?</span></div>
+								<div class="qustion fl"><strong>02</strong><span>일하고 싶은 업종은 무엇인가요?</span></div>
 								<div class="box fl">
 									<div class="selectBox2  ">
 										<button class="label">업종 🎈</button>
 										<ul class="optionList">
-											<li class="optionItem">Red</li>
-											<li class="optionItem">orange</li>
-											<li class="optionItem">purple</li>
-											<li class="optionItem">green</li>
-										</ul>
+											<li class="optionItem"> 
+												<input type="checkbox" 
+												  class="checkbox check-all checked" name="scaletag" value=""
+												  data-name="전체" checked="checked">
+											   <label for="check-400">전체</label></li>
+											<li class="optionItem"> 
+												<input type="checkbox" id="check-02"
+												  class="checkbox" name="scaletag" value="02" data-name="중기업">
+											   <label for="check-02">중기업</label></li>
+											<li class="optionItem"> 
+												<input type="checkbox" id="check-03"
+												  class="checkbox" name="scaletag" value="03" data-name="소기업">
+											   <label for="check-03">소기업</label></li>
+											<li class="optionItem">
+												<input type="checkbox" id="check-04"name="scaletag" value="04" data-name="한시성중소기업">
+											   <label>한시성중소기업</label></li>
+										 </ul>
 									</div>
 								</div>
 								<!-- selectBox3 -->
-								<div class="qustion fl"><strong>01</strong><span>일하고 싶은 지역은 어디신가요?</span></div>
+								<div class="qustion fl"><strong>03</strong><span>원하는 복지는 무엇인가요? </span></div>
 								<div class="box fl">
 									<div class="selectBox2  ">
 										<button class="label">복지 🍟</button>
 										<ul class="optionList">
-											<li class="optionItem">pizza</li>
-											<li class="optionItem">ramen</li>
-											<li class="optionItem">kimchi</li>
-											<li class="optionItem">somori gukbob</li>
+											<li class="optionItem" value="pizza"><label for="check-600">전체</label>
+												<input type="checkbox" id="check-600" class="checkbox check-all checked" name="welfaretag" data-name="전체" checked="checked"></li>
+											 <li class="optionItem"><input type="checkbox" id="check-W00" class="checkbox check-empty" name="welfaretag" data-name="공제·기타">
+												<label for="check-W00">공제·기타</label></li>
+											 <li class="optionItem"><input type="checkbox" id="check-W01" class="checkbox check-empty" name="welfaretag" data-name="연금·보험">
+												<label for="check-W01">연금·보험</label></li>
+											 <li class="optionItem"><input type="checkbox" id="check-W02" class="checkbox check-empty" name="welfaretag" data-name="교육·연수">
+												<label for="check-W02">교육·연수</label></li>
+											 <li class="optionItem"><input type="checkbox" id="check-W03" class="checkbox check-empty" name="welfaretag" data-name="생활편의·여가행사">
+												<label for="check-W03">생활편의·여가행사</label></li>
+											 <li class="optionItem"><input type="checkbox" id="check-W04" class="checkbox check-empty" name="welfaretag" data-name="보상·수당·지원">
+												<label for="check-W04">보상·수당·지원</label></li>
+											 <li class="optionItem"> <input type="checkbox" id="check-W06" class="checkbox check-empty" name="welfaretag" data-name="휴무·휴가·행사">
+												<label for="check-W06">휴무·휴가·행사</label></li>
 										</ul>
 									</div>
 								</div>
@@ -143,7 +207,6 @@
 				</section>
 		</section>
 	</div>
-
 	<footer></footer>
 	<script src="../../static/js/aos.js"></script>
 	<script>
@@ -151,6 +214,7 @@
 			easing: 'ease-in-out-sine'
 		});
 	</script>
+
 	<!-- Swiper JS -->
 	<script src="./js/swiper.min.js"></script>
 	<script>
@@ -206,6 +270,33 @@
 			label.parentNode.classList.remove('active');
 		}
 	</script>
+	{% include '/Board/footer.html' %}
 </body>
-
 </html>
+
+	<!-- Swiper JS -->
+	<!-- <script src="./js/swiper.min.js"></script>
+	<script>
+		var swiper = new Swiper('.swiper-container', {
+			loop: true,
+			loopAdditionalSlides: 1,
+			keyboard: {
+				enabled: true,
+			},
+			cubeEffect: {
+				shadow: true,
+				slideShadows: true,
+				shadowOffset: 20,
+				shadowScale: 0.94,
+			},
+			pagination: {
+				el: '.swiper-pagination',
+			},
+			autoplay: {
+				delay: 2500,
+				disableOnInteraction: false,
+			},
+		});
+	</script>
+</body>
+</html> -->

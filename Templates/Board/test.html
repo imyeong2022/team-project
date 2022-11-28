@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <ul id="main">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+    </ul>
+    <input type="button" onclick="new_list();">
+    <script>
+        function new_list() {
+            // ajax
+            data = [3,4,5];
+            let li = ''
+            for (var v of data) {
+                li += '<li>' + v + '</li>'
+            }
+            console.log(li);
+            const ul = document.querySelector('#main')
+            ul.innerHTML = li;
+        }
+    </script>
+</body>
+</html>

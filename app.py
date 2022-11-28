@@ -29,29 +29,6 @@ def dbcall():
     cursorclass=pymysql.cursors.DictCursor)
     return con
 
-cursor = con.cursor()
-########### 데이터베이스 접속 전역변수 선언############
-app = Flask(__name__)
-############ 구글메일(계정찾기 테스트) ################ 사이트 접근과 동시에 메일서버와 인터페이스 하면서 recipients 로 지정된 메일 주소로 이메일을 발송
-def mailcall():
-    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-    app.config['MAIL_PORT'] = 465
-    app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
-    app.config['MAIL_PASSWORD'] = 'snuejrgmmznyneie'
-    app.config['MAIL_USE_TLS'] = False
-    app.config['MAIL_USE_SSL'] = True
-    mail = Mail(app)
-    return mail
-
-def dbcall():
-    con = pymysql.connect(
-    user='root',
-    password='java',
-    db='final_test',
-    charset='utf8mb4',
-    cursorclass=pymysql.cursors.DictCursor)
-    return con
-
 @app.route('/setcookie', methods=['POST', 'GET'])
 def setcookie():
     if request.method == 'POST':
@@ -423,88 +400,6 @@ def company(data_id):
     else: 
         user_id='null'
 
-    allcom = "SELECT * FROM COMPANY_INFO where 업종 = %s" 
-    cursor.execute(allcom,(company,))
-    all_list = cursor.fetchall()
-    return render_template('Board/company.html', data_list=data_list, all_list=all_list)
-
-
-########################################################################################################################채용정보
-@app.route('/excellence_employment')
-def excellence_employment():
-    con = dbcall()
-    cursor = con.cursor()
-    sql="select * from company_employment"
-    cursor.execute(sql)
-    employ_list = cursor.fetchall()
-    cursor.close()
-
-    cursor = con.cursor()
-    sql = "SELECT * from company_info"
-    cursor.execute(sql)
-    data_list = cursor.fetchall()
-    cursor.close()
-
-    return render_template('Board/excellence_employment.html',employ_list=employ_list,data_list=data_list)
-    
-
-
-@app.route('/employtest') # 체크박스 test
-def employtest():
-    con = dbcall()
-    cursor = con.cursor()
-    try:
-        areaList=request.args.get('area') 
-        industryList=request.args.get('industry') 
-        career_details=request.args.get('career_detail') 
-        education=request.args.get('education') 
-
-        print("체크박스 area",areaList)
-        print("체크박스 industry",industryList)
-        print("체크박스 career",career_details)
-        print("체크박스 education",education)
-
-        p = areaList.split(',')
-        content = ''
-        for i in range(len(p)):
-            if (i+1) == len(p):                    
-                content += "'" + p[i] + "'"
-            else:
-                content += "'" + p[i] + "',"
-
-        print('!!!!!!!!!!!!!!!!'+content)
-
-        sql="SELECT * from company_employment where `region` in ("+ content +")"
-        cursor.execute(sql)
-        rows = cursor.fetchall()
-        print("길이",len(rows))
-
-        for row in rows:
-            print('............', row)
-        return jsonify(rows)
-    # return rows    
-    except Exception as e:
-        print(e)    
-    finally:
-        con.close()
-
-
-@app.route('/trend')  ################# 구직트렌드페이지 
-def trends():
-    return render_template('Board/trend.html')
-
-@app.route('/events')  ################# 채용정보페이지
-def events():
-    return render_template('Board/event.html')
-
-@app.route('/our_company')
-def our_company():
-    return render_template('Board/our_company.html')
-
-
-@app.route('/data')
-def data():
-    sql ='select All_Recruit,All_Employ from job_scale_total'
     cursor = con.cursor()
     sql="select * from company_info left join like_company on company_info.data_id= like_company.data_id" 
     cursor.execute(sql)

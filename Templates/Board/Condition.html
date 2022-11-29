@@ -11,6 +11,50 @@
             font-size: 50;
         }
     </style>
+    <script>
+        function interestSave(obj, data_id, user_id) {
+            var userId = user_id
+            if (userId == 'null') {
+                $(obj).prop("checked", false);
+                if (confirm("로그인이 필요한 서비스입니다.\n로그인 하시겠습니까?")) {
+                    location.href = "/login_form_get";
+                }
+            } else {
+                var cmpIds = new Array();
+    
+                const dataID = data_id
+                const param = {
+                    'data_id': dataID
+                };
+                // alert(data_id)
+                $.ajax({
+                    type: 'GET',
+                    url: '/interest_insert',
+                    dataType: 'json',
+                    data: param,
+                    success: function (data) {
+                        console.log(data);
+                        // console.log("콘솔 ", data['status'])
+                        // alert("test")
+                        // if (data['status'] == '1') {
+                        //     $(obj).prop("checked", true);
+                        // } else {
+                        //     $(obj).prop("checked", false);
+                        // }
+                    },
+                    error: function (request, status, error) {
+                        console.log(request, status, error);
+                    }
+                });
+            }
+        }
+    </script>
+    <script>
+        function headerSearch(){
+            // contextPath 추가 22.01.03
+            location.href = contextPath + "/search?schTxt=" + encodeURIComponent($("#headerSearch").val() || '');
+        }
+    </script>
 </head>
 <script>
     function interestSave(obj, data_id, user_id) {
@@ -50,26 +94,28 @@
     }
 </script>
 <body>
+
 {% include 'Board/header.html' %}
-    <div class="main-div">
-        <section class="main-section" id = "contents">
-            <div class="title-area"><!-- page-title-area -->
-                <div class="inner"> 
-                    <div class="public-list"> <!-- util-area -->
-                        <ol class="public-ol">
-                            <li class="public-li"><a href="/">index </a></li>
-                            <li class="public-li">조건으로 찾기</li>
-                            <li class="public-li">상세조건 검색</li>   
-                        </ol>
-                    </div>
-                    <div class="public-title">
-                        상세조건 검색
-                    </div>
-                    <div class="public-title-sub">
-                        원하는 조건에 따라 좋은 기업을 찾아보세요.
-                    </div>
+<div class="main-div">
+    <!-- 기업 검색 -->
+    <section class="main-section" id = "contents">
+        <div class="title-area"><!-- page-title-area -->
+            <div class="inner"> 
+                <div class="public-list"> <!-- util-area -->
+                    <ol class="public-ol">
+                        <li class="public-li"><a href="/">index </a></li>
+                        <li class="public-li">조건으로 찾기</li>
+                        <li class="public-li">상세조건 검색</li>   
+                    </ol>
+                </div>
+                <div class="public-title">
+                    상세조건 검색
+                </div>
+                <div class="public-title-sub">
+                    원하는 조건에 따라 좋은 기업을 찾아보세요.
                 </div>
             </div>
+        </div>
         <!-- <div class = "search-area"> content-area -->
             <form class = "search-area" id = "searchForm" name ="searchForm" method="get" action="condition"> <!-- content-area -->
                 <input type = "hidden" id="pg" value="1">
@@ -112,6 +158,7 @@
                         <input type="checkbox" id="check-schTxt" class="checkbox" name="schTxtTag" data-name="검색어 > ">
                         <label for="check-schTxt">검색어 &gt; </label>
                     </div>
+                    <!-- end / 검색 부분 추가 및 수정함 22/11/15 서연 -->
                 </div>
                 <div class="search-filter"> <!-- item-list-->
                     <dl class="item-content" id="areaContent" data-id="area" data-tit="지역은" data-max="5">
@@ -321,7 +368,7 @@
                             </div>
                     </div>
                     </dl>
-                    
+    
                     <dl class="item-content" id="wlfrContent" data-id="wlfr" data-tit="복지는" data-max="10">
                     <div class="search-fileter-child">
                         <div class="search-fileter-child-title"><span>복지</span></div>
@@ -367,8 +414,8 @@
                     <div class="print-values">
                         <p id="valueList"></p>
                     </div>
-                    <div>
-                        <input type="button" value="검색test" class="print-value" id="valueList" onclick="checkbox_test();">
+                    <div class="fr">
+                        <input class="index-button" type="button" value="검색하기" class="print-values" id="valueList" onclick="checkbox_test();">
                     </div>
                 </div>
             </form>
@@ -379,7 +426,8 @@
                         <li>
                             <div>
                                 <div>
-                                    <a onClick="window.location.reload()" style="cursor: pointer;">
+                                    <a style="cursor: pointer;">
+                                    <!-- <a onClick="window.location.reload()" style="cursor: pointer;"> -->
                                         <!-- {# onclick은 로그인이 안되어있을때  ★ #} -->
                                         <div class="wish-checkbox">
                                             {% if like_checked[x]['id']==user_id and data_list[x].data_id == like_checked[x].data_id %}
@@ -387,14 +435,14 @@
                                                 onclick="interestSave(this,'{{data_list[x].data_id}}','{{user_id}}');"
                                                 name="interestCheck{{x}}">
                                             <span class="star-inner">&nbsp;&nbsp;&nbsp;</span>
-                                            <label for="interestCheck{{x}}">관심기업 해제하기 </label>
+                                            <label for="interestCheck{{x}}">관심기업 </label>
     
                                             {% else %}
                                             <input type="checkbox" id="interestCheck{{x}}" class="checkbox-star"
                                                 onclick="interestSave(this,'{{data_list[x].data_id}}','{{user_id}}');"
                                                 name="interestCheck{{x}}">
                                             <span class="star-inner">&nbsp;&nbsp;&nbsp;</span>
-                                            <label for="interestCheck{{x}}">관심기업 등록하기</label>
+                                            <label for="interestCheck{{x}}">관심기업</label>
                                             {% endif %}
                                         </div>
                                         <!-- {# <div>★ 관심기업 해제하기</div> #} -->
@@ -413,7 +461,7 @@
                                 </div>
                             </div>
                             <div>
-                            <!--태그-->
+                       
                             <ul class="tag">
                                 {% if data_list[x].tag != '-' %}
                                 <li>{{ data_list[x].tag }}</li>
@@ -456,6 +504,5 @@
     </div>
     <script src="../../static/js/app_conditon.js"></script>
     {% include '/Board/footer.html' %}
-    
 </body>
 </html>

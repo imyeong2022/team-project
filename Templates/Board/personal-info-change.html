@@ -6,6 +6,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+        function delete_proc(frm){
+            if (window.confirm("회원탈퇴 하시겠습니까? 데이터는 복구되지않습니다.")){
+                frm.action = "/delete_proc";
+                frm.submit();
+                alert("탈퇴처리가 완료되었습니다. 이용해주셔서 감사합니다.")
+                return true; 
+            } else {
+                return false;
+            }
+            
+        }
+
+
+    </script>
 </head>
 
 <body>
@@ -60,6 +76,7 @@
                         <input class="join-input" type="text" name="user_birth" placeholder="{{session['BIRTH']}}" readonly>
                     </div>
                     <input class="join-submit" type="submit" value="수정 완료">
+                    <input class="join-submit" type="button" value="회원 탈퇴" onclick="return delete_proc(this.form)">
 
                 </form>
             </div>

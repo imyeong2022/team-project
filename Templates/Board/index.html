@@ -7,9 +7,9 @@
 	<title>index</title>
 	<link rel="stylesheet" href="../../static/css/styles.css" />
 	<link rel="stylesheet" href="../../static/css/aos.css" />
-	<!--[if lt IE 9]>
+	
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    
 	<!-- slider styles -->
 
 	
@@ -41,15 +41,15 @@
 	<script type="text/javascript">
 		function commpanypage(e) {
 			// 자바스크립트로 링크 이동하기 : location.href
-			var link = document.getElementById("data_id").value;
-			location.href = "/company/" + link;
+			location.href = "/company/" + e;
 			// form에서는 페이지 이동 전에 데이터가 들어있는지 확인이 번거롭다.
 			// 데이터를 확인하고 그 데이터를 가지고 링크를 이동하기 위해서는 
 			// 자바스크립트에서 데이터 확인을 거치고 직접 보내주는 것이 좋다
+
+
 		}
 	</script>
 </head>
-
 <body>
 	{% include '/Board/header.html' %}
 	<div class="main-div">
@@ -57,9 +57,26 @@
 			<div class="main-section-slider-div">
 				<div class="swiper-container">
 					<div class="swiper-wrapper">
-						{% for i in range(4) %}
-						<div class="swiper-slide">Slide {{i}}</div>
-						{% endfor %}
+						<div class="swiper-slide">
+							<a href="https://www.smes.go.kr/gsmb/main">
+								<img src="../../static/source/index/01.jpg">
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="/condition">
+								<img src="../../static/source/index/02.jpg">
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="/event">
+								<img src="../../static/source/index/03.jpg">
+							</a>
+						</div>
+						<div class="swiper-slide">
+							<a href="/trend">
+								<img src="../../static/source/index/04.jpg">
+							</a>
+						</div>
 					</div>
 					<!-- Add Pagination -->
 					<div class="swiper-pagination"></div>
@@ -80,11 +97,9 @@
 					</div>
 					<form method='post' action="/">
 						<ul class="main-gird-ul">
-						{% for x in range(6) %}
-							<!-- <a class="a-text-decoration a-color aos-item" name="cookie" onclick="commpanypage('{{x}}')" -->
-							<!-- style="cursor:pointer" data-aos="fade-right"> -->
-                     <!-- 위 자바스크립트 기능 구현이 안 되서 작동하는 코드로 아래 넣어둡니다-->
-                  <a class="a-text-decoration a-color aos-item" name="cookie" href='/company/{{data_list[x].data_id}}' style="cursor:pointer" data-aos="fade-right">
+							{% for x in range(6) %}
+							<a class="a-text-decoration a-color aos-item" name="cookie" onclick="commpanypage('{{data_list[x].data_id}}')"
+							style="cursor:pointer" data-aos="fade-right">
 							<li class="main-gird-li">
 								<span class="grid-sub-blue">{{ data_list[x].main_product }}</span>
 								<p class="grid-title">{{ data_list[x].company }}</p>
@@ -134,134 +149,152 @@
 											<li class="optionItem" data-value="제주"><span>제주</span></a></li>
 										</ul>
 
-                           </div>
-                        </div>
-                        <!-- selectBox2 -->
-                        <div class="qustion fl"><strong>01</strong><span>일하고 싶은 지역은 어디신가요?</span></div>
-                        <div class="box fl">
-                           <div class="selectBox2  ">
-                              <button type="button" class="label">업종 🎈</button>
-                              <ul class="optionList">
-                                 <li class="optionItem"> <input type="checkbox" id="check-400"
-                                       class="checkbox check-all checked" name="scaletag" value=""
-                                       data-name="전체" checked="checked">
-                                    <label for="check-400">전체</label></li>
-                                 <li class="optionItem"> <input type="checkbox" id="check-02"
-                                       class="checkbox" name="scaletag" value="02" data-name="중기업">
-                                    <label for="check-02">중기업</label></li>
-                                 <li class="optionItem"> <input type="checkbox" id="check-03"
-                                       class="checkbox" name="scaletag" value="03" data-name="소기업">
-                                    <label for="check-03">소기업</label></li>
-                                 <li class="optionItem"><input type="checkbox" id="check-999"
-                                       class="checkbox" name="scaletag" value="999" data-name="스타트업">
-                                    <label for="check-999">스타트업</label></li>
-                                 <li class="optionItem"><input type="checkbox">
-                                    <label>소상공인</label></li>
-                                 <li class="optionItem"><input type="checkbox">
-                                    <label>한시성중소기업</label></li>
-                              </ul>
-                           </div>
-                        </div>
-                        <!-- selectBox3 -->
-                        <div class="qustion fl"><strong>01</strong><span>일하고 싶은 지역은 어디신가요?</span></div>
-                        <div class="box fl">
-                           <div class="selectBox2  ">
-                              <button type="button" class="label">복지 🍟</button>
-                              <ul class="optionList">
-                                 <li class="optionItem" value="pizza"><label for="check-600">전체</label>
-                                    <input type="checkbox" id="check-600" class="checkbox check-all checked" name="welfaretag" data-name="전체" checked="checked"></li>
-                                 <li class="optionItem"><input type="checkbox" id="check-W00" class="checkbox check-empty" name="welfaretag" data-name="공제·기타">
-                                    <label for="check-W00">공제·기타</label></li>
-                                 <li class="optionItem"><input type="checkbox" id="check-W01" class="checkbox check-empty" name="welfaretag" data-name="연금·보험">
-                                    <label for="check-W01">연금·보험</label></li>
-                                 <li class="optionItem"><input type="checkbox" id="check-W02" class="checkbox check-empty" name="welfaretag" data-name="교육·연수">
-                                    <label for="check-W02">교육·연수</label></li>
-                                 <li class="optionItem"><input type="checkbox" id="check-W03" class="checkbox check-empty" name="welfaretag" data-name="생활편의·여가행사">
-                                    <label for="check-W03">생활편의·여가행사</label></li>
-                                 <li class="optionItem"><input type="checkbox" id="check-W04" class="checkbox check-empty" name="welfaretag" data-name="보상·수당·지원">
-                                    <label for="check-W04">보상·수당·지원</label></li>
-                                 <li class="optionItem"> <input type="checkbox" id="check-W06" class="checkbox check-empty" name="welfaretag" data-name="휴무·휴가·행사">
-                                    <label for="check-W06">휴무·휴가·행사</label></li>
-                              </ul>
-                           </div>
-                        </div>
-                        <!-- <button type="submit" onclick="area_search()" id="valueList" class="print-value" id="valueList_index">전송</button> -->
-                        <button type="submit" onclick="checkbox_test()" id="valueList" class="print-value" id="valueList_index">전송</button>
-                        <div class="print-values">
-                           <p id="valueList"></p>
-                        </div>
-                     </form>
-                  </div>
-               </article>
-            </section>
-      </section>
-   </div>
+									</div>
+								</div>
+								<!-- selectBox2 -->
+								<div class="qustion fl"><strong>02</strong><span>일하고 싶은 업종은 무엇인가요?</span></div>
+								<div class="box fl">
+									<div class="selectBox2  ">
+										<button class="label">업종 🎈</button>
+										<ul class="optionList">
+											<li class="optionItem"> 
+												<input type="checkbox" 
+												  class="checkbox check-all checked" name="scaletag" value=""
+												  data-name="전체" checked="checked">
+											   <label for="check-400">전체</label></li>
+											<li class="optionItem"> 
+												<input type="checkbox" id="check-02"
+												  class="checkbox" name="scaletag" value="02" data-name="중기업">
+											   <label for="check-02">중기업</label></li>
+											<li class="optionItem"> 
+												<input type="checkbox" id="check-03"
+												  class="checkbox" name="scaletag" value="03" data-name="소기업">
+											   <label for="check-03">소기업</label></li>
+											<li class="optionItem">
+												<input type="checkbox" id="check-04"name="scaletag" value="04" data-name="한시성중소기업">
+											   <label>한시성중소기업</label></li>
+										 </ul>
+									</div>
+								</div>
+								<!-- selectBox3 -->
+								<div class="qustion fl"><strong>03</strong><span>원하는 복지는 무엇인가요? </span></div>
+								<div class="box fl">
+									<div class="selectBox2  ">
+										<button class="label">복지 🍟</button>
+										<ul class="optionList">
+											<li class="optionItem" value="pizza"><label for="check-600">전체</label>
+												<input type="checkbox" id="check-600" class="checkbox check-all checked" name="welfaretag" data-name="전체" checked="checked"></li>
+											 <li class="optionItem"><input type="checkbox" id="check-W00" class="checkbox check-empty" name="welfaretag" data-name="공제·기타">
+												<label for="check-W00">공제·기타</label></li>
+											 <li class="optionItem"><input type="checkbox" id="check-W01" class="checkbox check-empty" name="welfaretag" data-name="연금·보험">
+												<label for="check-W01">연금·보험</label></li>
+											 <li class="optionItem"><input type="checkbox" id="check-W02" class="checkbox check-empty" name="welfaretag" data-name="교육·연수">
+												<label for="check-W02">교육·연수</label></li>
+											 <li class="optionItem"><input type="checkbox" id="check-W03" class="checkbox check-empty" name="welfaretag" data-name="생활편의·여가행사">
+												<label for="check-W03">생활편의·여가행사</label></li>
+											 <li class="optionItem"><input type="checkbox" id="check-W04" class="checkbox check-empty" name="welfaretag" data-name="보상·수당·지원">
+												<label for="check-W04">보상·수당·지원</label></li>
+											 <li class="optionItem"> <input type="checkbox" id="check-W06" class="checkbox check-empty" name="welfaretag" data-name="휴무·휴가·행사">
+												<label for="check-W06">휴무·휴가·행사</label></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</article>
+				</section>
+		</section>
+	</div>
+	<footer></footer>
+	<script src="../../static/js/aos.js"></script>
+	<script>
+		AOS.init({
+			easing: 'ease-in-out-sine'
+		});
+	</script>
 
-   <script src="../../static/js/aos.js"></script>
-   <script src="../../static/js/app_conditon.js"></script>
-   <!-- <script src="../../static/js/app_index.js"></script> -->
-   <script>
-      AOS.init({
-         easing: 'ease-in-out-sine'
-      });
-   </script>
-   <!-- Swiper JS -->
-   <script src="./js/swiper.min.js"></script>
-   <script>
-      var swiper = new Swiper('.swiper-container', {
-         loop: true,
-         loopAdditionalSlides: 1,
-         keyboard: {
-            enabled: true,
-         },
-         cubeEffect: {
-            shadow: true,
-            slideShadows: true,
-            shadowOffset: 20,
-            shadowScale: 0.94,
-         },
-         pagination: {
-            el: '.swiper-pagination',
-         },
-         autoplay: {
-            delay: 2500,
-            disableOnInteraction: false,
-         },
-      });
-   </script>
-   <script>
-      const label = document.querySelectorAll('.label');
-      label.forEach(function (lb) {
-         lb.addEventListener('click', e => {
-            let optionList = lb.nextElementSibling;
-            let optionItems = optionList.querySelectorAll('.optionItem');
-            clickLabel(lb, optionItems);
-         })
-      });
-      const clickLabel = (lb, optionItems) => {
-         if (lb.parentNode.classList.contains('active')) {
-            lb.parentNode.classList.remove('active');
-            optionItems.forEach((opt) => {
-               opt.removeEventListener('click', () => {
-                  handleSelect(lb, opt)
-               })
-            })
-         } else {
-            lb.parentNode.classList.add('active');
-            optionItems.forEach((opt) => {
-               opt.addEventListener('click', () => {
-                  handleSelect(lb, opt)
-               })
-            })
-         }
-      }
-      const handleSelect = (label, item) => {
-         label.innerHTML = item.textContent;
-         console.log(item.textContent)
-         label.parentNode.classList.remove('active');
-      }
-   </script>
-
+	<!-- Swiper JS -->
+	<script src="./js/swiper.min.js"></script>
+	<script>
+		var swiper = new Swiper('.swiper-container', {
+			loop: true,
+			loopAdditionalSlides: 1,
+			keyboard: {
+				enabled: true,
+			},
+			cubeEffect: {
+				shadow: true,
+				slideShadows: true,
+				shadowOffset: 20,
+				shadowScale: 0.94,
+			},
+			pagination: {
+				el: '.swiper-pagination',
+			},
+			autoplay: {
+				delay: 2500,
+				disableOnInteraction: false,
+			},
+		});
+	</script>
+	<script>
+		const label = document.querySelectorAll('.label');
+		label.forEach(function (lb) {
+			lb.addEventListener('click', e => {
+				let optionList = lb.nextElementSibling;
+				let optionItems = optionList.querySelectorAll('.optionItem');
+				clickLabel(lb, optionItems);
+			})
+		});
+		const clickLabel = (lb, optionItems) => {
+			if (lb.parentNode.classList.contains('active')) {
+				lb.parentNode.classList.remove('active');
+				optionItems.forEach((opt) => {
+					opt.removeEventListener('click', () => {
+						handleSelect(lb, opt)
+					})
+				})
+			} else {
+				lb.parentNode.classList.add('active');
+				optionItems.forEach((opt) => {
+					opt.addEventListener('click', () => {
+						handleSelect(lb, opt)
+					})
+				})
+			}
+		}
+		const handleSelect = (label, item) => {
+			label.innerHTML = item.textContent;
+			label.parentNode.classList.remove('active');
+		}
+	</script>
+	{% include '/Board/footer.html' %}
 </body>
-
 </html>
+
+	<!-- Swiper JS -->
+	<!-- <script src="./js/swiper.min.js"></script>
+	<script>
+		var swiper = new Swiper('.swiper-container', {
+			loop: true,
+			loopAdditionalSlides: 1,
+			keyboard: {
+				enabled: true,
+			},
+			cubeEffect: {
+				shadow: true,
+				slideShadows: true,
+				shadowOffset: 20,
+				shadowScale: 0.94,
+			},
+			pagination: {
+				el: '.swiper-pagination',
+			},
+			autoplay: {
+				delay: 2500,
+				disableOnInteraction: false,
+			},
+		});
+	</script>
+</body>
+</html> -->

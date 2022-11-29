@@ -1,16 +1,25 @@
-from flask import Flask, redirect, url_for, render_template, request , flash, jsonify
+from flask import Flask, redirect, url_for, render_template, request, flash, flash, jsonify, make_response
 from flask import request, session
 from flask_mail import Mail, Message
-import pymysql, hashlib, json, re
+import pymysql
+import hashlib
+import re
+import json
+import datetime
+from tkinter import messagebox
+
 app = Flask(__name__)
 ############ 구글메일(계정찾기 테스트) ################ 사이트 접근과 동시에 메일서버와 인터페이스 하면서 recipients 로 지정된 메일 주소로 이메일을 발송
-# app.config['MAIL_SERVER'] = 'smtp.gmail.com'
-# app.config['MAIL_PORT'] = 465
-# app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
-# app.config['MAIL_PASSWORD'] = 'myhinigkzocytxcd'
-# app.config['MAIL_USE_TLS'] = False
-# app.config['MAIL_USE_SSL'] = True
-# mail = Mail(app)
+def mailcall():
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    app.config['MAIL_PORT'] = 465
+    app.config['MAIL_USERNAME'] = 'kongjh941109@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'snuejrgmmznyneie'
+    app.config['MAIL_USE_TLS'] = False
+    app.config['MAIL_USE_SSL'] = True
+    mail = Mail(app)
+    return mail
+
 def dbcall():
     con = pymysql.connect(
     user='root',
@@ -19,33 +28,102 @@ def dbcall():
     charset='utf8mb4',
     cursorclass=pymysql.cursors.DictCursor)
     return con
+
+@app.route('/setcookie', methods=['POST', 'GET'])
+def setcookie():
+    if request.method == 'POST':
+        user = request.form['coocke']
+        print("쿠키테스트", user)
+        resp = make_response("Cookie Setting Complete")
+        resp.set_cookie('userID', user)
+    return resp
+
+
+@app.route('/getcookie')
+def getcookie():
+    name = request.cookies.get('userID')
+    return name
+
 @app.route('/accountfind')
 def accountfind():
     con = dbcall()
     cursor = con.cursor()
-    sql = "SELECT ID,email from member"
+    sql = "SELECT ID,email,phone from member"
     cursor.execute(sql)
     userlist2 = cursor.fetchall()
     print(type(userlist2))
     print(userlist2)
-    con.close()
+    cursor.close()
     return render_template('Board/account.html')
+
 @app.route('/accountfind_proc', methods=['POST'])
 def accountfind_proc():
+    mail = mailcall()
     con = dbcall()
     cursor = con.cursor()
     user_name_recive = request.form['user_name_give']
     user_email_recive = request.form['user_email_give']
-    sql = "SELECT ID from member where name = %s and email = %s"
-    cursor.execute(sql, (user_name_recive,user_email_recive, ))
+    user_phone_recive = request.form['user_phone_give']
+    sql = "SELECT ID from member where name = %s and email = %s and phone=%s"
+    cursor.execute(
+        sql, (user_name_recive, user_email_recive, user_phone_recive))
     find_userid = cursor.fetchone()
     find_userid = find_userid['ID']
     print(find_userid)
-    msg = Message('[잡아라]' +user_name_recive+'님의 아이디를 안내드립니다.', sender='kongjh941109@gmail.com', recipients=['cjsdur@naver.com'])
-    msg.body = '회원님 안녕하세요.''회원님의 아이디는 다음과 같습니다.\n' '['+find_userid+ ']\n 앞으로도 더욱 편리한 서비스를 제공하기 위해 최선을 다하겠습니다.'
+    msg = Message('[잡아라]' + user_name_recive+'님의 아이디를 안내드립니다.',
+                  sender='kongjh941109@gmail.com', recipients=[user_email_recive])
+    msg.body = '회원님 안녕하세요.\n''회원님의 아이디는 다음과 같습니다.\n' '[' + \
+        find_userid + ']\n 앞으로도 더욱 편리한 서비스를 제공하기 위해 최선을 다하겠습니다.'
     mail.send(msg)
-    con.close()
+    cursor.close()
     return jsonify({'msg': '회원님의 이메일로 아이디를 전송했습니다.'})
+
+@app.route('/passwordfind')
+def passwordfind():
+    con = dbcall()
+    cursor = con.cursor()
+    sql = "SELECT ID,email,phone from member"
+    cursor.execute(sql)
+    userlist2 = cursor.fetchall()
+    print(type(userlist2))
+    print(userlist2)
+    cursor.close()
+    return render_template('Board/accountpassword.html')
+
+
+@app.route('/passwordfind_proc', methods=['POST'])
+def passwordfind_proc():
+    mail = mailcall()
+    con = dbcall()
+    cursor = con.cursor()
+    user_name_recive = request.form['user_name_give']
+    user_id_recive = request.form['user_id_give']
+    user_phone_recive = request.form['user_phone_give']
+    code = request.form['code']
+    # sql = "UPDATE member SET member.PW = %s where email in(SELECT email from (select email from member where name = %s and id = %s and phone=%s)as TMP)"
+    # 서브쿼리로 처리해보려고했으나 email값을 변수로 사용을 못함... 다중sql문 쓰는게 맞을듯함
+    sql = "SELECT email from member where name = %s and id = %s and phone=%s"
+    cursor.execute(
+        sql, (user_name_recive, user_id_recive, user_phone_recive, ))
+    find_useremail = cursor.fetchone()
+    sendmail = find_useremail['email']
+    re_pw_hash = hashlib.sha256(code.encode('utf-8')).hexdigest()
+    sql2 = "update member set pw = %s where email = %s"
+    cursor.execute(sql2, (re_pw_hash, sendmail, ))
+    con.commit()
+    cursor.close()
+    msg = Message('[잡아라]에 요청하신 임시비밀번호입니다.',
+                  sender='kongjh941109@gmail.com', recipients=[sendmail])
+    msg.body = user_name_recive + \
+        '님 안녕하세요.\n 임시 비밀번호를 발급하오니 잡아라 홈페이지에 오셔서 로그인 하신 후.' + \
+        ' \n 마이페이지>>개인정보변경에서 반드시 비밀번호를 변경하여 주시기 바랍니다. ' + \
+        ' \n 임시비밀번호  :  ' + code + \
+        ' \n 앞으로도 더욱 편리한 서비스를 제공하기 위해 최선을 다하겠습니다.'
+    mail.send(msg)
+
+    return jsonify({'msg': '회원님의 이메일로 임시 비밀번호를 전송했습니다.'})
+
+
 @app.route('/passfind')
 def passfind():
     return render_template('Board/account.html')
@@ -218,7 +296,7 @@ def interest_insert():
 
 
  
-@app.route('/interest')  ####### 기업정보 찜리스트 select
+@app.route('/interest')  ####### 기업정보 찜리스트 select -> 마이페이지('나의 관심기업' 페이지)
 def interest():
     con = dbcall()
     cursor = con.cursor()
@@ -230,20 +308,6 @@ def interest():
     cursor.close()
     return render_template('Board/interest_company.html', interest_com=interest_com, interest_len=interest_len)
         
-
-
-
-@app.route('/recent_inquiry_company')  # 찜리스트  활동내역 (열람기업) 
-def recent_inquiry_company():
-    con = dbcall()
-    cursor=con.cursor()
-    user_id=session['ID']
-    sql = "select * from like_company left join like_company_view on like_company.data_id= like_company_view.data_id where id=%s"
-    cursor.execute(sql,(user_id,))
-    interest_com = cursor.fetchall()
-    interest_len=len(interest_com)
-
-    return render_template('Board/r-i-c.html',interest_com=interest_com,interest_len=interest_len)
 
 
 ########################################################
@@ -276,10 +340,7 @@ def searchIndex():
         cursor.close()
     return render_template('Board/search.html', data_list=data_list, rows=rows, region=region, datatype="json")
 
-
-
-########################################################################################################################채용정보
-@app.route('/excellence_employment')
+@app.route('/excellence_employment') #채용정보
 def excellence_employment():
     con = dbcall()
     cursor = con.cursor()
@@ -293,11 +354,8 @@ def excellence_employment():
     cursor.execute(sql)
     data_list = cursor.fetchall()
     cursor.close()
-
     return render_template('Board/excellence_employment.html',employ_list=employ_list,data_list=data_list)
-    
-
-
+  
 @app.route('/employtest') # 체크박스 test
 def employtest():
     con = dbcall()
@@ -337,8 +395,7 @@ def employtest():
     finally:
         con.close()
 
-##############################################################################################################################
-@app.route('/company/<int:data_id>')  ############ 기업상세페이지
+@app.route('/company/<int:data_id>')  # 기업상세페이지
 def company(data_id):
     con = dbcall()
     cursor = con.cursor()
@@ -375,8 +432,6 @@ def company(data_id):
     cursor.close()
     return render_template('Board/company.html',data_list=data_list,same_industry=same_industry ,like_checked=like_checked, interest_com=interest_com, interest_len=interest_len, user_id=user_id)
 
-
-
 @app.route('/faq')  ############## 질문과 답변
 def faq():
     con = dbcall()
@@ -406,7 +461,8 @@ def qna():
     print(reply['count(*)'])
     cursor.close()
     return render_template('Board/qna.html', qna_len=qna_len, qna_list=qna_list, reply_len=reply_len)
-@app.route('/question') ######### 질문으로 넘기기
+
+@app.route('/question') # 질문으로 넘기기
 def qnastion():
     if session['logFlag'] == True:
         print("세션확인",session['logFlag'])
@@ -414,7 +470,7 @@ def qnastion():
     else:
         return redirect('/qna')
         
-@app.route('/question_proc', methods=['POST']) ########## 질문페이지
+@app.route('/question_proc', methods=['POST']) # 질문페이지
 def qustion_proc():
     con = dbcall()
     cursor = con.cursor()
@@ -431,7 +487,6 @@ def qustion_proc():
     print(qna_len)
     cursor.close()
     return redirect('/qna')
-
 
 @app.route('/answer', methods=['POST'])  # 답변으로 넘기기
 def answer():
@@ -481,6 +536,7 @@ def login_form_get():
     cursor = con.cursor()
     con.close()
     return render_template('Board/login.html')
+
 @app.route('/login_proc', methods=['POST'])
 def login_proc():
     con = pymysql.connect(
@@ -519,7 +575,9 @@ def login_proc():
                 return ('id not found')
     cursor.close()
     return render_template('Board/index.html')
+
 app.secret_key = 'test_secret_key'
+
 @app.route('/logout_proc')  # 로그아웃
 def logout_proc():
     con = dbcall()
@@ -541,16 +599,26 @@ def join_form_get():
     print("id_list의타입",type(id_list))
     con.close()
     return render_template('Board/join.html' , data=json.dumps(id_list, ensure_ascii=False))
+
 @app.route('/mailcheck', methods=['post'])    
 def mailcheck():
-    con = dbcall()
-    cursor = con.cursor()
-    value = request.form
-    print(value)
-    print(value['email'])
-    print(value['code'])
-    cursor.close()
-    return jsonify(result = "success")
+    # con = dbcall()
+    mail = mailcall()
+    # return jsonify(result = "success")
+    mail_code = request.form
+    check_mail = mail_code['email']
+    check_code = mail_code['code']
+    print("메일체크"+check_mail)
+    print("코드체크"+check_code)
+    msg = Message('[잡아라] 회원가입 이메일 인증번호.',
+                  sender='kongjh941109@gmail.com', recipients=[check_mail])
+    msg.body = ('안녕하세요! 잡아라에서 알려드립니다.\n 회원가입 이메일 인증번호를 알려드립니다.\n -인증번호 : ' +
+                check_code+'\n 앞으로도 더욱 편리한 서비스를 제공하기 위해 최선을 다하겠습니다.')
+    mail.send(msg)
+    
+
+    return jsonify({'msg': '회원님의 이메일로 아이디를 전송했습니다.'})
+
 @app.route('/join_proc', methods=['GET','POST'])
 def join_proc():
     Idexp = re.compile('^[a-zA-Z0-9]{4,12}$')
@@ -611,18 +679,28 @@ def my_page_proc():
         # 키값(html의 name값, 변수명은 같게 만들어 주는게 편하니 습관화)
         user_id = request.form['user_id']
         user_pw = request.form['user_pw']
-        user_name = request.form['user_name']
         user_phone = request.form['user_phone']
-        user_birth = request.form['user_birth']
+        pw_hash = hashlib.sha256(user_pw.encode('utf-8')).hexdigest()
         if len(user_pw) == 0:
             return '에러! 입력되지 않은 값이 있습니다!'
         else:
             sql = 'UPDATE MEMBER SET PW=%s, Phone=%s WHERE ID=%s'
-            cursor.execute(sql, (user_pw, user_phone, user_id, ))
+            cursor.execute(sql, (pw_hash, user_phone, user_id, ))
             con.commit()
             con.close()
             return render_template('Board/login.html')
 
+@app.route('/recent_inquiry_company')  # 찜리스트  활동내역 (열람기업) 
+def recent_inquiry_company():
+    con = dbcall()
+    cursor=con.cursor()
+    user_id=session['ID']
+    sql = "select * from like_company left join like_company_view on like_company.data_id= like_company_view.data_id where id=%s"
+    cursor.execute(sql,(user_id,))
+    interest_com = cursor.fetchall()
+    interest_len=len(interest_com)
+
+    return render_template('Board/r-i-c.html',interest_com=interest_com,interest_len=interest_len)
 
 @app.route('/personal-info-change')  # 회원정보수정
 def persnal_info_change():

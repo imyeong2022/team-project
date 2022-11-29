@@ -66,23 +66,18 @@ function employ_checkbox(){
     let industry=typeOfBusinessList.join();
     let career_detail=career_details.join();
     let education=education_list.join();
-
-    alert(area)
-    alert(industry)
-    alert(career_detail)
-    alert(education)
-
+    // alert(area)
+    // alert(industry)
+    // alert(career_detail)
+    // alert(education)
     $.ajax({
         type:'GET',
         url:'/employtest',
         dataType:'json',
         data:{'area':area,'industry':industry,'career_detail':career_detail,'education':education},
         success: function (data_list) {
-            alert("여기");
             console.log(data_list);
-            // let li = data_list[""];
-            let for10='{% for x in range(10) %}'
-            let li=data_list[""];
+            let li=""
             for (let i = 0; i < data_list.length; i++) {
                 li +=
                 '<li><div><div><a onClick="window.location.reload()" style="cursor: pointer;"></a>'+
@@ -91,11 +86,11 @@ function employ_checkbox(){
                 '<a onclick="#" style="cursor:pointer">'+
                 '<p class="grid-title" id="company_title">'+data_list[i]["company"]+'</p>'+
                 '<p class="grid-title" id="company_title">'+data_list[i]["title"]+'</p></a>'+
-                '<p class="condition-sub-text">'+data_list[i]["region"]+'|'+
-                data_list[i]["career_details"]+'|'+
-                data_list[i]["education"]+'|'+
-                data_list[i]["work_type"]+'|'+
-                data_list[i]["salary"]+'|'+
+                '<p class="condition-sub-text">'+data_list[i]["region"]+' | '+
+                data_list[i]["career_details"]+' | '+
+                data_list[i]["education"]+' | '+
+                data_list[i]["work_type"]+' | '+
+                data_list[i]["salary"]+' | '+
                 data_list[i]["d_day"]+'</p></div></div><div><ul class="tag"></ul></div></li>';
                 let region = data_list[i]["region"];
                 let career_details = data_list[i]["career_details"];
@@ -116,4 +111,3 @@ function employ_checkbox(){
             },
         });
 }
-

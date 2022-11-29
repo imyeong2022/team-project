@@ -28,7 +28,7 @@
 
     </style>
     <script>
-        function interestSave(obj, data_id, user_id) {
+        function interestSave_company(obj, data_id, user_id) {
             var userId = user_id
             if (userId == 'null') {
                 $(obj).prop("checked", false);
@@ -36,14 +36,13 @@
                     location.href = "/login_form_get";
                 }
             } else {
-                alert('로그인!')
                 var cmpIds = new Array();
     
                 const dataID = data_id
                 const param = {
                     'data_id': dataID
                 };
-                alert(data_id)
+                // alert(data_id)
                 $.ajax({
                     type: 'GET',
                     url: '/interest_insert',
@@ -105,14 +104,14 @@
                             <p>
                             {% if like_checked[0]['id']==user_id and data_list[0].data_id == like_checked[0].data_id %}
                             <input type="checkbox" checked id="interestCheck{{0}}" class="checkbox-star"
-                                onclick="interestSave(this,'{{data_list[0].data_id}}','{{user_id}}');"
+                                onclick="interestSave_company(this,'{{data_list[0].data_id}}','{{user_id}}');"
                                 name="interestCheck{{0}}">
                             <span class="star-inner">&nbsp;&nbsp;&nbsp;</span>
                             <label for="interestCheck{{0}}">관심기업 해제하기 </label>
 
                             {% else %}
                             <input type="checkbox" id="interestCheck{{0}}" class="checkbox-star"
-                                onclick="interestSave(this,'{{data_list[0].data_id}}','{{user_id}}');"
+                                onclick="interestSave_company(this,'{{data_list[0].data_id}}','{{user_id}}');"
                                 name="interestCheck{{0}}">
                             <span class="star-inner">&nbsp;&nbsp;&nbsp;</span>
                             <label for="interestCheck{{0}}">관심기업 등록하기</label>

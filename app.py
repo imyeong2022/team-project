@@ -297,7 +297,7 @@ def interest_insert():
 
 
  
-@app.route('/interest')  ####### 기업정보 찜리스트 select
+@app.route('/interest')  ####### 기업정보 찜리스트 select -> 마이페이지('나의 관심기업' 페이지)
 def interest():
     con = dbcall()
     cursor = con.cursor()
@@ -341,44 +341,62 @@ def searchIndex():
         cursor.close()
     return render_template('Board/search.html', data_list=data_list, rows=rows, region=region, datatype="json")
 
-@app.route('/excellence_employment')
+@app.route('/excellence_employment') #채용정보
 def excellence_employment():
-    return render_template('Board/excellence_employment.html')
-    
+    con = dbcall()
+    cursor = con.cursor()
+    sql="select * from company_employment"
+    cursor.execute(sql)
+    employ_list = cursor.fetchall()
+    cursor.close()
+
+    cursor = con.cursor()
+    sql = "SELECT * from company_info"
+    cursor.execute(sql)
+    data_list = cursor.fetchall()
+    cursor.close()
+    return render_template('Board/excellence_employment.html',employ_list=employ_list,data_list=data_list)
+  
 @app.route('/employtest') # 체크박스 test
 def employtest():
+    con = dbcall()
+    cursor = con.cursor()
     try:
-        con = pymysql.connect(
-        user='root',
-        password='java',
-        db='final_test',
-        charset='utf8mb4',
-        cursorclass=pymysql.cursors.DictCursor)
-        with con.cursor() as cursor:   
-            s=request.args.get('area') 
-            p = s.split(',')
-            content = ''
-            for i in range(len(p)):
-                if (i+1) == len(p):                    
-                    content += "'" + p[i] + "'"
-                else:
-                    content += "'" + p[i] + "',"
-            print('>>>>>>>>>>>>'+ content,type(content))
-            print('!!!!!!!!!!!!!!!!'+content)
-            
-            sql="SELECT * from company_info where `region` in ("+ content +")"
-            cursor.execute(sql)
-            rows=cursor.fetchall()
-            # print(rows)
-            for row in rows:
-                print('............',row)
-            # return jsonify(rows)
-            return rows        
+        areaList=request.args.get('area') 
+        industryList=request.args.get('industry') 
+        career_details=request.args.get('career_detail') 
+        education=request.args.get('education') 
+
+        print("체크박스 area",areaList)
+        print("체크박스 industry",industryList)
+        print("체크박스 career",career_details)
+        print("체크박스 education",education)
+
+        p = areaList.split(',')
+        content = ''
+        for i in range(len(p)):
+            if (i+1) == len(p):                    
+                content += "'" + p[i] + "'"
+            else:
+                content += "'" + p[i] + "',"
+
+        print('!!!!!!!!!!!!!!!!'+content)
+
+        sql="SELECT * from company_employment where `region` in ("+ content +")"
+        cursor.execute(sql)
+        rows = cursor.fetchall()
+        print("길이",len(rows))
+
+        for row in rows:
+            print('............', row)
+        return jsonify(rows)
+    # return rows    
+    except Exception as e:
+        print(e)    
     finally:
         con.close()
 
-########################################################
-@app.route('/company/<int:data_id>')  ############ 기업상세페이지
+@app.route('/company/<int:data_id>')  # 기업상세페이지
 def company(data_id):
     con = dbcall()
     cursor = con.cursor()
@@ -415,9 +433,6 @@ def company(data_id):
     cursor.close()
     return render_template('Board/company.html',data_list=data_list,same_industry=same_industry ,like_checked=like_checked, interest_com=interest_com, interest_len=interest_len, user_id=user_id)
 
-@app.route('/jobs')  ################# 채용정보페이지
-def jobs():
-    return render_template('Board/jobs.html')
 @app.route('/faq')  ############## 질문과 답변
 def faq():
     con = dbcall()
@@ -447,7 +462,8 @@ def qna():
     print(reply['count(*)'])
     cursor.close()
     return render_template('Board/qna.html', qna_len=qna_len, qna_list=qna_list, reply_len=reply_len)
-@app.route('/question') ######### 질문으로 넘기기
+
+@app.route('/question') # 질문으로 넘기기
 def qnastion():
     if session['logFlag'] == True:
         print("세션확인",session['logFlag'])
@@ -455,7 +471,7 @@ def qnastion():
     else:
         return redirect('/qna')
         
-@app.route('/question_proc', methods=['POST']) ########## 질문페이지
+@app.route('/question_proc', methods=['POST']) # 질문페이지
 def qustion_proc():
     con = dbcall()
     cursor = con.cursor()
@@ -472,7 +488,6 @@ def qustion_proc():
     print(qna_len)
     cursor.close()
     return redirect('/qna')
-
 
 @app.route('/answer', methods=['POST'])  # 답변으로 넘기기
 def answer():
@@ -491,6 +506,7 @@ def answer():
         con.commit()
         cursor.close()
         return jsonify({'msg': '답변등록이 완료되었습니다.'})
+
 @app.route('/qnaview')  # 마이페이지 나의 문의목록
 def qnaview():
     con = dbcall()
@@ -521,6 +537,7 @@ def login_form_get():
     cursor = con.cursor()
     con.close()
     return render_template('Board/login.html')
+
 @app.route('/login_proc', methods=['POST'])
 def login_proc():
     con = pymysql.connect(
@@ -559,7 +576,9 @@ def login_proc():
                 return ('id not found')
     cursor.close()
     return render_template('Board/index.html')
+
 app.secret_key = 'test_secret_key'
+
 @app.route('/logout_proc')  # 로그아웃
 def logout_proc():
     con = dbcall()
